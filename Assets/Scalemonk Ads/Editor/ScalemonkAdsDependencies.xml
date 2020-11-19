@@ -34,12 +34,12 @@
              * "subspecs" (optional)
                Subspecs to include for the pod.
          -->
-        <iosPod name="ScalemonkAds"  version="0.0.1"/>
-        <iosPod name="ScalemonkAds/Provider-Admob"  version="0.0.1"/>
-        <iosPod name="ScalemonkAds/Provider-AppLovin"  version="0.0.1"/>
-        <iosPod name="ScalemonkAds/Provider-Facebook"  version="0.0.1"/>
-        <iosPod name="ScalemonkAds/Provider-UnityAds"  version="0.0.1"/>
-        <iosPod name="ScalemonkAds/Provider-Vungle"  version="0.0.1"/>
+        <iosPod name="ScalemonkAds" path="../scalemonk-ios/Mediation"/>
+        <iosPod name="ScalemonkAds/Provider-Admob" path="../scalemonk-ios/Mediation"/>
+        <iosPod name="ScalemonkAds/Provider-AppLovin" path="../scalemonk-ios/Mediation"/>
+        <iosPod name="ScalemonkAds/Provider-Facebook" path="../scalemonk-ios/Mediation"/>
+        <iosPod name="ScalemonkAds/Provider-UnityAds" path="../scalemonk-ios/Mediation"/>
+        <iosPod name="ScalemonkAds/Provider-Vungle" path="../scalemonk-ios/Mediation"/>
 <!--        <iosPod name="ScalemonkAds-Admob"  version="0.0.1"/>-->
 
     </iosPods>
