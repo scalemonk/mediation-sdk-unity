@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adnets>
+    <adnet id="AdMob" name="AdMob">
+        <adnetConfig config="GADApplicationIdentifier" platform="ios" name="App Id (iOS)" />
+    </adnet>
+    <adnet id="AppLovin" name="AppLovin" />
+    <adnet id="Facebook" name="Facebook" />
+    <adnet id="UnityAds" name="UnityAds" />
+    <adnet id="Vungle" name="Vungle" />
+</adnets>

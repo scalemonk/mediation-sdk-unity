@@ -1,0 +1,143 @@
+using System.IO;
+using UnityEditor;
+using UnityEditor.Callbacks;
+using UnityEditor.iOS.Xcode;
+
+namespace ScaleMonk.Ads
+{
+    public class ScaleMonkAdsiOSPostProcessor
+    {
+        [PostProcessBuild]
+        public static void onPostProcessBuild(BuildTarget buildTarget, string targetPath)
+        {
+            configureSwiftBuild(targetPath);
+            configureAdnets(buildTarget, targetPath);
+            configureSKAdNetworks(buildTarget, targetPath);
+        }
+
+       
+
+        private static void configureAdnets(BuildTarget buildTarget, string targetPath)
+        {
+#if UNITY_IOS
+            if (buildTarget == BuildTarget.iOS)
+            {
+                var plistPath = Path.Combine(targetPath, "Info.plist");
+                var infoPlist = new PlistDocument();
+                infoPlist.ReadFromFile(plistPath);
+
+                var adnetsConfigs = AdsProvidersHelper.ReadAdnetsConfigs();
+                foreach (var adnet in adnetsConfigs)
+                {
+                    if (adnet.configs == null) { continue; }
+                    foreach (var config in adnet.configs)
+                    {
+                        if (config.platform != "ios")  { continue; }
+                        if (!string.IsNullOrEmpty(config.value))
+                        {
+                            infoPlist.root.SetString(config.config, config.value);
+                        }
+
+                    }
+                }
+
+                infoPlist.WriteToFile(plistPath);
+            }
+#endif
+        }
+
+        private static void configureSwiftBuild(string targetPath)
+        {
+#if UNITY_IOS
+            var projPath = UnityEditor.iOS.Xcode.PBXProject.GetPBXProjectPath(targetPath);
+            var proj = new UnityEditor.iOS.Xcode.PBXProject();
+
+            proj.ReadFromString(File.ReadAllText(projPath));
+
+#if UNITY_2019_3_OR_NEWER
+            var targetGuid = proj.GetUnityFrameworkTargetGuid();
+#else
+            var targetGuid = proj.TargetGuidByName ("Unity-iPhone");
+#endif
+
+
+            proj.SetBuildProperty(targetGuid, "SWIFT_VERSION", "5.0");
+#if !UNITY_2019_3_OR_NEWER
+            //TODO check this
+            proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Assets/Scalemonk Ads/Plugins/iOS/Bridging-Header.h");
+#endif
+            proj.SetBuildProperty(targetGuid, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
+            proj.SetBuildProperty(targetGuid, "LD_RUNPATH_SEARCH_PATHS", "@executable_path/Frameworks");
+#endif
+
+            File.WriteAllText(projPath, proj.WriteToString());
+        }
+        
+        static readonly string[] skadnetworks = {
+            "2u9pt9hc89.skadnetwork",
+            "3rd42ekr43.skadnetwork",
+            "3sh42y64q3.skadnetwork",
+            "4dzt52r2t5.skadnetwork",
+            "4fzdc2evr5.skadnetwork",
+            "4pfyvq9l8r.skadnetwork",
+            "5lm9lj6jb7.skadnetwork",
+            "6xzpu9s2p8.skadnetwork",
+            "7ug5zh24hu.skadnetwork",
+            "8s468mfl3y.skadnetwork",
+            "9rd848q2bz.skadnetwork",
+            "9t245vhmpl.skadnetwork",
+            "22mmun2rn5.skadnetwork",
+            "44jx6755aq.skadnetwork",
+            "44n7hlldy6.skadnetwork",
+            "238da6jt44.skadnetwork",
+            "424m5254lk.skadnetwork",
+            "488r3q3dtq.skadnetwork",
+            "4468km3ulz.skadnetwork",
+            "av6w8kgt66.skadnetwork",
+            "bvpn9ufa9b.skadnetwork",
+            "c6k4g5qg8m.skadnetwork",
+            "cstr6suwn9.skadnetwork",
+            "ecpz2srf59.skadnetwork",
+            "f38h382jlk.skadnetwork",
+            "f73kdq92p3.skadnetwork",
+            "glqzh8vgby.skadnetwork",
+            "hs6bdukanm.skadnetwork",
+            "kbd757ywx3.skadnetwork",
+            "klf5c3l5u5.skadnetwork",
+            "lr83yxwka7.skadnetwork",
+            "m8dbw4sv7c.skadnetwork",
+            "mlmmfzh3r3.skadnetwork",
+            "ppxm28t8ap.skadnetwork",
+            "prcb7njmu6.skadnetwork",
+            "su67r6k2v3.skadnetwork",
+            "t38b2kh725.skadnetwork",
+            "tl55sbb4fm.skadnetwork",
+            "v72qych5uu.skadnetwork",
+            "v79kvwwj4g.skadnetwork",
+            "w9q455wk68.skadnetwork",
+            "wg4vff78zm.skadnetwork",
+            "wzmmz9fp6w.skadnetwork",
+            "yclnxrl5pm.skadnetwork",
+            "ydx93a7ass.skadnetwork",
+            "zmvfpc5aq8.skadnetwork",
+            "ludvb6z3bs.skadnetwork",
+        };
+        
+        private static void configureSKAdNetworks(BuildTarget buildTarget, string targetPath)
+        {
+#if UNITY_IOS
+            var plistPath = targetPath + "/Info.plist";
+            var plist = new PlistDocument();
+            plist.ReadFromString(File.ReadAllText(plistPath));
+            var arr = plist.root.CreateArray("SKAdNetworkItems");
+            foreach (var id in skadnetworks)
+            {
+                var dic = arr.AddDict();
+                dic.SetString("SKAdNetworkIdentifier", id);
+            }
+            File.WriteAllText(plistPath, plist.WriteToString());
+            UnityEngine.Debug.Log("Add SKAdNetworkItems PostProcessor done");
+#endif
+        }
+    }
+}
