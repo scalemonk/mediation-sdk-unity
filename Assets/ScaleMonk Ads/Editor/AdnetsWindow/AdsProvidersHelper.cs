@@ -8,7 +8,7 @@ namespace ScaleMonk.Ads
 {
     public class AdsProvidersHelper
     {
-        const string iosAdsVersion = "0.0.2-alpha.1";
+        const string iosAdsVersion = "0.0.2";
 
         public static string GetAdnetsXmlPath()
         {
@@ -182,7 +182,7 @@ namespace ScaleMonk.Ads
             var iosPodsElement = doc.CreateElement("iosPods");
 
             var adsPod = doc.CreateElement("iosPod");
-            adsPod.SetAttribute("name", "ScalemonkAds");
+            adsPod.SetAttribute("name", "ScaleMonkAds");
             adsPod.SetAttribute("version", iosAdsVersion);
 
             adsPod.AppendChild(CreateSourcesElement(doc));
@@ -197,7 +197,7 @@ namespace ScaleMonk.Ads
                 }
 
                 var adnetPod = doc.CreateElement("iosPod");
-                adnetPod.SetAttribute("name", string.Format("ScalemonkAds/Provider-{0}", adnet.id));
+                adnetPod.SetAttribute("name", string.Format("ScaleMonkAds/Provider-{0}", adnet.id));
                 adnetPod.AppendChild(CreateSourcesElement(doc));
 
                 // TODO: set configs to info.plist
@@ -225,13 +225,10 @@ namespace ScaleMonk.Ads
         static XmlNode CreateSourcesElement(XmlDocument doc)
         {
             var sourcesElement = doc.CreateElement("sources");
-            var cocoapodsSource = doc.CreateElement("source");
             var iosPodspecSource = doc.CreateElement("source");
 
-            cocoapodsSource.InnerText = "git@git.topfreegames.com:libs-frameworks/cocoapods-specs.git";
-            iosPodspecSource.InnerText = "git@git.topfreegames.com:libs-frameworks/ios-podspecs.git";
+            iosPodspecSource.InnerText = "git@github.com:scalemonk/ios-podspecs.git";
 
-            sourcesElement.AppendChild(cocoapodsSource);
             sourcesElement.AppendChild(iosPodspecSource);
 
             return sourcesElement;
