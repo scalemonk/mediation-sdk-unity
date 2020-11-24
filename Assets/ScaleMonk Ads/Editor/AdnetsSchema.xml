@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <adnets>
-    <adnet id="AdMob" name="AdMob">
+    <adnet id="Admob" name="Admob">
         <adnetConfig config="GADApplicationIdentifier" platform="ios" name="App Id (iOS)" />
     </adnet>
     <adnet id="AppLovin" name="AppLovin" />
