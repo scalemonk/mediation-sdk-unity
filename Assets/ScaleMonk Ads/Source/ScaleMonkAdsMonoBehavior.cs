@@ -69,6 +69,17 @@ namespace ScaleMonk.Ads
             Debug.LogFormat("[{0}] Failed interstitial display at location {1}", _label, location);
             _adsInstance.FailedInterstitialDisplay(location);
         }
+        
+        public void InterstitialReady()
+        {
+            Debug.LogFormat("[{0}] Interstitial display to display", _label);
+            _adsInstance.InterstitialReady();
+        }
+        public void VideoReady()
+        {
+            Debug.LogFormat("[{0}] Rewarded display to display", _label);
+            _adsInstance.VideoReady();
+        }
     
     }
 }

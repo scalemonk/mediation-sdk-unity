@@ -33,4 +33,9 @@
                      [tag cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
+- (void)onInterstitialReady {
+    NSLog(@"Interstitial ad ready to be shown");
+    UnitySendMessage("AdsMonoBehaviour", "InterstitialReady", [@"" cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
 @end

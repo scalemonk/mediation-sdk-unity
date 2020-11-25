@@ -42,6 +42,8 @@ public class ScaleMonkDebugMenu : MonoBehaviour
         ScaleMonkAds.VideoStartedEvent += Feedback("Video Started");
         ScaleMonkAds.VideoNotDisplayedEvent += Feedback("Video Not Displayed");
         ScaleMonkAds.InterstitialNotDisplayedEvent += Feedback("Interstitial Not Displayed");
+        ScaleMonkAds.InterstitialReadyEvent += Feedback("Interstitial Ready");
+        ScaleMonkAds.VideoReadyEvent += Feedback("Rewarded Video Ready");
     }
 
     private Action Feedback(string start)

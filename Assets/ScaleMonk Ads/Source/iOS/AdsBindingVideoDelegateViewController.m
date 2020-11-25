@@ -40,4 +40,10 @@
     UnitySendMessage("AdsMonoBehaviour", "StartedVideoDisplay",
                      [tag cStringUsingEncoding:NSUTF8StringEncoding]);
 }
+
+- (void)onVideoAdReady {
+    NSLog(@"Video ad ready to be shown");
+    UnitySendMessage("AdsMonoBehaviour", "VideoReady", [@"" cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
 @end

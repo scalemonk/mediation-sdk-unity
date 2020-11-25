@@ -137,6 +137,16 @@ namespace ScaleMonk.Ads
         /// </summary>
         public static Action InterstitialClickedEvent;
         
+        /// <summary>
+        /// Informs that an interstitial ad has been successfully cached and is ready to be shown.
+        /// </summary>
+        public static Action InterstitialReadyEvent;
+        
+        /// <summary>
+        /// Informs that a rewarded video ad has been successfully cached and is ready to be shown.
+        /// </summary>
+        public static Action VideoReadyEvent;
+        
         #region Ads Native Binding Callbacks
         public void CompletedVideoDisplay(string tag)
         {
@@ -179,6 +189,18 @@ namespace ScaleMonk.Ads
             Debug.LogFormat("[Ads] Interstitial not displayed at tag {0}", tag);
             CallAction(InterstitialNotDisplayedEvent);
         }
+        
+        public void InterstitialReady()
+        {
+            Debug.LogFormat("[Ads] Interstitial ready to be displayed");
+            CallAction(InterstitialReadyEvent);
+        }
+         public void VideoReady()
+        {
+            Debug.LogFormat("[Ads] Rewarded Video ad ready to be displayed");
+            CallAction(VideoReadyEvent);
+        }
+  
         #endregion
 
         
