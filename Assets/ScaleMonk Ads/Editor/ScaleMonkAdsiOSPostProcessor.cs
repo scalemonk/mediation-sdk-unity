@@ -64,7 +64,7 @@ namespace ScaleMonk.Ads
             proj.SetBuildProperty(targetGuid, "SWIFT_VERSION", "5.0");
 #if !UNITY_2019_3_OR_NEWER
             //TODO check this
-            proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Assets/ScaleMonk Ads/Plugins/iOS/Bridging-Header.h");
+            proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/ScaleMonk Ads/Plugins/iOS/Bridging-Header.h");
 #endif
             proj.SetBuildProperty(targetGuid, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
             proj.SetBuildProperty(targetGuid, "LD_RUNPATH_SEARCH_PATHS", "@executable_path/Frameworks");
