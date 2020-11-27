@@ -9,7 +9,7 @@ namespace ScaleMonk.Ads
         Vector2 scrollPos;
         static List<AdnetXml> adnetsConfigs;
 
-        [MenuItem("Tools/Ads/Adnets selection", false, 0)]
+        [MenuItem("ScaleMonk/Adnets Selection", false, 0)]
         static void Display()
         {
             GetWindow<AdsProvidersWindow>(typeof(SceneView));
