@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
   <iosPods>
-    <iosPod name="ScaleMonkAds" version="0.0.4">
+    <iosPod name="ScaleMonkAds" version="0.0.6">
       <sources>
         <source>git@github.com:scalemonk/ios-podspecs.git</source>
       </sources>
