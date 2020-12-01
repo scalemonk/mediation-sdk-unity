@@ -68,9 +68,9 @@ namespace ScaleMonk.Ads
 #endif
             proj.SetBuildProperty(targetGuid, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
             proj.SetBuildProperty(targetGuid, "LD_RUNPATH_SEARCH_PATHS", "@executable_path/Frameworks");
-#endif
 
             File.WriteAllText(projPath, proj.WriteToString());
+#endif
         }
         
         static readonly string[] skadnetworks = {
