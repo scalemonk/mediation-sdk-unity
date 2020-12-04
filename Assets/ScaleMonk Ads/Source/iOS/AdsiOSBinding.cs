@@ -19,9 +19,9 @@ namespace ScaleMonk.Ads.iOS
             SMAdsShowInterstitial(tag);
         }
 
-        public void ShowVideo(string tag)
+        public void ShowRewarded(string tag)
         {
-            SMAdsShowVideo(tag);
+            SMAdsShowRewarded(tag);
         }
 
         public bool IsInterstitialReadyToShow(string analyticsLocation)
@@ -31,12 +31,12 @@ namespace ScaleMonk.Ads.iOS
 
         public bool IsRewardedVideoReadyToShow(string analyticsLocation)
         {
-            return SMIsRewardedVideoReadyToShow(analyticsLocation);
+            return SMIsRewardedReadyToShow(analyticsLocation);
         }
 
-        public bool AreVideosEnabled()
+        public bool AreRewardedEnabled()
         {
-            return SMAreVideosEnabled();
+            return SMAreRewardedEnabled();
         }
 
         public bool AreInterstitialsEnabled()
@@ -44,53 +44,63 @@ namespace ScaleMonk.Ads.iOS
             return SMAreInterstitialsEnabled();
         }
 
+        public void TagGDPRConsent(bool consent)
+        {
+            
+        }
+
+        public void TagUserAge(bool isUnderage)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #region callbacks from native binding
 
         public void CompletedVideoDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Completed video display at location {1}", _label, location);
-            _adsInstance.CompletedVideoDisplay(location);
+            AdsLogger.LogWithFormat("{0} | Completed video display at location \"{1}\"", _label, location);
+            _adsInstance.CompletedRewardedDisplay(location);
         }
 
         public void ClickedVideo(string location)
         {
-            Debug.LogFormat("[{0}] Clicked video at location {1}", _label, location);
-            _adsInstance.ClickedVideo(location);
+            AdsLogger.LogWithFormat("{0} | Clicked video at location \"{1}\"", _label, location);
+            _adsInstance.ClickedRewarded(location);
         }
 
         public void FailedVideoDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Failed video display at location {1}", _label, location);
-            _adsInstance.FailedVideoDisplay(location);
+            AdsLogger.LogWithFormat("{0} | Failed video display at location \"{1}\"", _label, location);
+            _adsInstance.FailedRewardedDisplay(location);
         }
 
         public void CompletedInterstitialDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Completed interstitial display at location {1}", _label, location);
+            AdsLogger.LogWithFormat("{0} | Completed interstitial display at location \"{1}\"", _label, location);
             _adsInstance.CompletedInterstitialDisplay(location);
         }
 
         public void ClickedInterstitial(string location)
         {
-            Debug.LogFormat("[{0}] Clicked interstitial at location {1}", _label, location);
+            AdsLogger.LogWithFormat("{0} | Clicked interstitial at location \"{1}\"", _label, location);
             _adsInstance.ClickedInterstitial(location);
         }
 
         public void FailedInterstitialDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Failed interstitial display at location {1}", _label, location);
+            AdsLogger.LogWithFormat("{0} | Failed interstitial display at location \"{1}\"", _label, location);
             _adsInstance.FailedInterstitialDisplay(location);
         }
         
         public void InterstitialReady()
         {
-            Debug.LogFormat("[{0}] Interstitial display to display", _label);
+            AdsLogger.LogWithFormat("{0} | Interstitial display to display", _label);
             _adsInstance.InterstitialReady();
         }
         public void VideoReady()
         {
-            Debug.LogFormat("[{0}] Rewarded display to display", _label);
-            _adsInstance.VideoReady();
+            AdsLogger.LogWithFormat("{0} | Rewarded display to display", _label);
+            _adsInstance.RewardedReady();
         }
 
         #endregion
@@ -104,19 +114,25 @@ namespace ScaleMonk.Ads.iOS
         private static extern void SMAdsShowInterstitial(string analyticsLocation);
 
         [DllImport("__Internal")]
-        private static extern void SMAdsShowVideo(string analyticsLocation);
+        private static extern void SMAdsShowRewarded(string analyticsLocation);
 
         [DllImport("__Internal")]
         private static extern bool SMIsInterstitialReadyToShow(string analyticsLocation);
 
         [DllImport("__Internal")]
-        private static extern bool SMIsRewardedVideoReadyToShow(string analyticsLocation);
+        private static extern bool SMIsRewardedReadyToShow(string analyticsLocation);
 
         [DllImport("__Internal")]
         private static extern bool SMAreInterstitialsEnabled();
 
         [DllImport("__Internal")]
-        private static extern bool SMAreVideosEnabled();
+        private static extern bool SMAreRewardedEnabled();
+        
+        [DllImport("__Internal")]
+        private static extern void SMTagUserAge(bool isUnderage);
+        
+        [DllImport("__Internal")]
+        private static extern void SMTagGDPRConsent(bool consent);
 
         #endregion
     

@@ -4,15 +4,13 @@ namespace ScaleMonk.Ads
     {
         public void Initialize(ScaleMonkAds adsInstance)
         {
-            throw new System.NotImplementedException();
         }
 
         public void ShowInterstitial(string tag)
         {
-            throw new System.NotImplementedException();
         }
 
-        public void ShowVideo(string tag)
+        public void ShowRewarded(string tag)
         {
         }
 
@@ -26,7 +24,7 @@ namespace ScaleMonk.Ads
             return true;
         }
 
-        public bool AreVideosEnabled()
+        public bool AreRewardedEnabled()
         {
             return true;
         }
@@ -34,6 +32,14 @@ namespace ScaleMonk.Ads
         public bool AreInterstitialsEnabled()
         {
             return true;
+        }
+
+        public void TagGDPRConsent(bool consent)
+        {
+        }
+
+        public void TagUserAge(bool isUnderage)
+        {
         }
     }
 }

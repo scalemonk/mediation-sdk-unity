@@ -30,55 +30,55 @@ namespace ScaleMonk.Ads
 
         public void CompletedVideoDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Completed video display at location {1}", _label, location);
-            _adsInstance.CompletedVideoDisplay(location);
+            AdsLogger.LogWithFormat("{0} | Completed video display at location \"{1}\"", _label, location);
+            _adsInstance.CompletedRewardedDisplay(location);
         }
 
         public void StartedVideoDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Started video display at location {1}", _label, location);
-            _adsInstance.StartedVideoDisplay(location);
+            AdsLogger.LogWithFormat("{0} | Started video display at location \"{1}\"", _label, location);
+            _adsInstance.StartedRewardedDisplay(location);
         }
 
         public void ClickedVideo(string location)
         {
-            Debug.LogFormat("[{0}] Clicked video at location {1}", _label, location);
-            _adsInstance.ClickedVideo(location);
+            AdsLogger.LogWithFormat("{0} | Clicked video at location \"{1}\"", _label, location);
+            _adsInstance.ClickedRewarded(location);
         }
 
         public void FailedVideoDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Failed video display at location {1}", _label, location);
-            _adsInstance.FailedVideoDisplay(location);
+            AdsLogger.LogWithFormat("{0} | Failed video display at location \"{1}\"", _label, location);
+            _adsInstance.FailedRewardedDisplay(location);
         }
 
         public void CompletedInterstitialDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Completed interstitial display at location {1}", _label, location);
+            AdsLogger.LogWithFormat("{0} | Completed interstitial display at location \"{1}\"", _label, location);
             _adsInstance.CompletedInterstitialDisplay(location);
         }
 
         public void ClickedInterstitial(string location)
         {
-            Debug.LogFormat("[{0}] Clicked interstitial at location {1}", _label, location);
+            AdsLogger.LogWithFormat("{0} | Clicked interstitial at location \"{1}\"", _label, location);
             _adsInstance.ClickedInterstitial(location);
         }
 
         public void FailedInterstitialDisplay(string location)
         {
-            Debug.LogFormat("[{0}] Failed interstitial display at location {1}", _label, location);
+            AdsLogger.LogWithFormat("{0} | Failed interstitial display at location \"{1}\"", _label, location);
             _adsInstance.FailedInterstitialDisplay(location);
         }
         
         public void InterstitialReady()
         {
-            Debug.LogFormat("[{0}] Interstitial display to display", _label);
+            AdsLogger.LogWithFormat("{0} | Interstitial display to display", _label);
             _adsInstance.InterstitialReady();
         }
         public void VideoReady()
         {
-            Debug.LogFormat("[{0}] Rewarded display to display", _label);
-            _adsInstance.VideoReady();
+            AdsLogger.LogWithFormat("{0} | Rewarded display to display", _label);
+            _adsInstance.RewardedReady();
         }
     
     }

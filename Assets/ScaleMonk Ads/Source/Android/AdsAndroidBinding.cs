@@ -12,7 +12,7 @@ namespace ScaleMonk.Ads.Android
             // TODO: Not yet implemented
         }
 
-        public void ShowVideo(string tag)
+        public void ShowRewarded(string tag)
         {
             // TODO: Not yet implemented
         }
@@ -29,7 +29,7 @@ namespace ScaleMonk.Ads.Android
             return false;
         }
 
-        public bool AreVideosEnabled()
+        public bool AreRewardedEnabled()
         {
             // TODO: Not yet implemented
             return false;
@@ -39,6 +39,18 @@ namespace ScaleMonk.Ads.Android
         {
             // TODO: Not yet implemented
             return false;
+        }
+
+        public void TagGDPRConsent(bool consent)
+        {
+            // TODO: Not yet implemented
+
+        }
+
+        public void TagUserAge(bool isUnderage)
+        {
+            // TODO: Not yet implemented
+
         }
     }
 }
