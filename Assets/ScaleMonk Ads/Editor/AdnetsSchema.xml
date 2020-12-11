@@ -5,6 +5,7 @@
     </adnet>
     <adnet id="AppLovin" name="AppLovin" />
     <adnet id="Facebook" name="Facebook" />
+    <adnet id="IronSource" name="IronSource" />
     <adnet id="UnityAds" name="UnityAds" />
     <adnet id="Vungle" name="Vungle" />
 </adnets>
