@@ -44,14 +44,19 @@ namespace ScaleMonk.Ads.iOS
             return SMAreInterstitialsEnabled();
         }
 
-        public void TagGDPRConsent(bool consent)
+        public void SetHasGDPRConsent(bool consent)
         {
-            
+            SMSetHasGDPRConsent(consent);
         }
 
-        public void TagUserAge(bool isUnderage)
+        public void SetIsApplicationChildDirected(bool isChildDirected)
         {
-            throw new System.NotImplementedException();
+            SMSetApplicationChildDirected(isChildDirected);
+        }
+
+        public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
+        {
+            SMSetUserCantGiveGDPRConsent(cantGiveConsent);
         }
 
         #region callbacks from native binding
@@ -129,10 +134,13 @@ namespace ScaleMonk.Ads.iOS
         private static extern bool SMAreRewardedEnabled();
         
         [DllImport("__Internal")]
-        private static extern void SMTagUserAge(bool isUnderage);
+        private static extern void SMSetApplicationChildDirected(bool isChildDirected);
         
         [DllImport("__Internal")]
-        private static extern void SMTagGDPRConsent(bool consent);
+        private static extern void SMSetHasGDPRConsent(bool consent);
+        
+        [DllImport("__Internal")]
+        private static extern void SMSetUserCantGiveGDPRConsent(bool isUnderage);
 
         #endregion
     

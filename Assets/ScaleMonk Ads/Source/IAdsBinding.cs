@@ -9,7 +9,8 @@ namespace ScaleMonk.Ads
         bool IsRewardedVideoReadyToShow(string analyticsLocation);
         bool AreRewardedEnabled();
         bool AreInterstitialsEnabled();
-        void TagGDPRConsent(bool consent);
-        void TagUserAge(bool isUnderage);
+        void SetHasGDPRConsent(bool consent);
+        void SetIsApplicationChildDirected(bool isChildDirected);
+        void SetUserCantGiveGDPRConsent(bool cantGiveConsent);
     }
 }

@@ -41,16 +41,21 @@ namespace ScaleMonk.Ads.Android
             return false;
         }
 
-        public void TagGDPRConsent(bool consent)
+        public void SetHasGDPRConsent(bool consent)
         {
             // TODO: Not yet implemented
 
         }
 
-        public void TagUserAge(bool isUnderage)
+        public void SetIsApplicationChildDirected(bool isChildDirected)
         {
             // TODO: Not yet implemented
 
+        }
+
+        public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
+        {
+            // TODO: Not yet implemented
         }
     }
 }

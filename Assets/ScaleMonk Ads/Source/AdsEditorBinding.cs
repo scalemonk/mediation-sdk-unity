@@ -34,12 +34,17 @@ namespace ScaleMonk.Ads
             return true;
         }
 
-        public void TagGDPRConsent(bool consent)
+        public void SetHasGDPRConsent(bool consent)
         {
         }
 
-        public void TagUserAge(bool isUnderage)
+        public void SetIsApplicationChildDirected(bool isChildDirected)
         {
+        }
+
+        public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
+        {
+            
         }
     }
 }

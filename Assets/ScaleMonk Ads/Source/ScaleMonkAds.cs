@@ -56,22 +56,35 @@ namespace ScaleMonk.Ads
         /// <param name="consent"> True if the user has granted consent, false otherwise
         /// </param>
 
-        public void TagGDPRConsent(bool consent)
+        public void SetHasGDPRConsent(bool consent)
         {
-            _adsBinding.TagGDPRConsent(consent);
+            _adsBinding.SetHasGDPRConsent(consent);
         }
         
         /// <summary>
-        /// Tells the ScaleMonk SDK whether the user is under age and thus should only be shown age-appropriate ads
+        /// Tells the ScaleMonk SDK whether the application is targeted to children and should only show age-appropriate ads
+        ///
+        /// </summary>
+        /// <param name="isChildDirected"> True if the app is child directed, false otherwise
+        /// </param>
+
+        public void SetIsApplicationChildDirected(bool isChildDirected)
+        {
+            _adsBinding.SetIsApplicationChildDirected(isChildDirected);
+        }
+        
+        /// <summary>
+        /// Tells the ScaleMonk SDK that the user can't give consent for GDPR since they're underage
         ///
         /// </summary>
         /// <param name="consent"> True if the user is underage, false otherwise
         /// </param>
 
-        public void TagUserAge(bool isUnderage)
+        public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
-            _adsBinding.TagUserAge(isUnderage);
+            _adsBinding.SetUserCantGiveGDPRConsent(cantGiveConsent);
         }
+
         
         /// <summary>
         /// Displays an interstitial ad.

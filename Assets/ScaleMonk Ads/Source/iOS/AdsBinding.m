@@ -28,16 +28,16 @@ void SMAdsShowRewarded(char* tagChr) {
                                                andTag:tag];
 }
 
-void SMTagUserAge(bool isUnderage){
-    [smAds tagUserAge: isUnderage];
+void SMSetApplicationChildDirected(bool isChildDirected){
+    [smAds setIsApplicationChildDirected: isChildDirected];
+}
+
+void SMSetUserCantGiveGDPRConsent(bool isUnderage){
+    [smAds setUserCantGiveGDPRConsentWithIsUserUnderAgeOfConsent: isUnderage];
 }
        
-void SMTagGDPRConsent(bool consent){
-    if(consent){
-        [smAds grantGDPRConsent];
-    }else{
-        [smAds revokeGDPRConsent];
-    }
+void SMSetHasGDPRConsent(bool consent){
+    [smAds setHasGDPRConsentWithStatus:consent];
 }
 
 bool SMIsRewardedReadyToShow(char* tagChr) {
@@ -61,6 +61,3 @@ bool SMAreRewardedEnabled() {
     return true;
 //    return [adsWrapper areVideosEnabled];
 }
-
-
-
