@@ -7,7 +7,8 @@ namespace ScaleMonk.Ads
 {
     public class ScaleMonkAds
     {
-        
+        const string _label = "ScaleMonkAds";
+
         static ScaleMonkAds _instance;
         readonly IAdsBinding _adsBinding;
         public string ApplicationId;
@@ -21,7 +22,7 @@ namespace ScaleMonk.Ads
             {
                 if (_instance == null)
                 {
-                    Debug.LogError("You should call Ads.Initialize first");
+                    AdsLogger.LogError("{0} | You should call ScaleMonkAds.Initialize first");
                 }
 
                 return _instance;
@@ -37,16 +38,53 @@ namespace ScaleMonk.Ads
         {
             if (_instance != null)
             {
-                Debug.LogWarning("Ads SDK already initialized");
+                AdsLogger.LogWarning("{0} | Ads SDK already initialized", _label);
                 return;
             }
 
-            Debug.Log("Initializing Ads SDK");
+            AdsLogger.LogWithFormat("{0} | Initializing Ads SDK", _label);
 
             _instance = new ScaleMonkAds(applicationId);
             ScaleMonkAdsMonoBehavior.Initialize(_instance);
             _instance.InitializeInternal();
         }
+        
+        /// <summary>
+        /// Tells the ScaleMonk SDK whether the user has granted consent as prescribed by the GDPR laws and that data can be collected
+        ///
+        /// </summary>
+        /// <param name="consent"> True if the user has granted consent, false otherwise
+        /// </param>
+
+        public void SetHasGDPRConsent(bool consent)
+        {
+            _adsBinding.SetHasGDPRConsent(consent);
+        }
+        
+        /// <summary>
+        /// Tells the ScaleMonk SDK whether the application is targeted to children and should only show age-appropriate ads
+        ///
+        /// </summary>
+        /// <param name="isChildDirected"> True if the app is child directed, false otherwise
+        /// </param>
+
+        public void SetIsApplicationChildDirected(bool isChildDirected)
+        {
+            _adsBinding.SetIsApplicationChildDirected(isChildDirected);
+        }
+        
+        /// <summary>
+        /// Tells the ScaleMonk SDK that the user can't give consent for GDPR since they're underage
+        ///
+        /// </summary>
+        /// <param name="consent"> True if the user is underage, false otherwise
+        /// </param>
+
+        public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
+        {
+            _adsBinding.SetUserCantGiveGDPRConsent(cantGiveConsent);
+        }
+
         
         /// <summary>
         /// Displays an interstitial ad.
@@ -57,21 +95,21 @@ namespace ScaleMonk.Ads
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         public void ShowInterstitial(string tag)
         {
-            Debug.LogFormat("Show interstitial tag={0}", tag);
+            AdsLogger.LogWithFormat("{0} | Show interstitial at tag {1}", _label, tag);
             _adsBinding.ShowInterstitial(tag);
         }
 
         /// <summary>
-        /// Displays a rewarded video ad.
+        /// Displays a rewarded ad.
         ///
-        /// If the display was successful, the event `VideoDisplayedEvent` will be called when the ad closes.
-        /// Otherwise, the event `VideoNotDisplayedEvent` will be called.
+        /// If the display was successful, the event `RewardedDisplayedEvent` will be called when the ad closes.
+        /// Otherwise, the event `RewardedNotDisplayedEvent` will be called.
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
-        public void ShowVideo(string tag)
+        public void ShowRewarded(string tag)
         {
-            Debug.LogFormat("Show video tag={0}", tag);
-            _adsBinding.ShowVideo(tag);
+            AdsLogger.LogWithFormat("{0} | Show rewarded at tag {1}", _label, tag);
+            _adsBinding.ShowRewarded(tag);
         }
         
         /// <summary>
@@ -99,26 +137,26 @@ namespace ScaleMonk.Ads
 
         
         /// <summary>
-        /// Informs the video display was successful. Use this callback to restart the app state and give rewards to the user.
+        /// Informs the rewarded display was successful. Use this callback to restart the app state and give rewards to the user.
         /// </summary>
-        public static Action VideoDisplayedEvent;
+        public static Action RewardedDisplayedEvent;
 
         /// <summary>
-        /// Informs the video display has started. Use this callback to pause any behavior you might need.
+        /// Informs the rewarded display has started. Use this callback to pause any behavior you might need.
         /// </summary>
-        public static Action VideoStartedEvent;
+        public static Action RewardedStartedEvent;
 
         /// <summary>
-        /// Informs the video display was not successful.
+        /// Informs the rewarded display was not successful.
         ///
         /// To see the reason for the failed display, check the reason field in the `ads:display-failed` analytics event.
         /// </summary>
-        public static Action VideoNotDisplayedEvent;
+        public static Action RewardedNotDisplayedEvent;
 
         /// <summary>
-        /// Informs the video ad was clicked.
+        /// Informs the rewarded ad was clicked.
         /// </summary>
-        public static Action VideoClickedEvent;
+        public static Action RewardedClickedEvent;
 
         /// <summary>
         /// Informs the interstitial display was successful. Use this callback to restart the app state and give rewards to the user.
@@ -143,62 +181,62 @@ namespace ScaleMonk.Ads
         public static Action InterstitialReadyEvent;
         
         /// <summary>
-        /// Informs that a rewarded video ad has been successfully cached and is ready to be shown.
+        /// Informs that a rewarded ad has been successfully cached and is ready to be shown.
         /// </summary>
-        public static Action VideoReadyEvent;
+        public static Action RewardedReadyEvent;
         
         #region Ads Native Binding Callbacks
-        public void CompletedVideoDisplay(string tag)
+        public void CompletedRewardedDisplay(string tag)
         {
-            Debug.LogFormat("[Ads] Video displayed at tag {0}", tag);
-            CallAction(VideoDisplayedEvent);
+            AdsLogger.LogWithFormat("{0} | Rewarded displayed at tag {1}", _label, tag);
+            CallAction(RewardedDisplayedEvent);
         }
 
-        public void StartedVideoDisplay(string tag)
+        public void StartedRewardedDisplay(string tag)
         {
-            Debug.LogFormat("[Ads] Started video at tag {0}", tag);
-            CallAction(VideoStartedEvent);
+            AdsLogger.LogWithFormat("{0} | Started rewarded at tag {1}", _label, tag);
+            CallAction(RewardedStartedEvent);
         }
 
-        public void ClickedVideo(string tag)
+        public void ClickedRewarded(string tag)
         {
-            Debug.LogFormat("[Ads] Clicked video at tag {0}", tag);
-            CallAction(VideoClickedEvent);
+            AdsLogger.LogWithFormat("{0} | Clicked rewarded at tag {1}", _label, tag);
+            CallAction(RewardedClickedEvent);
         }
 
-        public void FailedVideoDisplay(string tag)
+        public void FailedRewardedDisplay(string tag)
         {
-            Debug.LogFormat("[Ads] Video not displayed at tag {0}", tag);
-            CallAction(VideoNotDisplayedEvent);
+            AdsLogger.LogWithFormat("{0} | Rewarded not displayed at tag {1}", _label, tag);
+            CallAction(RewardedNotDisplayedEvent);
         }
 
         public void CompletedInterstitialDisplay(string tag)
         {
-            Debug.LogFormat("[Ads] Interstitial displayed at tag {0}", tag);
+            AdsLogger.LogWithFormat("{0} | Interstitial displayed at tag {1}", _label, tag);
             CallAction(InterstitialDisplayedEvent);
         }
 
         public void ClickedInterstitial(string tag)
         {
-            Debug.LogFormat("[Ads] Clicked interstitial at tag {0}", tag);
+            AdsLogger.LogWithFormat("{0} | Clicked interstitial at tag {1}", _label, tag);
             CallAction(InterstitialClickedEvent);
         }
 
         public void FailedInterstitialDisplay(string tag)
         {
-            Debug.LogFormat("[Ads] Interstitial not displayed at tag {0}", tag);
+            AdsLogger.LogWithFormat("{0} | Interstitial not displayed at tag {1}", _label, tag);
             CallAction(InterstitialNotDisplayedEvent);
         }
         
         public void InterstitialReady()
         {
-            Debug.LogFormat("[Ads] Interstitial ready to be displayed");
+            AdsLogger.LogWithFormat("{0} | Interstitial ready to be displayed", _label);
             CallAction(InterstitialReadyEvent);
         }
-         public void VideoReady()
+         public void RewardedReady()
         {
-            Debug.LogFormat("[Ads] Rewarded Video ad ready to be displayed");
-            CallAction(VideoReadyEvent);
+            AdsLogger.LogWithFormat("{0} | Rewarded ad ready to be displayed", _label);
+            CallAction(RewardedReadyEvent);
         }
   
         #endregion

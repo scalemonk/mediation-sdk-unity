@@ -22,13 +22,25 @@ void SMAdsShowInterstitial(char* tagChr) {
     [smAds showInterstitialAdWithViewController:UnityGetGLViewController() andTag:tag];
 }
 
-void SMAdsShowVideo(char* tagChr) {
+void SMAdsShowRewarded(char* tagChr) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
     [smAds showRewardedVideoAdWithViewController:UnityGetGLViewController()
                                                andTag:tag];
 }
 
-bool SMIsRewardedVideoReadyToShow(char* tagChr) {
+void SMSetApplicationChildDirected(bool isChildDirected){
+    [smAds setIsApplicationChildDirected: isChildDirected];
+}
+
+void SMSetUserCantGiveGDPRConsent(bool isUnderage){
+    [smAds setUserCantGiveGDPRConsentWithIsUserUnderAgeOfConsent: isUnderage];
+}
+       
+void SMSetHasGDPRConsent(bool consent){
+    [smAds setHasGDPRConsentWithStatus:consent];
+}
+
+bool SMIsRewardedReadyToShow(char* tagChr) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
 //    return [adsWrapper isRewardedVideoReadyToShowWithTag:tag];
     return true;
@@ -45,10 +57,7 @@ bool SMAreInterstitialsEnabled() {
 //    return [adsWrapper areInterstitialsEnabled];
 }
 
-bool SMAreVideosEnabled() {
+bool SMAreRewardedEnabled() {
     return true;
 //    return [adsWrapper areVideosEnabled];
 }
-
-
-
