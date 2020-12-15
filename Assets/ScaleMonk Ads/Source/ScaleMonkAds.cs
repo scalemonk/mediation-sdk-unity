@@ -1,3 +1,10 @@
+//  ScaleMonkAds.cs
+//
+//  © 2020 ScaleMonk, Inc. All Rights Reserved.
+// Licensed under the ScaleMonk SDK License Agreement
+// http://www.scalemonk.com/legal/en-US/mediation-license-agreement 
+//
+
 using System;
 using ScaleMonk.Ads.iOS;
 using ScaleMonk.Ads.Android;

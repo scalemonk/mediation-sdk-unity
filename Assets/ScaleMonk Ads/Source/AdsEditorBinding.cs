@@ -1,3 +1,10 @@
+//  AdsEditorBinding.cs
+//
+//  © 2020 ScaleMonk, Inc. All Rights Reserved.
+// Licensed under the ScaleMonk SDK License Agreement
+// http://www.scalemonk.com/legal/en-US/mediation-license-agreement 
+//
+
 namespace ScaleMonk.Ads
 {
     public class AdsEditorBinding : IAdsBinding
