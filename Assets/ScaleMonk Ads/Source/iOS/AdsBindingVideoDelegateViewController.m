@@ -11,39 +11,44 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)onVideoAdClick:(NSString *)tag {
-    NSLog(@"Clicked video at tag %@", tag);
-    UnitySendMessage("AdsMonoBehaviour", "ClickedVideo",
+- (void)onRewardedClick:(NSString *)tag {
+    NSLog(@"Clicked rewarded at tag %@", tag);
+    UnitySendMessage("AdsMonoBehaviour", "ClickedRewarded",
                      [tag cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-- (void)onVideoAdFinishWithReward:(NSString *)tag {
-    NSLog(@"Completed video display at tag %@", tag);
-    UnitySendMessage("AdsMonoBehaviour", "CompletedVideoDisplay",
+- (void)onRewardedFinishWithReward:(NSString *)tag {
+    NSLog(@"Completed rewarded display at tag %@", tag);
+    UnitySendMessage("AdsMonoBehaviour", "CompletedRewardedDisplay",
                      [tag cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-- (void)onVideoAdFinishWithNoReward:(NSString *)tag {
-    NSLog(@"Failed video display at tag %@", tag);
-    UnitySendMessage("AdsMonoBehaviour", "FailedVideoDisplay",
+- (void)onRewardedFinishWithNoReward:(NSString *)tag {
+    NSLog(@"Failed rewarded display at tag %@", tag);
+    UnitySendMessage("AdsMonoBehaviour", "FailedRewardedDisplay",
                      [tag cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-- (void)onVideoAdFail:(NSString *)tag {
-    NSLog(@"Failed video display at tag %@", tag);
-    UnitySendMessage("AdsMonoBehaviour", "FailedVideoDisplay",
+- (void)onRewardedFail:(NSString *)tag {
+    NSLog(@"Failed rewarded display at tag %@", tag);
+    UnitySendMessage("AdsMonoBehaviour", "FailedRewardedDisplay",
                      [tag cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-- (void)onVideoAdViewStart:(NSString *)tag {
-    NSLog(@"Started video display at tag %@", tag);
-    UnitySendMessage("AdsMonoBehaviour", "StartedVideoDisplay",
+- (void)onRewardedViewStart:(NSString *)tag {
+    NSLog(@"Started rewarded display at tag %@", tag);
+    UnitySendMessage("AdsMonoBehaviour", "StartedRewardedDisplay",
                      [tag cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-- (void)onVideoAdReady {
-    NSLog(@"Video ad ready to be shown");
-    UnitySendMessage("AdsMonoBehaviour", "VideoReady", [@"" cStringUsingEncoding:NSUTF8StringEncoding]);
+- (void)onRewardedReady {
+    NSLog(@"Rewarded ready to be shown");
+    UnitySendMessage("AdsMonoBehaviour", "RewardedReady", [@"" cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
+- (void)onRewardedNotReady {
+    NSLog(@"Rewarded not ready to be shown");
+    UnitySendMessage("AdsMonoBehaviour", "RewardedNotReady", [@"" cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end
