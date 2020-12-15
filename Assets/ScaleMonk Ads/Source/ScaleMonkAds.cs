@@ -181,9 +181,19 @@ namespace ScaleMonk.Ads
         public static Action InterstitialReadyEvent;
         
         /// <summary>
+        /// Informs that an interstitial ad has not been successfully cached and is not ready to be shown.
+        /// </summary>
+        public static Action InterstitialNotReadyEvent;
+        
+        /// <summary>
         /// Informs that a rewarded ad has been successfully cached and is ready to be shown.
         /// </summary>
         public static Action RewardedReadyEvent;
+        
+        /// <summary>
+        /// Informs that a rewarded ad has not been successfully cached and is not ready to be shown.
+        /// </summary>
+        public static Action RewardedNotReadyEvent;
         
         #region Ads Native Binding Callbacks
         public void CompletedRewardedDisplay(string tag)
@@ -233,14 +243,26 @@ namespace ScaleMonk.Ads
             AdsLogger.LogWithFormat("{0} | Interstitial ready to be displayed", _label);
             CallAction(InterstitialReadyEvent);
         }
+        
+        public void InterstitialNotReady()
+        {
+            AdsLogger.LogWithFormat("{0} | Interstitial not ready to be displayed", _label);
+            CallAction(InterstitialNotReadyEvent);
+        }
+        
          public void RewardedReady()
         {
             AdsLogger.LogWithFormat("{0} | Rewarded ad ready to be displayed", _label);
             CallAction(RewardedReadyEvent);
         }
+
+         public void RewardedNotReady()
+         {
+             AdsLogger.LogWithFormat("{0} | Rewarded ad not ready to be displayed", _label);
+             CallAction(RewardedNotReadyEvent);  
+         }
   
         #endregion
-
         
         static IAdsBinding GetAdsBinding()
         {

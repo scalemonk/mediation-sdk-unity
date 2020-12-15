@@ -1,7 +1,37 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
   <iosPods>
-    <iosPod name="ScaleMonkAds" version="0.0.8">
+    <iosPod name="ScaleMonkAds" version="0.1.0">
+      <sources>
+        <source>git@github.com:scalemonk/ios-podspecs.git</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds/Provider-Admob">
+      <sources>
+        <source>git@github.com:scalemonk/ios-podspecs.git</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds/Provider-AppLovin">
+      <sources>
+        <source>git@github.com:scalemonk/ios-podspecs.git</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds/Provider-Facebook">
+      <sources>
+        <source>git@github.com:scalemonk/ios-podspecs.git</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds/Provider-IronSource">
+      <sources>
+        <source>git@github.com:scalemonk/ios-podspecs.git</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds/Provider-UnityAds">
+      <sources>
+        <source>git@github.com:scalemonk/ios-podspecs.git</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds/Provider-Vungle">
       <sources>
         <source>git@github.com:scalemonk/ios-podspecs.git</source>
       </sources>

@@ -28,25 +28,25 @@ namespace ScaleMonk.Ads
             DontDestroyOnLoad(_gameObject);
         }
 
-        public void CompletedVideoDisplay(string location)
+        public void CompletedRewardedDisplay(string location)
         {
             AdsLogger.LogWithFormat("{0} | Completed video display at location \"{1}\"", _label, location);
             _adsInstance.CompletedRewardedDisplay(location);
         }
 
-        public void StartedVideoDisplay(string location)
+        public void StartedRewardedDisplay(string location)
         {
             AdsLogger.LogWithFormat("{0} | Started video display at location \"{1}\"", _label, location);
             _adsInstance.StartedRewardedDisplay(location);
         }
 
-        public void ClickedVideo(string location)
+        public void ClickedRewarded(string location)
         {
             AdsLogger.LogWithFormat("{0} | Clicked video at location \"{1}\"", _label, location);
             _adsInstance.ClickedRewarded(location);
         }
 
-        public void FailedVideoDisplay(string location)
+        public void FailedRewardedDisplay(string location)
         {
             AdsLogger.LogWithFormat("{0} | Failed video display at location \"{1}\"", _label, location);
             _adsInstance.FailedRewardedDisplay(location);
@@ -72,13 +72,26 @@ namespace ScaleMonk.Ads
         
         public void InterstitialReady()
         {
-            AdsLogger.LogWithFormat("{0} | Interstitial display to display", _label);
+            AdsLogger.LogWithFormat("{0} | Interstitial ready to display", _label);
             _adsInstance.InterstitialReady();
         }
-        public void VideoReady()
+        
+        public void InterstitialNotReady()
         {
-            AdsLogger.LogWithFormat("{0} | Rewarded display to display", _label);
+            AdsLogger.LogWithFormat("{0} | Interstitial not ready to display", _label);
+            _adsInstance.InterstitialNotReady();
+        }
+        
+        public void RewardedReady()
+        {
+            AdsLogger.LogWithFormat("{0} | Rewarded ready to display", _label);
             _adsInstance.RewardedReady();
+        }
+
+        public void RewardedNotReady()
+        {
+            AdsLogger.LogWithFormat("{0} | Rewarded not ready to display", _label);
+            _adsInstance.RewardedNotReady();
         }
     
     }
