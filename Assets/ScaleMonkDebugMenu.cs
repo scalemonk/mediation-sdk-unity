@@ -1,4 +1,11 @@
-﻿using System;
+﻿//  ScaleMonkDebugMenu.cs
+//
+//  © 2020 ScaleMonk, Inc. All Rights Reserved.
+// Licensed under the ScaleMonk SDK License Agreement
+// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
+//
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ScaleMonk.Ads;

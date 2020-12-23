@@ -1,3 +1,10 @@
+//  AdsBinding.m
+//
+//  © 2020 ScaleMonk, Inc. All Rights Reserved.
+// Licensed under the ScaleMonk SDK License Agreement
+// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
+//
+
 #import "SMAds.h"
 #import "AdsBindingVideoDelegateViewController.h"
 #import "AdsBindingInterstitialViewController.h"
