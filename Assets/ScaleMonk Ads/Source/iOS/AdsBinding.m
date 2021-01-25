@@ -2,10 +2,10 @@
 //
 //  © 2020 ScaleMonk, Inc. All Rights Reserved.
 // Licensed under the ScaleMonk SDK License Agreement
-// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
+// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html
 //
 
-#import "SMAds.h"
+@import ScaleMonkAds;
 #import "AdsBindingVideoDelegateViewController.h"
 #import "AdsBindingInterstitialViewController.h"
 
