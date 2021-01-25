@@ -15,7 +15,7 @@ namespace ScaleMonk.Ads
 {
     public class AdsProvidersHelper
     {
-        const string iosAdsVersion = "0.1.1";
+        const string iosAdsVersion = "0.0.10";
 
         public static string GetAdnetsXmlPath()
         {
@@ -234,7 +234,7 @@ namespace ScaleMonk.Ads
             var sourcesElement = doc.CreateElement("sources");
             var iosPodspecSource = doc.CreateElement("source");
 
-            iosPodspecSource.InnerText = "git@github.com:scalemonk/ios-podspecs.git";
+            iosPodspecSource.InnerText = "git@github.com:scalemonk/ios-podspecs-framework.git";
 
             sourcesElement.AppendChild(iosPodspecSource);
 

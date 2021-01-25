@@ -68,6 +68,8 @@ namespace ScaleMonk.Ads
 #endif
 
 
+            proj.SetBuildProperty(targetGuid, "GCC_ENABLE_OBJC_EXCEPTIONS", "YES");
+            
             proj.SetBuildProperty(targetGuid, "SWIFT_VERSION", "5.0");
 #if !UNITY_2019_3_OR_NEWER
             //TODO check this

@@ -48,7 +48,7 @@ namespace ScaleMonk.Ads
 
                     EditorGUILayout.LabelField("Adnets configurations", labelStyle);
                     GUILayout.FlexibleSpace();
-                    if (GUILayout.Button("Select All"))
+                    /*if (GUILayout.Button("Select All"))
                     {
                         foreach (var adnet in adnetsConfigs)
                         {
@@ -62,7 +62,7 @@ namespace ScaleMonk.Ads
                         {
                             adnet.enabled = false;
                         }
-                    }
+                    }*/
                 }
                 EditorGUILayout.EndHorizontal();
                 GUILayout.Space(5);
@@ -72,16 +72,16 @@ namespace ScaleMonk.Ads
                 {
                     foreach (var adnet in adnetsConfigs)
                     {
-                        adnet.enabled = EditorGUILayout.Toggle(adnet.name, adnet.enabled);
+                        // adnet.enabled = EditorGUILayout.Toggle(adnet.name, adnet.enabled);
 
-                        if (adnet.enabled)
+                        // if (adnet.enabled)
                         {
                             foreach (var config in adnet.configs)
                             {
                                 EditorGUILayout.BeginHorizontal();
                                 {
                                     GUILayout.Space(10);
-                                    config.value = EditorGUILayout.TextField(config.name, config.value);
+                                    config.value = EditorGUILayout.TextField("Admob App Id", config.value);
                                 }
                                 EditorGUILayout.EndHorizontal();
                             }
