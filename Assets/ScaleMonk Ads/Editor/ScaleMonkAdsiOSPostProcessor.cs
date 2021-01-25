@@ -9,12 +9,13 @@ using System.IO;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
+using UnityEngine;
 
 namespace ScaleMonk.Ads
 {
     public class ScaleMonkAdsiOSPostProcessor
     {
-        [PostProcessBuild]
+        [PostProcessBuild(49)]
         public static void onPostProcessBuild(BuildTarget buildTarget, string targetPath)
         {
             configureSwiftBuild(targetPath);
@@ -22,7 +23,6 @@ namespace ScaleMonk.Ads
             configureSKAdNetworks(buildTarget, targetPath);
         }
 
-       
 
         private static void configureAdnets(BuildTarget buildTarget, string targetPath)
         {
@@ -36,15 +36,22 @@ namespace ScaleMonk.Ads
                 var adnetsConfigs = AdsProvidersHelper.ReadAdnetsConfigs();
                 foreach (var adnet in adnetsConfigs)
                 {
-                    if (adnet.configs == null) { continue; }
+                    if (adnet.configs == null)
+                    {
+                        continue;
+                    }
+
                     foreach (var config in adnet.configs)
                     {
-                        if (config.platform != "ios")  { continue; }
+                        if (config.platform != "ios")
+                        {
+                            continue;
+                        }
+
                         if (!string.IsNullOrEmpty(config.value))
                         {
                             infoPlist.root.SetString(config.config, config.value);
                         }
-
                     }
                 }
 
@@ -69,10 +76,20 @@ namespace ScaleMonk.Ads
 
 
             proj.SetBuildProperty(targetGuid, "GCC_ENABLE_OBJC_EXCEPTIONS", "YES");
-            
+
             proj.SetBuildProperty(targetGuid, "SWIFT_VERSION", "5.0");
-#if !UNITY_2019_3_OR_NEWER
-            //TODO check this
+#if UNITY_2019_3_OR_NEWER
+            using (var sw = File.AppendText(targetPath + "/Podfile"))
+            {
+                sw.WriteLine("\ntarget 'Unity-iPhone' do\n  inherit! :search_paths\nend");
+
+                sw.WriteLine("\n \npost_install do |installer|\n   installer.aggregate_targets.each do |aggregate_target|\n     aggregate_target.xcconfigs.each do |config_name, xcconfig|\n \n       remove([ 'FBSDKCoreKit'],\n              'libraries', config_name, xcconfig, aggregate_target)\n     end\n   end\n end\n # https://github.com/CocoaPods/CocoaPods/issues/7155\n def remove(dependencies, type, config_name, xcconfig, aggregate_target)\n   existing = xcconfig.other_linker_flags[type.to_sym]\n   modified = existing.subtract(dependencies)\n   xcconfig.other_linker_flags[type.to_sym] = modified\n   xcconfig_path = aggregate_target.xcconfig_path(config_name)\n   xcconfig.save_as(xcconfig_path)\nend");
+            }
+
+            var iphoneGuid = proj.GetUnityMainTargetGuid();
+            proj.SetBuildProperty(iphoneGuid, "SWIFT_OBJC_BRIDGING_HEADER",
+                "Libraries/ScaleMonk Ads/Plugins/iOS/Bridging-Header.h");
+#else
             proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/ScaleMonk Ads/Plugins/iOS/Bridging-Header.h");
 #endif
             proj.SetBuildProperty(targetGuid, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
@@ -81,8 +98,9 @@ namespace ScaleMonk.Ads
             File.WriteAllText(projPath, proj.WriteToString());
 #endif
         }
-        
-        static readonly string[] skadnetworks = {
+
+        static readonly string[] skadnetworks =
+        {
             "2u9pt9hc89.skadnetwork",
             "3rd42ekr43.skadnetwork",
             "3sh42y64q3.skadnetwork",
@@ -131,7 +149,7 @@ namespace ScaleMonk.Ads
             "zmvfpc5aq8.skadnetwork",
             "ludvb6z3bs.skadnetwork",
         };
-        
+
         private static void configureSKAdNetworks(BuildTarget buildTarget, string targetPath)
         {
 #if UNITY_IOS
@@ -144,6 +162,7 @@ namespace ScaleMonk.Ads
                 var dic = arr.AddDict();
                 dic.SetString("SKAdNetworkIdentifier", id);
             }
+
             File.WriteAllText(plistPath, plist.WriteToString());
             UnityEngine.Debug.Log("Add SKAdNetworkItems PostProcessor done");
 #endif
