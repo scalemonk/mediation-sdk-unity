@@ -3,7 +3,7 @@
   <iosPods>
     <iosPod name="ScaleMonkAds" version="0.1.1">
       <sources>
-        <source>git@github.com:scalemonk/ios-podspecs-framework.git</source>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
     </iosPod>
   </iosPods>

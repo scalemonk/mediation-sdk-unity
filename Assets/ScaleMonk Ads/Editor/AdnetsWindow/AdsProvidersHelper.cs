@@ -234,7 +234,7 @@ namespace ScaleMonk.Ads
             var sourcesElement = doc.CreateElement("sources");
             var iosPodspecSource = doc.CreateElement("source");
 
-            iosPodspecSource.InnerText = "git@github.com:scalemonk/ios-podspecs-framework.git";
+            iosPodspecSource.InnerText = "https://github.com/scalemonk/ios-podspecs-framework";
 
             sourcesElement.AppendChild(iosPodspecSource);
 
