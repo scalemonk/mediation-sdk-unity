@@ -74,6 +74,7 @@ namespace ScaleMonk.Ads
             var targetGuid = proj.TargetGuidByName ("Unity-iPhone");
 #endif
 
+            proj.SetBuildProperty(targetGuid, "CLANG_ENABLE_MODULES", "YES");
 
             proj.SetBuildProperty(targetGuid, "GCC_ENABLE_OBJC_EXCEPTIONS", "YES");
 
