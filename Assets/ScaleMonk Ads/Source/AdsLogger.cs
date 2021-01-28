@@ -21,7 +21,7 @@ namespace ScaleMonk.Ads
 
         private static void DoLog(LogType level, string format, params object[] args)
         {
-#if UNITY_2017
+#if !UNITY_2019_3_OR_NEWER 
             Debug.LogFormat(getEmojiForLevel(level) + logTag + format, args);
 #else
             Debug.LogFormat(level, LogOption.NoStacktrace, null, getEmojiForLevel(level) + logTag + format, args);
