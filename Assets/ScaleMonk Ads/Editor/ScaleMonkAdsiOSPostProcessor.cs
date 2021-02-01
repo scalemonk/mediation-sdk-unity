@@ -84,7 +84,7 @@ namespace ScaleMonk.Ads
             {
                 sw.WriteLine("\ntarget 'Unity-iPhone' do\n  inherit! :search_paths\nend");
 
-                sw.WriteLine("\n \npost_install do |installer|\n   installer.aggregate_targets.each do |aggregate_target|\n     aggregate_target.xcconfigs.each do |config_name, xcconfig|\n \n       remove([ 'FBSDKCoreKit'],\n              'libraries', config_name, xcconfig, aggregate_target)\n     end\n   end\n end\n # https://github.com/CocoaPods/CocoaPods/issues/7155\n def remove(dependencies, type, config_name, xcconfig, aggregate_target)\n   existing = xcconfig.other_linker_flags[type.to_sym]\n   modified = existing.subtract(dependencies)\n   xcconfig.other_linker_flags[type.to_sym] = modified\n   xcconfig_path = aggregate_target.xcconfig_path(config_name)\n   xcconfig.save_as(xcconfig_path)\nend");
+                sw.WriteLine("\n \npost_install do |installer|\n  installer.pods_project.targets.each do |target|\n    target.build_configurations.each do |config|\n      if ['RxSwift', 'Willow'].include? target.name\n        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'\n      end\n    end\n  end\nend");
             }
 
             var iphoneGuid = proj.GetUnityMainTargetGuid();
