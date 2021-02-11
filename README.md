@@ -2,7 +2,7 @@
 
 This repository contains the ScaleMonk Unity Mediation SDK 
 
-Check the [official documentation](https://scalemonk.github.io/mediation-docs/#/mediation-sdk-unity/getting-started)
+Check the [official documentation](https://scalemonk.github.io/mediation-docs/#/mediation-sdk-unity/main)
 
 ## License
 
