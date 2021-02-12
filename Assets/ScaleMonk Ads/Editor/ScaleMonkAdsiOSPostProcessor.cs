@@ -53,11 +53,21 @@ namespace ScaleMonk.Ads
                             infoPlist.root.SetString(config.config, config.value);
                         }
                     }
+                    
+                    if (adnet.id == "Admob")
+                    {
+                        disableAdmobSwizzling(infoPlist);
+                    }
                 }
 
                 infoPlist.WriteToFile(plistPath);
             }
 #endif
+        }
+        
+        static void disableAdmobSwizzling(PlistDocument plist)
+        {
+            plist.root.SetBoolean("GoogleUtilitiesAppDelegateProxyEnabled", false);
         }
 
         private static void configureSwiftBuild(string targetPath)
@@ -73,8 +83,6 @@ namespace ScaleMonk.Ads
 #else
             var targetGuid = proj.TargetGuidByName ("Unity-iPhone");
 #endif
-
-            proj.SetBuildProperty(targetGuid, "CLANG_ENABLE_MODULES", "YES");
 
             proj.SetBuildProperty(targetGuid, "GCC_ENABLE_OBJC_EXCEPTIONS", "YES");
 
@@ -93,6 +101,12 @@ namespace ScaleMonk.Ads
 #else
             proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/ScaleMonk Ads/Plugins/iOS/Bridging-Header.h");
 #endif
+            
+            using (var sw = File.AppendText(targetPath + "/Podfile"))
+            {
+                sw.WriteLine("\npost_install do |installer|\n   installer.pods_project.targets.each do |target|\n     target.build_configurations.each do |config|\n       if ['RxSwift', 'Willow'].include? target.name\n         config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'\n       end\n     end\n   end\n end");
+            }
+            
             proj.SetBuildProperty(targetGuid, "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES", "NO");
             proj.SetBuildProperty(targetGuid, "LD_RUNPATH_SEARCH_PATHS", "@executable_path/Frameworks");
 
