@@ -40,7 +40,7 @@ void SMSetApplicationChildDirected(bool isChildDirected){
 }
 
 void SMSetUserCantGiveGDPRConsent(bool isUnderage){
-    [smAds setUserCantGiveGDPRConsentWithIsUserUnderAgeOfConsent: isUnderage];
+    [smAds setUserCantGiveGDPRConsentWithStatus: isUnderage];
 }
        
 void SMSetHasGDPRConsent(bool consent){
@@ -49,22 +49,20 @@ void SMSetHasGDPRConsent(bool consent){
 
 bool SMIsRewardedReadyToShow(char* tagChr) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
-//    return [adsWrapper isRewardedVideoReadyToShowWithTag:tag];
-    return true;
+    return [smAds isRewardedReadyToShowWithTag:tag];
 }
 
 bool SMIsInterstitialReadyToShow(char* tagChr) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
-    return true;
-//    return [adsWrapper isInterstitialReadyToShowWithTag:tag];
+    return [smAds isInterstitialReadyToShowWithTag:tag];
 }
 
 bool SMAreInterstitialsEnabled() {
     return true;
-//    return [adsWrapper areInterstitialsEnabled];
+//    return [smAds areInterstitialsEnabled];
 }
 
 bool SMAreRewardedEnabled() {
     return true;
-//    return [adsWrapper areVideosEnabled];
+//    return [smAds areVideosEnabled];
 }
