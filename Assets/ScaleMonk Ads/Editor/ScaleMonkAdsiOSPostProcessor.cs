@@ -88,16 +88,26 @@ namespace ScaleMonk.Ads
 
             proj.SetBuildProperty(targetGuid, "SWIFT_VERSION", "5.0");
 #if UNITY_2019_3_OR_NEWER
-            using (var sw = File.AppendText(targetPath + "/Podfile"))
+            string podFilePath = Path.Combine(targetPath, "Podfile");
+            string podFileContents = File.ReadAllText(podFilePath);
+            string targetUnityiPhone = "\ntarget 'Unity-iPhone' do";
+            string inheritSearchPaths = "\n inherit! :search_paths";
+
+            if (podFileContents.Contains("Unity-iPhone"))
             {
-                sw.WriteLine("\ntarget 'Unity-iPhone' do\n  inherit! :search_paths\nend");
-
-                sw.WriteLine("\npost_install do |installer|\n   installer.pods_project.targets.each do |target|\n     target.build_configurations.each do |config|\n       if ['RxSwift', 'Willow'].include? target.name\n         config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'\n       end\n     end\n   end\n end");
-
-                // sw.WriteLine("\n \npost_install do |installer|\n  installer.pods_project.targets.each do |target|\n     target.build_configurations.each do |config|\n       if ['RxSwift', 'Willow'].include? target.name\n         config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'\n       end\n     end\n   end\n  installer.aggregate_targets.each do |aggregate_target|\n     aggregate_target.xcconfigs.each do |config_name, xcconfig|\n\n       remove([ 'FBSDKCoreKit'],\n              'libraries', config_name, xcconfig, aggregate_target)\n     end\n   end\n end\n # https://github.com/CocoaPods/CocoaPods/issues/7155\n def remove(dependencies, type, config_name, xcconfig, aggregate_target)\n   existing = xcconfig.other_linker_flags[type.to_sym]\n   modified = existing.subtract(dependencies)\n   xcconfig.other_linker_flags[type.to_sym] = modified\n   xcconfig_path = aggregate_target.xcconfig_path(config_name)\n   xcconfig.save_as(xcconfig_path)\nend");
+                podFileContents =
+                    podFileContents.Replace(targetUnityiPhone, targetUnityiPhone + inheritSearchPaths);
+                File.WriteAllText(podFilePath, podFileContents);
+            }
+            else
+            {
+                File.AppendAllText(podFilePath, targetUnityiPhone + inheritSearchPaths + "\nend");
             }
 
-                var iphoneGuid = proj.GetUnityMainTargetGuid();
+            File.AppendAllText(podFilePath,
+                "\npost_install do |installer|\n   installer.pods_project.targets.each do |target|\n     target.build_configurations.each do |config|\n       if ['RxSwift', 'Willow'].include? target.name\n         config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'\n       end\n     end\n   end\n end");
+
+            var iphoneGuid = proj.GetUnityMainTargetGuid();
             proj.SetBuildProperty(iphoneGuid, "SWIFT_OBJC_BRIDGING_HEADER",
                 "Libraries/ScaleMonk Ads/Plugins/iOS/Bridging-Header.h");
 #else
