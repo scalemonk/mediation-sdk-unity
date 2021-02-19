@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [0.4.2] - 2021-02-19
 - Fixed podfile generation in Unity 2019
-- 
+
 ## [0.4.1] - 2021-02-10
 - Updated to iOS version 0.4.1
 - Added `isInterstitialReadyToShowWithTag` and `isRewardedReadyToShowWithTag` methods
