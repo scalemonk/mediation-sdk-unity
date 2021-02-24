@@ -223,6 +223,7 @@ namespace ScaleMonk.Ads
             "xy9t38ct57.skadnetwork",
             "yrqqpx2mcb.skadnetwork",
             "z4gj7hsk7h.skadnetwork",
+            "6g9af3uyq4.skadnetwork",
         };
 
         private static void configureSKAdNetworks(BuildTarget buildTarget, string targetPath)
