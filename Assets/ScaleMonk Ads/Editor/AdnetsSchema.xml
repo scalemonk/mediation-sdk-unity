@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <adnets>
-    <adnet id="Admob" name="Admob">
+    <adnet id="AdColony" name="AdColony" ios="true" android="true"/>
+    <adnet id="AdMob" name="AdMob" ios="true" android="true">
         <adnetConfig config="GADApplicationIdentifier" platform="ios" name="App Id (iOS)" />
+        <adnetConfig config="GADApplicationIdentifier" platform="android" name="App Id (Android)" />
     </adnet>
-    <adnet id="AppLovin" name="AppLovin" />
-    <adnet id="Facebook" name="Facebook" />
-    <adnet id="IronSource" name="IronSource" />
-    <adnet id="UnityAds" name="UnityAds" />
-    <adnet id="Vungle" name="Vungle" />
+    <adnet id="Amazon" name="Amazon" ios="true" />
+    <adnet id="AppLovin" name="AppLovin" ios="true" android="true" />
+    <adnet id="Chartboost" name="Chartboost" ios="true" android="true" />
+    <adnet id="Facebook" name="Facebook" ios="true" android="true" />
+    <adnet id="Fyber" name="Fyber" ios="true" android="true" />
+    <adnet id="InMobi" name="InMobi" ios="true" android="true" />
+    <adnet id="IronSource" name="IronSource" ios="true" android="true" />
+    <adnet id="Mintegral" name="Mintegral" ios="true" android="true" />
+    <adnet id="Mopub" name="Mopub" ios="true" android="true" />
+    <adnet id="MyTarget" name="MyTarget" ios="true" />
+    <adnet id="Renderer" name="Generic" ios="true" />
+    <adnet id="Smaato" name="Smaato" ios="true" android="true" />
+    <adnet id="Tapjoy" name="Tapjoy" ios="true" />
+    <adnet id="TFGAdNet" name="Adspot" ios="true" android="true" />
+    <adnet id="Tiktok" name="TikTok" ios="true" android="true" />
+    <adnet id="UnityAds" name="UnityAds" ios="true" android="true" />
+    <adnet id="Vungle" name="Vungle" ios="true" android="true" />
 </adnets>

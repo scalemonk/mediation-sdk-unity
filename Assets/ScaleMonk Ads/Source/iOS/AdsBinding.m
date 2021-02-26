@@ -6,7 +6,7 @@
 //
 
 @import ScaleMonkAds;
-#import "AdsBindingVideoDelegateViewController.h"
+#import "AdsBindingRewardedDelegateViewController.h"
 #import "AdsBindingInterstitialViewController.h"
 
 static UIViewController *videoDelegateViewController;
@@ -14,14 +14,14 @@ static UIViewController *interstitialDelegateViewController;
 static SMAds *smAds;
 
 void SMAdsInitialize(char* applicationId) {
-    smAds = [[SMAds alloc] initWith:[NSString stringWithUTF8String: applicationId]];
+    smAds = [[SMAds alloc] initWithApplicationId:[NSString stringWithUTF8String: applicationId]];
 
     [smAds initialize: ^(BOOL success){}];
-    videoDelegateViewController = [[AdsBindingVideoDelegateViewController alloc] init];
+    videoDelegateViewController = [[AdsBindingRewardedDelegateViewController alloc] init];
     interstitialDelegateViewController = [[AdsBindingInterstitialViewController alloc] init];
     
     [smAds addInterstitialListener:(id<SMInterstitialAdEventListener>) interstitialDelegateViewController];
-    [smAds addVideoListener:(id<SMRewardedVideoAdEventListener>) videoDelegateViewController];
+    [smAds addRewardedListener:(id<SMRewardedAdEventListener>) videoDelegateViewController];
 }
 
 void SMAdsShowInterstitial(char* tagChr) {
@@ -31,7 +31,7 @@ void SMAdsShowInterstitial(char* tagChr) {
 
 void SMAdsShowRewarded(char* tagChr) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
-    [smAds showRewardedVideoAdWithViewController:UnityGetGLViewController()
+    [smAds showRewardedAdWithViewController:UnityGetGLViewController()
                                                andTag:tag];
 }
 
@@ -58,11 +58,9 @@ bool SMIsInterstitialReadyToShow(char* tagChr) {
 }
 
 bool SMAreInterstitialsEnabled() {
-    return true;
-//    return [smAds areInterstitialsEnabled];
+    return [smAds areInterstitialsEnabled];
 }
 
 bool SMAreRewardedEnabled() {
-    return true;
-//    return [smAds areVideosEnabled];
+    return [smAds areRewardedEnabled];
 }

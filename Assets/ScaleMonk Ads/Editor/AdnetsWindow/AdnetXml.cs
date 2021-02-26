@@ -13,17 +13,30 @@ namespace ScaleMonk.Ads
     {
         public string id { get; set; }
         public string name { get; set; }
-        public bool enabled { get; set; }
+        
+        public bool ios { get; set; }
+        public bool android { get; set; }
+        public bool availableIos { get; set; }
+        public bool availableAndroid { get; set; }
+        
         public List<AdnetConfigXml> configs;
+        
+        public string iosVersion { get; set; }
+        
+        public string androidVersion { get; set; }
 
-        public AdnetXml(string id, string name, bool enabled) :
-            this(id, name, enabled, new List<AdnetConfigXml>()) {}
+        public AdnetXml(string id, string name, bool ios, bool android, string iosVersion = null) :
+            this(id, name, ios, android, new List<AdnetConfigXml>(), iosVersion) {}
 
-        public AdnetXml(string id, string name, bool enabled, List<AdnetConfigXml> configs)
+        public AdnetXml(string id, string name, bool ios, bool android, List<AdnetConfigXml> configs, string iosVersion = null)
         {
             this.id = id;
             this.name = name;
-            this.enabled = enabled;
+            this.iosVersion = iosVersion;
+            this.availableIos = ios;
+            this.availableAndroid = android;
+            this.android = false;
+            this.ios = false;
             this.configs = configs;
         }
     }

@@ -5,13 +5,13 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
-#import "AdsBindingVideoDelegateViewController.h"
+#import "AdsBindingRewardedDelegateViewController.h"
 
-@interface AdsBindingVideoDelegateViewController ()
+@interface AdsBindingRewardedDelegateViewController ()
 
 @end
 
-@implementation AdsBindingVideoDelegateViewController
+@implementation AdsBindingRewardedDelegateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

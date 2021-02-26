@@ -48,11 +48,14 @@ namespace ScaleMonk.Ads
 
                     EditorGUILayout.LabelField("Adnets configurations", labelStyle);
                     GUILayout.FlexibleSpace();
-                    /*if (GUILayout.Button("Select All"))
+                    if (GUILayout.Button("Select All"))
                     {
                         foreach (var adnet in adnetsConfigs)
                         {
-                            adnet.enabled = true;
+                            adnet.ios = true;
+#if SCALEMONK_ANDROID
+                            adnet.android = true;
+#endif
                         }
                     }
 
@@ -60,33 +63,95 @@ namespace ScaleMonk.Ads
                     {
                         foreach (var adnet in adnetsConfigs)
                         {
-                            adnet.enabled = false;
+                            adnet.ios = false;
+                            adnet.android = false;
                         }
-                    }*/
+                    }
                 }
                 EditorGUILayout.EndHorizontal();
                 GUILayout.Space(5);
 
-
                 if (adnetsConfigs != null)
                 {
+                    EditorGUILayout.LabelField("iOS", new GUIStyle(GUI.skin.label)
+                    {
+                        fontSize = 12,
+                        stretchHeight = true,
+                        fixedHeight = 30,
+                    });
+                    GUILayout.Space(5);
+
                     foreach (var adnet in adnetsConfigs)
                     {
-                        // adnet.enabled = EditorGUILayout.Toggle(adnet.name, adnet.enabled);
-
-                        // if (adnet.enabled)
+                        if (adnet.availableIos)
                         {
-                            foreach (var config in adnet.configs)
+                            EditorGUILayout.BeginHorizontal();
+                            adnet.ios = EditorGUILayout.Toggle(adnet.name, adnet.ios);
+
+                            EditorGUILayout.EndHorizontal();
+
+                            if (adnet.ios)
                             {
                                 EditorGUILayout.BeginHorizontal();
-                                {
-                                    GUILayout.Space(10);
-                                    config.value = EditorGUILayout.TextField("Admob App Id", config.value);
-                                }
+                                GUILayout.Space(10);
+                                adnet.iosVersion = EditorGUILayout.TextField("version", adnet.iosVersion);
                                 EditorGUILayout.EndHorizontal();
+                                
+                                
+                            }
+                            
+                            foreach (var config in adnet.configs)
+                            {
+                                if (config.platform == "ios")
+                                {
+                                    EditorGUILayout.BeginHorizontal();
+                                    {
+                                        GUILayout.Space(10);
+                                        config.value = EditorGUILayout.TextField(config.name, config.value);
+                                    }
+                                    EditorGUILayout.EndHorizontal();
+                                }
+                            }
+
+                            
+                        }
+                    }
+
+                    GUILayout.Space(10);
+
+#if SCALEMONK_ANDROID
+                    EditorGUILayout.LabelField("Android", new GUIStyle(GUI.skin.label)
+                    {
+                        fontSize = 12,
+                        stretchHeight = true,
+                        fixedHeight = 30,
+                    });
+                    GUILayout.Space(5);
+
+                    foreach (var adnet in adnetsConfigs)
+                    {
+                        if (adnet.availableAndroid)
+                        {
+                            adnet.android = EditorGUILayout.Toggle(adnet.name, adnet.android);
+
+                            if (adnet.android)
+                            {
+                                foreach (var config in adnet.configs)
+                                {
+                                    if (config.platform == "android")
+                                    {
+                                        EditorGUILayout.BeginHorizontal();
+                                        {
+                                            GUILayout.Space(10);
+                                            config.value = EditorGUILayout.TextField(config.name, config.value);
+                                        }
+                                        EditorGUILayout.EndHorizontal();
+                                    }
+                                }
                             }
                         }
                     }
+#endif
 
                     GUILayout.Space(20);
 
@@ -98,6 +163,11 @@ namespace ScaleMonk.Ads
                 }
             }
             EditorGUILayout.EndScrollView();
+        }
+
+        void OnLostFocus()
+        {
+            AdsProvidersHelper.SaveConfig(adnetsConfigs);
         }
     }
 }
