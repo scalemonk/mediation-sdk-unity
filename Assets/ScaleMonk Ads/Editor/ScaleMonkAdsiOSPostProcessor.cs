@@ -187,11 +187,8 @@ namespace ScaleMonk.Ads
             "ecpz2srf59.skadnetwork",
             "gta9lk7p23.skadnetwork",
             "7953jerfzd.skadnetwork",
-            "22mmun2rn5.skadnetwork",
-            "238da6jt44.skadnetwork",
             "9g2aggbj52.skadnetwork",
             "uw77j35x4d.skadnetwork",
-            "wg4vff78zm.skadnetwork",
             "cg4yq2srnc.skadnetwork",
             "ejvt5qm6ak.skadnetwork",
             "7rz58n8ntl.skadnetwork",
@@ -224,6 +221,10 @@ namespace ScaleMonk.Ads
             "yrqqpx2mcb.skadnetwork",
             "z4gj7hsk7h.skadnetwork",
             "6g9af3uyq4.skadnetwork",
+            "275upjj5gd.skadnetwork",
+            "9nlqeag3gk.skadnetwork",
+            "rx5hdcabgc.skadnetwork",
+            "5tjdwbrq8w.skadnetwork",
         };
 
         private static void configureSKAdNetworks(BuildTarget buildTarget, string targetPath)
