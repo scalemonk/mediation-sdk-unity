@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ScalemonkAds/SMRewardedVideoAdEventListener.h>
+#import <ScalemonkAds/SMRewardedAdEventListener.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AdsBindingVideoDelegateViewController : UIViewController<SMRewardedVideoAdEventListener>
+@interface AdsBindingRewardedDelegateViewController : UIViewController<SMRewardedAdEventListener>
 @end
 
 NS_ASSUME_NONNULL_END
