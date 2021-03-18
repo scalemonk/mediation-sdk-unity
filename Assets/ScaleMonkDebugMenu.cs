@@ -41,7 +41,11 @@ public class ScaleMonkDebugMenu : MonoBehaviour
 
     private void OnClickInit()
     {
+#if UNITY_IOS        
         ScaleMonkAds.Initialize("sm-test-app-scalemonk-6407705726");
+#else
+        ScaleMonkAds.Initialize("sm-test-app-scalemonk-6521838781");
+#endif
         ScaleMonkAds.InterstitialClickedEvent += Feedback("Interstitial Clicked");
         ScaleMonkAds.RewardedClickedEvent += Feedback("Video Clicked");
         ScaleMonkAds.InterstitialDisplayedEvent += Feedback("Interstitial Displayed");

@@ -25,41 +25,39 @@ public class AdsBinding {
 
     public boolean isInterstitialReadyToShow(String tag) {
         Log.d(TAG, "Checking availability of interstitials at: " + tag + ".");
-        return ScalemonkAds.isInterstitialReadyToShow(tag);
+        return ScaleMonkAds.isInterstitialReadyToShow(tag);
     }
 
     public boolean isRewardedReadyToShow(String tag) {
-        if (getAdsController() == null) return false;
         Log.d(TAG, "Checking availability of videos on: " + tag + ".");
-        return ScalemonkAds.isRewardedReadyToShow(tag);
+        return ScaleMonkAds.isRewardedReadyToShow(tag);
     }
 
-    public boolean areVideosEnabled() {
-        return ScalemonkAds.areVideosEnabled();
-    }
+//    public boolean areVideosEnabled() {
+//        return ScaleMonkAds.areVideosEnabled();
+//    }
 
-    public boolean areInterstitialsEnabled() {
-        return ScalemonkAds.areInterstitialsEnabled();
-    }
+//    public boolean areInterstitialsEnabled() {
+//        return ScaleMonkAds.areInterstitialsEnabled();
+//    }
 
     public void showInterstitial(final Context context, final String tag) {
-        this.activity.runOnUiThread(() -> Scalemonk.showInterstitial(context, tag));
+        this.activity.runOnUiThread(() -> ScaleMonkAds.showInterstitial(context, tag));
     }
 
     public void showRewarded(final Context context, final String tag) {
-        this.activity.runOnUiThread(() -> adsController.showRewarded(context, tag));
+        this.activity.runOnUiThread(() -> ScaleMonkAds.showRewarded(context, tag));
     }
 
     private void setupAds(
             InterstitialEventListener interstitialListener,
             RewardedEventListener rewardedListener
     ) {
-        ScaleMonkAds.initialize(context, Runnable {
-                    this.bannerListener?.let { ScaleMonkAds.addBannerListener(it) }
-                    this.interstitialListener?.let { ScaleMonkAds.addInterstitialListener(it) }
-                    this.rewardedListener?.let { ScaleMonkAds.addRewardedListener(it) }
-                    Log.i(TAG, "Ads SDK Initialized")
-        })
+        ScaleMonkAds.initialize(activity, () -> {
+                    ScaleMonkAds.addInterstitialListener(interstitialListener);
+                    ScaleMonkAds.addRewardedListener(rewardedListener);
+                    Log.i(TAG, "Ads SDK Initialized");
+        });
     }
     
     public void SetHasGDPRConsent(final boolean consent) {
@@ -67,7 +65,7 @@ public class AdsBinding {
     }
     
     public void setIsApplicationChildDirected(final boolean isChildDirected) {
-        ScaleMonkAds.isChildDirected(isChildDirected);
+        ScaleMonkAds.setIsApplicationChildDirected(isChildDirected);
     }
     
     public void setUserCantGiveGDPRConsent(final boolean cantGiveConsent) {

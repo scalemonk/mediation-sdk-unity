@@ -12,15 +12,13 @@ namespace ScaleMonk.Ads.Android
     public class AdsAndroidBinding : IAdsBinding
     {
         const string _label = "AdsAndroidBinding";
-        ScaleMonkAds _adsInstance;
         private AndroidJavaObject _adsBinding;
         private AndroidJavaObject _activity;
         public void Initialize(ScaleMonkAds adsInstance)
         {
-            _adsInstance = adsInstance;
             AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             _activity = jc.GetStatic<AndroidJavaObject>("currentActivity");
-            _adsBinding = new AndroidJavaObject("com.scalemonk.libs.ads.binding.AdsBinding", _activity);
+            _adsBinding = new AndroidJavaObject("com.scalemonk.ads.unity.binding.AdsBinding", _activity);
         }
 
         public void ShowInterstitial(string tag)

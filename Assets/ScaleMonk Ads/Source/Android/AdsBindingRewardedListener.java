@@ -41,4 +41,9 @@ public class AdsBindingRewardedListener implements RewardedEventListener {
         Log.i(AdsBinding.TAG, "Rewarded started view at location " + tag);
         UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "StartedRewardedDisplay", tag);
     }
+
+    @Override
+    public void onRewardedFailedToLoad() {
+        Log.i(AdsBinding.TAG, "Rewarded failed to load");
+    }
 }
