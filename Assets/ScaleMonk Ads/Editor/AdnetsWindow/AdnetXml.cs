@@ -9,6 +9,18 @@ using System.Collections.Generic;
 
 namespace ScaleMonk.Ads
 {
+    public class ScaleMonkXml
+    {
+        public ScaleMonkXml()
+        {
+            adnets = new List<AdnetXml>();
+        }
+
+        public string ios { get; set; }
+        public string android { get; set; }
+        public List<AdnetXml> adnets { get; set; }
+    }
+    
     public class AdnetXml
     {
         public string id { get; set; }
@@ -47,7 +59,7 @@ namespace ScaleMonk.Ads
         public string platform { get; private set; }
         public string name { get; private set; }
         public string value { get; set; }
-
+        
         public AdnetConfigXml(string config, string platform, string name, string value)
         {
             this.config = config;

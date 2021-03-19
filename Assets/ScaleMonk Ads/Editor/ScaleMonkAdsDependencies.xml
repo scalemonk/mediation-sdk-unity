@@ -1,7 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
+  <androidPackages>
+    <androidPackage spec="com.scalemonk.libs:ads:1.0.20" />
+    <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
+  </androidPackages>
   <iosPods>
-    <iosPod name="ScaleMonkAds" version="1.0.0-alpha.5">
+    <iosPod name="ScaleMonkAds" version="1.1.0">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-AdColony" version="1.0">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-AdMob" version="2.2.2">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
