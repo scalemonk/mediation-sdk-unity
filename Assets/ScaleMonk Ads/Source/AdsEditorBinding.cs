@@ -5,20 +5,25 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using UnityEngine;
+
 namespace ScaleMonk.Ads
 {
     public class AdsEditorBinding : IAdsBinding
     {
         public void Initialize(ScaleMonkAds adsInstance)
         {
+            Debug.Log("ScaleMonkAds initialized successfully");
         }
 
         public void ShowInterstitial(string tag)
         {
+            Debug.Log("Interstitial shown at " + tag);
         }
 
         public void ShowRewarded(string tag)
         {
+            Debug.Log("Rewarded shown at " + tag);
         }
 
         public bool IsInterstitialReadyToShow(string analyticsLocation)

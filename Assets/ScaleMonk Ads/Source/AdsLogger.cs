@@ -47,6 +47,10 @@ namespace ScaleMonk.Ads
             }
         }
 
+        public static void LogInfo(string log, params object[] args)
+        {
+            DoLog(LogType.Log, log, args);
+        }
         public static void LogWarning(string log, params object[] args)
         {
             DoLog(LogType.Warning, log, args);

@@ -15,6 +15,7 @@ namespace ScaleMonk.Ads
     public class ScaleMonkAds
     {
         const string _label = "ScaleMonkAds";
+        const string DEFAULT_TAG = "DEFAULT_TAG";
 
         static ScaleMonkAds _instance;
         readonly IAdsBinding _adsBinding;
@@ -92,6 +93,16 @@ namespace ScaleMonk.Ads
             _adsBinding.SetUserCantGiveGDPRConsent(cantGiveConsent);
         }
 
+        /// <summary>
+        /// Displays an interstitial ad.
+        ///
+        /// If the display was successful, the event `InterstitialDisplayedEvent` will be called when the ad closes.
+        /// Otherwise, the event `InterstitialNotDisplayedEvent` will be called.
+        public void ShowInterstitial()
+        {
+            AdsLogger.LogWithFormat("{0} | Show interstitial at tag {1}", _label, DEFAULT_TAG);
+            _adsBinding.ShowInterstitial(DEFAULT_TAG);
+        }
         
         /// <summary>
         /// Displays an interstitial ad.
@@ -106,6 +117,18 @@ namespace ScaleMonk.Ads
             _adsBinding.ShowInterstitial(tag);
         }
 
+        /// <summary>
+        /// Displays a rewarded ad.
+        ///
+        /// If the display was successful, the event `RewardedDisplayedEvent` will be called when the ad closes.
+        /// Otherwise, the event `RewardedNotDisplayedEvent` will be called.
+        /// </summary>
+        public void ShowRewarded()
+        {
+            AdsLogger.LogWithFormat("{0} | Show rewarded at tag {1}", _label, DEFAULT_TAG);
+            _adsBinding.ShowRewarded(DEFAULT_TAG);
+        }
+        
         /// <summary>
         /// Displays a rewarded ad.
         ///
@@ -275,12 +298,12 @@ namespace ScaleMonk.Ads
         {
             IAdsBinding binding = null;
 
-#if UNITY_ANDROID
+#if UNITY_EDITOR
+            binding = new AdsEditorBinding();
+#elif UNITY_ANDROID
             binding = new AdsAndroidBinding();
 #elif UNITY_IOS
             binding = new AdsiOSBinding();
-#elif UNITY_EDITOR
-            binding = new AdsEditorBinding();
 #endif
             return binding;
         }
