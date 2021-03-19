@@ -97,20 +97,20 @@ namespace ScaleMonk.Ads
                 if (localNode != null)
                 {
                     savedConfigs = localNode.SelectNodes("adnetConfig");
-                }
-
-                foreach (var newConfig in adnetConfigs)
-                {
-                    var curConfig = savedConfigs.Cast<XmlNode>().FirstOrDefault(c =>
-                        (c.Attributes["config"] != null ? c.Attributes["config"].Value : null) == newConfig.config &&
-                        (c.Attributes["platform"] != null ? c.Attributes["platform"].Value : null) == newConfig.platform);
-                    if (curConfig != null)
+                    foreach (var newConfig in adnetConfigs)
                     {
-                        newConfig.value = curConfig.Attributes["value"].Value;
-                    }
+                        var curConfig = savedConfigs.Cast<XmlNode>().FirstOrDefault(c =>
+                            (c.Attributes["config"] != null ? c.Attributes["config"].Value : null) == newConfig.config &&
+                            (c.Attributes["platform"] != null ? c.Attributes["platform"].Value : null) == newConfig.platform);
+                        if (curConfig != null)
+                        {
+                            newConfig.value = curConfig.Attributes["value"].Value;
+                        }
 
-                    newConfigs.Add(newConfig);
+                        newConfigs.Add(newConfig);
+                    }
                 }
+
 
                 currentAdnet.configs = newConfigs;
                 adnetsDict[id] = currentAdnet;
@@ -129,6 +129,8 @@ namespace ScaleMonk.Ads
 
         public static void SaveConfig(List<AdnetXml> adnets)
         {
+            if (adnets == null) return;
+            
             var doc = new XmlDocument();
             var xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             var root = doc.DocumentElement;
@@ -151,8 +153,8 @@ namespace ScaleMonk.Ads
                     foreach (var config in adnet.configs)
                     {
                         var configElement = doc.CreateElement("adnetConfig");
-                        if (((adnet.availableIos && config.platform == "ios")
-                             || (adnet.availableAndroid && config.platform == "android"))
+                        if (((adnet.ios && config.platform == "ios")
+                             || (adnet.android && config.platform == "android"))
                             && string.IsNullOrEmpty(config.value))
                         {
                             Debug.LogErrorFormat("Adnet {0} missing config {1} ({2})", adnet.name, config.name,
