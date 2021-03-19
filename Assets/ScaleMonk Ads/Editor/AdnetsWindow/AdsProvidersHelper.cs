@@ -224,8 +224,8 @@ namespace ScaleMonk.Ads
 
             iosPodsElement.AppendChild(adsPod);
 
-            bool addedRenderer = false;
-            bool addedMopub = false;
+            // bool addedRenderer = false; // we should add this back when we add all the providers
+            // bool addedMopub = false;
             foreach (var adnet in adnets)
             {
                 if (!adnet.ios)

@@ -5,7 +5,7 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html
 //
 
-@import ScaleMonkAds;
+#import <ScaleMonkAds/SMAds.h>
 #import "AdsBindingRewardedDelegateViewController.h"
 #import "AdsBindingInterstitialViewController.h"
 
