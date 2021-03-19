@@ -92,7 +92,7 @@ namespace ScaleMonk.Ads
 
                             if (adnet.ios)
                             {
-                                EditorGUILayout.BeginHorizontal();
+                                EditorGUILayout.BeginHorizontal(GUILayout.Width(250));
                                 GUILayout.Space(10);
                                 adnet.iosVersion = EditorGUILayout.TextField("version", adnet.iosVersion);
                                 EditorGUILayout.EndHorizontal();
@@ -104,7 +104,7 @@ namespace ScaleMonk.Ads
                             {
                                 if (config.platform == "ios")
                                 {
-                                    EditorGUILayout.BeginHorizontal();
+                                    EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
                                     {
                                         GUILayout.Space(10);
                                         config.value = EditorGUILayout.TextField(config.name, config.value);
