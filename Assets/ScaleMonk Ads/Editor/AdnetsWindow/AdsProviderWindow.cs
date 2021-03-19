@@ -24,7 +24,7 @@ namespace ScaleMonk.Ads
 
         void Awake()
         {
-            titleContent = new GUIContent("Adnets");
+            titleContent = new GUIContent("Scalemonk Adnets Selector ");
         }
 
         void OnFocus()
@@ -37,7 +37,7 @@ namespace ScaleMonk.Ads
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Width(position.width),
                 GUILayout.Height(position.height));
             {
-                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
                 {
                     var labelStyle = new GUIStyle(GUI.skin.label)
                     {
@@ -92,9 +92,13 @@ namespace ScaleMonk.Ads
 
                             if (adnet.ios)
                             {
-                                EditorGUILayout.BeginHorizontal(GUILayout.Width(250));
+                                EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
                                 GUILayout.Space(10);
                                 adnet.iosVersion = EditorGUILayout.TextField("version", adnet.iosVersion);
+                                if (GUILayout.Button("Check available versions"))
+                                {
+                                    Help.BrowseURL("https://github.com/scalemonk/ios-podspecs-framework/tree/master/Specs/ScaleMonkAds-" + adnet.id); 
+                                }
                                 EditorGUILayout.EndHorizontal();
                                 
                                 
@@ -155,11 +159,14 @@ namespace ScaleMonk.Ads
 
                     GUILayout.Space(20);
 
-                    if (GUILayout.Button("Save"))
+                    EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                    GUILayout.FlexibleSpace();
+                    if (GUILayout.Button("Save", GUILayout.Width(300)))
                     {
                         Debug.Log("Saving config");
                         AdsProvidersHelper.SaveConfig(adnetsConfigs);
                     }
+                    EditorGUILayout.EndHorizontal();
                 }
             }
             EditorGUILayout.EndScrollView();
