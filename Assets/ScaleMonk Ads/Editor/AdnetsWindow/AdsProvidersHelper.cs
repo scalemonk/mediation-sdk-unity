@@ -172,6 +172,8 @@ namespace ScaleMonk.Ads
                              || (adnet.android && config.platform == "android"))
                             && string.IsNullOrEmpty(config.value))
                         {
+                            Debug.LogErrorFormat("Adnet {0} missing config {1} ({2})", adnet.name, config.name,
+                                config.config);
                             return;
                         }
                         configElement.SetAttribute("config", config.config);

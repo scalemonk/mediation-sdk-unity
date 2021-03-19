@@ -15,8 +15,6 @@ namespace ScaleMonk.Ads
     {
         Vector2 scrollPos;
         static ScaleMonkXml scaleMonkConfig;
-        static string iOSApplicationId; 
-        static string androidApplicationId; 
 
         [MenuItem("ScaleMonk/Application Configuration", false, 0)]
         static void Display()
@@ -51,11 +49,11 @@ namespace ScaleMonk.Ads
                     EditorGUILayout.BeginVertical();
                     EditorGUILayout.LabelField("ScaleMonk application configurations", labelStyle);
                     GUILayout.Space(15);
-                    iOSApplicationId = EditorGUILayout.TextField("iOS application ID", iOSApplicationId);
+                    scaleMonkConfig.ios = EditorGUILayout.TextField("iOS application ID", scaleMonkConfig.ios);
                     
                     
                     GUILayout.Space(10);
-                    androidApplicationId = EditorGUILayout.TextField("Android application ID", androidApplicationId);
+                    scaleMonkConfig.android = EditorGUILayout.TextField("Android application ID", scaleMonkConfig.android);
                     GUILayout.Space(20);
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Adnets configurations", labelStyle);

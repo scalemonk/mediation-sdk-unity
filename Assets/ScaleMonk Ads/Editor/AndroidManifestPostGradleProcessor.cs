@@ -1,24 +1,26 @@
 using System.IO;
 using System.Text;
 using System.Xml;
+using ScaleMonk.Ads;
 using UnityEditor.Android;
+using UnityEngine;
 
 namespace ScaleMonk_Ads.Editor
 {
     public class AndroidManifestPostGradleProcessor : IPostGenerateGradleAndroidProject
     {
         public readonly string AppIdKey = "com.scalemonk.libs.ads.applicationId";
-        public readonly string AppIdValue = "sm-test-app-scalemonk-6521838781";
 
         public void OnPostGenerateGradleAndroidProject(string basePath)
         {
             // If needed, add condition checks on whether you need to run the modification routine.
             // For example, specific configuration/app options enabled
-
+            ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
             var androidManifest = new AndroidManifest(GetManifestPath(basePath));
 
             // androidManifest.SetApplicationTheme(ThemeName);
-            androidManifest.SetApplicationIdMetadata(AppIdKey, AppIdValue);
+            Debug.Log($"OnPostGenerateGradleAndroidProject. App id: {scaleMonkXml.android}");
+            androidManifest.SetApplicationIdMetadata(AppIdKey, scaleMonkXml.android);
             // Add your XML manipulation routines
 
             androidManifest.Save();
@@ -95,7 +97,7 @@ namespace ScaleMonk_Ads.Editor
     
         private XmlElement CreateAndroidElement(string key)
         {
-            XmlElement elem = CreateElement(key, AndroidXmlNamespace);
+            XmlElement elem = CreateElement(key, "");
             return elem;
         }
 
