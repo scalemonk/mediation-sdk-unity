@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scalemonk ios="testapp-1" android="testapp2">
+<scalemonk ios="" android="">
     <adnets>
         <adnet id="AdColony" name="AdColony" ios="false" android="true"/>
         <adnet id="AdMob" name="AdMob" ios="true" android="true">

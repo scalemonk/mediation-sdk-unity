@@ -141,10 +141,12 @@ namespace ScaleMonk.Ads
                     });
                     GUILayout.Space(5);
 
+                    var anyAndroidNet = false;
                     foreach (var adnet in scaleMonkConfig.adnets)
                     {
                         if (adnet.availableAndroid)
                         {
+                            anyAndroidNet = true;
                             EditorGUILayout.BeginHorizontal();
                             adnet.android = EditorGUILayout.Toggle(adnet.name, adnet.android);
 
@@ -178,6 +180,16 @@ namespace ScaleMonk.Ads
                                 }
                             }
                         }
+                    }
+
+                    if (!anyAndroidNet)
+                    {
+                        EditorGUILayout.LabelField("Coming Soon!", new GUIStyle(GUI.skin.label)
+                        {
+                            fontSize = 16,
+                            stretchHeight = true,
+                            fixedHeight = 30,
+                        });
                     }
 
                     GUILayout.Space(10);
