@@ -10,12 +10,7 @@
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
     </iosPod>
-    <iosPod name="ScaleMonkAds-AdColony" version="1.0">
-      <sources>
-        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-      </sources>
-    </iosPod>
-    <iosPod name="ScaleMonkAds-AdMob" version="2.2.2">
+    <iosPod name="ScaleMonkAds-AdMob">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>

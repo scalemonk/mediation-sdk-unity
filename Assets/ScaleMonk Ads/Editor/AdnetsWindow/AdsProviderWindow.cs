@@ -38,48 +38,48 @@ namespace ScaleMonk.Ads
                 GUILayout.Height(position.height));
             {
                 EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                var labelStyle = new GUIStyle(GUI.skin.label)
                 {
-                    var labelStyle = new GUIStyle(GUI.skin.label)
-                    {
-                        fontSize = 14,
-                        stretchHeight = true,
-                        fixedHeight = 30,
-                    };
+                    fontSize = 14,
+                    stretchHeight = true,
+                    fixedHeight = 30,
+                };
 
-                    EditorGUILayout.BeginVertical();
-                    EditorGUILayout.LabelField("ScaleMonk application configurations", labelStyle);
-                    GUILayout.Space(15);
-                    scaleMonkConfig.ios = EditorGUILayout.TextField("iOS application ID", scaleMonkConfig.ios);
-                    
-                    
-                    GUILayout.Space(10);
-                    scaleMonkConfig.android = EditorGUILayout.TextField("Android application ID", scaleMonkConfig.android);
-                    GUILayout.Space(20);
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Adnets configurations", labelStyle);
-                    GUILayout.FlexibleSpace();
-                    
-                    if (GUILayout.Button("Select All"))
-                    {
-                        foreach (var adnet in scaleMonkConfig.adnets)
-                        {
-                            adnet.ios = true;
-                            adnet.android = true;
-                        }
-                    }
+                EditorGUILayout.BeginVertical();
+                EditorGUILayout.LabelField("ScaleMonk application configurations", labelStyle);
+                GUILayout.Space(15);
+                scaleMonkConfig.ios = EditorGUILayout.TextField("iOS application ID", scaleMonkConfig.ios);
 
-                    if (GUILayout.Button("Deselect All"))
+
+                GUILayout.Space(10);
+                scaleMonkConfig.android = EditorGUILayout.TextField("Android application ID", scaleMonkConfig.android);
+                GUILayout.Space(20);
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Adnets configurations", labelStyle);
+                GUILayout.FlexibleSpace();
+
+                if (GUILayout.Button("Select All"))
+                {
+                    foreach (var adnet in scaleMonkConfig.adnets)
                     {
-                        foreach (var adnet in scaleMonkConfig.adnets)
-                        {
-                            adnet.ios = false;
-                            adnet.android = false;
-                        }
+                        adnet.ios = true;
+                        adnet.android = true;
                     }
-                    EditorGUILayout.EndVertical();
-                    
                 }
+
+                if (GUILayout.Button("Deselect All"))
+                {
+                    foreach (var adnet in scaleMonkConfig.adnets)
+                    {
+                        adnet.ios = false;
+                        adnet.android = false;
+                    }
+                }
+
                 EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.EndHorizontal();
+
                 GUILayout.Space(5);
 
                 if (scaleMonkConfig != null)
@@ -108,8 +108,11 @@ namespace ScaleMonk.Ads
                                 adnet.iosVersion = EditorGUILayout.TextField("version", adnet.iosVersion);
                                 if (GUILayout.Button("Check available versions"))
                                 {
-                                    Help.BrowseURL("https://github.com/scalemonk/ios-podspecs-framework/tree/master/Specs/ScaleMonkAds-" + adnet.id); 
+                                    Help.BrowseURL(
+                                        "https://github.com/scalemonk/ios-podspecs-framework/tree/master/Specs/ScaleMonkAds-" +
+                                        adnet.id);
                                 }
+
                                 EditorGUILayout.EndHorizontal();
                             }
 
@@ -149,9 +152,16 @@ namespace ScaleMonk.Ads
 
                             if (adnet.android)
                             {
-                                EditorGUILayout.BeginHorizontal();
+                                EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
                                 GUILayout.Space(10);
                                 adnet.androidVersion = EditorGUILayout.TextField("version", adnet.androidVersion);
+                                if (GUILayout.Button("Check available versions"))
+                                {
+                                    Help.BrowseURL(
+                                        "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod/com/scalemonk/libs/ads-" +
+                                        adnet.id.ToLower());
+                                }
+
                                 EditorGUILayout.EndHorizontal();
                             }
 
@@ -159,7 +169,7 @@ namespace ScaleMonk.Ads
                             {
                                 if (config.platform == "android")
                                 {
-                                    EditorGUILayout.BeginHorizontal();
+                                    EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
                                     {
                                         GUILayout.Space(10);
                                         config.value = EditorGUILayout.TextField(config.name, config.value);
@@ -181,6 +191,7 @@ namespace ScaleMonk.Ads
                         Debug.Log("Saving config");
                         AdsProvidersHelper.SaveConfig(scaleMonkConfig);
                     }
+
                     EditorGUILayout.EndHorizontal();
                 }
             }
