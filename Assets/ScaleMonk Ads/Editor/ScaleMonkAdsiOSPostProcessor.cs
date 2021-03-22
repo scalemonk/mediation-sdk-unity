@@ -33,7 +33,7 @@ namespace ScaleMonk.Ads
                 var infoPlist = new PlistDocument();
                 infoPlist.ReadFromFile(plistPath);
 
-                var adnetsConfigs = AdsProvidersHelper.ReadAdnetsConfigs();
+                var adnetsConfigs = AdsProvidersHelper.ReadAdnetsConfigs().adnets;
                 foreach (var adnet in adnetsConfigs)
                 {
                     if (adnet.configs == null)

@@ -240,15 +240,19 @@ namespace ScaleMonk.Ads
 
             Debug.Log("Saving Android and Ios packages config to " + path);
 
-            // Make file available to write to
-            var pathFileAttributes = File.GetAttributes(path);
-            File.SetAttributes(path, FileAttributes.Normal);
-
-            // Update file
-            doc.Save(path);
-
-            // Revert path file attributes after writing
-            File.SetAttributes(path, pathFileAttributes);
+            // Make file available to write
+            if (File.Exists(path))
+            {
+                var pathFileAttributes = File.GetAttributes(path);
+                File.SetAttributes(path, FileAttributes.Normal);
+                doc.Save(path);
+                File.SetAttributes(path, pathFileAttributes);
+            }
+            else
+            {
+                // save file
+                doc.Save(path);
+            }
         }
 
         static void UpdateIOSDependencies(List<AdnetXml> adnets, XmlDocument doc, XmlElement dependenciesElement)

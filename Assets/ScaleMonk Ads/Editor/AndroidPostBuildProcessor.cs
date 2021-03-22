@@ -6,11 +6,17 @@ namespace ScaleMonk_Ads.Editor
 {
     public class AndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
     {
-        public int callbackOrder => 999;
+        public int callbackOrder
+        {
+            get
+            {
+                return 999;
+            }
+        }
 
         void IPostGenerateGradleAndroidProject.OnPostGenerateGradleAndroidProject(string path)
         {
-            Debug.Log($"OnPostGenerateGradleAndroidProject. Path: {path}");
+            Debug.Log("OnPostGenerateGradleAndroidProject. Path: " + path);
             string gradlePropertiesFile = path + "/../gradle.properties";
             
             if (File.Exists(gradlePropertiesFile))

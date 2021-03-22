@@ -19,14 +19,20 @@ namespace ScaleMonk_Ads.Editor
             var androidManifest = new AndroidManifest(GetManifestPath(basePath));
 
             // androidManifest.SetApplicationTheme(ThemeName);
-            Debug.Log($"OnPostGenerateGradleAndroidProject. App id: {scaleMonkXml.android}");
+            Debug.Log("OnPostGenerateGradleAndroidProject. App id: " + scaleMonkXml.android);
             androidManifest.SetApplicationIdMetadata(AppIdKey, scaleMonkXml.android);
             // Add your XML manipulation routines
 
             androidManifest.Save();
         }
 
-        public int callbackOrder => 1;
+        public int callbackOrder
+        {
+            get
+            {
+                return 1;
+            }
+        }
 
         private string _manifestFilePath;
 
