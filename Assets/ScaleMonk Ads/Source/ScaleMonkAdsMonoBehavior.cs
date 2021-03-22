@@ -11,7 +11,7 @@ namespace ScaleMonk.Ads
 {
     public class ScaleMonkAdsMonoBehavior : MonoBehaviour
     {
-        const string _label = "AdsMonoBehaviour";
+        const string _label = "ScaleMonkAdsMonoBehavior";
 
         static GameObject _gameObject;
         static ScaleMonkAds _adsInstance;

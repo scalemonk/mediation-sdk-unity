@@ -12,8 +12,8 @@ namespace ScaleMonk.Ads
         void Initialize(ScaleMonkAds adsInstance);
         void ShowInterstitial(string tag);
         void ShowRewarded(string tag);
-        bool IsInterstitialReadyToShow(string analyticsLocation);
-        bool IsRewardedVideoReadyToShow(string analyticsLocation);
+        bool IsInterstitialReadyToShow(string tag);
+        bool IsRewardedVideoReadyToShow(string tag);
         bool AreRewardedEnabled();
         bool AreInterstitialsEnabled();
         void SetHasGDPRConsent(bool consent);

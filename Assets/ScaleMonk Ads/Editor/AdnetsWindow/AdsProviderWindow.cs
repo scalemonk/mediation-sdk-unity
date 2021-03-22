@@ -14,9 +14,9 @@ namespace ScaleMonk.Ads
     public class AdsProvidersWindow : EditorWindow
     {
         Vector2 scrollPos;
-        static List<AdnetXml> adnetsConfigs;
+        static ScaleMonkXml scaleMonkConfig;
 
-        [MenuItem("ScaleMonk/Adnets Selection", false, 0)]
+        [MenuItem("ScaleMonk/Application Configuration", false, 0)]
         static void Display()
         {
             GetWindow<AdsProvidersWindow>(typeof(SceneView));
@@ -29,7 +29,7 @@ namespace ScaleMonk.Ads
 
         void OnFocus()
         {
-            adnetsConfigs = AdsProvidersHelper.ReadAdnetsConfigs();
+            scaleMonkConfig = AdsProvidersHelper.ReadAdnetsConfigs();
         }
 
         void OnGUI()
@@ -38,40 +38,51 @@ namespace ScaleMonk.Ads
                 GUILayout.Height(position.height));
             {
                 EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                var labelStyle = new GUIStyle(GUI.skin.label)
                 {
-                    var labelStyle = new GUIStyle(GUI.skin.label)
-                    {
-                        fontSize = 14,
-                        stretchHeight = true,
-                        fixedHeight = 30,
-                    };
+                    fontSize = 14,
+                    stretchHeight = true,
+                    fixedHeight = 30,
+                };
 
-                    EditorGUILayout.LabelField("Adnets configurations", labelStyle);
-                    GUILayout.FlexibleSpace();
-                    if (GUILayout.Button("Select All"))
-                    {
-                        foreach (var adnet in adnetsConfigs)
-                        {
-                            adnet.ios = true;
-#if SCALEMONK_ANDROID
-                            adnet.android = true;
-#endif
-                        }
-                    }
+                EditorGUILayout.BeginVertical();
+                EditorGUILayout.LabelField("ScaleMonk application configurations", labelStyle);
+                GUILayout.Space(15);
+                scaleMonkConfig.ios = EditorGUILayout.TextField("iOS application ID", scaleMonkConfig.ios);
 
-                    if (GUILayout.Button("Deselect All"))
+
+                GUILayout.Space(10);
+                scaleMonkConfig.android = EditorGUILayout.TextField("Android application ID", scaleMonkConfig.android);
+                GUILayout.Space(20);
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("Adnets configurations", labelStyle);
+                GUILayout.FlexibleSpace();
+
+                if (GUILayout.Button("Select All"))
+                {
+                    foreach (var adnet in scaleMonkConfig.adnets)
                     {
-                        foreach (var adnet in adnetsConfigs)
-                        {
-                            adnet.ios = false;
-                            adnet.android = false;
-                        }
+                        adnet.ios = true;
+                        adnet.android = true;
                     }
                 }
+
+                if (GUILayout.Button("Deselect All"))
+                {
+                    foreach (var adnet in scaleMonkConfig.adnets)
+                    {
+                        adnet.ios = false;
+                        adnet.android = false;
+                    }
+                }
+
                 EditorGUILayout.EndHorizontal();
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.EndHorizontal();
+
                 GUILayout.Space(5);
 
-                if (adnetsConfigs != null)
+                if (scaleMonkConfig != null)
                 {
                     EditorGUILayout.LabelField("iOS", new GUIStyle(GUI.skin.label)
                     {
@@ -81,7 +92,7 @@ namespace ScaleMonk.Ads
                     });
                     GUILayout.Space(5);
 
-                    foreach (var adnet in adnetsConfigs)
+                    foreach (var adnet in scaleMonkConfig.adnets)
                     {
                         if (adnet.availableIos)
                         {
@@ -97,13 +108,14 @@ namespace ScaleMonk.Ads
                                 adnet.iosVersion = EditorGUILayout.TextField("version", adnet.iosVersion);
                                 if (GUILayout.Button("Check available versions"))
                                 {
-                                    Help.BrowseURL("https://github.com/scalemonk/ios-podspecs-framework/tree/master/Specs/ScaleMonkAds-" + adnet.id); 
+                                    Help.BrowseURL(
+                                        "https://github.com/scalemonk/ios-podspecs-framework/tree/master/Specs/ScaleMonkAds-" +
+                                        adnet.id);
                                 }
+
                                 EditorGUILayout.EndHorizontal();
-                                
-                                
                             }
-                            
+
                             foreach (var config in adnet.configs)
                             {
                                 if (config.platform == "ios")
@@ -116,14 +128,11 @@ namespace ScaleMonk.Ads
                                     EditorGUILayout.EndHorizontal();
                                 }
                             }
-
-                            
                         }
                     }
 
                     GUILayout.Space(10);
 
-#if SCALEMONK_ANDROID
                     EditorGUILayout.LabelField("Android", new GUIStyle(GUI.skin.label)
                     {
                         fontSize = 12,
@@ -132,30 +141,58 @@ namespace ScaleMonk.Ads
                     });
                     GUILayout.Space(5);
 
-                    foreach (var adnet in adnetsConfigs)
+                    var anyAndroidNet = false;
+                    foreach (var adnet in scaleMonkConfig.adnets)
                     {
                         if (adnet.availableAndroid)
                         {
+                            anyAndroidNet = true;
+                            EditorGUILayout.BeginHorizontal();
                             adnet.android = EditorGUILayout.Toggle(adnet.name, adnet.android);
+
+                            EditorGUILayout.EndHorizontal();
 
                             if (adnet.android)
                             {
-                                foreach (var config in adnet.configs)
+                                EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                                GUILayout.Space(10);
+                                adnet.androidVersion = EditorGUILayout.TextField("version", adnet.androidVersion);
+                                if (GUILayout.Button("Check available versions"))
                                 {
-                                    if (config.platform == "android")
+                                    Help.BrowseURL(
+                                        "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod/com/scalemonk/libs/ads-" +
+                                        adnet.id.ToLower());
+                                }
+
+                                EditorGUILayout.EndHorizontal();
+                            }
+
+                            foreach (var config in adnet.configs)
+                            {
+                                if (config.platform == "android")
+                                {
+                                    EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
                                     {
-                                        EditorGUILayout.BeginHorizontal();
-                                        {
-                                            GUILayout.Space(10);
-                                            config.value = EditorGUILayout.TextField(config.name, config.value);
-                                        }
-                                        EditorGUILayout.EndHorizontal();
+                                        GUILayout.Space(10);
+                                        config.value = EditorGUILayout.TextField(config.name, config.value);
                                     }
+                                    EditorGUILayout.EndHorizontal();
                                 }
                             }
                         }
                     }
-#endif
+
+                    if (!anyAndroidNet)
+                    {
+                        EditorGUILayout.LabelField("Coming Soon!", new GUIStyle(GUI.skin.label)
+                        {
+                            fontSize = 16,
+                            stretchHeight = true,
+                            fixedHeight = 30,
+                        });
+                    }
+
+                    GUILayout.Space(10);
 
                     GUILayout.Space(20);
 
@@ -164,8 +201,9 @@ namespace ScaleMonk.Ads
                     if (GUILayout.Button("Save", GUILayout.Width(300)))
                     {
                         Debug.Log("Saving config");
-                        AdsProvidersHelper.SaveConfig(adnetsConfigs);
+                        AdsProvidersHelper.SaveConfig(scaleMonkConfig);
                     }
+
                     EditorGUILayout.EndHorizontal();
                 }
             }
@@ -174,7 +212,7 @@ namespace ScaleMonk.Ads
 
         void OnLostFocus()
         {
-            AdsProvidersHelper.SaveConfig(adnetsConfigs);
+            AdsProvidersHelper.SaveConfig(scaleMonkConfig);
         }
     }
 }

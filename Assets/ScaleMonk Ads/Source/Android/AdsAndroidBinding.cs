@@ -5,35 +5,40 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using UnityEngine;
+
 namespace ScaleMonk.Ads.Android
 {
     public class AdsAndroidBinding : IAdsBinding
     {
+        const string _label = "AdsAndroidBinding";
+        private AndroidJavaObject _adsBinding;
+        private AndroidJavaObject _activity;
         public void Initialize(ScaleMonkAds adsInstance)
         {
-            // TODO: Not yet implemented
+            AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            _activity = jc.GetStatic<AndroidJavaObject>("currentActivity");
+            _adsBinding = new AndroidJavaObject("com.scalemonk.ads.unity.binding.AdsBinding", _activity);
         }
 
         public void ShowInterstitial(string tag)
         {
-            // TODO: Not yet implemented
+            _adsBinding.Call("showInterstitial", _activity, tag);
         }
 
         public void ShowRewarded(string tag)
         {
-            // TODO: Not yet implemented
+            _adsBinding.Call("showRewarded", _activity, tag);
         }
 
-        public bool IsInterstitialReadyToShow(string analyticsLocation)
+        public bool IsInterstitialReadyToShow(string tag)
         {
-            // TODO: Not yet implemented
-            return false;
+            return _adsBinding.Call<bool>("isInterstitialReadyToShow", tag);
         }
 
-        public bool IsRewardedVideoReadyToShow(string analyticsLocation)
+        public bool IsRewardedVideoReadyToShow(string tag)
         {
-            // TODO: Not yet implemented
-            return false;
+            return _adsBinding.Call<bool>("isRewardedVideoReadyToShow", tag);
         }
 
         public bool AreRewardedEnabled()
@@ -50,19 +55,17 @@ namespace ScaleMonk.Ads.Android
 
         public void SetHasGDPRConsent(bool consent)
         {
-            // TODO: Not yet implemented
-
+            _adsBinding.Call("setHasGDPRConsent", consent);
         }
 
         public void SetIsApplicationChildDirected(bool isChildDirected)
         {
-            // TODO: Not yet implemented
-
+            _adsBinding.Call("setIsApplicationChildDirected", isChildDirected);
         }
 
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
-            // TODO: Not yet implemented
+            _adsBinding.Call("setUserCantGiveGDPRConsent", cantGiveConsent);
         }
     }
 }

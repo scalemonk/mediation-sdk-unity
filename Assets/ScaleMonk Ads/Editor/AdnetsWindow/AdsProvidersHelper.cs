@@ -17,6 +17,7 @@ namespace ScaleMonk.Ads
     public class AdsProvidersHelper
     {
         const string iosAdsVersion = "1.1.0";
+        const string androidAdsVersion = "1.0.20";
 
         public static string GetAdnetsXmlPath()
         {
@@ -33,20 +34,22 @@ namespace ScaleMonk.Ads
             return Path.Combine(GetLibPath(), "Editor/ScaleMonkAdsDependencies.xml");
         }
 
-        static List<AdnetXml> ReadAdnetsFromPath(List<AdnetXml> adnetsBase, string path, bool local = false)
+        static ScaleMonkXml ReadScaleMonkFromPath(ScaleMonkXml scaleMonkXmlBase, string path, bool local = false)
         {
-            XmlNodeList xmlNodeList = null;
+            XmlElement xmlScalemonkNode = null;
+            XmlNodeList xmlAdnetsNodeList = null;
 
             if (local)
             {
                 var localDoc = new XmlDocument();
                 localDoc.Load(GetAdnetsXmlPath());
-                var localRoot = localDoc.DocumentElement;
-                xmlNodeList = localRoot != null ? localRoot.SelectNodes("adnet") : null;
+                xmlScalemonkNode = localDoc.DocumentElement;
+                var adnetsRoot = xmlScalemonkNode.SelectSingleNode("adnets");
+                xmlAdnetsNodeList = xmlScalemonkNode != null ? adnetsRoot.SelectNodes("adnet") : null;
             }
 
             var adnetsDict = new Dictionary<string, AdnetXml>();
-            foreach (var adnetBase in adnetsBase)
+            foreach (var adnetBase in scaleMonkXmlBase.adnets)
             {
                 adnetsDict[adnetBase.id] = adnetBase;
             }
@@ -58,16 +61,26 @@ namespace ScaleMonk.Ads
 
             if (root == null)
             {
-                return new List<AdnetXml>();
+                return new ScaleMonkXml();
             }
 
-            var nodes = root.SelectNodes("adnet");
+            // read scalemonk attributes to retrieve application ids
+            string iOSApplicationID = xmlScalemonkNode != null ? (xmlScalemonkNode.Attributes["ios"].Value ?? "") : "";
+            string androidApplicationID =
+                xmlScalemonkNode != null ? (xmlScalemonkNode.Attributes["android"].Value ?? "") : "";
+
+            // read adnets childs
+            var nodes = root.SelectSingleNode("adnets").SelectNodes("adnet");
             foreach (XmlNode node in nodes)
             {
                 var id = node.Attributes["id"].Value;
                 var name = node.Attributes["name"].Value;
-                var ios = bool.Parse(node.Attributes["ios"] != null ? node.Attributes["ios"].Value ?? "false" : "false");
-                var android = bool.Parse(node.Attributes["android"] != null ? node.Attributes["android"].Value ?? "false" : "false");
+                var ios = bool.Parse(node.Attributes["ios"] != null
+                    ? node.Attributes["ios"].Value ?? "false"
+                    : "false");
+                var android = bool.Parse(node.Attributes["android"] != null
+                    ? node.Attributes["android"].Value ?? "false"
+                    : "false");
 
                 var configs = node.SelectNodes("adnetConfig");
                 var adnetConfigs = new List<AdnetConfigXml>();
@@ -76,32 +89,45 @@ namespace ScaleMonk.Ads
                     var configConfig = config.Attributes["config"].Value;
                     var configPlatform = config.Attributes["platform"].Value;
                     var configName = config.Attributes["name"].Value;
-                    var configValue = config.Attributes["value"] != null ? config.Attributes["value"].Value ?? string.Empty : string.Empty;
+                    var configValue = config.Attributes["value"] != null
+                        ? config.Attributes["value"].Value ?? string.Empty
+                        : string.Empty;
                     adnetConfigs.Add(new AdnetConfigXml(configConfig, configPlatform, configName, configValue));
                 }
 
                 AdnetXml currentAdnet = new AdnetXml(id, name, ios, android);
-                var localNode = xmlNodeList != null ? xmlNodeList.Cast<XmlNode>().FirstOrDefault(n => (n.Attributes["id"] != null ? n.Attributes["id"].Value : null) == id) : null;
+                var localNode = xmlAdnetsNodeList != null
+                    ? xmlAdnetsNodeList.Cast<XmlNode>().FirstOrDefault(n =>
+                        (n.Attributes["id"] != null ? n.Attributes["id"].Value : null) == id)
+                    : null;
 
                 if (localNode != null)
                 {
-                    currentAdnet.android = bool.Parse(localNode.Attributes["android"] != null ? localNode.Attributes["android"].Value ?? "false" : "false");
-                    currentAdnet.ios = bool.Parse(localNode.Attributes["ios"] != null ? localNode.Attributes["ios"].Value ?? "false" : "false");
-                    currentAdnet.iosVersion = localNode.Attributes["iosVersion"] != null ? localNode.Attributes["iosVersion"].Value : string.Empty;
-                    currentAdnet.androidVersion = localNode.Attributes["androidVersion"] != null ? localNode.Attributes["androidVersion"].Value : string.Empty;
+                    currentAdnet.android = bool.Parse(localNode.Attributes["android"] != null
+                        ? localNode.Attributes["android"].Value ?? "false"
+                        : "false");
+                    currentAdnet.ios = bool.Parse(localNode.Attributes["ios"] != null
+                        ? localNode.Attributes["ios"].Value ?? "false"
+                        : "false");
+                    currentAdnet.iosVersion = localNode.Attributes["iosVersion"] != null
+                        ? localNode.Attributes["iosVersion"].Value
+                        : string.Empty;
+                    currentAdnet.androidVersion = localNode.Attributes["androidVersion"] != null
+                        ? localNode.Attributes["androidVersion"].Value
+                        : string.Empty;
                 }
 
                 var newConfigs = new List<AdnetConfigXml>();
-
-                XmlNodeList savedConfigs = null;
                 if (localNode != null)
                 {
-                    savedConfigs = localNode.SelectNodes("adnetConfig");
+                    var savedConfigs = localNode.SelectNodes("adnetConfig");
                     foreach (var newConfig in adnetConfigs)
                     {
                         var curConfig = savedConfigs.Cast<XmlNode>().FirstOrDefault(c =>
-                            (c.Attributes["config"] != null ? c.Attributes["config"].Value : null) == newConfig.config &&
-                            (c.Attributes["platform"] != null ? c.Attributes["platform"].Value : null) == newConfig.platform);
+                            (c.Attributes["config"] != null ? c.Attributes["config"].Value : null) ==
+                            newConfig.config &&
+                            (c.Attributes["platform"] != null ? c.Attributes["platform"].Value : null) ==
+                            newConfig.platform);
                         if (curConfig != null)
                         {
                             newConfig.value = curConfig.Attributes["value"].Value;
@@ -110,42 +136,55 @@ namespace ScaleMonk.Ads
                         newConfigs.Add(newConfig);
                     }
                 }
-
+                else
+                {
+                    foreach (var newConfig in adnetConfigs)
+                    {
+                        newConfigs.Add(newConfig);
+                    }  
+                }
 
                 currentAdnet.configs = newConfigs;
                 adnetsDict[id] = currentAdnet;
             }
 
-            return adnetsDict.Values.ToList();
+            ScaleMonkXml scaleMonkXml = new ScaleMonkXml();
+            scaleMonkXml.adnets = adnetsDict.Values.ToList();
+            scaleMonkXml.ios = iOSApplicationID;
+            scaleMonkXml.android = androidApplicationID;
+            return scaleMonkXml;
         }
 
-        public static List<AdnetXml> ReadAdnetsConfigs()
+        public static ScaleMonkXml ReadAdnetsConfigs()
         {
             var schemaPath = GetAdnetsXmlSchemaPath();
             var localPath = GetAdnetsXmlPath();
-            var adnets = ReadAdnetsFromPath(new List<AdnetXml>(), schemaPath, File.Exists(localPath));
-            return adnets;
+            var scaleMonkXml = ReadScaleMonkFromPath(new ScaleMonkXml(), schemaPath, File.Exists(localPath));
+            return scaleMonkXml;
         }
 
-        public static void SaveConfig(List<AdnetXml> adnets)
+        public static void SaveConfig(ScaleMonkXml scaleMonkXml)
         {
-            if (adnets == null) return;
-            
+            if (scaleMonkXml.adnets == null) return;
+
             var doc = new XmlDocument();
             var xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             var root = doc.DocumentElement;
 
             doc.InsertBefore(xmlDeclaration, root);
 
+            var scaleMonkElement = doc.CreateElement("scalemonk");
+            scaleMonkElement.SetAttribute("ios", scaleMonkXml.ios);
+            scaleMonkElement.SetAttribute("android", scaleMonkXml.android);
             var adnetsElement = doc.CreateElement("adnets");
-            foreach (var adnet in adnets)
+            foreach (var adnet in scaleMonkXml.adnets)
             {
                 var adnetElement = doc.CreateElement("adnet");
                 adnetElement.SetAttribute("id", adnet.id);
                 adnetElement.SetAttribute("name", adnet.name);
                 adnetElement.SetAttribute("ios", adnet.ios.ToString());
                 adnetElement.SetAttribute("iosVersion", adnet.iosVersion);
-                adnetElement.SetAttribute("androidVerrsion", adnet.androidVersion);
+                adnetElement.SetAttribute("androidVersion", adnet.androidVersion);
                 adnetElement.SetAttribute("android", adnet.android.ToString());
 
                 if (adnet.configs != null && adnet.configs.Count > 0)
@@ -153,8 +192,8 @@ namespace ScaleMonk.Ads
                     foreach (var config in adnet.configs)
                     {
                         var configElement = doc.CreateElement("adnetConfig");
-                        if (((adnet.ios && config.platform == "ios")
-                             || (adnet.android && config.platform == "android"))
+                        if (
+                            ((adnet.ios && config.platform == "ios") || (adnet.android && config.platform == "android"))
                             && string.IsNullOrEmpty(config.value))
                         {
                             Debug.LogErrorFormat("Adnet {0} missing config {1} ({2})", adnet.name, config.name,
@@ -166,7 +205,6 @@ namespace ScaleMonk.Ads
                         configElement.SetAttribute("platform", config.platform);
                         configElement.SetAttribute("name", config.name);
                         configElement.SetAttribute("value", config.value);
-
                         adnetElement.AppendChild(configElement);
                     }
                 }
@@ -174,13 +212,14 @@ namespace ScaleMonk.Ads
                 adnetsElement.AppendChild(adnetElement);
             }
 
-            doc.AppendChild(adnetsElement);
+            scaleMonkElement.AppendChild(adnetsElement);
+            doc.AppendChild(scaleMonkElement);
 
             var path = GetAdnetsXmlPath();
             Debug.Log("Saving config to " + path);
             doc.Save(path);
 
-            UpdateNativeDependencies(adnets);
+            UpdateNativeDependencies(scaleMonkXml.adnets);
         }
 
         static void UpdateNativeDependencies(List<AdnetXml> adnets)
@@ -192,7 +231,7 @@ namespace ScaleMonk.Ads
             doc.InsertBefore(xmlDeclaration, root);
             var dependenciesElement = doc.CreateElement("dependencies");
 
-            // UpdateAndroidDependencies(adnets, doc, dependenciesElement);
+            UpdateAndroidDependencies(adnets, doc, dependenciesElement);
             UpdateIOSDependencies(adnets, doc, dependenciesElement);
 
             doc.AppendChild(dependenciesElement);
@@ -201,17 +240,21 @@ namespace ScaleMonk.Ads
 
             Debug.Log("Saving Android and Ios packages config to " + path);
 
-            // Make file available to write to
-            var pathFileAttributes = File.GetAttributes(path);
-            File.SetAttributes(path, FileAttributes.Normal);
-
-            // Update file
-            doc.Save(path);
-
-            // Revert path file attributes after writing
-            File.SetAttributes(path, pathFileAttributes);
+            // Make file available to write
+            if (File.Exists(path))
+            {
+                var pathFileAttributes = File.GetAttributes(path);
+                File.SetAttributes(path, FileAttributes.Normal);
+                doc.Save(path);
+                File.SetAttributes(path, pathFileAttributes);
+            }
+            else
+            {
+                // save file
+                doc.Save(path);
+            }
         }
-        
+
         static void UpdateIOSDependencies(List<AdnetXml> adnets, XmlDocument doc, XmlElement dependenciesElement)
         {
             var iosPodsElement = doc.CreateElement("iosPods");
@@ -224,8 +267,6 @@ namespace ScaleMonk.Ads
 
             iosPodsElement.AppendChild(adsPod);
 
-            // bool addedRenderer = false; // we should add this back when we add all the providers
-            // bool addedMopub = false;
             foreach (var adnet in adnets)
             {
                 if (!adnet.ios)
@@ -237,16 +278,47 @@ namespace ScaleMonk.Ads
                 adnetPod.SetAttribute("name", string.Format("ScaleMonkAds-{0}", adnet.id));
                 if (!string.IsNullOrEmpty(adnet.iosVersion))
                 {
-                    adnetPod.SetAttribute("version", adnet.iosVersion);    
+                    adnetPod.SetAttribute("version", adnet.iosVersion);
                 }
+
                 adnetPod.AppendChild(CreateSourcesElement(doc));
-                
+
                 // TODO: set configs to info.plist
 
                 iosPodsElement.AppendChild(adnetPod);
             }
 
             dependenciesElement.AppendChild(iosPodsElement);
+        }
+
+        static void UpdateAndroidDependencies(List<AdnetXml> adnets, XmlDocument doc, XmlElement dependenciesElement)
+        {
+            var androidPackagesElement = doc.CreateElement("androidPackages");
+
+            androidPackagesElement.AppendChild(getAndroidPackageForLib(doc, "ads", androidAdsVersion));
+            foreach (var adnet in adnets)
+            {
+                if (adnet.android)
+                {
+                    androidPackagesElement.AppendChild(getAndroidPackageForLib(doc,
+                        string.Format("ads-{0}", adnet.id.ToLower().Replace("-", "")),
+                        adnet.androidVersion));
+                }
+            }
+
+            // var gmsPackage = doc.CreateElement("androidPackage");
+            // gmsPackage.SetAttribute("spec", "com.google.android.gms:play-services-base:15.0.1");
+            // androidPackagesElement.AppendChild(gmsPackage);
+
+            dependenciesElement.AppendChild(androidPackagesElement);
+        }
+
+        static XmlElement getAndroidPackageForLib(XmlDocument doc, string lib, string androidVersion)
+        {
+            var adsPackage = doc.CreateElement("androidPackage");
+            adsPackage.SetAttribute("spec", string.Format("{0}:{1}:{2}", "com.scalemonk.libs", lib,
+                string.IsNullOrEmpty(androidVersion) ? "+" : androidVersion));
+            return adsPackage;
         }
 
         static XmlNode CreateSourcesElement(XmlDocument doc)
