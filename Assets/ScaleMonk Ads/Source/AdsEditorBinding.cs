@@ -11,19 +11,49 @@ namespace ScaleMonk.Ads
 {
     public class AdsEditorBinding : IAdsBinding
     {
+        private MockAd _mockAdInstance;
+        private ScaleMonkAds _scaleMonkAds;
+
         public void Initialize(ScaleMonkAds adsInstance)
         {
+            _scaleMonkAds = adsInstance;
             Debug.Log("ScaleMonkAds initialized successfully");
+#if UNITY_2018_4_OR_NEWER
+            MockAd mockAdPrefab;
+            if (isPortrait())
+            {
+                mockAdPrefab = Resources.Load<MockAd>("Prefabs/MockAd_portrait");
+            }
+            else
+            {
+                mockAdPrefab = Resources.Load<MockAd>("Prefabs/MockAd_landscape");
+            }
+
+            _mockAdInstance = GameObject.Instantiate(mockAdPrefab);
+            _mockAdInstance.SetScalemonkAds(adsInstance);
+            _mockAdInstance.gameObject.SetActive(false);      
+#endif
         }
 
         public void ShowInterstitial(string tag)
         {
             Debug.Log("Interstitial shown at " + tag);
+#if UNITY_2018_4_OR_NEWER
+            _mockAdInstance.SetMode(MockAd.Mode.Interstitial);
+            _mockAdInstance.SetTag(tag);
+            _mockAdInstance.gameObject.SetActive(true);
+#endif
         }
 
         public void ShowRewarded(string tag)
         {
             Debug.Log("Rewarded shown at " + tag);
+#if UNITY_2018_4_OR_NEWER
+            _scaleMonkAds.StartedRewardedDisplay(tag);
+            _mockAdInstance.SetMode(MockAd.Mode.Rewarded);
+            _mockAdInstance.SetTag(tag);
+            _mockAdInstance.gameObject.SetActive(true);
+#endif
         }
 
         public bool IsInterstitialReadyToShow(string analyticsLocation)
@@ -57,6 +87,11 @@ namespace ScaleMonk.Ads
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
             
+        }
+
+        private bool isPortrait()
+        {
+            return Screen.height > Screen.width;
         }
     }
 }
