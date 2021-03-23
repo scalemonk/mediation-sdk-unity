@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 - Added directives to postprocessor so the mediation can compile even if user doesn't have the unity modules
+- Added an ad screen to see if it's running  in the editor (available for 2018.4 and above)
 
 ## [1.0.0] - 2021-03-22
 - Enabled adnet selection

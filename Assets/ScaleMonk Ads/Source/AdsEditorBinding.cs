@@ -5,25 +5,50 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using System;
 using UnityEngine;
 
 namespace ScaleMonk.Ads
 {
     public class AdsEditorBinding : IAdsBinding
     {
+        private MockAd _mockAdInstance;
+
         public void Initialize(ScaleMonkAds adsInstance)
         {
             Debug.Log("ScaleMonkAds initialized successfully");
+#if UNITY_2018_4_OR_NEWER
+            MockAd mockAdPrefab;
+            if (isPortrait())
+            {
+                mockAdPrefab = Resources.Load<MockAd>("Prefabs/MockAd_portrait");
+            }
+            else
+            {
+                mockAdPrefab = Resources.Load<MockAd>("Prefabs/MockAd_landscape");
+            }
+
+            _mockAdInstance = GameObject.Instantiate(mockAdPrefab);
+            _mockAdInstance.gameObject.SetActive(false);      
+#endif
         }
 
         public void ShowInterstitial(string tag)
         {
             Debug.Log("Interstitial shown at " + tag);
+#if UNITY_2018_4_OR_NEWER
+            _mockAdInstance.gameObject.SetActive(true);
+            _mockAdInstance.SetText("AN INTERSTITIAL AD WILL BE DISPLAYED HERE");
+#endif
         }
 
         public void ShowRewarded(string tag)
         {
             Debug.Log("Rewarded shown at " + tag);
+#if UNITY_2018_4_OR_NEWER
+            _mockAdInstance.gameObject.SetActive(true);
+            _mockAdInstance.SetText("A REWARDED AD WILL BE DISPLAYED HERE");
+#endif
         }
 
         public bool IsInterstitialReadyToShow(string analyticsLocation)
@@ -57,6 +82,11 @@ namespace ScaleMonk.Ads
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
             
+        }
+
+        private bool isPortrait()
+        {
+            return Screen.height > Screen.width;
         }
     }
 }
