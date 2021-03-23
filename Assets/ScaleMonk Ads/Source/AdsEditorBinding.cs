@@ -5,7 +5,6 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
-using System;
 using UnityEngine;
 
 namespace ScaleMonk.Ads
