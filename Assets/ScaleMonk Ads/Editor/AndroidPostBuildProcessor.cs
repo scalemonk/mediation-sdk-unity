@@ -1,3 +1,4 @@
+#if UNITY_ANDROID
 using System.IO;
 using UnityEditor.Android;
 using UnityEngine;
@@ -33,3 +34,4 @@ namespace ScaleMonk_Ads.Editor
         }
     }
 }
+#endif
