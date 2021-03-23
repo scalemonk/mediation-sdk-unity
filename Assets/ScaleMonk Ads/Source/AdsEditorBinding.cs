@@ -30,6 +30,7 @@ namespace ScaleMonk.Ads
             }
 
             _mockAdInstance = GameObject.Instantiate(mockAdPrefab);
+            _mockAdInstance.SetScalemonkAds(adsInstance);
             _mockAdInstance.gameObject.SetActive(false);      
 #endif
         }
@@ -38,21 +39,21 @@ namespace ScaleMonk.Ads
         {
             Debug.Log("Interstitial shown at " + tag);
 #if UNITY_2018_4_OR_NEWER
+            _mockAdInstance.SetMode(MockAd.Mode.Interstitial);
+            _mockAdInstance.SetTag(tag);
             _mockAdInstance.gameObject.SetActive(true);
-            _mockAdInstance.SetText("AN INTERSTITIAL AD WILL BE DISPLAYED HERE");
 #endif
-            _scaleMonkAds.CompletedInterstitialDisplay(tag);
         }
 
         public void ShowRewarded(string tag)
         {
-            _scaleMonkAds.StartedRewardedDisplay(tag);
             Debug.Log("Rewarded shown at " + tag);
 #if UNITY_2018_4_OR_NEWER
+            _scaleMonkAds.StartedRewardedDisplay(tag);
+            _mockAdInstance.SetMode(MockAd.Mode.Rewarded);
+            _mockAdInstance.SetTag(tag);
             _mockAdInstance.gameObject.SetActive(true);
-            _mockAdInstance.SetText("A REWARDED AD WILL BE DISPLAYED HERE");
 #endif
-            _scaleMonkAds.CompletedRewardedDisplay(tag);
         }
 
         public bool IsInterstitialReadyToShow(string analyticsLocation)
