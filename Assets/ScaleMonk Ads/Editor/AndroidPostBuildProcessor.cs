@@ -1,5 +1,6 @@
 #if UNITY_ANDROID
 using System.IO;
+using ScaleMonk.Ads;
 using UnityEditor.Android;
 using UnityEngine;
 
@@ -17,6 +18,10 @@ namespace ScaleMonk_Ads.Editor
 
         void IPostGenerateGradleAndroidProject.OnPostGenerateGradleAndroidProject(string path)
         {
+            ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
+            if (string.IsNullOrEmpty(scaleMonkXml.android))
+                return;
+            
             Debug.Log("OnPostGenerateGradleAndroidProject. Path: " + path);
             string gradlePropertiesFile = path + "/../gradle.properties";
             
