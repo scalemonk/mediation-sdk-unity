@@ -219,11 +219,12 @@ namespace ScaleMonk.Ads
             Debug.Log("Saving config to " + path);
             doc.Save(path);
 
-            UpdateNativeDependencies(scaleMonkXml.adnets);
+            UpdateNativeDependencies(scaleMonkXml);
         }
 
-        static void UpdateNativeDependencies(List<AdnetXml> adnets)
+        static void UpdateNativeDependencies(ScaleMonkXml scaleMonkXml)
         {
+            List<AdnetXml> adnets = scaleMonkXml.adnets;
             var doc = new XmlDocument();
             var xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             var root = doc.DocumentElement;
@@ -231,8 +232,16 @@ namespace ScaleMonk.Ads
             doc.InsertBefore(xmlDeclaration, root);
             var dependenciesElement = doc.CreateElement("dependencies");
 
-            UpdateAndroidDependencies(adnets, doc, dependenciesElement);
-            UpdateIOSDependencies(adnets, doc, dependenciesElement);
+            if (!string.IsNullOrEmpty(scaleMonkXml.android))
+            {
+                UpdateAndroidDependencies(adnets, doc, dependenciesElement);
+            }
+
+            // TODO(lsebrie): this should be enabled when iOS doesn't receive app id on initialization anymore
+            // if (!string.IsNullOrEmpty(scaleMonkXml.ios))
+            // {
+                UpdateIOSDependencies(adnets, doc, dependenciesElement);
+            // }
 
             doc.AppendChild(dependenciesElement);
 

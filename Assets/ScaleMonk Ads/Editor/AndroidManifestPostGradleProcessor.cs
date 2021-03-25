@@ -17,8 +17,10 @@ namespace ScaleMonk_Ads.Editor
             // If needed, add condition checks on whether you need to run the modification routine.
             // For example, specific configuration/app options enabled
             ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
-            var androidManifest = new AndroidManifest(GetManifestPath(basePath));
-
+            if (string.IsNullOrEmpty(scaleMonkXml.android))
+                return;
+            
+            var androidManifest =  new AndroidManifest(GetManifestPath(basePath));
             // androidManifest.SetApplicationTheme(ThemeName);
             Debug.Log("OnPostGenerateGradleAndroidProject. App id: " + scaleMonkXml.android);
             androidManifest.SetApplicationIdMetadata(AppIdKey, scaleMonkXml.android);
