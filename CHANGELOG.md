@@ -1,9 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.1.0]
+- Added android building
 - Added directives to postprocessor so the mediation can compile even if user doesn't have the unity modules
 - Added an ad screen to see while it's running with the editor (available for 2018.4 and above). Press Q to close the ad
+- If no android id is specified, dependencies are not added
 
 ## [1.0.0] - 2021-03-22
 - Enabled adnet selection
