@@ -24,7 +24,7 @@ namespace ScaleMonk.Ads
 
         void Awake()
         {
-            titleContent = new GUIContent("Scalemonk Adnets Selector ");
+            titleContent = new GUIContent("Scalemonk Configuration");
         }
 
         void OnFocus()
