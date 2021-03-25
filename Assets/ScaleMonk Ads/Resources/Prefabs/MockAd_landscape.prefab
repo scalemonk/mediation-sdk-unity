@@ -412,6 +412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeButton: {fileID: 1447216721003666233}
   title: {fileID: 1284139460653758748}
+  mockAdMode: 0
+  mockAdTag: 
 --- !u!1 &7264959691446094573
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +492,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'After you build your app for iOS or Android you will see an ad.
 
-    Remember to configure your prefered networks or use the Test-Mode.'
+    Remember to configure your prefered networks or use the Test-Mode.
+
+    Press Q to close this ad.'
 --- !u!1 &9026694313973367326
 GameObject:
   m_ObjectHideFlags: 0

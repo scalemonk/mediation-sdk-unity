@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ScaleMonk.Ads;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class MockAd : MonoBehaviour
@@ -26,24 +27,30 @@ public class MockAd : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        closeButton.onClick.AddListener(() =>
+        closeButton.onClick.AddListener(closeAd);
+    }
+
+    private void closeAd()
+    {
+        if (mockAdMode == Mode.Interstitial)
         {
-            if (mockAdMode == Mode.Interstitial)
-            {
-                _scaleMonkAds.CompletedInterstitialDisplay(mockAdTag);
-            }
-            else
-            {
-                _scaleMonkAds.CompletedRewardedDisplay(mockAdTag);
-            }
-            gameObject.SetActive(false);
-        });
+            _scaleMonkAds.CompletedInterstitialDisplay(mockAdTag);
+        }
+        else
+        {
+            _scaleMonkAds.CompletedRewardedDisplay(mockAdTag);
+        }
+
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("q"))
+        {
+            closeAd();
+        }
     }
 
     public void SetMode(Mode mode)

@@ -183,8 +183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -136.5}
-  m_SizeDelta: {x: 346.41406, y: 107.272705}
+  m_AnchoredPosition: {x: -0.00002439, y: -145.5}
+  m_SizeDelta: {x: 346.41406, y: 125.424866}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4485513657621596843
 CanvasRenderer:
@@ -227,7 +227,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'After you build your app for iOS or Android you will see an ad.
 
-    Remember to configure your prefered networks or use the Test-Mode.'
+    Remember to configure your prefered networks or use the Test-Mode.
+
+    Press Q to close this ad.'
 --- !u!1 &4355063715659839942
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +276,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeButton: {fileID: 7741822748401553131}
   title: {fileID: 7978090714015378638}
+  mockAdMode: 0
+  mockAdTag: 
 --- !u!1 &4440213456727314873
 GameObject:
   m_ObjectHideFlags: 0
