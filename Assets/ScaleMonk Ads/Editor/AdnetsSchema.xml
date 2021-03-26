@@ -2,7 +2,7 @@
 <scalemonk ios="" android="">
     <adnets>
         <adnet id="AdColony" name="AdColony" ios="true" android="true"/>
-        <adnet id="AdMob" name="AdMob" ios="true" android="false">
+        <adnet id="AdMob" name="AdMob" ios="true" android="true">
             <adnetConfig config="GADApplicationIdentifier" platform="ios" name="App Id (iOS)" />
             <adnetConfig config="GADApplicationIdentifier" platform="android" name="App Id (Android)" />
         </adnet>

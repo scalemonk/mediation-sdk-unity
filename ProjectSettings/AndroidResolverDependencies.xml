@@ -1,12 +1,11 @@
 <dependencies>
   <packages>
-    <package>com.scalemonk.libs:ads:1.0.20</package>
-    <package>com.scalemonk.libs:ads-admob:+</package>
+    <package>com.scalemonk.libs:ads:1.0.22</package>
   </packages>
   <files />
   <settings>
     <setting name="androidAbis" value="armeabi-v7a" />
-    <setting name="bundleId" value="com.DefaultCompany.smunity" />
+    <setting name="bundleId" value="com.scalemonk.smunity" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="False" />

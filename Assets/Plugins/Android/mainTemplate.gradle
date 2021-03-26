@@ -26,25 +26,8 @@ buildscript {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.android.gms:play-services-base:17.6.0' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:18
-    implementation 'com.tfg.libs:wildlifeads:0.1.8-alpha.1' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:4
-    implementation 'com.scalemonk.libs:ads:1.0.20-alpha.3'
-    implementation 'com.scalemonk.libs:ads-adcolony:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:5
-    implementation 'com.scalemonk.libs:ads-admob:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:6
-    implementation 'com.scalemonk.libs:ads-applovin:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:7
-    implementation 'com.scalemonk.libs:ads-chartboost:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:8
-    implementation 'com.scalemonk.libs:ads-facebook:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:9
-    implementation 'com.scalemonk.libs:ads-fyber:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:10
-    implementation 'com.scalemonk.libs:ads-inmobi:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:11
-    implementation 'com.scalemonk.libs:ads-ironsource:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:12
-    implementation 'com.scalemonk.libs:ads-mopub:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:13
-    implementation 'com.scalemonk.libs:ads-smaato:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:14
-    implementation 'com.scalemonk.libs:ads-tiktok:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:15
-    implementation 'com.scalemonk.libs:ads-unityads:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:16
-    implementation 'com.scalemonk.libs:ads-vungle:1.0.20-alpha.3' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:17
-//     implementation 'com.scalemonk.libs:grpc-clients-mediation-android:1.0.4' // Packages/com.wildlifestudios.wls-ads/Editor/WLSAdsDependencies.xml:19
 // Android Resolver Dependencies Start
-    implementation 'com.scalemonk.libs:ads:1.0.20' // Assets/ScaleMonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
-    implementation 'com.scalemonk.libs:ads-admob:+' // Assets/ScaleMonk Ads/Editor/ScaleMonkAdsDependencies.xml:5
+    implementation 'com.scalemonk.libs:ads:1.0.22' // Assets/ScaleMonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
 // Android Resolver Dependencies End
 **DEPS**}
 
