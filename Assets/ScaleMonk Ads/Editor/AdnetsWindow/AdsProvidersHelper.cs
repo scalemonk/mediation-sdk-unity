@@ -315,6 +315,12 @@ namespace ScaleMonk.Ads
                 }
             }
 
+            var repositories = doc.CreateElement("repositories");
+            var jFrogRepo = doc.CreateElement("repository");
+            jFrogRepo.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod";
+            repositories.AppendChild(jFrogRepo);
+            androidPackagesElement.AppendChild(repositories);
+
             // var gmsPackage = doc.CreateElement("androidPackage");
             // gmsPackage.SetAttribute("spec", "com.google.android.gms:play-services-base:15.0.1");
             // androidPackagesElement.AppendChild(gmsPackage);
