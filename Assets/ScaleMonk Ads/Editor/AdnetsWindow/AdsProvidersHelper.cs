@@ -17,7 +17,7 @@ namespace ScaleMonk.Ads
     public class AdsProvidersHelper
     {
         const string iosAdsVersion = "1.1.0";
-        const string androidAdsVersion = "1.0.22";
+        const string androidAdsVersion = "1.0.23";
 
         public static string GetAdnetsXmlPath()
         {
@@ -315,10 +315,27 @@ namespace ScaleMonk.Ads
                 }
             }
 
+            var reposURL = new List<string>
+            {
+                "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod",
+                "https://chartboostmobile.bintray.com/Chartboost",
+                "https://adcolony.bintray.com/AdColony",
+                "https://s3.amazonaws.com/smaato-sdk-releases/",
+                "https://fyber.bintray.com/marketplace",
+                "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
+                "https://dl.bintray.com/mintegral-official/MBridge_AndroidSDK_Oversea",
+                "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea",
+                "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android"
+            };
+
             var repositories = doc.CreateElement("repositories");
-            var jFrogRepo = doc.CreateElement("repository");
-            jFrogRepo.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod";
-            repositories.AppendChild(jFrogRepo);
+            reposURL.ForEach(url =>
+            {
+                var repo = doc.CreateElement("repository");
+                repo.InnerText = url;
+                repositories.AppendChild(repo);
+            });
+
             androidPackagesElement.AppendChild(repositories);
 
             // var gmsPackage = doc.CreateElement("androidPackage");
