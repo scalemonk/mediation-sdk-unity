@@ -302,8 +302,27 @@ namespace ScaleMonk.Ads
 
         static void UpdateAndroidDependencies(List<AdnetXml> adnets, XmlDocument doc, XmlElement dependenciesElement)
         {
-            var androidPackagesElement = doc.CreateElement("androidPackages");
+            var reposURL = new Dictionary<string, List<string>>
+            {
+                { "adcolony", new List<string> { "https://adcolony.bintray.com/AdColony" }},
+                { "chartboost", new List<string> { "https://chartboostmobile.bintray.com/Chartboost" }},
+                { "fyber", new List<string> { "https://fyber.bintray.com/marketplace" }},
+                { "mintegral", new List<string>
+                {
+                    "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
+                    "https://dl.bintray.com/mintegral-official/MBridge_AndroidSDK_Oversea",
+                    "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea",
+                    "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android"
+                }},
+                { "smaato", new List<string> { "https://s3.amazonaws.com/smaato-sdk-releases/" }},
+            };
 
+            var repositories = doc.CreateElement("repositories");
+            var jfrogRepo = doc.CreateElement("repository");
+            jfrogRepo.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod";
+            repositories.AppendChild(jfrogRepo);
+
+            var androidPackagesElement = doc.CreateElement("androidPackages");
             androidPackagesElement.AppendChild(getAndroidPackageForLib(doc, "ads", androidAdsVersion));
             foreach (var adnet in adnets)
             {
@@ -312,29 +331,18 @@ namespace ScaleMonk.Ads
                     androidPackagesElement.AppendChild(getAndroidPackageForLib(doc,
                         string.Format("ads-{0}", adnet.id.ToLower().Replace("-", "")),
                         adnet.androidVersion));
+
+                    if (reposURL.ContainsKey(adnet.id.ToLower()))
+                    {
+                        reposURL[adnet.id.ToLower()].ForEach(url =>
+                        {
+                            var repo = doc.CreateElement("repository");
+                            repo.InnerText = url;
+                            repositories.AppendChild(repo);
+                        });
+                    }
                 }
             }
-
-            var reposURL = new List<string>
-            {
-                "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod",
-                "https://chartboostmobile.bintray.com/Chartboost",
-                "https://adcolony.bintray.com/AdColony",
-                "https://s3.amazonaws.com/smaato-sdk-releases/",
-                "https://fyber.bintray.com/marketplace",
-                "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
-                "https://dl.bintray.com/mintegral-official/MBridge_AndroidSDK_Oversea",
-                "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea",
-                "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android"
-            };
-
-            var repositories = doc.CreateElement("repositories");
-            reposURL.ForEach(url =>
-            {
-                var repo = doc.CreateElement("repository");
-                repo.InnerText = url;
-                repositories.AppendChild(repo);
-            });
 
             androidPackagesElement.AppendChild(repositories);
 
