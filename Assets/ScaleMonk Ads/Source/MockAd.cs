@@ -38,7 +38,7 @@ public class MockAd : MonoBehaviour
             _scaleMonkAds.CompletedRewardedDisplay(mockAdTag);
         }
 
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
