@@ -28,7 +28,7 @@ namespace ScaleMonk_Ads.Editor
             
             foreach (var adnet in scaleMonkXml.adnets)
             {
-                if (adnet.configs == null)
+                if (adnet.configs == null || !adnet.android)
                 {
                     continue;
                 }

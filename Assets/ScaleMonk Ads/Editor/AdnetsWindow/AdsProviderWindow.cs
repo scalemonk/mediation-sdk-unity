@@ -114,18 +114,18 @@ namespace ScaleMonk.Ads
                                 }
 
                                 EditorGUILayout.EndHorizontal();
-                            }
-
-                            foreach (var config in adnet.configs)
-                            {
-                                if (config.platform == "ios")
+                                
+                                foreach (var config in adnet.configs)
                                 {
-                                    EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                                    if (config.platform == "ios")
                                     {
-                                        GUILayout.Space(10);
-                                        config.value = EditorGUILayout.TextField(config.name, config.value);
+                                        EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                                        {
+                                            GUILayout.Space(10);
+                                            config.value = EditorGUILayout.TextField(config.name, config.value);
+                                        }
+                                        EditorGUILayout.EndHorizontal();
                                     }
-                                    EditorGUILayout.EndHorizontal();
                                 }
                             }
                         }
@@ -165,18 +165,18 @@ namespace ScaleMonk.Ads
                                 }
 
                                 EditorGUILayout.EndHorizontal();
-                            }
-
-                            foreach (var config in adnet.configs)
-                            {
-                                if (config.platform == "android")
+                                
+                                foreach (var config in adnet.configs)
                                 {
-                                    EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                                    if (config.platform == "android")
                                     {
-                                        GUILayout.Space(10);
-                                        config.value = EditorGUILayout.TextField(config.name, config.value);
+                                        EditorGUILayout.BeginHorizontal(GUILayout.Width(500));
+                                        {
+                                            GUILayout.Space(10);
+                                            config.value = EditorGUILayout.TextField(config.name, config.value);
+                                        }
+                                        EditorGUILayout.EndHorizontal();
                                     }
-                                    EditorGUILayout.EndHorizontal();
                                 }
                             }
                         }
