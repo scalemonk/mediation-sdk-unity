@@ -23,7 +23,7 @@ namespace ScaleMonk_Ads.Editor
             var androidManifest =  new AndroidManifest(GetManifestPath(basePath));
             // androidManifest.SetApplicationTheme(ThemeName);
             Debug.Log("OnPostGenerateGradleAndroidProject. App id: " + scaleMonkXml.android);
-            androidManifest.AddMetadataElement(AppIdKey, scaleMonkXml.android);
+            androidManifest.AddMetadataElement(AppIdKey, scaleMonkXml.android.Trim());
             // Add your XML manipulation routines
             
             foreach (var adnet in scaleMonkXml.adnets)
@@ -42,7 +42,7 @@ namespace ScaleMonk_Ads.Editor
 
                     if (!string.IsNullOrEmpty(config.value))
                     {
-                        androidManifest.AddMetadataElement(config.config, config.value);
+                        androidManifest.AddMetadataElement(config.config, config.value.Trim());
                     }
                 }
             }
