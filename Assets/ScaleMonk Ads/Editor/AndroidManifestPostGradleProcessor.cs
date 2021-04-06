@@ -23,8 +23,29 @@ namespace ScaleMonk_Ads.Editor
             var androidManifest =  new AndroidManifest(GetManifestPath(basePath));
             // androidManifest.SetApplicationTheme(ThemeName);
             Debug.Log("OnPostGenerateGradleAndroidProject. App id: " + scaleMonkXml.android);
-            androidManifest.SetApplicationIdMetadata(AppIdKey, scaleMonkXml.android);
+            androidManifest.AddMetadataElement(AppIdKey, scaleMonkXml.android.Trim());
             // Add your XML manipulation routines
+            
+            foreach (var adnet in scaleMonkXml.adnets)
+            {
+                if (adnet.configs == null || !adnet.android)
+                {
+                    continue;
+                }
+
+                foreach (var config in adnet.configs)
+                {
+                    if (config.platform != "android")
+                    {
+                        continue;
+                    }
+
+                    if (!string.IsNullOrEmpty(config.value))
+                    {
+                        androidManifest.AddMetadataElement(config.config, config.value.Trim());
+                    }
+                }
+            }
 
             androidManifest.Save();
         }
@@ -110,12 +131,12 @@ namespace ScaleMonk_Ads.Editor
             return elem;
         }
 
-        internal void SetApplicationIdMetadata(string appIdKey, string appIdValue)
+        internal void AddMetadataElement(string key, string value)
         {
             XmlElement metadataElem = CreateAndroidElement("meta-data");
             ApplicationElement.AppendChild(metadataElem);
-            metadataElem.Attributes.Append(CreateAndroidAttribute("name", appIdKey));
-            metadataElem.Attributes.Append(CreateAndroidAttribute("value", appIdValue));
+            metadataElem.Attributes.Append(CreateAndroidAttribute("name", key));
+            metadataElem.Attributes.Append(CreateAndroidAttribute("value", value));
         
         }
     }

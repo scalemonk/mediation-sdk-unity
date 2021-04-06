@@ -51,7 +51,7 @@ namespace ScaleMonk.Ads
 
                         if (!string.IsNullOrEmpty(config.value))
                         {
-                            infoPlist.root.SetString(config.config, config.value);
+                            infoPlist.root.SetString(config.config, config.value.Trim());
                         }
                     }
                     

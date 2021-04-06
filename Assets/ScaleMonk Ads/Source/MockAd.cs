@@ -8,22 +8,19 @@ using UnityEngine.UI;
 public class MockAd : MonoBehaviour
 {
     public Button closeButton;
-
     public Text title;
-
     public Mode mockAdMode;
-
     public string mockAdTag;
-
     private static string TITLE_TEXT = "AD WILL BE DISPLAYED HERE";
-    
+
     public enum Mode
     {
         Interstitial,
         Rewarded
     }
 
-    private ScaleMonkAds _scaleMonkAds; 
+    private ScaleMonkAds _scaleMonkAds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +38,7 @@ public class MockAd : MonoBehaviour
             _scaleMonkAds.CompletedRewardedDisplay(mockAdTag);
         }
 
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -56,7 +53,6 @@ public class MockAd : MonoBehaviour
     public void SetMode(Mode mode)
     {
         mockAdMode = mode;
-
         if (mode == Mode.Interstitial)
         {
             title.text = "AN INTERSTITIAL " + TITLE_TEXT;
@@ -65,7 +61,6 @@ public class MockAd : MonoBehaviour
         {
             title.text = "A REWARDED " + TITLE_TEXT;
         }
-         
     }
 
     public void SetTag(string tag)
