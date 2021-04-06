@@ -6,8 +6,11 @@
 //
 
 using System;
+#if UNITY_IOS
 using ScaleMonk.Ads.iOS;
+#elif UNITY_ANDROID
 using ScaleMonk.Ads.Android;
+#endif
 using UnityEngine;
 
 namespace ScaleMonk.Ads
