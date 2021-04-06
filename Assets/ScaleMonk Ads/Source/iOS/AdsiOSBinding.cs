@@ -4,7 +4,7 @@
 // Licensed under the ScaleMonk SDK License Agreement
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
-
+#if UNITY_IOS
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -166,3 +166,4 @@ namespace ScaleMonk.Ads.iOS
     
     }
 }
+#endif

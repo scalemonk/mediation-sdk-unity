@@ -5,6 +5,7 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+#if UNITY_ANDROID
 using UnityEngine;
 
 namespace ScaleMonk.Ads.Android
@@ -69,3 +70,4 @@ namespace ScaleMonk.Ads.Android
         }
     }
 }
+#endif
