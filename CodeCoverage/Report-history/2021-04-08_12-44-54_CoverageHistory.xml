@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2021-04-08_12-44-54" tag="">
+  <assembly name="Assembly-CSharp">
+    <class name="ScaleMonkDebugMenu" coveredlines="0" coverablelines="31" totallines="71" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="ScaleMonkAds">
+    <class name="MockAd" coveredlines="0" coverablelines="36" totallines="75" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.AdnetConfigXml" coveredlines="0" coverablelines="14" totallines="76" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.AdnetXml" coveredlines="0" coverablelines="20" totallines="76" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.AdsEditorBinding" coveredlines="0" coverablelines="50" totallines="86" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.AdsLogger" coveredlines="0" coverablelines="24" totallines="64" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.AdsProvidersHelper" coveredlines="0" coverablelines="236" totallines="389" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.AdsProvidersWindow" coveredlines="0" coverablelines="138" totallines="218" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.iOS.AdsiOSBinding" coveredlines="0" coverablelines="71" totallines="169" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.ScaleMonkAds" coveredlines="0" coverablelines="105" totallines="314" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.ScaleMonkAdsiOSPostProcessor" coveredlines="0" coverablelines="78" totallines="254" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.ScaleMonkAdsMonoBehavior" coveredlines="0" coverablelines="57" totallines="105" coveredbranches="0" totalbranches="0" />
+    <class name="ScaleMonk.Ads.ScaleMonkXml" coveredlines="0" coverablelines="7" totallines="76" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Tests">
+    <class name="ScaleMonk.Ads.Tests.Test" coveredlines="6" coverablelines="6" totallines="27" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

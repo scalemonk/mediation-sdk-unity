@@ -1,0 +1,73 @@
+name: Unit Tests & Coverage
+
+on: pull_request
+
+jobs:
+  build:
+    name: Test Unity ✨
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library
+
+      # Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2
+        env:
+          UNITY_LICENSE: '<?xml version="1.0" encoding="UTF-8"?><root>
+    <License id="Terms">
+        <MachineBindings>
+            <Binding Key="1" Value="576562626572264761624c65526f7578"/>
+            <Binding Key="2" Value="576562626572264761624c65526f7578"/>
+        </MachineBindings>
+        <MachineID Value="D7nTUnjNAmtsUMcnoyrqkgIbYdM="/>
+        <SerialHash Value="a1bd4b5598d4600111bedb45f2c1dfbb690c1c86"/>
+        <Features>
+            <Feature Value="33"/>
+            <Feature Value="1"/>
+            <Feature Value="12"/>
+            <Feature Value="2"/>
+            <Feature Value="24"/>
+            <Feature Value="3"/>
+            <Feature Value="36"/>
+            <Feature Value="17"/>
+            <Feature Value="19"/>
+            <Feature Value="62"/>
+        </Features>
+        <DeveloperData Value="AQAAAEY0LUFOUkMtRUhYWi0zRVVOLUpaVEEtSjRENA=="/>
+        <SerialMasked Value="F4-ANRC-EHXZ-3EUN-JZTA-XXXX"/>
+        <StartDate Value="2020-12-11T00:00:00"/>
+        <UpdateDate Value="2021-04-09T17:44:36"/>
+        <InitialActivationDate Value="2020-12-11T18:34:41"/>
+        <LicenseVersion Value="6.x"/>
+        <ClientProvidedVersion Value="2019.2.11f1"/>
+        <AlwaysOnline Value="false"/>
+        <Entitlements>
+            <Entitlement Ns="unity_editor" Tag="UnityPersonal" Type="EDITOR" ValidTo="9999-12-31T00:00:00"/>
+            <Entitlement Ns="unity_editor" Tag="DarkSkin" Type="EDITOR_FEATURE" ValidTo="9999-12-31T00:00:00"/>
+        </Entitlements>
+    </License>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#Terms"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>4wel7V3u3DuQL0SDu7GzRmAVrPI=</DigestValue></Reference></SignedInfo><SignatureValue>ejlO5G4rQf6x0oRnfecx4c1TX/g2BO+49qwv3cTXaOyngHrdNbFWc6eAVxWzN9MdFgcqbtnbxO9d
+ECuGyrRWi8ZqlO9RJZHKukOZWBB1T4xZmQotjv5vmfFdhuo+SvtskXuL1azelyorXJS0hUQveeo1
+RmRR7GW1+AKfaVhh3plWVTBN9yZSe4vIBNKhJBcxMTT5sEs7dl0ybCXw99EXJvK5wDo/AtUImmvP
+0S0h+YADWQ2KlKTiCDsOY+HhZ4kKyCIrKeEsdBh5UF9evkzpJsiNef6Djs6xtLrbdqxiDhlpWRu5
+af7/eFGoZ2EbVg1lwWLaDRoGX342Bo5hZAvLCA==</SignatureValue></Signature></root>'
+        with:
+          unityVersion: 2019.4.1f1
+          testMode: editmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: Build
