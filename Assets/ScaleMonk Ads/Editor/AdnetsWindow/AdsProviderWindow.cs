@@ -55,7 +55,7 @@ namespace ScaleMonk.Ads
                 scaleMonkConfig.android = EditorGUILayout.TextField("Android application ID", scaleMonkConfig.android);
                 GUILayout.Space(20);
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Adnets configurations", labelStyle);
+                EditorGUILayout.LabelField("Adnets configuration", labelStyle);
                 GUILayout.FlexibleSpace();
 
                 if (GUILayout.Button("Select All"))
@@ -86,11 +86,12 @@ namespace ScaleMonk.Ads
                 {
                     EditorGUILayout.LabelField("iOS", new GUIStyle(GUI.skin.label)
                     {
-                        fontSize = 12,
+                        fontSize = 15, 
+                        fontStyle = FontStyle.Bold,
                         stretchHeight = true,
                         fixedHeight = 30,
                     });
-                    GUILayout.Space(5);
+                    GUILayout.Space(10);
 
                     foreach (var adnet in scaleMonkConfig.adnets)
                     {
@@ -131,15 +132,16 @@ namespace ScaleMonk.Ads
                         }
                     }
 
-                    GUILayout.Space(10);
+                    GUILayout.Space(15);
 
                     EditorGUILayout.LabelField("Android", new GUIStyle(GUI.skin.label)
                     {
-                        fontSize = 12,
+                        fontSize = 15, 
+                        fontStyle = FontStyle.Bold,
                         stretchHeight = true,
                         fixedHeight = 30,
                     });
-                    GUILayout.Space(5);
+                    GUILayout.Space(10);
 
                     var anyAndroidNet = false;
                     foreach (var adnet in scaleMonkConfig.adnets)
