@@ -110,9 +110,9 @@ namespace ScaleMonk.Ads
 
             var iphoneGuid = proj.GetUnityMainTargetGuid();
             proj.SetBuildProperty(iphoneGuid, "SWIFT_OBJC_BRIDGING_HEADER",
-                "Libraries/ScaleMonk Ads/Plugins/iOS/Ads-Bridging-Header.h");
+                "Libraries/ScaleMonk Ads/Plugins/iOS/SMAds-Bridging-Header.h");
 #else
-            proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/ScaleMonk Ads/Plugins/iOS/Ads-Bridging-Header.h");
+            proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/ScaleMonk Ads/Plugins/iOS/SMAds-Bridging-Header.h");
 
             using (var sw = File.AppendText(targetPath + "/Podfile"))
             {
