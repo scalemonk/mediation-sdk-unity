@@ -20,12 +20,12 @@ namespace ScaleMonk.Ads
         public static void onPostProcessBuild(BuildTarget buildTarget, string targetPath)
         {
             configureSwiftBuild(targetPath);
-            configureAdnets(buildTarget, targetPath);
+            configureAdnetsAndAppId(buildTarget, targetPath);
             configureSKAdNetworks(buildTarget, targetPath);
         }
 
 
-        private static void configureAdnets(BuildTarget buildTarget, string targetPath)
+        private static void configureAdnetsAndAppId(BuildTarget buildTarget, string targetPath)
         {
 #if UNITY_IOS
             if (buildTarget == BuildTarget.iOS)
@@ -33,8 +33,11 @@ namespace ScaleMonk.Ads
                 var plistPath = Path.Combine(targetPath, "Info.plist");
                 var infoPlist = new PlistDocument();
                 infoPlist.ReadFromFile(plistPath);
+                
+                ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
+                infoPlist.root.SetString("ScaleMonkApplicationId", scaleMonkXml.ios);
 
-                var adnetsConfigs = AdsProvidersHelper.ReadAdnetsConfigs().adnets;
+                var adnetsConfigs = scaleMonkXml.adnets;
                 foreach (var adnet in adnetsConfigs)
                 {
                     if (adnet.configs == null)

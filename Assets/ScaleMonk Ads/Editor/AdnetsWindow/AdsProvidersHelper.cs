@@ -216,10 +216,11 @@ namespace ScaleMonk.Ads
             doc.AppendChild(scaleMonkElement);
 
             var path = GetAdnetsXmlPath();
-            Debug.Log("Saving config to " + path);
             doc.Save(path);
 
             UpdateNativeDependencies(scaleMonkXml);
+            
+            Debug.Log("ScaleMonk config saved");
         }
 
         static void UpdateNativeDependencies(ScaleMonkXml scaleMonkXml)
@@ -246,9 +247,7 @@ namespace ScaleMonk.Ads
             doc.AppendChild(dependenciesElement);
 
             var path = GetDependenciesPath();
-
-            Debug.Log("Saving Android and Ios packages config to " + path);
-
+            
             // Make file available to write
             if (File.Exists(path))
             {
