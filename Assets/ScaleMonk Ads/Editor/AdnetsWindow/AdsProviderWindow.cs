@@ -213,7 +213,7 @@ namespace ScaleMonk.Ads
 
         void OnLostFocus()
         {
-            AdsProvidersHelper.SaveConfig(scaleMonkConfig);
+            AdsProvidersHelper.SaveConfig(scaleMonkConfig, true);
         }
     }
 }

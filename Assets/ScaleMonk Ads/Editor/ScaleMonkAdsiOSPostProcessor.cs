@@ -19,22 +19,26 @@ namespace ScaleMonk.Ads
         [PostProcessBuild(49)]
         public static void onPostProcessBuild(BuildTarget buildTarget, string targetPath)
         {
+            ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
+
+            if (string.IsNullOrEmpty(scaleMonkXml.ios))
+                return;
+            
             configureSwiftBuild(targetPath);
-            configureAdnetsAndAppId(buildTarget, targetPath);
+            configureAdnetsAndAppId(buildTarget, targetPath, scaleMonkXml);
             configureSKAdNetworks(buildTarget, targetPath);
         }
 
 
-        private static void configureAdnetsAndAppId(BuildTarget buildTarget, string targetPath)
+        private static void configureAdnetsAndAppId(BuildTarget buildTarget, string targetPath,
+            ScaleMonkXml scaleMonkXml)
         {
-#if UNITY_IOS
             if (buildTarget == BuildTarget.iOS)
             {
                 var plistPath = Path.Combine(targetPath, "Info.plist");
                 var infoPlist = new PlistDocument();
                 infoPlist.ReadFromFile(plistPath);
                 
-                ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
                 infoPlist.root.SetString("ScaleMonkApplicationId", scaleMonkXml.ios);
 
                 var adnetsConfigs = scaleMonkXml.adnets;
@@ -66,7 +70,6 @@ namespace ScaleMonk.Ads
 
                 infoPlist.WriteToFile(plistPath);
             }
-#endif
         }
         
         static void disableAdmobSwizzling(PlistDocument plist)
@@ -76,7 +79,6 @@ namespace ScaleMonk.Ads
 
         private static void configureSwiftBuild(string targetPath)
         {
-#if UNITY_IOS
             var projPath = UnityEditor.iOS.Xcode.PBXProject.GetPBXProjectPath(targetPath);
             var proj = new UnityEditor.iOS.Xcode.PBXProject();
 
@@ -129,7 +131,6 @@ namespace ScaleMonk.Ads
             proj.SetBuildProperty(targetGuid, "LD_RUNPATH_SEARCH_PATHS", "@executable_path/Frameworks");
 
             File.WriteAllText(projPath, proj.WriteToString());
-#endif
         }
 
         static readonly string[] skadnetworks =

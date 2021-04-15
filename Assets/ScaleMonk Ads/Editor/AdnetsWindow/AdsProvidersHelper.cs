@@ -163,7 +163,7 @@ namespace ScaleMonk.Ads
             return scaleMonkXml;
         }
 
-        public static void SaveConfig(ScaleMonkXml scaleMonkXml)
+        public static void SaveConfig(ScaleMonkXml scaleMonkXml, bool saveOnFocus = false)
         {
             if (scaleMonkXml.adnets == null) return;
 
@@ -192,13 +192,17 @@ namespace ScaleMonk.Ads
                     foreach (var config in adnet.configs)
                     {
                         var configElement = doc.CreateElement("adnetConfig");
-                        if (
-                            ((adnet.ios && config.platform == "ios") || (adnet.android && config.platform == "android"))
-                            && string.IsNullOrEmpty(config.value))
+                        if (!saveOnFocus)
                         {
-                            Debug.LogErrorFormat("Adnet {0} missing config {1} ({2})", adnet.name, config.name,
-                                config.config);
-                            return;
+                            if (
+                                ((adnet.ios && config.platform == "ios") ||
+                                 (adnet.android && config.platform == "android"))
+                                && string.IsNullOrEmpty(config.value))
+                            {
+                                Debug.LogErrorFormat("Adnet {0} missing config {1} ({2})", adnet.name, config.name,
+                                    config.config);
+                                return;
+                            }
                         }
 
                         configElement.SetAttribute("config", config.config);
@@ -218,12 +222,10 @@ namespace ScaleMonk.Ads
             var path = GetAdnetsXmlPath();
             doc.Save(path);
 
-            UpdateNativeDependencies(scaleMonkXml);
-            
-            Debug.Log("ScaleMonk config saved");
+            UpdateNativeDependencies(scaleMonkXml, saveOnFocus);
         }
 
-        static void UpdateNativeDependencies(ScaleMonkXml scaleMonkXml)
+        static void UpdateNativeDependencies(ScaleMonkXml scaleMonkXml, bool saveOnFocus)
         {
             List<AdnetXml> adnets = scaleMonkXml.adnets;
             var doc = new XmlDocument();
@@ -233,33 +235,58 @@ namespace ScaleMonk.Ads
             doc.InsertBefore(xmlDeclaration, root);
             var dependenciesElement = doc.CreateElement("dependencies");
 
+            bool androidSaved = false, iosSaved = false;
+
             if (!string.IsNullOrEmpty(scaleMonkXml.android))
             {
                 UpdateAndroidDependencies(adnets, doc, dependenciesElement);
+                androidSaved = true;
             }
 
-            // TODO(lsebrie): this should be enabled when iOS doesn't receive app id on initialization anymore
-            // if (!string.IsNullOrEmpty(scaleMonkXml.ios))
-            // {
+            if (!string.IsNullOrEmpty(scaleMonkXml.ios))
+            {
                 UpdateIOSDependencies(adnets, doc, dependenciesElement);
-            // }
+                iosSaved = true;
+            }
+            
+            if (!androidSaved && !iosSaved)
+            {
+                if(!saveOnFocus) Debug.LogWarning("ScaleMonk Application ID is empty for both platforms, configuration not saved");
+                return;
+            }
 
             doc.AppendChild(dependenciesElement);
+            if (!saveOnFocus)
+            {
+                var path = GetDependenciesPath();
 
-            var path = GetDependenciesPath();
-            
-            // Make file available to write
-            if (File.Exists(path))
-            {
-                var pathFileAttributes = File.GetAttributes(path);
-                File.SetAttributes(path, FileAttributes.Normal);
-                doc.Save(path);
-                File.SetAttributes(path, pathFileAttributes);
-            }
-            else
-            {
-                // save file
-                doc.Save(path);
+                // Make file available to write
+                if (File.Exists(path))
+                {
+                    var pathFileAttributes = File.GetAttributes(path);
+                    File.SetAttributes(path, FileAttributes.Normal);
+                    doc.Save(path);
+                    File.SetAttributes(path, pathFileAttributes);
+                }
+                else
+                {
+                    // save file
+                    doc.Save(path);
+                }
+
+
+                if (!iosSaved)
+                {
+                    Debug.Log("ScaleMonk configuration saved only for Android, iOS Application ID is empty");
+                }
+                else if (!androidSaved)
+                {
+                    Debug.Log("ScaleMonk configuration saved only for iOS, Android Application ID is empty");
+                }
+                else
+                {
+                    Debug.Log("ScaleMonk configuration saved");
+                }
             }
         }
 
