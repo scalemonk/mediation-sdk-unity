@@ -160,139 +160,130 @@ namespace ScaleMonk.Ads
             _adsBinding.Initialize(this);
         }
         
-        static void CallAction(Action action)
-        {
-            if (action != null)
-            {
-                action();
-            }
-        }
-
-        
         /// <summary>
         /// Informs the rewarded display was successful. Use this callback to restart the app state and give rewards to the user.
         /// </summary>
-        public static Action RewardedDisplayedEvent;
+        public static event Action RewardedDisplayedEvent;
 
         /// <summary>
         /// Informs the rewarded display has started. Use this callback to pause any behavior you might need.
         /// </summary>
-        public static Action RewardedStartedEvent;
+        public static event Action RewardedStartedEvent;
 
         /// <summary>
         /// Informs the rewarded display was not successful.
         ///
         /// To see the reason for the failed display, check the reason field in the `ads:display-failed` analytics event.
         /// </summary>
-        public static Action RewardedNotDisplayedEvent;
+        public static event Action RewardedNotDisplayedEvent;
 
         /// <summary>
         /// Informs the rewarded ad was clicked.
         /// </summary>
-        public static Action RewardedClickedEvent;
+        public static event Action RewardedClickedEvent;
 
         /// <summary>
         /// Informs the interstitial display was successful. Use this callback to restart the app state and give rewards to the user.
         /// </summary>
-        public static Action InterstitialDisplayedEvent;
+        public static event Action InterstitialDisplayedEvent;
 
         /// <summary>
         /// Informs the interstitial display was not successful.
         ///
         /// To see the reason for the failed display, check the reason field in the `ads:display-failed` analytics event.
         /// </summary>
-        public static Action InterstitialNotDisplayedEvent;
+        public static event Action InterstitialNotDisplayedEvent;
 
         /// <summary>
         /// Informs the interstitial ad was clicked.
         /// </summary>
-        public static Action InterstitialClickedEvent;
+        public static event Action InterstitialClickedEvent;
         
         /// <summary>
         /// Informs that an interstitial ad has been successfully cached and is ready to be shown.
         /// </summary>
-        public static Action InterstitialReadyEvent;
+        public static event Action InterstitialReadyEvent;
         
         /// <summary>
         /// Informs that an interstitial ad has not been successfully cached and is not ready to be shown.
         /// </summary>
-        public static Action InterstitialNotReadyEvent;
+        public static event Action InterstitialNotReadyEvent;
         
         /// <summary>
         /// Informs that a rewarded ad has been successfully cached and is ready to be shown.
         /// </summary>
-        public static Action RewardedReadyEvent;
+        public static event Action RewardedReadyEvent;
         
         /// <summary>
         /// Informs that a rewarded ad has not been successfully cached and is not ready to be shown.
         /// </summary>
-        public static Action RewardedNotReadyEvent;
+        public static event Action RewardedNotReadyEvent;
         
         #region Ads Native Binding Callbacks
         public void CompletedRewardedDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Rewarded displayed at tag {1}", _label, tag);
-            CallAction(RewardedDisplayedEvent);
+            RewardedDisplayedEvent?.Invoke();
         }
 
         public void StartedRewardedDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Started rewarded at tag {1}", _label, tag);
-            CallAction(RewardedStartedEvent);
+            RewardedStartedEvent?.Invoke();
         }
 
         public void ClickedRewarded(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Clicked rewarded at tag {1}", _label, tag);
-            CallAction(RewardedClickedEvent);
+            RewardedClickedEvent?.Invoke();
         }
 
         public void FailedRewardedDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Rewarded not displayed at tag {1}", _label, tag);
-            CallAction(RewardedNotDisplayedEvent);
+            RewardedNotDisplayedEvent?.Invoke();
         }
 
         public void CompletedInterstitialDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Interstitial displayed at tag {1}", _label, tag);
-            CallAction(InterstitialDisplayedEvent);
+            InterstitialDisplayedEvent?.Invoke();
         }
 
         public void ClickedInterstitial(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Clicked interstitial at tag {1}", _label, tag);
-            CallAction(InterstitialClickedEvent);
+            InterstitialClickedEvent?.Invoke();
         }
 
         public void FailedInterstitialDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Interstitial not displayed at tag {1}", _label, tag);
-            CallAction(InterstitialNotDisplayedEvent);
+            InterstitialNotDisplayedEvent?.Invoke();
         }
         
         public void InterstitialReady()
         {
             AdsLogger.LogWithFormat("{0} | Interstitial ready to be displayed", _label);
-            CallAction(InterstitialReadyEvent);
+            InterstitialReadyEvent?.Invoke();
         }
         
         public void InterstitialNotReady()
         {
             AdsLogger.LogWithFormat("{0} | Interstitial not ready to be displayed", _label);
-            CallAction(InterstitialNotReadyEvent);
+            InterstitialNotReadyEvent?.Invoke();
         }
         
          public void RewardedReady()
         {
             AdsLogger.LogWithFormat("{0} | Rewarded ad ready to be displayed", _label);
-            CallAction(RewardedReadyEvent);
+            RewardedReadyEvent?.Invoke();
         }
 
          public void RewardedNotReady()
          {
              AdsLogger.LogWithFormat("{0} | Rewarded ad not ready to be displayed", _label);
-             CallAction(RewardedNotReadyEvent);  
+             RewardedNotReadyEvent?.Invoke();
          }
   
         #endregion

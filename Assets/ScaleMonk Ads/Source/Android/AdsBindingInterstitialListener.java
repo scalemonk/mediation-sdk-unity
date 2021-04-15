@@ -10,19 +10,19 @@ public class AdsBindingInterstitialListener implements InterstitialEventListener
     @Override
     public void onInterstitialView(@Nullable String tag) {
         Log.d(AdsBinding.TAG, "Completed interstitial display at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "CompletedInterstitialDisplay", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "CompletedInterstitialDisplay", tag);
     }
 
     @Override
     public void onInterstitialClick(@Nullable String tag) {
         Log.d(AdsBinding.TAG, "Clicked interstitial at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "ClickedInterstitial", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "ClickedInterstitial", tag);
     }
 
     @Override
     public void onInterstitialFail(@Nullable String tag) {
         Log.d(AdsBinding.TAG, "Failed interstitial at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "FailedInterstitialDisplay", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "FailedInterstitialDisplay", tag);
     }
 
     @Override
