@@ -22,7 +22,6 @@ namespace ScaleMonk.Ads
 
         static ScaleMonkAds _instance;
         readonly IAdsBinding _adsBinding;
-        public string ApplicationId;
 
         /// <summary>
         /// Instance to use the Ads SDK.
@@ -40,12 +39,7 @@ namespace ScaleMonk.Ads
             }
         }
         
-        /// <summary>
-        /// Initializes the SDK.
-        ///
-        /// <param name="applicationId">The identifier for the application that will be using the Mediation SDK</param>
-        /// </summary>
-        public static void Initialize(string applicationId)
+        public static void Initialize()
         {
             if (_instance != null)
             {
@@ -55,9 +49,21 @@ namespace ScaleMonk.Ads
 
             AdsLogger.LogWithFormat("{0} | Initializing Ads SDK", _label);
 
-            _instance = new ScaleMonkAds(applicationId);
+            _instance = new ScaleMonkAds();
             ScaleMonkAdsMonoBehavior.Initialize(_instance);
             _instance.InitializeInternal();
+        }
+        
+        /// <summary>
+        /// Deprecated. Use the paramter-less Initialize() method
+        ///
+        /// <param name="applicationId">The identifier for the application that will be using the Mediation SDK</param>
+        /// </summary>
+        
+        [ObsoleteAttribute("Use Initialize(), it's not necessary anymore to pass the application id")]
+        public static void Initialize(string applicationId)
+        {
+            Initialize();
         }
         
         /// <summary>
@@ -149,9 +155,8 @@ namespace ScaleMonk.Ads
         /// Creates a new Ads SDK
         /// </summary>
         /// <param name="applicationId">The application identifier to be used by CAdS and Exchange to identify the game</param>
-        ScaleMonkAds(string applicationId)
+        ScaleMonkAds()
         {
-            ApplicationId = applicationId;
             _adsBinding = GetAdsBinding();
         }
         

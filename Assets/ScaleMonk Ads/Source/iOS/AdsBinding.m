@@ -13,8 +13,8 @@ static UIViewController *videoDelegateViewController;
 static UIViewController *interstitialDelegateViewController;
 static SMAds *smAds;
 
-void SMAdsInitialize(char* applicationId) {
-    smAds = [[SMAds alloc] initWithApplicationId:[NSString stringWithUTF8String: applicationId]];
+void SMAdsInitialize() {
+    smAds = [[SMAds alloc] init];
 
     [smAds initialize: ^(BOOL success){}];
     videoDelegateViewController = [[AdsBindingRewardedDelegateViewController alloc] init];

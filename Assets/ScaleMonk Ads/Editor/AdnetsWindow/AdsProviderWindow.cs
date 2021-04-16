@@ -202,7 +202,6 @@ namespace ScaleMonk.Ads
                     GUILayout.FlexibleSpace();
                     if (GUILayout.Button("Save", GUILayout.Width(300)))
                     {
-                        Debug.Log("Saving config");
                         AdsProvidersHelper.SaveConfig(scaleMonkConfig);
                     }
 
@@ -214,7 +213,7 @@ namespace ScaleMonk.Ads
 
         void OnLostFocus()
         {
-            AdsProvidersHelper.SaveConfig(scaleMonkConfig);
+            AdsProvidersHelper.SaveConfig(scaleMonkConfig, true);
         }
     }
 }

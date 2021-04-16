@@ -18,7 +18,7 @@ namespace ScaleMonk.Ads.iOS
         public void Initialize(ScaleMonkAds adsInstance)
         {
             _adsInstance = adsInstance;
-            SMAdsInitialize(adsInstance.ApplicationId);
+            SMAdsInitialize();
         }
 
         public void ShowInterstitial(string tag)
@@ -133,7 +133,7 @@ namespace ScaleMonk.Ads.iOS
         #region dll imports
 
         [DllImport("__Internal")]
-        private static extern void SMAdsInitialize(string applicationId);
+        private static extern void SMAdsInitialize();
 
         [DllImport("__Internal")]
         private static extern void SMAdsShowInterstitial(string analyticsLocation);
