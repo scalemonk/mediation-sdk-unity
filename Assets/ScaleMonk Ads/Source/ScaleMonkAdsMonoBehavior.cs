@@ -101,5 +101,16 @@ namespace ScaleMonk.Ads
             _adsInstance.RewardedNotReady();
         }
     
+        public void FailedBannerDisplay(string location)
+        {
+            AdsLogger.LogWithFormat("{0} | Failed banner display at location \"{1}\"", _label, location);
+            _adsInstance.FailedBannerDisplay(location);
+        }
+
+        public void CompletedBannerDisplay(string location)
+        {
+            AdsLogger.LogWithFormat("{0} | Completed banner display at location \"{1}\"", _label, location);
+            _adsInstance.CompletedBannerDisplay(location);
+        }
     }
 }

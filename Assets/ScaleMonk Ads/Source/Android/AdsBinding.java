@@ -3,15 +3,19 @@ package com.scalemonk.ads.unity.binding;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+
+import com.scalemonk.ads.BannerContainer;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
+import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 
 public class AdsBinding {
     public static String TAG = "AdsBinding";
     private final Activity activity;
     private final AdsBindingRewardedListener videoListener;
     private final AdsBindingInterstitialListener interstitialListener;
+    private BannerContainer currentBannerContainer;
 
     public AdsBinding(final Activity activity) {
         this.activity = activity;
@@ -47,6 +51,17 @@ public class AdsBinding {
 
     public void showRewarded(final Context context, final String tag) {
         this.activity.runOnUiThread(() -> ScaleMonkAds.showRewarded(context, tag));
+    }
+    
+    public void showBanner(final Context context, final String position, final String tag) {
+        currentBannerContainer = BannerContainerFactory.createBannerContainerFrom(context, position);
+        this.activity.runOnUiThread(() -> ScaleMonkAds.showBanner(context, currentBannerContainer, tag));
+    }
+    
+    public void stopBanner(final Context context, final String tag) {
+        if (currentBannerContainer != null) {
+            this.activity.runOnUiThread(() -> ScaleMonkAds.stopBanner(context, currentBannerContainer, tag));
+        }
     }
 
     private void setupAds(

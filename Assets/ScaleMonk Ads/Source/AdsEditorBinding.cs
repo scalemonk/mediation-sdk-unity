@@ -10,6 +10,8 @@ namespace ScaleMonk.Ads
     public class AdsEditorBinding : IAdsBinding
     {
         private ScaleMonkAds _scaleMonkAds;
+        private MockBannerAd _banner;
+        
         public void Initialize(ScaleMonkAds adsInstance)
         {
             _scaleMonkAds = adsInstance;
@@ -33,6 +35,25 @@ namespace ScaleMonk.Ads
             mockAdInstance.SetScalemonkAds(_scaleMonkAds);
             return mockAdInstance;
         }
+
+        public MockBannerAd CreateBannerMockAdInstance()
+        {
+            MockBannerAd mockAdInstance;
+            MockBannerAd mockAdPrefab;
+
+            if (isPortrait())
+            {
+                mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner_portrait");
+            }
+            else
+            {
+                mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner_landscape");
+            }
+            
+            mockAdInstance = GameObject.Instantiate(mockAdPrefab);
+
+            return mockAdInstance;
+        }
 #endif
         public void ShowInterstitial(string tag)
         {
@@ -53,6 +74,24 @@ namespace ScaleMonk.Ads
             mockAdInstance.SetTag(tag);
 #endif
         }
+
+        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        {
+            Debug.Log("Banner shown at " + tag);
+#if UNITY_2018_4_OR_NEWER
+            _scaleMonkAds.CompletedBannerDisplay(tag);
+            _banner = CreateBannerMockAdInstance();
+#endif
+        }
+
+        public void StopBanner(string tag)
+        {
+            Debug.Log("Banner stopped at " + tag);
+#if UNITY_2018_4_OR_NEWER
+            _banner.Stop();
+#endif
+        }
+
         public bool IsInterstitialReadyToShow(string analyticsLocation)
         {
             return true;

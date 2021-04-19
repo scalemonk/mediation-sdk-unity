@@ -31,6 +31,16 @@ namespace ScaleMonk.Ads.iOS
             SMAdsShowRewarded(tag);
         }
 
+        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void StopBanner(string tag)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public bool IsInterstitialReadyToShow(string analyticsLocation)
         {
             return SMIsInterstitialReadyToShow(analyticsLocation);
