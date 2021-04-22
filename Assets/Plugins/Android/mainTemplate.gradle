@@ -135,13 +135,6 @@ android {
         maven { url "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android" }
 
         maven {
-            url 'https://pkg.tfgco.com/repository/maven-tfg'
-            credentials {
-                username artifactoryUsername
-                password artifactoryPassword
-            }
-        }
-        maven {
             url 'https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod'
         }
     }

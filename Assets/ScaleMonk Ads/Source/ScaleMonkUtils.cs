@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace ScaleMonk.Ads
 {
     public enum BannerPosition
@@ -15,50 +18,22 @@ namespace ScaleMonk.Ads
 
     public static class BannerPositionExtension
     {
+        private static readonly Dictionary<BannerPosition, string> Positions = new Dictionary<BannerPosition, string>()
+        {
+            {BannerPosition.TopCenter, "top_center"},
+            {BannerPosition.TopLeft, "top_left"},
+            {BannerPosition.TopRight, "top_right"},
+            {BannerPosition.Centered, "centered"},
+            {BannerPosition.CenterLeft, "center_left"},
+            {BannerPosition.CenterRight, "center_right"},
+            {BannerPosition.BottomCenter, "bottom_center"},
+            {BannerPosition.BottomLeft, "bottom_left"},
+            {BannerPosition.BottomRight, "bottom_right"}
+        };
+        
         public static string ToSnakeCaseString(this BannerPosition position)
         {
-            if (position == BannerPosition.TopLeft)
-            {
-                return "top_left";
-            }
-
-            if (position == BannerPosition.TopCenter)
-            {
-                return "top_center";
-            }
-
-            if (position == BannerPosition.TopRight)
-            {
-                return "top_right";
-            }
-
-            if (position == BannerPosition.Centered)
-            {
-                return "centered";
-            }
-
-            if (position == BannerPosition.CenterLeft)
-            {
-                return "center_left";
-            }
-
-            if (position == BannerPosition.CenterRight)
-            {
-                return "center_right";
-            }
-
-            if (position == BannerPosition.BottomLeft)
-            {
-                return "bottom_left";
-            }
-
-            if (position == BannerPosition.BottomCenter)
-            {
-                return "bottom_center";
-            }
-            
-            // position == BannerPosition.BottomRight
-            return "bottom_right";
+            return Positions[position];
         }
     }
 }
