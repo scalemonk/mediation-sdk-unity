@@ -68,8 +68,8 @@ public class ScaleMonkDebugMenu : MonoBehaviour
         ScaleMonkAds.InterstitialNotReadyEvent += Feedback("Interstitial Not Ready");
         ScaleMonkAds.RewardedReadyEvent += Feedback("Rewarded Ready");
         ScaleMonkAds.RewardedNotReadyEvent += Feedback("Rewarded Not Ready");
-        ScaleMonkAds.BannerDisplayedEvent += Feedback("Banner Displayed");
-        ScaleMonkAds.BannerNotDisplayedEvent += Feedback("Banner Not Displayed");
+        ScaleMonkAds.BannerCompletedDisplayedEvent += Feedback("Banner Displayed");
+        ScaleMonkAds.BannerFailedDisplayedEvent += Feedback("Banner Not Displayed");
     }
 
     private Action Feedback(string start)

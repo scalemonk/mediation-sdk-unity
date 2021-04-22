@@ -154,8 +154,8 @@ namespace ScaleMonk.Ads
         /// <summary>
         /// Displays a banner ad.
         ///
-        /// If the display was successful, the event `BannerDisplayedEvent` will be called.
-        /// Otherwise, the event `BannerNotDisplayedEvent` will be called.
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
         public void ShowBanner(BannerPosition bannerPosition)
@@ -167,8 +167,8 @@ namespace ScaleMonk.Ads
         /// <summary>
         /// Displays a banner ad.
         ///
-        /// If the display was successful, the event `BannerDisplayedEvent` will be called.
-        /// Otherwise, the event `BannerNotDisplayedEvent` will be called.
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
@@ -286,12 +286,12 @@ namespace ScaleMonk.Ads
         ///
         /// To see the reason for the failed display, check the reason field in the `ads:display-failed` analytics event.
         /// </summary>
-        public static Action BannerNotDisplayedEvent;
+        public static Action BannerFailedDisplayedEvent;
         
         /// <summary>
         /// Informs the banner display was successful.
         /// </summary>
-        public static Action BannerDisplayedEvent;
+        public static Action BannerCompletedDisplayedEvent;
         
         #region Ads Native Binding Callbacks
         public void CompletedRewardedDisplay(string tag)
@@ -363,13 +363,13 @@ namespace ScaleMonk.Ads
          public void FailedBannerDisplay(string tag)
          {
              AdsLogger.LogWithFormat("{0} | Banner not displayed at tag {1}", _label, tag);
-             CallAction(BannerNotDisplayedEvent);
+             CallAction(BannerFailedDisplayedEvent);
          }
 
          public void CompletedBannerDisplay(string tag)
          {
              AdsLogger.LogWithFormat("{0} | Banner displayed at tag {1}", _label, tag);
-             CallAction(BannerDisplayedEvent); 
+             CallAction(BannerCompletedDisplayedEvent); 
          }
   
         #endregion
