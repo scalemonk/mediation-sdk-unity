@@ -41,15 +41,8 @@ namespace ScaleMonk.Ads
             MockBannerAd mockAdInstance;
             MockBannerAd mockAdPrefab;
 
-            if (isPortrait())
-            {
-                mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner_portrait");
-            }
-            else
-            {
-                mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner_landscape");
-            }
-            
+            mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner_" + (isPortrait() ? "portrait" : "landscape"));
+
             mockAdInstance = GameObject.Instantiate(mockAdPrefab);
 
             return mockAdInstance;
