@@ -150,6 +150,54 @@ namespace ScaleMonk.Ads
             AdsLogger.LogWithFormat("{0} | Show rewarded at tag {1}", _label, tag);
             _adsBinding.ShowRewarded(tag);
         }
+
+        /// <summary>
+        /// Displays a banner ad.
+        ///
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
+        /// </summary>
+        /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
+        public void ShowBanner(BannerPosition bannerPosition)
+        {
+            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
+            _adsBinding.ShowBanner(DEFAULT_TAG, bannerPosition);
+        }
+        
+        /// <summary>
+        /// Displays a banner ad.
+        ///
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
+        /// </summary>
+        /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
+        /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
+        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        {
+            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
+            _adsBinding.ShowBanner(tag, bannerPosition);
+        }
+
+        /// <summary>
+        /// Stops a banner ad.
+        ///
+        /// </summary>
+        /// <param name="tag">The game tag from where the ad will be removed from (like menu or store).</param>
+        public void StopBanner(string tag)
+        {
+            AdsLogger.LogWithFormat("{0} | Stop banner at tag {1}", _label, tag);
+            _adsBinding.StopBanner(tag);
+        }
+        
+        /// <summary>
+        /// Stops a banner ad.
+        ///
+        /// </summary>
+        public void StopBanner()
+        {
+            AdsLogger.LogWithFormat("{0} | Stop banner at tag {1}", _label, DEFAULT_TAG);
+            _adsBinding.StopBanner(DEFAULT_TAG);
+        }
         
         /// <summary>
         /// Creates a new Ads SDK
@@ -233,6 +281,18 @@ namespace ScaleMonk.Ads
         /// </summary>
         public static Action RewardedNotReadyEvent;
         
+        /// <summary>
+        /// Informs the banner display was not successful.
+        ///
+        /// To see the reason for the failed display, check the reason field in the `ads:display-failed` analytics event.
+        /// </summary>
+        public static Action BannerFailedDisplayedEvent;
+        
+        /// <summary>
+        /// Informs the banner display was successful.
+        /// </summary>
+        public static Action BannerCompletedDisplayedEvent;
+        
         #region Ads Native Binding Callbacks
         public void CompletedRewardedDisplay(string tag)
         {
@@ -298,6 +358,18 @@ namespace ScaleMonk.Ads
          {
              AdsLogger.LogWithFormat("{0} | Rewarded ad not ready to be displayed", _label);
              CallAction(RewardedNotReadyEvent);  
+         }
+
+         public void FailedBannerDisplay(string tag)
+         {
+             AdsLogger.LogWithFormat("{0} | Banner not displayed at tag {1}", _label, tag);
+             CallAction(BannerFailedDisplayedEvent);
+         }
+
+         public void CompletedBannerDisplay(string tag)
+         {
+             AdsLogger.LogWithFormat("{0} | Banner displayed at tag {1}", _label, tag);
+             CallAction(BannerCompletedDisplayedEvent); 
          }
   
         #endregion

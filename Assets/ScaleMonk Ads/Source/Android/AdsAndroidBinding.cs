@@ -32,6 +32,16 @@ namespace ScaleMonk.Ads.Android
             _adsBinding.Call("showRewarded", _activity, tag);
         }
 
+        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        {
+            _adsBinding.Call("showBanner", _activity, bannerPosition.ToSnakeCaseString(), tag);
+        }
+
+        public void StopBanner(string tag)
+        {
+            _adsBinding.Call("stopBanner", _activity, tag);
+        }
+
         public bool IsInterstitialReadyToShow(string tag)
         {
             return _adsBinding.Call<bool>("isInterstitialReadyToShow", tag);

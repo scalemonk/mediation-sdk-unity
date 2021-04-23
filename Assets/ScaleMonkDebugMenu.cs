@@ -17,8 +17,11 @@ public class ScaleMonkDebugMenu : MonoBehaviour
     public Button InitButton;
     public Button ShowInterstitialButton;
     public Button ShowRewardedVideoButton;
+    public Button ShowBannerButton;
+    public Button StopBannerButton;
     public Text LogField;
 
+    private BannerPosition bannerPosition = new BannerPosition();
     public string menuTag = "DEBUG MENU";
 
     // Start is called before the first frame update
@@ -27,6 +30,8 @@ public class ScaleMonkDebugMenu : MonoBehaviour
         InitButton.onClick.AddListener(OnClickInit);
         ShowInterstitialButton.onClick.AddListener(OnClickShowInterstitial);
         ShowRewardedVideoButton.onClick.AddListener(OnClickShowRewarded);
+        ShowBannerButton.onClick.AddListener(OnClickShowBanner);
+        StopBannerButton.onClick.AddListener(OnClickStopBanner);
     }
 
     private void OnClickShowRewarded()
@@ -37,6 +42,16 @@ public class ScaleMonkDebugMenu : MonoBehaviour
     private void OnClickShowInterstitial()
     {
         ScaleMonkAds.SharedInstance.ShowInterstitial(menuTag);
+    }
+
+    private void OnClickShowBanner()
+    {
+        ScaleMonkAds.SharedInstance.ShowBanner(menuTag, bannerPosition);
+    }
+
+    private void OnClickStopBanner()
+    {
+        ScaleMonkAds.SharedInstance.StopBanner(menuTag);
     }
 
     private void OnClickInit()
@@ -53,6 +68,8 @@ public class ScaleMonkDebugMenu : MonoBehaviour
         ScaleMonkAds.InterstitialNotReadyEvent += Feedback("Interstitial Not Ready");
         ScaleMonkAds.RewardedReadyEvent += Feedback("Rewarded Ready");
         ScaleMonkAds.RewardedNotReadyEvent += Feedback("Rewarded Not Ready");
+        ScaleMonkAds.BannerCompletedDisplayedEvent += Feedback("Banner Displayed");
+        ScaleMonkAds.BannerFailedDisplayedEvent += Feedback("Banner Not Displayed");
     }
 
     private Action Feedback(string start)
