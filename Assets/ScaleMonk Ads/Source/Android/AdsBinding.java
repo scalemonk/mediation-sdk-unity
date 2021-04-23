@@ -7,6 +7,7 @@ import android.util.Log;
 import com.scalemonk.ads.BannerContainer;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
+import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 
@@ -15,15 +16,17 @@ public class AdsBinding {
     private final Activity activity;
     private final AdsBindingRewardedListener videoListener;
     private final AdsBindingInterstitialListener interstitialListener;
+    private final AdsBindingBannerListener bannerListener;
     private BannerContainer currentBannerContainer;
 
     public AdsBinding(final Activity activity) {
         this.activity = activity;
         this.videoListener = new AdsBindingRewardedListener();
         this.interstitialListener = new AdsBindingInterstitialListener();
+        this.bannerListener = new AdsBindingBannerListener();
 
         this.activity.runOnUiThread(() -> {
-            setupAds(interstitialListener, videoListener);
+            setupAds(interstitialListener, videoListener, bannerListener);
         });
     }
 
@@ -69,11 +72,14 @@ public class AdsBinding {
 
     private void setupAds(
             InterstitialEventListener interstitialListener,
-            RewardedEventListener rewardedListener
+            RewardedEventListener rewardedListener,
+            BannerEventListener bannerListener
     ) {
         ScaleMonkAds.initialize(activity, () -> {
                     ScaleMonkAds.addInterstitialListener(interstitialListener);
                     ScaleMonkAds.addRewardedListener(rewardedListener);
+                    ScaleMonkAds.addBannerListener(bannerListener);
+                    
                     Log.i(TAG, "Ads SDK Initialized");
         });
     }
