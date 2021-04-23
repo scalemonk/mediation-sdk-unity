@@ -6,10 +6,10 @@ import com.scalemonk.ads.BannerEventListener;
 import com.unity3d.player.UnityPlayer;
 import org.jetbrains.annotations.Nullable;
 
-public class AdsBindingBannerEventListener implements BannerEventListener {
+public class AdsBindingBannerListener implements BannerEventListener {
         @Override
         public void onBannerFail(@Nullable String tag) {
-            Log.d(AdsBinding.TAG, "Failed baanner display at location " + tag);
+            Log.d(AdsBinding.TAG, "Failed banner display at location " + tag);
             UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "FailedBannerDisplay", tag);
         }
         
