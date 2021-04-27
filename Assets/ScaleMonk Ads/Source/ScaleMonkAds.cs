@@ -158,6 +158,21 @@ namespace ScaleMonk.Ads
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
+        /// <param name="bannerSize">The bannerSize of the Ad.</param>
+        /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
+        public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
+        {
+            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
+            _adsBinding.ShowBanner(tag, bannerSize, bannerPosition);
+        }
+        
+        /// <summary>
+        /// Displays a banner ad.
+        ///
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
+        /// </summary>
+        /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
         public void ShowBanner(string tag, BannerPosition bannerPosition)
         {
