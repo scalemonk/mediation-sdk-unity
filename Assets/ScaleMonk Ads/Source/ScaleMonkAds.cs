@@ -110,7 +110,7 @@ namespace ScaleMonk.Ads
         public void ShowInterstitial()
         {
             AdsLogger.LogWithFormat("{0} | Show interstitial at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowInterstitial(DEFAULT_TAG);
+            ShowInterstitial(DEFAULT_TAG);
         }
         
         /// <summary>
@@ -135,7 +135,7 @@ namespace ScaleMonk.Ads
         public void ShowRewarded()
         {
             AdsLogger.LogWithFormat("{0} | Show rewarded at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowRewarded(DEFAULT_TAG);
+            ShowRewarded(DEFAULT_TAG);
         }
         
         /// <summary>
@@ -177,7 +177,7 @@ namespace ScaleMonk.Ads
         public void ShowBanner(string tag, BannerPosition bannerPosition)
         {
             AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
-            _adsBinding.ShowBanner(tag, BannerSize.Small, bannerPosition);
+            ShowBanner(tag, _defaultBannerSize, bannerPosition);
         }
         
         /// <summary>
@@ -190,7 +190,7 @@ namespace ScaleMonk.Ads
         public void ShowBanner(BannerPosition bannerPosition)
         {
             AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowBanner(DEFAULT_TAG, BannerSize.Small, bannerPosition);
+            ShowBanner(DEFAULT_TAG, _defaultBannerSize, bannerPosition);
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace ScaleMonk.Ads
         public void ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition)
         {
             AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowBanner(DEFAULT_TAG, bannerSize, bannerPosition);
+            ShowBanner(DEFAULT_TAG, bannerSize, bannerPosition);
         }
 
         /// <summary>
@@ -225,7 +225,7 @@ namespace ScaleMonk.Ads
         public void StopBanner()
         {
             AdsLogger.LogWithFormat("{0} | Stop banner at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.StopBanner(DEFAULT_TAG);
+            StopBanner(DEFAULT_TAG);
         }
         
         /// <summary>
@@ -321,7 +321,9 @@ namespace ScaleMonk.Ads
         /// Informs the banner display was successful.
         /// </summary>
         public static Action BannerCompletedDisplayedEvent;
-        
+
+        private BannerSize _defaultBannerSize = BannerSize.Small;
+
         #region Ads Native Binding Callbacks
         public void CompletedRewardedDisplay(string tag)
         {
