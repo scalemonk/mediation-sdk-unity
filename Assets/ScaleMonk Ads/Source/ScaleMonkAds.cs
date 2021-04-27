@@ -109,8 +109,7 @@ namespace ScaleMonk.Ads
         /// Otherwise, the event `InterstitialNotDisplayedEvent` will be called.
         public void ShowInterstitial()
         {
-            AdsLogger.LogWithFormat("{0} | Show interstitial at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowInterstitial(DEFAULT_TAG);
+            ShowInterstitial(DEFAULT_TAG);
         }
         
         /// <summary>
@@ -134,8 +133,7 @@ namespace ScaleMonk.Ads
         /// </summary>
         public void ShowRewarded()
         {
-            AdsLogger.LogWithFormat("{0} | Show rewarded at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowRewarded(DEFAULT_TAG);
+            ShowRewarded(DEFAULT_TAG);
         }
         
         /// <summary>
@@ -157,11 +155,13 @@ namespace ScaleMonk.Ads
         /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
+        /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
+        /// <param name="bannerSize">The bannerSize of the Ad.</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        public void ShowBanner(BannerPosition bannerPosition)
+        public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowBanner(DEFAULT_TAG, bannerPosition);
+            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
+            _adsBinding.ShowBanner(tag, bannerSize, bannerPosition);
         }
         
         /// <summary>
@@ -174,8 +174,32 @@ namespace ScaleMonk.Ads
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
         public void ShowBanner(string tag, BannerPosition bannerPosition)
         {
-            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
-            _adsBinding.ShowBanner(tag, bannerPosition);
+            ShowBanner(tag, _defaultBannerSize, bannerPosition);
+        }
+        
+        /// <summary>
+        /// Displays a banner ad.
+        ///
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
+        /// </summary>
+        /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
+        public void ShowBanner(BannerPosition bannerPosition)
+        {
+            ShowBanner(DEFAULT_TAG, _defaultBannerSize, bannerPosition);
+        }
+
+        /// <summary>
+        /// Displays a banner ad.
+        ///
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
+        /// </summary>
+        /// <param name="bannerSize">The bannerSize of the Ad.</param>
+        /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
+        public void ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition)
+        {
+            ShowBanner(DEFAULT_TAG, bannerSize, bannerPosition);
         }
 
         /// <summary>
@@ -195,8 +219,7 @@ namespace ScaleMonk.Ads
         /// </summary>
         public void StopBanner()
         {
-            AdsLogger.LogWithFormat("{0} | Stop banner at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.StopBanner(DEFAULT_TAG);
+            StopBanner(DEFAULT_TAG);
         }
         
         /// <summary>
@@ -292,7 +315,9 @@ namespace ScaleMonk.Ads
         /// Informs the banner display was successful.
         /// </summary>
         public static Action BannerCompletedDisplayedEvent;
-        
+
+        private BannerSize _defaultBannerSize = BannerSize.Small;
+
         #region Ads Native Binding Callbacks
         public void CompletedRewardedDisplay(string tag)
         {

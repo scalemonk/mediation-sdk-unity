@@ -15,6 +15,7 @@ namespace ScaleMonk.Ads.Android
         const string _label = "AdsAndroidBinding";
         private AndroidJavaObject _adsBinding;
         private AndroidJavaObject _activity;
+
         public void Initialize(ScaleMonkAds adsInstance)
         {
             AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -32,9 +33,13 @@ namespace ScaleMonk.Ads.Android
             _adsBinding.Call("showRewarded", _activity, tag);
         }
 
-        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            _adsBinding.Call("showBanner", _activity, bannerPosition.ToSnakeCaseString(), tag);
+            _adsBinding.Call("showBanner", _activity,
+                bannerPosition.ToSnakeCaseString(),
+                tag,
+                bannerSize.Width,
+                bannerSize.Height);
         }
 
         public void StopBanner(string tag)

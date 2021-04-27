@@ -56,9 +56,14 @@ public class AdsBinding {
         this.activity.runOnUiThread(() -> ScaleMonkAds.showRewarded(context, tag));
     }
     
-    public void showBanner(final Context context, final String position, final String tag) {
+    public void showBanner(final Context context, 
+                            final String position, 
+                            final String tag, 
+                            final int width,
+                            final int height) {
+        
         this.activity.runOnUiThread(() -> {
-                    currentBannerContainer = BannerContainerFactory.createBannerContainer(context, position);
+                    currentBannerContainer = BannerContainerFactory.createBannerContainer(context, position, width, height);
                     ScaleMonkAds.showBanner(context, currentBannerContainer, tag);
                 }
         );
