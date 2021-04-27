@@ -1,6 +1,32 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2021-04-27
+
+### Changed
+
+- Updated iOS ScaleMonk version to 1.2.0
+- Updated Android ScaleMonk version to 1.1.0
+
+### Fixed
+
+- Fixed Android bindings
+
+## [1.2.0] - 2021-04-06
+
+### Added
+
+- Added missing repositories
+
+### Changed
+
+- Repositories are now added if the adnet is selected
+- Bindings are defined only for the selected platforms
+
+### Fixed
+
+- MockAd implementation
+
 ## [1.1.0]
 - Added android building
 - Added directives to postprocessor so the mediation can compile even if user doesn't have the unity modules

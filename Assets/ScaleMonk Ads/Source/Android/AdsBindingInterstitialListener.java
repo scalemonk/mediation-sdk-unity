@@ -27,14 +27,14 @@ public class AdsBindingInterstitialListener implements InterstitialEventListener
 
     @Override
     public void onInterstitialReady() {
-        Log.i(AdsBinding.TAG, "Interstitial Cached");
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "InterstitialReady", tag);
+        Log.i(AdsBinding.TAG, "Interstitial Ready");
+        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "InterstitialReady", "");
 
     }
 
     @Override
     public void onInterstitialViewStart(@Nullable String tag) {
         Log.i(AdsBinding.TAG, "Interstitial started view at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "InterstitialNotReady", tag);
+        // There is no method to notify interstitial start
     }
 }
