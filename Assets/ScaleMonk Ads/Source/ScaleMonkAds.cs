@@ -109,7 +109,6 @@ namespace ScaleMonk.Ads
         /// Otherwise, the event `InterstitialNotDisplayedEvent` will be called.
         public void ShowInterstitial()
         {
-            AdsLogger.LogWithFormat("{0} | Show interstitial at tag {1}", _label, DEFAULT_TAG);
             ShowInterstitial(DEFAULT_TAG);
         }
         
@@ -134,7 +133,6 @@ namespace ScaleMonk.Ads
         /// </summary>
         public void ShowRewarded()
         {
-            AdsLogger.LogWithFormat("{0} | Show rewarded at tag {1}", _label, DEFAULT_TAG);
             ShowRewarded(DEFAULT_TAG);
         }
         
@@ -176,7 +174,6 @@ namespace ScaleMonk.Ads
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
         public void ShowBanner(string tag, BannerPosition bannerPosition)
         {
-            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
             ShowBanner(tag, _defaultBannerSize, bannerPosition);
         }
         
@@ -189,7 +186,6 @@ namespace ScaleMonk.Ads
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
         public void ShowBanner(BannerPosition bannerPosition)
         {
-            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
             ShowBanner(DEFAULT_TAG, _defaultBannerSize, bannerPosition);
         }
 
@@ -203,7 +199,6 @@ namespace ScaleMonk.Ads
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
         public void ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
             ShowBanner(DEFAULT_TAG, bannerSize, bannerPosition);
         }
 
@@ -224,7 +219,6 @@ namespace ScaleMonk.Ads
         /// </summary>
         public void StopBanner()
         {
-            AdsLogger.LogWithFormat("{0} | Stop banner at tag {1}", _label, DEFAULT_TAG);
             StopBanner(DEFAULT_TAG);
         }
         
