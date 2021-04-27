@@ -60,7 +60,7 @@ public class AdsBinding {
         });
     }
     
-    public void SetHasGDPRConsent(final boolean consent) {
+    public void setHasGDPRConsent(final boolean consent) {
         ScaleMonkAds.setHasGDPRConsent(consent);
     }
     
