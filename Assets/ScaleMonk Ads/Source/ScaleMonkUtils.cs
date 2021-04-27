@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ScaleMonk.Ads
 {
@@ -30,6 +31,66 @@ namespace ScaleMonk.Ads
             {BannerPosition.BottomLeft, "bottom_left"},
             {BannerPosition.BottomRight, "bottom_right"}
         };
+
+        public static EditorPosition toEditorPosition(this BannerPosition position)
+        {
+            Vector2 anchorMin;
+            Vector2 anchorMax;
+            Vector2 pivot;
+            
+            switch (position)
+            {
+               case BannerPosition.TopCenter:
+                   anchorMin = new Vector2(0.5f, 1);
+                   anchorMax = new Vector2(0.5f, 1);
+                   pivot = new Vector2(0.5f, 1);
+                   break;
+               case BannerPosition.TopLeft:
+                   anchorMin = new Vector2(0, 1);
+                   anchorMax = new Vector2(0, 1);
+                   pivot = new Vector2(0, 1);
+                   break;
+               case BannerPosition.TopRight:
+                   anchorMin = new Vector2(1, 1);
+                   anchorMax = new Vector2(1, 1);
+                   pivot = new Vector2(1, 1);
+                   break;
+               case BannerPosition.Centered:
+                   anchorMin = new Vector2(0.5f, 0.5f);
+                   anchorMax = new Vector2(0.5f, 0.5f);
+                   pivot = new Vector2(0.5f, 0.5f);
+                   break;
+               case BannerPosition.CenterLeft:
+                   anchorMin = new Vector2(0, 0.5f);
+                   anchorMax = new Vector2(0, 0.5f);
+                   pivot = new Vector2(0, 0.5f);
+                   break;
+               case BannerPosition.CenterRight:
+                   anchorMin = new Vector2(1, 0.5f);
+                   anchorMax = new Vector2(1, 0.5f);
+                   pivot = new Vector2(1, 0.5f);
+                   break;
+               case BannerPosition.BottomLeft:
+                   anchorMin = new Vector2(0, 0);
+                   anchorMax = new Vector2(0, 0);
+                   pivot = new Vector2(0, 0);
+                   break;
+               case BannerPosition.BottomCenter:
+                   anchorMin = new Vector2(0.5f, 0);
+                   anchorMax = new Vector2(0.5f, 0);
+                   pivot = new Vector2(0.5f, 0);
+                   break;
+               case BannerPosition.BottomRight:
+                   anchorMin = new Vector2(1, 0);
+                   anchorMax = new Vector2(1, 0);
+                   pivot = new Vector2(1, 0);
+                   break;
+               default:
+                   throw new ArgumentOutOfRangeException(nameof(position), position, "Position is not valid");
+            }
+
+            return new EditorPosition(anchorMin, anchorMax, pivot);
+        }
         
         public static string ToSnakeCaseString(this BannerPosition position)
         {
@@ -58,5 +119,25 @@ namespace ScaleMonk.Ads
         public int Width => width;
 
         public int Height => height;
+    }
+
+    public class EditorPosition
+    {
+        private Vector2 anchorMin;
+        private Vector2 anchorMax;
+        private Vector2 pivot;
+
+        public EditorPosition(Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot)
+        {
+            this.anchorMin = anchorMin;
+            this.anchorMax = anchorMax;
+            this.pivot = pivot;
+        }
+
+        public Vector2 AnchorMin => anchorMin;
+        
+        public Vector2 AnchorMax => anchorMax;
+
+        public Vector2 Pivot => pivot;
     }
 }

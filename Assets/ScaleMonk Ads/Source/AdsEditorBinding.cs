@@ -4,6 +4,9 @@
 // Licensed under the ScaleMonk SDK License Agreement
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
+
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 namespace ScaleMonk.Ads
 {
@@ -36,14 +39,21 @@ namespace ScaleMonk.Ads
             return mockAdInstance;
         }
 
-        public MockBannerAd CreateBannerMockAdInstance()
+        public MockBannerAd CreateBannerMockAdInstance(BannerSize bannerSize, BannerPosition bannerPosition)
         {
             MockBannerAd mockAdInstance;
             MockBannerAd mockAdPrefab;
-
-            mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner_" + (isPortrait() ? "portrait" : "landscape"));
+            
+            mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner");
 
             mockAdInstance = GameObject.Instantiate(mockAdPrefab);
+            var bannerCanvas = (RectTransform) mockAdInstance.transform.Find("Canvas/BgColor");
+            var editorPosition = bannerPosition.toEditorPosition();
+            
+            bannerCanvas.sizeDelta = new Vector2(bannerSize.Width, bannerSize.Height);
+            bannerCanvas.anchorMin = editorPosition.AnchorMin;
+            bannerCanvas.anchorMax = editorPosition.AnchorMax;
+            bannerCanvas.pivot = editorPosition.Pivot;
 
             return mockAdInstance;
         }
@@ -73,7 +83,7 @@ namespace ScaleMonk.Ads
             Debug.Log("Banner shown at " + tag);
 #if UNITY_2018_4_OR_NEWER
             _scaleMonkAds.CompletedBannerDisplay(tag);
-            _banner = CreateBannerMockAdInstance();
+            _banner = CreateBannerMockAdInstance(bannerSize, bannerPosition);
 #endif
         }
 

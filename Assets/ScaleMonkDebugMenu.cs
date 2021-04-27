@@ -21,7 +21,7 @@ public class ScaleMonkDebugMenu : MonoBehaviour
     public Button StopBannerButton;
     public Text LogField;
 
-    private BannerPosition bannerPosition = new BannerPosition();
+    private BannerPosition bannerPosition = BannerPosition.BottomCenter;
     public string menuTag = "DEBUG MENU";
 
     // Start is called before the first frame update
