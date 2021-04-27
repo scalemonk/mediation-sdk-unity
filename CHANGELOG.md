@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file.
 
 - Added banner support for Android
 
+## [1.3.0] - 2021-04-27
+
+### Changed
+
+- Updated iOS ScaleMonk version to 1.2.0
+- Updated Android ScaleMonk version to 1.1.0
+
+### Fixed
+
+- Fixed Android bindings
+
 ## [1.2.0] - 2021-04-06
 
 ### Added

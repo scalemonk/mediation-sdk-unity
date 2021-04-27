@@ -33,8 +33,8 @@ public class AdsBindingRewardedListener implements RewardedEventListener {
 
     @Override
     public void onRewardedReady() {
-        Log.i(AdsBinding.TAG, "Rewarded Cached");
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "RewardedReady", tag);
+        Log.i(AdsBinding.TAG, "Rewarded Ready");
+        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "RewardedReady", "");
     }
 
     @Override
@@ -46,6 +46,6 @@ public class AdsBindingRewardedListener implements RewardedEventListener {
     @Override
     public void onRewardedFailedToLoad() {
         Log.i(AdsBinding.TAG, "Rewarded failed to load");
-        UnityPlayer.UnitySendMessage("RewardedNotReady", "RewardedReady", tag);
+        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "RewardedNotReady", "");
     }
 }
