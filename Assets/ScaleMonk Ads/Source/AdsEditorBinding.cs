@@ -68,7 +68,7 @@ namespace ScaleMonk.Ads
 #endif
         }
 
-        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
             Debug.Log("Banner shown at " + tag);
 #if UNITY_2018_4_OR_NEWER

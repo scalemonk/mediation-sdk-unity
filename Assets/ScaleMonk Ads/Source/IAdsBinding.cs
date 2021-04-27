@@ -12,7 +12,7 @@ namespace ScaleMonk.Ads
         void Initialize(ScaleMonkAds adsInstance);
         void ShowInterstitial(string tag);
         void ShowRewarded(string tag);
-        void ShowBanner(string tag, BannerPosition bannerPosition);
+        void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition);
         void StopBanner(string tag);
         bool IsInterstitialReadyToShow(string tag);
         bool IsRewardedVideoReadyToShow(string tag);

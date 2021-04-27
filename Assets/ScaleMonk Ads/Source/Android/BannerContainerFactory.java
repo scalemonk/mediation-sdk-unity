@@ -2,6 +2,8 @@ package com.scalemonk.ads.unity.banner;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -12,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BannerContainerFactory {
-    public static final int containerWidthInDp = 400;
-    public static final int containerHeightInDp = 100;
+    // we need this value to be sure that the container is big enough to place our Ad.
+    private static final int OFFSET_IN_DP = 1;
 
-    public static BannerContainer createBannerContainer(Context context, String position) {
+    public static BannerContainer createBannerContainer(Context context, String position, int width, int height) {
         Activity activity = (Activity) context;
         FrameLayout rootLayout = activity.findViewById(android.R.id.content);
 
@@ -28,9 +30,12 @@ public class BannerContainerFactory {
         fullscreenLayout.setLayoutParams(fullscreenParams);
 
         BannerContainer bannerContainer = new BannerContainer(context);
-        RelativeLayout.LayoutParams bannerContainerParams =
-                new RelativeLayout.LayoutParams(dpToPx(activity, containerWidthInDp), dpToPx(activity, containerHeightInDp));
+        bannerContainer.setPadding(0,0,0,0);
 
+        RelativeLayout.LayoutParams bannerContainerParams =
+                new RelativeLayout.LayoutParams(dpToPx(activity, width + OFFSET_IN_DP), dpToPx(activity, height + OFFSET_IN_DP));
+
+        bannerContainerParams.setMargins(0, 0, 0, 0);
         for (int rule : layoutParamsFrom(position)) {
             bannerContainerParams.addRule(rule);
         }
@@ -92,9 +97,6 @@ public class BannerContainerFactory {
     }
 
     private static int dpToPx(Activity activity, int dp) {
-        float density = activity.getResources()
-                .getDisplayMetrics()
-                .density;
-        return Math.round((float) dp * density);
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, activity.getResources().getDisplayMetrics());
     }
 }

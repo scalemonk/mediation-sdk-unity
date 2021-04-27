@@ -36,4 +36,27 @@ namespace ScaleMonk.Ads
             return Positions[position];
         }
     }
+
+    public class BannerSize
+    {
+
+        private int width;
+        private int height;
+
+        public static readonly BannerSize Small = new BannerSize(320, 50);
+        public static readonly BannerSize Large = new BannerSize(320, 100);
+        public static readonly BannerSize Rectangle = new BannerSize(300, 250);
+        public static readonly BannerSize Full = new BannerSize(468, 60);
+        public static readonly BannerSize Leaderboard = new BannerSize(728, 90);
+
+        public BannerSize(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+        }
+
+        public int Width => width;
+
+        public int Height => height;
+    }
 }

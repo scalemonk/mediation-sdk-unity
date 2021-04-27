@@ -157,11 +157,12 @@ namespace ScaleMonk.Ads
         /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
+        /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        public void ShowBanner(BannerPosition bannerPosition)
+        public void ShowBanner(string tag, BannerPosition bannerPosition)
         {
-            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
-            _adsBinding.ShowBanner(DEFAULT_TAG, bannerPosition);
+            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
+            _adsBinding.ShowBanner(tag, BannerSize.Small, bannerPosition);
         }
         
         /// <summary>
@@ -170,12 +171,25 @@ namespace ScaleMonk.Ads
         /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
-        /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        public void ShowBanner(BannerPosition bannerPosition)
         {
-            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, tag);
-            _adsBinding.ShowBanner(tag, bannerPosition);
+            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
+            _adsBinding.ShowBanner(DEFAULT_TAG, BannerSize.Small, bannerPosition);
+        }
+
+        /// <summary>
+        /// Displays a banner ad.
+        ///
+        /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
+        /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
+        /// </summary>
+        /// <param name="bannerSize">The bannerSize of the Ad.</param>
+        /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
+        public void ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition)
+        {
+            AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", _label, DEFAULT_TAG);
+            _adsBinding.ShowBanner(DEFAULT_TAG, bannerSize, bannerPosition);
         }
 
         /// <summary>
