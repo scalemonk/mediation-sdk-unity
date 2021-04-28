@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Added banner support for iOS
 - Added banner support for Android
 
 ## [1.2.0] - 2021-04-06
