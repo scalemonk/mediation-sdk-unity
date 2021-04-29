@@ -31,14 +31,14 @@ namespace ScaleMonk.Ads.iOS
             SMAdsShowRewarded(tag);
         }
 
-        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            throw new System.NotImplementedException();
+            SMAdsShowBanner(tag, bannerSize.Width, bannerSize.Height, bannerPosition.ToSnakeCaseString());
         }
 
         public void StopBanner(string tag)
         {
-            throw new System.NotImplementedException();
+            SMAdsStopBanner(tag);
         }
 
         public bool IsInterstitialReadyToShow(string analyticsLocation)
@@ -150,6 +150,12 @@ namespace ScaleMonk.Ads.iOS
 
         [DllImport("__Internal")]
         private static extern void SMAdsShowRewarded(string analyticsLocation);
+        
+        [DllImport("__Internal")]
+        private static extern void SMAdsShowBanner(string analyticsLocation, int width, int height, string position);
+        
+        [DllImport("__Internal")]
+        private static extern void SMAdsStopBanner(string analyticsLocation);
 
         [DllImport("__Internal")]
         private static extern bool SMIsInterstitialReadyToShow(string analyticsLocation);
