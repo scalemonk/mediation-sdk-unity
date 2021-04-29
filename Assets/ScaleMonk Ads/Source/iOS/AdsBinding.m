@@ -39,91 +39,129 @@ void SMAdsShowRewarded(char* tagChr) {
                                                andTag:tag];
 }
 
-static CGPoint GetPosition(int bannerHeight, int bannerWidth, NSString *strPosition, UIView *containerView) {
-    CGFloat topPadding = 0;
-    CGFloat bottomPadding = 0;
-    CGFloat leftPadding = 0;
-    CGFloat rightPadding = 0;
+static NSArray<NSLayoutConstraint*>* getConstraintsForSizing(int width, int height, UIView *bannerView) {
+    NSLayoutConstraint *heightConstraint;
+    NSLayoutConstraint *widthConstraint;
+        
+    if (@available(iOS 11, *)) {
+        heightConstraint = [bannerView.heightAnchor constraintEqualToConstant:height];
+        widthConstraint = [bannerView.widthAnchor constraintEqualToConstant:width];
+    } else {
+        heightConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                        attribute:NSLayoutAttributeHeight
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:nil
+                                                        attribute:NSLayoutAttributeNotAnAttribute
+                                                       multiplier:1
+                                                         constant:height];
+
+        widthConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                       attribute:NSLayoutAttributeWidth
+                                                       relatedBy:NSLayoutRelationEqual
+                                                          toItem:nil
+                                                       attribute:NSLayoutAttributeNotAnAttribute
+                                                      multiplier:1
+                                                        constant:width];
+    }
+        
+    return @[heightConstraint, widthConstraint];
+}
+
+static NSArray<NSLayoutConstraint*>* getConstraintsForPosition(NSString *strPosition, UIView *bannerView, UIView *containerView) {
+    NSLayoutConstraint *bottomConstraint;
+    NSLayoutConstraint *topConstraint;
+    NSLayoutConstraint *leftConstraint;
+    NSLayoutConstraint *rightConstraint;
+    NSLayoutConstraint *horizontalCenterConstraint;
+    NSLayoutConstraint *verticalCenterConstraint;
     
-    CGFloat x;
-    CGFloat y;
-    
-    if (@available(iOS 11.0, *)) {
-        topPadding = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.top;
-        bottomPadding = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.bottom;
-        leftPadding = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.left;
-        rightPadding = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets.right;
+    if (@available(iOS 11, *)) {
+        UILayoutGuide *guide = containerView.safeAreaLayoutGuide;
+        bottomConstraint = [bannerView.bottomAnchor constraintEqualToSystemSpacingBelowAnchor:guide.bottomAnchor multiplier:1];
+        leftConstraint = [bannerView.leftAnchor constraintEqualToSystemSpacingAfterAnchor:guide.leftAnchor multiplier:1];
+        rightConstraint = [bannerView.rightAnchor constraintEqualToSystemSpacingAfterAnchor:guide.rightAnchor multiplier:1];
+        topConstraint = [bannerView.topAnchor constraintEqualToSystemSpacingBelowAnchor:guide.topAnchor multiplier:1];
+        horizontalCenterConstraint = [bannerView.centerXAnchor constraintEqualToSystemSpacingAfterAnchor:guide.centerXAnchor multiplier:1];
+        verticalCenterConstraint = [bannerView.centerYAnchor constraintEqualToSystemSpacingBelowAnchor:guide.centerYAnchor multiplier:1];
+    } else {
+        bottomConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                        attribute:NSLayoutAttributeBottom
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:containerView
+                                                        attribute:NSLayoutAttributeBottom
+                                                       multiplier:1
+                                                         constant:0];
+        
+        leftConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                      attribute:NSLayoutAttributeLeft
+                                                      relatedBy:NSLayoutRelationEqual
+                                                         toItem:containerView
+                                                      attribute:NSLayoutAttributeLeft
+                                                     multiplier:1
+                                                       constant:0];
+        
+        rightConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                       attribute:NSLayoutAttributeRight
+                                                       relatedBy:NSLayoutRelationEqual
+                                                          toItem:containerView
+                                                       attribute:NSLayoutAttributeRight
+                                                      multiplier:1
+                                                        constant:0];
+        
+        topConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                     attribute:NSLayoutAttributeTop
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:containerView
+                                                     attribute:NSLayoutAttributeTop
+                                                    multiplier:1
+                                                      constant:0];
+
+        horizontalCenterConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                                  attribute:NSLayoutAttributeCenterX
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:containerView
+                                                                  attribute:NSLayoutAttributeCenterX
+                                                                 multiplier:1
+                                                                   constant:0];
+        
+        verticalCenterConstraint = [NSLayoutConstraint constraintWithItem:bannerView
+                                                                attribute:NSLayoutAttributeCenterY
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:containerView
+                                                                attribute:NSLayoutAttributeCenterY
+                                                               multiplier:1
+                                                                 constant:0];
     }
     
-    NSArray *positions = @[@"bottom_center",
-                           @"bottom_left",
-                           @"bottom_right",
-                           @"top_center",
-                           @"top_left",
-                           @"top_right",
-                           @"centered",
-                           @"center_left",
-                           @"center_right"
-    ];
+    NSDictionary *constraints = @{
+        @"bottom_center": @[bottomConstraint, horizontalCenterConstraint],
+        @"bottom_left": @[bottomConstraint, leftConstraint],
+        @"bottom_right": @[bottomConstraint, rightConstraint],
+        @"top_center": @[topConstraint, horizontalCenterConstraint],
+        @"top_left": @[topConstraint, leftConstraint],
+        @"top_right": @[topConstraint, rightConstraint],
+        @"centered": @[horizontalCenterConstraint, verticalCenterConstraint],
+        @"center_left": @[verticalCenterConstraint, leftConstraint],
+        @"center_right": @[verticalCenterConstraint, rightConstraint]
+    };
     
-    switch ([positions indexOfObject:strPosition]) {
-        case 0: // bottom_center
-            x = containerView.center.x - (bannerWidth / 2);
-            y = containerView.bounds.size.height - bannerHeight - bottomPadding;
-            break;
-        case 1: // bottom_left
-            x = 0 + leftPadding;
-            y = containerView.bounds.size.height - bannerHeight - bottomPadding;
-            break;
-        case 2: // bottom_right
-            x = containerView.bounds.size.width - bannerWidth - rightPadding;
-            y = containerView.bounds.size.height - bannerHeight - bottomPadding;
-            break;
-        case 3: //top_center
-            x = containerView.center.x - (bannerWidth / 2);
-            y = 0 - topPadding;
-            break;
-        case 4: // top_left
-            x = 0 + leftPadding;
-            y = 0 - topPadding;
-            break;
-        case 5: // top_right
-            x = containerView.bounds.size.width - bannerWidth - rightPadding;
-            y = 0 - topPadding;
-            break;
-        case 6: // centered
-            x = containerView.center.x - (bannerWidth / 2);
-            y = containerView.center.y - (bannerHeight / 2);
-            break;
-        case 7: // center_left
-            x = 0 + leftPadding;
-            y = containerView.center.y - (bannerHeight / 2);
-            break;
-        case 8: // center_right
-            x = containerView.bounds.size.width - bannerWidth - rightPadding;
-            y = containerView.center.y - (bannerHeight / 2);
-            break;
-        default: // To bottom_center
-            x = containerView.center.x - (bannerWidth / 2);
-            y = containerView.bounds.size.height - bannerHeight - bottomPadding;
-            break;
-    }
-    
-    return CGPointMake(x, y);
+    return constraints[strPosition];
 }
 
 void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
     UIViewController *viewController = UnityGetGLViewController();
     NSString *positionAsString = [NSString stringWithUTF8String:position];
-
-    CGPoint positionInAxis = GetPosition(height, width, positionAsString, viewController.view);
     
     SMBannerView *bannerView = [[SMBannerView alloc] init];
-    bannerView.frame = CGRectMake(positionInAxis.x, positionInAxis.y, width, height);
-    
     bannerView.viewController = viewController;
+    
     [viewController.view addSubview:bannerView];
+    
+    [bannerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [viewController.view addConstraints:getConstraintsForPosition(positionAsString, bannerView, viewController.view)];
+    [bannerView addConstraints:getConstraintsForSizing(width, height, bannerView)];
     
     [smAds showBannerAdWithViewController: viewController
                                        bannerView:bannerView
