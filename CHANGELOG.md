@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 - Added banner support for iOS
 - Added banner support for Android
 
+## [1.3.1] - 2021-04-30
+
+### Fixed
+
+- Fixed callbacks events in Android not notifying
+
 ## [1.3.0] - 2021-04-27
 
 ### Changed
