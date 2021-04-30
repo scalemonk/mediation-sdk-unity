@@ -330,17 +330,14 @@ namespace ScaleMonk.Ads
         {
             var reposURL = new Dictionary<string, List<string>>
             {
-                { "adcolony", new List<string> { "https://adcolony.bintray.com/AdColony" }},
-                { "chartboost", new List<string> { "https://chartboostmobile.bintray.com/Chartboost" }},
-                { "fyber", new List<string> { "https://fyber.bintray.com/marketplace" }},
                 { "mintegral", new List<string>
-                {
-                    "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
-                    "https://dl.bintray.com/mintegral-official/MBridge_AndroidSDK_Oversea",
-                    "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea",
-                    "https://dl.bintray.com/mintegral-official/Mintegral_ad_SDK_Android"
-                }},
-                { "smaato", new List<string> { "https://s3.amazonaws.com/smaato-sdk-releases/" }},
+                    {
+                        "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
+                        "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+                    }
+                },
+                {"ironsource", new List<string> {"https://android-sdk.is.com/"}},
+                {"smaato", new List<string> {"https://s3.amazonaws.com/smaato-sdk-releases/"}},
             };
 
             var repositories = doc.CreateElement("repositories");
