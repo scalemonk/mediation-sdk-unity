@@ -10,42 +10,42 @@ public class AdsBindingRewardedListener implements RewardedEventListener {
     @Override
     public void onRewardedClick(@Nullable String tag) {
         Log.d(AdsBinding.TAG, "Clicked rewarded display at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "ClickedRewarded", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "ClickedRewarded", tag);
     }
 
     @Override
     public void onRewardedFail(@Nullable String tag) {
         Log.d(AdsBinding.TAG, "Failed rewarded display at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "FailedRewardedDisplay", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "FailedRewardedDisplay", tag);
     }
 
     @Override
     public void onRewardedFinishWithNoReward(@Nullable String tag) {
         Log.i(AdsBinding.TAG, "Completed rewarded display with NO reward at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "FailedRewardedDisplay", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "FailedRewardedDisplay", tag);
     }
 
     @Override
     public void onRewardedFinishWithReward(@Nullable String tag) {
         Log.d(AdsBinding.TAG, "Completed rewarded display at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "CompletedRewardedDisplay", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "CompletedRewardedDisplay", tag);
     }
 
     @Override
     public void onRewardedReady() {
         Log.i(AdsBinding.TAG, "Rewarded Ready");
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "RewardedReady", "");
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "RewardedReady", "");
     }
 
     @Override
     public void onRewardedViewStart(@Nullable String tag) {
         Log.i(AdsBinding.TAG, "Rewarded started view at location " + tag);
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "StartedRewardedDisplay", tag);
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "StartedRewardedDisplay", tag);
     }
 
     @Override
     public void onRewardedFailedToLoad() {
         Log.i(AdsBinding.TAG, "Rewarded failed to load");
-        UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "RewardedNotReady", "");
+        UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "RewardedNotReady", "");
     }
 }
