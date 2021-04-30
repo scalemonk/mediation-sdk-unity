@@ -10,12 +10,12 @@ public class AdsBindingBannerListener implements BannerEventListener {
         @Override
         public void onBannerFail(@Nullable String tag) {
             Log.d(AdsBinding.TAG, "Failed banner display at location " + tag);
-            UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "FailedBannerDisplay", tag);
+            UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "FailedBannerDisplay", tag);
         }
         
         @Override
         public void onBannerCompleted(@Nullable String tag) {
             Log.i(AdsBinding.TAG, "Completed banner display at location " + tag);
-            UnityPlayer.UnitySendMessage("ScaleMonkAdsMonoBehavior", "CompletedBannerDisplay", tag);
+            UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "CompletedBannerDisplay", tag);
         }
 }
