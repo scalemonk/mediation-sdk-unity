@@ -149,27 +149,11 @@ static NSArray<NSLayoutConstraint*>* getConstraintsForPosition(NSString *strPosi
 }
 
 void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
-    NSString *tag = [NSString stringWithUTF8String: tagChr];
-    UIViewController *viewController = UnityGetGLViewController();
-    NSString *positionAsString = [NSString stringWithUTF8String:position];
-    
-    SMBannerView *bannerView = [[SMBannerView alloc] init];
-    bannerView.viewController = viewController;
-    
-    [viewController.view addSubview:bannerView];
-    
-    [bannerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [viewController.view addConstraints:getConstraintsForPosition(positionAsString, bannerView, viewController.view)];
-    [bannerView addConstraints:getConstraintsForSizing(width, height, bannerView)];
-    
-    [smAds showBannerAdWithViewController: viewController
-                                       bannerView:bannerView
-                                           andTag:tag];
+    NSLog(@"Banners are not implemented yet for iOS");
 }
 
 void SMAdsStopBanner(char* tagChr) {
-    [smAds stopLoadingBanners];
+    NSLog(@"Banners are not implemented yet for iOS.");
 }
 
 void SMSetApplicationChildDirected(bool isChildDirected){
