@@ -26,14 +26,10 @@ namespace ScaleMonk.Ads
         {
             MockAd mockAdInstance;
             MockAd mockAdPrefab;
-            if (isPortrait())
-            {
-                mockAdPrefab = Resources.Load<MockAd>("Prefabs/MockAd_portrait");
-            }
-            else
-            {
-                mockAdPrefab = Resources.Load<MockAd>("Prefabs/MockAd_landscape");
-            }
+            
+            var mockAdPrefabName = isPortrait() ? "Prefabs/MockAd_portrait" : "Prefabs/MockAd_landscape";
+            mockAdPrefab = Resources.Load<MockAd>(mockAdPrefabName);
+            
             mockAdInstance = GameObject.Instantiate(mockAdPrefab);
             mockAdInstance.SetScalemonkAds(_scaleMonkAds);
             return mockAdInstance;
@@ -43,10 +39,12 @@ namespace ScaleMonk.Ads
         {
             MockBannerAd mockAdInstance;
             MockBannerAd mockAdPrefab;
-            
-            mockAdPrefab = Resources.Load<MockBannerAd>("Prefabs/MockAd_banner");
+
+            var mockAdPrefabName = isPortrait() ? "Prefabs/MockAd_banner_portrait" : "Prefabs/MockAd_banner_landscape";
+            mockAdPrefab = Resources.Load<MockBannerAd>(mockAdPrefabName);
 
             mockAdInstance = GameObject.Instantiate(mockAdPrefab);
+            
             var bannerCanvas = (RectTransform) mockAdInstance.transform.Find("Canvas/BgColor");
             var editorPosition = bannerPosition.toEditorPosition();
             
