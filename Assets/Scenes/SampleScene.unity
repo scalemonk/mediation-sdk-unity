@@ -258,8 +258,8 @@ MonoBehaviour:
   InitButton: {fileID: 1715138803}
   ShowInterstitialButton: {fileID: 1681491967}
   ShowRewardedVideoButton: {fileID: 1611965946}
-  ShowBannerButton: {fileID: 0}
-  StopBannerButton: {fileID: 0}
+  ShowBannerButton: {fileID: 351782992}
+  StopBannerButton: {fileID: 432170205}
   LogField: {fileID: 858967883}
   menuTag: DEBUG MENU
 --- !u!4 &352276159
