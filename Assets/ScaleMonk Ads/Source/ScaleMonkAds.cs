@@ -64,16 +64,26 @@ namespace ScaleMonk.Ads
         }
         
         /// <summary>
-        /// Deprecated. Use the paramter-less Initialize() method
+        /// Deprecated. Use Initialize(Action callback) method
+        /// 
+        /// </summary>
+        [ObsoleteAttribute("Use Initialize(Action callback), it's not necessary anymore to pass the application id")]
+        public static void Initialize()
+        {
+            Initialize(() => {});
+        }
+        
+        /// <summary>
+        /// Deprecated. Use Initialize(Action callback) method
         ///
         /// <param name="applicationId">The identifier for the application that will be using the ScaleMonk SDK</param>
         /// <param name="callback">The callback that will be called after the ScaleMonk SDK is initialized</param>
         /// </summary>
         
-        [ObsoleteAttribute("Use Initialize(), it's not necessary anymore to pass the application id")]
-        public static void Initialize(string applicationId, Action callback)
+        [ObsoleteAttribute("Use Initialize(Action callback), it's not necessary anymore to pass the application id")]
+        public static void Initialize(string applicationId)
         {
-            Initialize(callback);
+            Initialize();
         }
         
         /// <summary>
