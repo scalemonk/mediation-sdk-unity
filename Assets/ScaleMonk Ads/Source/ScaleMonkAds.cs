@@ -21,6 +21,7 @@ namespace ScaleMonk.Ads
         const string DEFAULT_TAG = "DEFAULT_TAG";
 
         static ScaleMonkAds _instance;
+        private static Action _initializationCallback;
         readonly IAdsBinding _adsBinding;
 
         /// <summary>
@@ -39,17 +40,25 @@ namespace ScaleMonk.Ads
             }
         }
         
-        public static void Initialize()
+        /// <summary>
+        /// Initialize ScaleMonk SDK
+        ///
+        /// <param name="applicationId">The identifier for the application that will be using the ScaleMonk SDK</param>
+        /// <param name="callback">The callback that will be called after the ScaleMonk SDK is initialized</param>
+        /// </summary>
+        public static void Initialize(Action callback)
         {
             if (_instance != null)
             {
                 AdsLogger.LogWarning("{0} | Ads SDK already initialized", _label);
                 return;
             }
-
+            
             AdsLogger.LogWithFormat("{0} | Initializing Ads SDK", _label);
 
             _instance = new ScaleMonkAds();
+            _initializationCallback = callback;
+            
             ScaleMonkAdsMonoBehavior.Initialize(_instance);
             _instance.InitializeInternal();
         }
@@ -57,13 +66,14 @@ namespace ScaleMonk.Ads
         /// <summary>
         /// Deprecated. Use the paramter-less Initialize() method
         ///
-        /// <param name="applicationId">The identifier for the application that will be using the Mediation SDK</param>
+        /// <param name="applicationId">The identifier for the application that will be using the ScaleMonk SDK</param>
+        /// <param name="callback">The callback that will be called after the ScaleMonk SDK is initialized</param>
         /// </summary>
         
         [ObsoleteAttribute("Use Initialize(), it's not necessary anymore to pass the application id")]
-        public static void Initialize(string applicationId)
+        public static void Initialize(string applicationId, Action callback)
         {
-            Initialize();
+            Initialize(callback);
         }
         
         /// <summary>
@@ -221,7 +231,7 @@ namespace ScaleMonk.Ads
         {
             StopBanner(DEFAULT_TAG);
         }
-        
+
         /// <summary>
         /// Creates a new Ads SDK
         /// </summary>
@@ -395,6 +405,12 @@ namespace ScaleMonk.Ads
          {
              AdsLogger.LogWithFormat("{0} | Banner displayed at tag {1}", _label, tag);
              CallAction(BannerCompletedDisplayedEvent); 
+         }
+
+         public void InitializationCompleted()
+         {
+             AdsLogger.LogWithFormat("{0} | SDK Initialization Completed", _label);
+             CallAction(_initializationCallback);
          }
   
         #endregion

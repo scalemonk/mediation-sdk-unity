@@ -56,7 +56,12 @@ public class ScaleMonkDebugMenu : MonoBehaviour
 
     private void OnClickInit()
     {
-        ScaleMonkAds.Initialize();
+        ScaleMonkAds.Initialize(() =>
+            {
+                // Here the SDK is initialized and you can
+                AdsLogger.LogInfo("SDK is ready to show Ads");
+            }
+        );
         ScaleMonkAds.InterstitialClickedEvent += Feedback("Interstitial Clicked");
         ScaleMonkAds.RewardedClickedEvent += Feedback("Video Clicked");
         ScaleMonkAds.InterstitialDisplayedEvent += Feedback("Interstitial Displayed");

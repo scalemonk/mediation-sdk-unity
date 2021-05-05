@@ -5,6 +5,7 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace ScaleMonk.Ads
         public void Initialize(ScaleMonkAds adsInstance)
         {
             _scaleMonkAds = adsInstance;
+            _scaleMonkAds.InitializationCompleted();
+            
             Debug.Log("ScaleMonkAds initialized successfully");
         }
         

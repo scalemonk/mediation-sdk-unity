@@ -18,7 +18,10 @@ static SMAds *smAds;
 void SMAdsInitialize() {
     smAds = [[SMAds alloc] init];
 
-    [smAds initialize: ^(BOOL success){}];
+    [smAds initialize: ^(BOOL success){
+        NSLog(@"Initialization Completed");
+        UnitySendMessage("AdsMonoBehaviour", "InitializationCompleted", [@"" cStringUsingEncoding:NSUTF8StringEncoding]);
+    }];
     videoDelegateViewController = [[AdsBindingRewardedDelegateViewController alloc] init];
     interstitialDelegateViewController = [[AdsBindingInterstitialViewController alloc] init];
     bannerDelegateViewController = [[AdsBindingBannerViewController alloc] init];
