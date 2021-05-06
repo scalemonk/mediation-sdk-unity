@@ -86,7 +86,8 @@ namespace ScaleMonk.Ads
                    pivot = new Vector2(1, 0);
                    break;
                default:
-                   throw new ArgumentOutOfRangeException(nameof(position), position, "Position is not valid");
+                   AdsLogger.LogError("Position is not valid");
+                   throw new Exception("Position is not valid");
             }
 
             return new EditorPosition(anchorMin, anchorMax, pivot);

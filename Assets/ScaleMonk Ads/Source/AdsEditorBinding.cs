@@ -49,14 +49,27 @@ namespace ScaleMonk.Ads
             mockAdInstance = GameObject.Instantiate(mockAdPrefab);
             
             var bannerCanvas = (RectTransform) mockAdInstance.transform.Find("Canvas/BgColor");
+
+            // Remove title from Rectangle banners because it's too small to show it.
+            if (bannerSize == BannerSize.Rectangle)
+            {
+                var textChild = bannerCanvas.transform.Find("Title");
+                textChild.parent = null;
+            }
+
+            ResizeAndPositionBannerCanvas(bannerSize, bannerPosition, bannerCanvas);
+
+            return mockAdInstance;
+        }
+
+        private static void ResizeAndPositionBannerCanvas(BannerSize bannerSize, BannerPosition bannerPosition,
+            RectTransform bannerCanvas)
+        {
             var editorPosition = bannerPosition.toEditorPosition();
-            
             bannerCanvas.sizeDelta = new Vector2(bannerSize.Width, bannerSize.Height);
             bannerCanvas.anchorMin = editorPosition.AnchorMin;
             bannerCanvas.anchorMax = editorPosition.AnchorMax;
             bannerCanvas.pivot = editorPosition.Pivot;
-
-            return mockAdInstance;
         }
 #endif
         public void ShowInterstitial(string tag)
@@ -83,8 +96,11 @@ namespace ScaleMonk.Ads
         {
             Debug.Log("Banner shown at " + tag);
 #if UNITY_2018_4_OR_NEWER
-            _scaleMonkAds.CompletedBannerDisplay(tag);
-            _banner = CreateBannerMockAdInstance(bannerSize, bannerPosition);
+            if (_banner == null)
+            {
+                _scaleMonkAds.CompletedBannerDisplay(tag);
+                _banner = CreateBannerMockAdInstance(bannerSize, bannerPosition);   
+            }
 #endif
         }
 
