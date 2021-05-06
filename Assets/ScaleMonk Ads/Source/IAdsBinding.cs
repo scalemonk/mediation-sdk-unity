@@ -5,6 +5,8 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using System;
+
 namespace ScaleMonk.Ads
 {
     public interface IAdsBinding

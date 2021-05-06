@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 2931256113697779630}
   - component: {fileID: 3931793717885714791}
   m_Layer: 0
-  m_Name: MockAd_banner
+  m_Name: MockAd_banner_portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

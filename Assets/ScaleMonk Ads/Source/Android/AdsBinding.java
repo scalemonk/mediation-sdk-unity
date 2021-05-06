@@ -10,6 +10,7 @@ import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
+import com.unity3d.player.UnityPlayer;
 
 public class AdsBinding {
     public static String TAG = "AdsBinding";
@@ -86,6 +87,8 @@ public class AdsBinding {
                     ScaleMonkAds.addBannerListener(bannerListener);
                     
                     Log.i(TAG, "Ads SDK Initialized");
+                    
+                    UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "InitializationCompleted", "");
         });
     }
     
