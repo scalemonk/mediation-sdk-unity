@@ -112,5 +112,11 @@ namespace ScaleMonk.Ads
             AdsLogger.LogWithFormat("{0} | Completed banner display at location \"{1}\"", _label, location);
             _adsInstance.CompletedBannerDisplay(location);
         }
+
+        public void InitializationCompleted()
+        {
+            AdsLogger.LogWithFormat("{0} | Completed initialization", _label);
+            _adsInstance.InitializationCompleted();
+        }
     }
 }

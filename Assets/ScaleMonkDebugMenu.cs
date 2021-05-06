@@ -56,7 +56,6 @@ public class ScaleMonkDebugMenu : MonoBehaviour
 
     private void OnClickInit()
     {
-        ScaleMonkAds.Initialize();
         ScaleMonkAds.InterstitialClickedEvent += Feedback("Interstitial Clicked");
         ScaleMonkAds.RewardedClickedEvent += Feedback("Video Clicked");
         ScaleMonkAds.InterstitialDisplayedEvent += Feedback("Interstitial Displayed");
@@ -70,6 +69,14 @@ public class ScaleMonkDebugMenu : MonoBehaviour
         ScaleMonkAds.RewardedNotReadyEvent += Feedback("Rewarded Not Ready");
         ScaleMonkAds.BannerCompletedDisplayedEvent += Feedback("Banner Displayed");
         ScaleMonkAds.BannerFailedDisplayedEvent += Feedback("Banner Not Displayed");
+        
+        ScaleMonkAds.Initialize(() =>
+            {
+                // Here the SDK is initialized and you can interact with it
+                AdsLogger.LogInfo("SDK is ready to show Ads");
+                OnClickShowBanner();
+            }
+        );
     }
 
     private Action Feedback(string start)

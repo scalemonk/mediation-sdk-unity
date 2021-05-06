@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 - Added banner support for iOS
 - Added banner support for Android
 
+### Changed
+
+- SDK Initialization method now receives a callback as parameter
+
 ## [1.3.1] - 2021-04-30
 
 ### Fixed
