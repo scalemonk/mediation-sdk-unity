@@ -81,10 +81,7 @@ namespace ScaleMonk.Ads
         /// </summary>
         public static void Initialize()
         {
-            RunIfInitialized(() =>
-            {
-                Initialize(() => {});    
-            });
+            Initialize(() => {});
         }
         
         /// <summary>
