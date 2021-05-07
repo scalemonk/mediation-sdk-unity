@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- Added banner support for iOS
+
 ## [1.4.0] - 2021-05-07
 
 ### Added
