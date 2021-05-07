@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.4.0] - 2021-05-07
 
 ### Added
 
@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - SDK Initialization method now receives a callback as parameter
+- Updated iOS ScaleMonk version to 1.2.1
+- Updated Android ScaleMonk version to 1.2.0 
 
 ## [1.3.1] - 2021-04-30
 
