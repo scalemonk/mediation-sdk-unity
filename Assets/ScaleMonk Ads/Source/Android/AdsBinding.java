@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
-import com.scalemonk.ads.Banner;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
+import com.scalemonk.ads.ScaleMonkBanner;
 import com.scalemonk.ads.unity.banner.BannerFactory;
 import com.unity3d.player.UnityPlayer;
 
@@ -18,7 +18,7 @@ public class AdsBinding {
     private final AdsBindingRewardedListener videoListener;
     private final AdsBindingInterstitialListener interstitialListener;
     private final AdsBindingBannerListener bannerListener;
-    private Banner currentBanner;
+    private ScaleMonkBanner currentBanner;
 
     public AdsBinding(final Activity activity) {
         this.activity = activity;

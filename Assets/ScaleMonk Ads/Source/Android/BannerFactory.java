@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.scalemonk.ads.Banner;
+import com.scalemonk.ads.ScaleMonkBanner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class BannerFactory {
     // we need this value to be sure that the container is big enough to place our Ad.
     private static final int OFFSET_IN_DP = 1;
 
-    public static Banner createBanner(Context context, String position, int width, int height) {
+    public static ScaleMonkBanner createBanner(Context context, String position, int width, int height) {
         Activity activity = (Activity) context;
         FrameLayout rootLayout = activity.findViewById(android.R.id.content);
 
@@ -29,7 +29,7 @@ public class BannerFactory {
                         ViewGroup.LayoutParams.MATCH_PARENT);
         fullscreenLayout.setLayoutParams(fullscreenParams);
 
-        Banner banner = new Banner(context);
+        ScaleMonkBanner banner = new ScaleMonkBanner(context);
         banner.setPadding(0,0,0,0);
 
         RelativeLayout.LayoutParams bannerParams =
