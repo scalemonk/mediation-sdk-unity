@@ -137,6 +137,12 @@ namespace ScaleMonk.Ads
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
         }
+
+        public void CreateAnalyticsBinding()
+        {
+            Debug.Log("Analytics Added");
+        }
+
         private bool isPortrait()
         {
             return Screen.height > Screen.width;

@@ -1,4 +1,4 @@
-//  AdsBindingInterstitialViewController.m
+//  AdsBindingBannerViewController.m
 //
 //  © 2020 ScaleMonk, Inc. All Rights Reserved.
 // Licensed under the ScaleMonk SDK License Agreement

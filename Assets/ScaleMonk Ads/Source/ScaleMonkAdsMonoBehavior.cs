@@ -5,6 +5,10 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ScaleMonk.Ads
@@ -15,6 +19,7 @@ namespace ScaleMonk.Ads
 
         static GameObject _gameObject;
         static ScaleMonkAds _adsInstance;
+        static List<IAnalytics> _additionalAnalytics = new List<IAnalytics>();
 
         public static void Initialize(ScaleMonkAds adsInstance)
         {
@@ -35,6 +40,11 @@ namespace ScaleMonk.Ads
             DontDestroyOnLoad(_gameObject);
         }
 
+        public static void AddAnalytics(IAnalytics analytics)
+        {
+            _additionalAnalytics.Add(analytics);
+        }
+        
         public void CompletedRewardedDisplay(string location)
         {
             AdsLogger.LogWithFormat("{0} | Completed video display at location \"{1}\"", _label, location);
@@ -117,6 +127,20 @@ namespace ScaleMonk.Ads
         {
             AdsLogger.LogWithFormat("{0} | Completed initialization", _label);
             _adsInstance.InitializationCompleted();
+        }
+
+        public void SendEvent(string analyticsEvent)
+        {
+            var eventWrapper = JsonUtility.FromJson<EventWrapper>(analyticsEvent);
+
+            if (eventWrapper.HasEventParams())
+            {
+                foreach (var analytics in _additionalAnalytics)
+                {
+                    analytics.SendEvent(eventWrapper.eventName, eventWrapper.GetEventParams());
+                }
+            }
+
         }
     }
 }
