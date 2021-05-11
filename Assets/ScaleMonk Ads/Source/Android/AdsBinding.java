@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
-import com.scalemonk.ads.BannerContainer;
+import com.scalemonk.ads.Banner;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
-import com.scalemonk.ads.unity.banner.BannerContainerFactory;
+import com.scalemonk.ads.unity.banner.BannerFactory;
 import com.unity3d.player.UnityPlayer;
 
 public class AdsBinding {
@@ -18,7 +18,7 @@ public class AdsBinding {
     private final AdsBindingRewardedListener videoListener;
     private final AdsBindingInterstitialListener interstitialListener;
     private final AdsBindingBannerListener bannerListener;
-    private BannerContainer currentBannerContainer;
+    private Banner currentBanner;
 
     public AdsBinding(final Activity activity) {
         this.activity = activity;
@@ -64,15 +64,15 @@ public class AdsBinding {
                             final int height) {
         
         this.activity.runOnUiThread(() -> {
-                    currentBannerContainer = BannerContainerFactory.createBannerContainer(context, position, width, height);
-                    ScaleMonkAds.showBanner(context, currentBannerContainer, tag);
+                    currentBanner = BannerFactory.createBanner(context, position, width, height);
+                    ScaleMonkAds.showBanner(context, currentBanner, tag);
                 }
         );
     }
     
-    public void stopBanner(final Context context, final String tag) {
-        if (currentBannerContainer != null) {
-            this.activity.runOnUiThread(() -> ScaleMonkAds.stopBanner(context, currentBannerContainer, tag));
+    public void stopBanner(final Context context) {
+        if (currentBanner != null) {
+            this.activity.runOnUiThread(() -> ScaleMonkAds.stopBanner(context, currentBanner));
         }
     }
 

@@ -44,7 +44,12 @@ namespace ScaleMonk.Ads.Android
 
         public void StopBanner(string tag)
         {
-            _adsBinding.Call("stopBanner", _activity, tag);
+            StopBanner();
+        }
+        
+        public void StopBanner()
+        {
+            _adsBinding.Call("stopBanner", _activity);
         }
 
         public bool IsInterstitialReadyToShow(string tag)

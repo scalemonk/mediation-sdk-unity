@@ -41,6 +41,11 @@ namespace ScaleMonk.Ads.iOS
             SMAdsStopBanner(tag);
         }
 
+        public void StopBanner()
+        {
+            SMAdsStopBanner("undefined");
+        }
+
         public bool IsInterstitialReadyToShow(string analyticsLocation)
         {
             return SMIsInterstitialReadyToShow(analyticsLocation);

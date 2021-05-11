@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.scalemonk.ads.BannerContainer;
+import com.scalemonk.ads.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BannerContainerFactory {
+public class BannerFactory {
     // we need this value to be sure that the container is big enough to place our Ad.
     private static final int OFFSET_IN_DP = 1;
 
-    public static BannerContainer createBannerContainer(Context context, String position, int width, int height) {
+    public static Banner createBanner(Context context, String position, int width, int height) {
         Activity activity = (Activity) context;
         FrameLayout rootLayout = activity.findViewById(android.R.id.content);
 
@@ -29,23 +29,23 @@ public class BannerContainerFactory {
                         ViewGroup.LayoutParams.MATCH_PARENT);
         fullscreenLayout.setLayoutParams(fullscreenParams);
 
-        BannerContainer bannerContainer = new BannerContainer(context);
-        bannerContainer.setPadding(0,0,0,0);
+        Banner banner = new Banner(context);
+        banner.setPadding(0,0,0,0);
 
-        RelativeLayout.LayoutParams bannerContainerParams =
+        RelativeLayout.LayoutParams bannerParams =
                 new RelativeLayout.LayoutParams(dpToPx(activity, width + OFFSET_IN_DP), dpToPx(activity, height + OFFSET_IN_DP));
 
-        bannerContainerParams.setMargins(0, 0, 0, 0);
+        bannerParams.setMargins(0, 0, 0, 0);
         for (int rule : layoutParamsFrom(position)) {
-            bannerContainerParams.addRule(rule);
+            bannerParams.addRule(rule);
         }
 
-        bannerContainer.setLayoutParams(bannerContainerParams);
+        banner.setLayoutParams(bannerParams);
 
-        fullscreenLayout.addView(bannerContainer);
+        fullscreenLayout.addView(banner);
         rootLayout.addView(fullscreenLayout);
 
-        return bannerContainer;
+        return banner;
     }
 
     private static List<Integer> layoutParamsFrom(String position) {

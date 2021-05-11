@@ -106,7 +106,12 @@ namespace ScaleMonk.Ads
 
         public void StopBanner(string tag)
         {
-            Debug.Log("Banner stopped at " + tag);
+            StopBanner();
+        }
+
+        public void StopBanner()
+        {
+            Debug.Log("Banner stopped");
 #if UNITY_2018_4_OR_NEWER
             _banner.Stop();
 #endif

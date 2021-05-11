@@ -15,7 +15,9 @@ namespace ScaleMonk.Ads
         void ShowInterstitial(string tag);
         void ShowRewarded(string tag);
         void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition);
+        [ObsoleteAttribute("Use StopBanner()")]
         void StopBanner(string tag);
+        void StopBanner();
         bool IsInterstitialReadyToShow(string tag);
         bool IsRewardedVideoReadyToShow(string tag);
         bool AreRewardedEnabled();
