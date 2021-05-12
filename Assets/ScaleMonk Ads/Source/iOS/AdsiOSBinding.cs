@@ -38,7 +38,7 @@ namespace ScaleMonk.Ads.iOS
 
         public void StopBanner(string tag)
         {
-            SMAdsStopBanner();
+            StopBanner();
         }
 
         public void StopBanner()
