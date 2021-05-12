@@ -171,7 +171,7 @@ void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
                                            andTag:tag];
 }
 
-void SMAdsStopBanner(char* tagChr) {
+void SMAdsStopBanner() {
     [smAds stopLoadingBanners];
 }
 

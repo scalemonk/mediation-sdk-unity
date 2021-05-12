@@ -38,12 +38,12 @@ namespace ScaleMonk.Ads.iOS
 
         public void StopBanner(string tag)
         {
-            SMAdsStopBanner(tag);
+            SMAdsStopBanner();
         }
 
         public void StopBanner()
         {
-            SMAdsStopBanner("undefined");
+            SMAdsStopBanner();
         }
 
         public bool IsInterstitialReadyToShow(string analyticsLocation)
@@ -160,7 +160,7 @@ namespace ScaleMonk.Ads.iOS
         private static extern void SMAdsShowBanner(string analyticsLocation, int width, int height, string position);
         
         [DllImport("__Internal")]
-        private static extern void SMAdsStopBanner(string analyticsLocation);
+        private static extern void SMAdsStopBanner();
 
         [DllImport("__Internal")]
         private static extern bool SMIsInterstitialReadyToShow(string analyticsLocation);
