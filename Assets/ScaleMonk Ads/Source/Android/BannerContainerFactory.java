@@ -7,12 +7,14 @@ import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import androidx.annotation.Keep;
 
 import com.scalemonk.ads.BannerContainer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Keep
 public class BannerContainerFactory {
     // we need this value to be sure that the container is big enough to place our Ad.
     private static final int OFFSET_IN_DP = 1;

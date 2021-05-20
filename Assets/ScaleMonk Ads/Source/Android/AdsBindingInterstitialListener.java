@@ -1,11 +1,13 @@
 package com.scalemonk.ads.unity.binding;
 
 import android.util.Log;
+import androidx.annotation.Keep;
 
 import com.scalemonk.ads.InterstitialEventListener;
 import com.unity3d.player.UnityPlayer;
 import org.jetbrains.annotations.Nullable;
 
+@Keep
 public class AdsBindingInterstitialListener implements InterstitialEventListener {
     @Override
     public void onInterstitialView(@Nullable String tag) {

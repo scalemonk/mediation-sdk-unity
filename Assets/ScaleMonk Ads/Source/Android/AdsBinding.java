@@ -3,6 +3,7 @@ package com.scalemonk.ads.unity.binding;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import androidx.annotation.Keep;
 
 import com.scalemonk.ads.BannerContainer;
 import com.scalemonk.ads.InterstitialEventListener;
@@ -12,6 +13,7 @@ import com.scalemonk.ads.ScaleMonkAds;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 import com.unity3d.player.UnityPlayer;
 
+@Keep
 public class AdsBinding {
     public static String TAG = "AdsBinding";
     private final Activity activity;
