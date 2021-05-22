@@ -6,6 +6,8 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Security;
 #if UNITY_IOS
 using ScaleMonk.Ads.iOS;
 #elif UNITY_ANDROID
@@ -24,6 +26,7 @@ namespace ScaleMonk.Ads
         private static Action _initializationCallback;
         readonly IAdsBinding _adsBinding;
         private static bool _isInitialized;
+        private static bool _hasAnalyticsBinding;
 
         /// <summary>
         /// Instance to use the Ads SDK.
@@ -139,6 +142,20 @@ namespace ScaleMonk.Ads
             RunIfInitialized(() =>
             {
                 _adsBinding.SetUserCantGiveGDPRConsent(cantGiveConsent);
+            });
+        }
+
+        public void AddAnalytics(IAnalytics analytics )
+        {
+            RunIfInitialized(() =>
+            {
+                if (!_hasAnalyticsBinding)
+                {
+                    _adsBinding.CreateAnalyticsBinding();
+                    _hasAnalyticsBinding = true;
+                }
+                
+                ScaleMonkAdsMonoBehavior.AddAnalytics(analytics);
             });
         }
 

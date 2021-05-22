@@ -9,10 +9,12 @@
 #import "AdsBindingRewardedDelegateViewController.h"
 #import "AdsBindingInterstitialViewController.h"
 #import "AdsBindingBannerViewController.h"
+#import "AdsBindingAnalyticsViewController.h"
 
 static UIViewController *videoDelegateViewController;
 static UIViewController *interstitialDelegateViewController;
 static UIViewController *bannerDelegateViewController;
+static UIViewController *analyticsDelegateViewController;
 static SMAds *smAds;
 
 void SMAdsInitialize() {
@@ -203,4 +205,9 @@ bool SMAreInterstitialsEnabled() {
 
 bool SMAreRewardedEnabled() {
     return [smAds areRewardedEnabled];
+}
+
+void SMAddAnalytics() {
+    analyticsDelegateViewController = [[AdsBindingAnalyticsViewController alloc] init];    
+    [smAds addAnalytics:(id<SMAnalyticsListener>) analyticsDelegateViewController];
 }

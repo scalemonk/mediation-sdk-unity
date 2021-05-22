@@ -18,6 +18,7 @@ public class AdsBinding {
     private final AdsBindingRewardedListener videoListener;
     private final AdsBindingInterstitialListener interstitialListener;
     private final AdsBindingBannerListener bannerListener;
+    private AdsBindingAnalyticsListener analyticsListener;
     private BannerContainer currentBannerContainer;
 
     public AdsBinding(final Activity activity) {
@@ -102,5 +103,10 @@ public class AdsBinding {
     
     public void setUserCantGiveGDPRConsent(final boolean cantGiveConsent) {
         ScaleMonkAds.setUserCantGiveGDPRConsent(cantGiveConsent);
+    }
+    
+    public void addAnalytics() {
+        analyticsListener = new AdsBindingAnalyticsListener();
+        ScaleMonkAds.addAnalytics(analyticsListener);
     }
 }

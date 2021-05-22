@@ -76,6 +76,11 @@ namespace ScaleMonk.Ads.iOS
             SMSetUserCantGiveGDPRConsent(cantGiveConsent);
         }
 
+        public void CreateAnalyticsBinding()
+        {
+            SMAddAnalytics();
+        }
+
         #region callbacks from native binding
 
         public void CompletedRewardedDisplay(string location)
@@ -177,6 +182,9 @@ namespace ScaleMonk.Ads.iOS
         
         [DllImport("__Internal")]
         private static extern void SMSetUserCantGiveGDPRConsent(bool isUnderage);
+        
+        [DllImport("__Internal")]
+        private static extern void SMAddAnalytics();
 
         #endregion
     
