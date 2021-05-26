@@ -1,4 +1,4 @@
-//  AdsBindingBannerViewController.h
+//  AdsBindingAnalyticsViewController.h
 //
 //  © 2020 ScaleMonk, Inc. All Rights Reserved.
 // Licensed under the ScaleMonk SDK License Agreement
@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ScalemonkAds/SMBannerAdEventListener.h>
+#import <ScalemonkAds/SMAnalyticsListener.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AdsBindingBannerViewController : UIViewController<SMBannerAdEventListener>
+@interface AdsBindingAnalyticsViewController : UIViewController<SMAnalyticsListener>
 @end
 
 NS_ASSUME_NONNULL_END

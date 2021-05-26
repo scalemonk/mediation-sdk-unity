@@ -15,6 +15,8 @@ namespace ScaleMonk.Ads.Android
         const string _label = "AdsAndroidBinding";
         private AndroidJavaObject _adsBinding;
         private AndroidJavaObject _activity;
+        private AndroidJavaObject _analytics;
+        private IAnalytics extraAnalytics;
 
         public void Initialize(ScaleMonkAds adsInstance)
         {
@@ -82,6 +84,11 @@ namespace ScaleMonk.Ads.Android
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
             _adsBinding.Call("setUserCantGiveGDPRConsent", cantGiveConsent);
+        }
+
+        public void CreateAnalyticsBinding()
+        {
+            _adsBinding.Call("addAnalytics");
         }
     }
 }

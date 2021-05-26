@@ -141,4 +141,31 @@ namespace ScaleMonk.Ads
 
         public Vector2 Pivot => pivot;
     }
+    
+    [Serializable]
+    public class EventWrapper
+    {
+        public string eventName;
+        public string[] eventKeys;
+        public string[] eventValues;
+
+        public Dictionary<string, string> GetEventParams()
+        {
+            var eventDictionary = new Dictionary<string, string>();
+
+            for (int i = 0; i < eventKeys.Length; i++)
+            {
+                eventDictionary.Add(eventKeys[i], eventValues[i]);
+            }
+
+            return eventDictionary;
+        }
+
+        public bool HasEventParams() => eventKeys.Length != 0 && eventValues.Length != 0;
+    }
+    
+    public interface IAnalytics
+    {
+        void SendEvent(string eventName, Dictionary<string, string> eventParams);
+    }
 }
