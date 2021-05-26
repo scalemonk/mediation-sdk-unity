@@ -3,8 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
 
-## [1.5.0] - 2021-05-10
+- Added minify support for Android
+
+## [1.5.0] - 2021-05-07
 
 ### Added
 
