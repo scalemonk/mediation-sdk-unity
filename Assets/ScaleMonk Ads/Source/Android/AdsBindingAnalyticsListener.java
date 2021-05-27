@@ -2,6 +2,7 @@ package com.scalemonk.ads.unity.binding;
 
 import android.app.Activity;
 import android.content.Context;
+import androidx.annotation.Keep;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Map;
 
+@Keep
 public class AdsBindingAnalyticsListener implements Analytics {
     private Gson gson;
 
