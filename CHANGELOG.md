@@ -3,9 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+
+## [1.6.0] - 2021-05-27
+
 ### Added
 
 - Added minify support for Android
+- Added a new API to accept analytics other than the default one.
 
 ## [1.5.0] - 2021-05-07
 
