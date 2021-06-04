@@ -90,6 +90,11 @@ namespace ScaleMonk.Ads.Android
         {
             _adsBinding.Call("addAnalytics");
         }
+
+        public void SetCustomUserId(string customUserId)
+        {
+            _adsBinding.Call("setCustomUserId", customUserId);
+        }
     }
 }
 #endif

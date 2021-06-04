@@ -143,6 +143,10 @@ namespace ScaleMonk.Ads
             Debug.Log("Analytics Added");
         }
 
+        public void SetCustomUserId(string customUserId)
+        {
+        }
+
         private bool isPortrait()
         {
             return Screen.height > Screen.width;

@@ -111,4 +111,8 @@ public class AdsBinding {
         analyticsListener = new AdsBindingAnalyticsListener();
         ScaleMonkAds.addAnalytics(analyticsListener);
     }
+    
+    public void setCustomUserId(final String customUserId) {
+        ScaleMonkAds.updateCustomUserId(customUserId);
+    }
 }

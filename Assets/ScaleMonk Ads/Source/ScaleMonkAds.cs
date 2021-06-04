@@ -158,6 +158,20 @@ namespace ScaleMonk.Ads
                 ScaleMonkAdsMonoBehavior.AddAnalytics(analytics);
             });
         }
+        
+        /// <summary>
+        /// Set a new id to track the user instead using the FIU
+        ///
+        /// </summary>
+        /// <param name="customUserId"> UserId that replace the FIU
+        /// </param>
+        public void SetCustomUserId(string customUserId)
+        {
+            RunIfInitialized(() =>
+            {
+                _adsBinding.SetCustomUserId(customUserId);
+            });
+        }
 
         /// <summary>
         /// Displays an interstitial ad.
