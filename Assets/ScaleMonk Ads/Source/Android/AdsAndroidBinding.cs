@@ -34,7 +34,7 @@ namespace ScaleMonk.Ads.Android
 
         public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            _androidJavaBridge.CallNativeMethod("showBanner",
+            _androidJavaBridge.CallNativeMethodWithActivity("showBanner",
                 bannerPosition.ToSnakeCaseString(),
                 tag,
                 bannerSize.Width,
