@@ -13,15 +13,40 @@ using UnityEngine;
 
 namespace ScaleMonk.Ads
 {
+
+    public class AnalyticsService
+    {
+        private List<IAnalytics> _additionalAnalytics = new List<IAnalytics>();
+        public void AddAnalytics(IAnalytics analytics)
+        {
+            _additionalAnalytics.Add(analytics);
+        }
+        
+        public void SendEvent(string analyticsEvent)
+        {
+            var eventWrapper = JsonUtility.FromJson<EventWrapper>(analyticsEvent);
+
+            if (eventWrapper.HasEventParams())
+            {
+                foreach (var analytics in _additionalAnalytics)
+                {
+                    analytics.SendEvent(eventWrapper.eventName, eventWrapper.GetEventParams());
+                }
+            }
+        }
+    }
+    
+    
+    
     public class ScaleMonkAdsMonoBehavior : MonoBehaviour
     {
         const string _label = "ScaleMonkAdsMonoBehavior";
 
-        static GameObject _gameObject;
-        static ScaleMonkAds _adsInstance;
-        static List<IAnalytics> _additionalAnalytics = new List<IAnalytics>();
+        private static GameObject _gameObject;
+        private static ScaleMonkAdsSDK _adsInstance;
+        private static AnalyticsService _analyticsService;
 
-        public static void Initialize(ScaleMonkAds adsInstance)
+        public static void Initialize(ScaleMonkAdsSDK adsInstance)
         {
             _adsInstance = adsInstance;
             CreateGameObject();
@@ -40,10 +65,7 @@ namespace ScaleMonk.Ads
             DontDestroyOnLoad(_gameObject);
         }
 
-        public static void AddAnalytics(IAnalytics analytics)
-        {
-            _additionalAnalytics.Add(analytics);
-        }
+        
         
         public void CompletedRewardedDisplay(string location)
         {
@@ -131,16 +153,7 @@ namespace ScaleMonk.Ads
 
         public void SendEvent(string analyticsEvent)
         {
-            var eventWrapper = JsonUtility.FromJson<EventWrapper>(analyticsEvent);
-
-            if (eventWrapper.HasEventParams())
-            {
-                foreach (var analytics in _additionalAnalytics)
-                {
-                    analytics.SendEvent(eventWrapper.eventName, eventWrapper.GetEventParams());
-                }
-            }
-
+            _adsInstance.SendEvent(analyticsEvent);
         }
     }
 }

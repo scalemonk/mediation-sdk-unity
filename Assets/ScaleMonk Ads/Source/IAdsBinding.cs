@@ -11,7 +11,7 @@ namespace ScaleMonk.Ads
 {
     public interface IAdsBinding
     {
-        void Initialize(ScaleMonkAds adsInstance);
+        void Initialize(ScaleMonkAdsSDK adsInstance);
         void ShowInterstitial(string tag);
         void ShowRewarded(string tag);
         void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition);

@@ -23,6 +23,7 @@ public class ScaleMonkDebugMenu : MonoBehaviour
 
     private BannerPosition bannerPosition = BannerPosition.BottomCenter;
     public string menuTag = "DEBUG MENU";
+    private ScaleMonkAdsSDK scaleMonkAds => ScaleMonkAds.SharedInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -36,39 +37,39 @@ public class ScaleMonkDebugMenu : MonoBehaviour
 
     private void OnClickShowRewarded()
     {
-        ScaleMonkAds.SharedInstance.ShowRewarded(menuTag);
+        scaleMonkAds.ShowRewarded(menuTag);
     }
 
     private void OnClickShowInterstitial()
     {
-        ScaleMonkAds.SharedInstance.ShowInterstitial(menuTag);
+        scaleMonkAds.ShowInterstitial(menuTag);
     }
 
     private void OnClickShowBanner()
     {
-        ScaleMonkAds.SharedInstance.ShowBanner(menuTag, bannerPosition);
+        scaleMonkAds.ShowBanner(menuTag, bannerPosition);
     }
 
     private void OnClickStopBanner()
     {
-        ScaleMonkAds.SharedInstance.StopBanner(menuTag);
+        scaleMonkAds.StopBanner(menuTag);
     }
 
     private void OnClickInit()
     {
-        ScaleMonkAds.InterstitialClickedEvent += Feedback("Interstitial Clicked");
-        ScaleMonkAds.RewardedClickedEvent += Feedback("Video Clicked");
-        ScaleMonkAds.InterstitialDisplayedEvent += Feedback("Interstitial Displayed");
-        ScaleMonkAds.RewardedDisplayedEvent += Feedback("Video Displayed");
-        ScaleMonkAds.RewardedStartedEvent += Feedback("Video Started");
-        ScaleMonkAds.RewardedNotDisplayedEvent += Feedback("Video Not Displayed");
-        ScaleMonkAds.InterstitialNotDisplayedEvent += Feedback("Interstitial Not Displayed");
-        ScaleMonkAds.InterstitialReadyEvent += Feedback("Interstitial Ready");
-        ScaleMonkAds.InterstitialNotReadyEvent += Feedback("Interstitial Not Ready");
-        ScaleMonkAds.RewardedReadyEvent += Feedback("Rewarded Ready");
-        ScaleMonkAds.RewardedNotReadyEvent += Feedback("Rewarded Not Ready");
-        ScaleMonkAds.BannerCompletedDisplayedEvent += Feedback("Banner Displayed");
-        ScaleMonkAds.BannerFailedDisplayedEvent += Feedback("Banner Not Displayed");
+        scaleMonkAds.InterstitialClickedEvent += Feedback("Interstitial Clicked");
+        scaleMonkAds.RewardedClickedEvent += Feedback("Video Clicked");
+        scaleMonkAds.InterstitialDisplayedEvent += Feedback("Interstitial Displayed");
+        scaleMonkAds.RewardedDisplayedEvent += Feedback("Video Displayed");
+        scaleMonkAds.RewardedStartedEvent += Feedback("Video Started");
+        scaleMonkAds.RewardedNotDisplayedEvent += Feedback("Video Not Displayed");
+        scaleMonkAds.InterstitialNotDisplayedEvent += Feedback("Interstitial Not Displayed");
+        scaleMonkAds.InterstitialReadyEvent += Feedback("Interstitial Ready");
+        scaleMonkAds.InterstitialNotReadyEvent += Feedback("Interstitial Not Ready");
+        scaleMonkAds.RewardedReadyEvent += Feedback("Rewarded Ready");
+        scaleMonkAds.RewardedNotReadyEvent += Feedback("Rewarded Not Ready");
+        scaleMonkAds.BannerCompletedDisplayedEvent += Feedback("Banner Displayed");
+        scaleMonkAds.BannerFailedDisplayedEvent += Feedback("Banner Not Displayed");
         
         ScaleMonkAds.Initialize(() =>
             {
@@ -78,7 +79,7 @@ public class ScaleMonkDebugMenu : MonoBehaviour
             }
         );
     }
-
+    
     private Action Feedback(string start)
     {
         return () => LogField.text = start + " at " + menuTag;

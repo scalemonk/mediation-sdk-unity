@@ -19,7 +19,7 @@ public class MockAd : MonoBehaviour
         Rewarded
     }
 
-    private ScaleMonkAds _scaleMonkAds;
+    private ScaleMonkAdsSDK _scaleMonkAds;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +68,7 @@ public class MockAd : MonoBehaviour
         mockAdTag = tag;
     }
 
-    public void SetScalemonkAds(ScaleMonkAds adsInstance)
+    public void SetScaleMonkAds(ScaleMonkAdsSDK adsInstance)
     {
         _scaleMonkAds = adsInstance;
     }

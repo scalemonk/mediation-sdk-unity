@@ -6,38 +6,35 @@
 //
 
 #if UNITY_ANDROID
-using UnityEngine;
-
 namespace ScaleMonk.Ads.Android
 {
     public class AdsAndroidBinding : IAdsBinding
     {
-        const string _label = "AdsAndroidBinding";
-        private AndroidJavaObject _adsBinding;
-        private AndroidJavaObject _activity;
-        private AndroidJavaObject _analytics;
-        private IAnalytics extraAnalytics;
+        private readonly IBridge _androidJavaBridge;
 
-        public void Initialize(ScaleMonkAds adsInstance)
+        public AdsAndroidBinding(IBridge androidJavaBridge)
         {
-            AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            _activity = jc.GetStatic<AndroidJavaObject>("currentActivity");
-            _adsBinding = new AndroidJavaObject("com.scalemonk.ads.unity.binding.AdsBinding", _activity);
+            _androidJavaBridge = androidJavaBridge;
         }
 
+        public void Initialize(ScaleMonkAdsSDK adsInstance)
+        {
+            
+        }
+        
         public void ShowInterstitial(string tag)
         {
-            _adsBinding.Call("showInterstitial", _activity, tag);
+            _androidJavaBridge.CallNativeMethodWithActivity("showInterstitial", tag);
         }
 
         public void ShowRewarded(string tag)
         {
-            _adsBinding.Call("showRewarded", _activity, tag);
+            _androidJavaBridge.CallNativeMethodWithActivity("showRewarded", tag);
         }
 
         public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            _adsBinding.Call("showBanner", _activity,
+            _androidJavaBridge.CallNativeMethod("showBanner",
                 bannerPosition.ToSnakeCaseString(),
                 tag,
                 bannerSize.Width,
@@ -46,17 +43,17 @@ namespace ScaleMonk.Ads.Android
 
         public void StopBanner(string tag)
         {
-            _adsBinding.Call("stopBanner", _activity, tag);
+            _androidJavaBridge.CallNativeMethodWithActivity("stopBanner", tag);
         }
 
         public bool IsInterstitialReadyToShow(string tag)
         {
-            return _adsBinding.Call<bool>("isInterstitialReadyToShow", tag);
+            return _androidJavaBridge.CallBooleanNativeMethod("isInterstitialReadyToShow", tag);
         }
 
         public bool IsRewardedVideoReadyToShow(string tag)
         {
-            return _adsBinding.Call<bool>("isRewardedVideoReadyToShow", tag);
+            return _androidJavaBridge.CallBooleanNativeMethod("isRewardedVideoReadyToShow", tag);
         }
 
         public bool AreRewardedEnabled()
@@ -73,27 +70,27 @@ namespace ScaleMonk.Ads.Android
 
         public void SetHasGDPRConsent(bool consent)
         {
-            _adsBinding.Call("setHasGDPRConsent", consent);
+            _androidJavaBridge.CallNativeMethod("setHasGDPRConsent", consent);
         }
 
         public void SetIsApplicationChildDirected(bool isChildDirected)
         {
-            _adsBinding.Call("setIsApplicationChildDirected", isChildDirected);
+            _androidJavaBridge.CallNativeMethod("setIsApplicationChildDirected", isChildDirected);
         }
 
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
-            _adsBinding.Call("setUserCantGiveGDPRConsent", cantGiveConsent);
+            _androidJavaBridge.CallNativeMethod("setUserCantGiveGDPRConsent", cantGiveConsent);
         }
 
         public void CreateAnalyticsBinding()
         {
-            _adsBinding.Call("addAnalytics");
+            _androidJavaBridge.CallNativeMethod("addAnalytics");
         }
 
         public void SetCustomUserId(string customUserId)
         {
-            _adsBinding.Call("setCustomUserId", customUserId);
+            _androidJavaBridge.CallNativeMethod("setCustomUserId", customUserId);
         }
     }
 }

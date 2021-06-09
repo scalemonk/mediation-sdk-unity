@@ -5,18 +5,15 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 namespace ScaleMonk.Ads
 {
     public class AdsEditorBinding : IAdsBinding
     {
-        private ScaleMonkAds _scaleMonkAds;
+        private ScaleMonkAdsSDK _scaleMonkAds;
         private MockBannerAd _banner;
         
-        public void Initialize(ScaleMonkAds adsInstance)
+        public void Initialize(ScaleMonkAdsSDK adsInstance)
         {
             _scaleMonkAds = adsInstance;
             _scaleMonkAds.InitializationCompleted();
@@ -34,7 +31,7 @@ namespace ScaleMonk.Ads
             mockAdPrefab = Resources.Load<MockAd>(mockAdPrefabName);
             
             mockAdInstance = GameObject.Instantiate(mockAdPrefab);
-            mockAdInstance.SetScalemonkAds(_scaleMonkAds);
+            mockAdInstance.SetScaleMonkAds(_scaleMonkAds);
             return mockAdInstance;
         }
 
