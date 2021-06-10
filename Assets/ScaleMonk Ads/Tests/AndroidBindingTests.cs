@@ -88,7 +88,7 @@ namespace ScaleMonk.Ads
         {
             GivenAnAdsAndroidBinding();
 
-            // When Show banner is called with tag "aTag"
+            // When SetCustomUserId is called with tag "aTag"
             _androidBinding.SetCustomUserId("anUserId");
 
             // Then the java bridge is called with the right parameters
@@ -96,6 +96,36 @@ namespace ScaleMonk.Ads
                 "setCustomUserId",
                 Arg.Is<object[]>(parameters =>
                     parameters[0].ToString() == "anUserId")
+            );
+        }
+        
+        [Test]
+        public void SetUserTypeAndroidBridgeTest()
+        {
+            GivenAnAdsAndroidBinding();
+            
+            _androidBinding.SetUserType(UserType.PAYING_USER);
+
+            // Then the java bridge is called with the right parameters
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod(
+                "setUserType",
+                Arg.Is<object[]>(parameters =>
+                    parameters[0].ToString() == "paying_user")
+            );
+        }
+        
+        [Test]
+        public void SetUserTypeNonPayingUserAndroidBridgeTest()
+        {
+            GivenAnAdsAndroidBinding();
+            
+            _androidBinding.SetUserType(UserType.NON_PAYING_USER);
+
+            // Then the java bridge is called with the right parameters
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod(
+                "setUserType",
+                Arg.Is<object[]>(parameters =>
+                    parameters[0].ToString() == "non_paying_user")
             );
         }
     }
