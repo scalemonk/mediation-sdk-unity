@@ -86,6 +86,11 @@ namespace ScaleMonk.Ads.iOS
             SMSetCustomUserId(customUserId);
         }
 
+        public void SetUserType(UserType userType)
+        {
+            SMSetUserType(userType.ToStringUserType());
+        }
+
         #region callbacks from native binding
 
         public void CompletedRewardedDisplay(string location)
@@ -193,6 +198,9 @@ namespace ScaleMonk.Ads.iOS
 
         [DllImport("__Internal")]
         private static extern void SMSetCustomUserId(string customUserId);
+        
+        [DllImport("__Internal")]
+        private static extern void SMSetUserType(string userType);
         
         #endregion
     
