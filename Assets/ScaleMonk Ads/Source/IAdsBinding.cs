@@ -25,5 +25,6 @@ namespace ScaleMonk.Ads
         void SetUserCantGiveGDPRConsent(bool cantGiveConsent);
         void CreateAnalyticsBinding();
         void SetCustomUserId(string customUserId);
+        void SetUserType(UserType userType);
     }
 }

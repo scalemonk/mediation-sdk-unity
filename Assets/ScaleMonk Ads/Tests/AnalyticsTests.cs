@@ -76,7 +76,7 @@ namespace ScaleMonk.Ads
         }
         
         [Test]
-        public void AddingMoreThanOneExternalAnalyticsJustCreateOneAnalyticsBinding()
+        public void AddingMoreThanOneExternalAnalyticsJustCreatesOneAnalyticsBinding()
         {
             // Given an initialized SDK
             var adsBinding = Substitute.For<IAdsBinding>();

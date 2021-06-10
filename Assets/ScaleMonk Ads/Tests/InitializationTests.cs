@@ -6,7 +6,7 @@ namespace ScaleMonk.Ads
     public class InitializationTests
     {
         [Test]
-        public void SDKCanBeInitialize()
+        public void SDKCanBeInitialized()
         {
             // Given an sdk instance
             var adsBinding = Substitute.For<IAdsBinding>();

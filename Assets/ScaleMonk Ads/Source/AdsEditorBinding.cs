@@ -142,6 +142,12 @@ namespace ScaleMonk.Ads
 
         public void SetCustomUserId(string customUserId)
         {
+            _scaleMonkAds.SetCustomUserId(customUserId);
+        }
+
+        public void SetUserType(UserType userType)
+        {
+            _scaleMonkAds.SetUserType(userType);
         }
 
         private bool isPortrait()

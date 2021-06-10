@@ -6,7 +6,7 @@ namespace ScaleMonk.Ads
     {
         private const string Label = "ScaleMonkAds";
         private const string DefaultTag = "DEFAULT_TAG";
-        
+
         private readonly IAdsBinding _adsBinding;
         private static Action _initializationCallback;
         private bool _isInitialized;
@@ -21,7 +21,8 @@ namespace ScaleMonk.Ads
         /// <param name="adsBinding">Ads Binding implementation for the current platform (Android/iOS/Editor)</param>
         /// <param name="nativeBridgeService"></param>
         /// <param name="analyticsService"></param>
-        public ScaleMonkAdsSDK(IAdsBinding adsBinding, INativeBridgeService nativeBridgeService, AnalyticsService analyticsService)
+        public ScaleMonkAdsSDK(IAdsBinding adsBinding, INativeBridgeService nativeBridgeService,
+            AnalyticsService analyticsService)
         {
             _adsBinding = adsBinding;
             _nativeBridgeService = nativeBridgeService;
@@ -66,85 +67,73 @@ namespace ScaleMonk.Ads
         /// Informs the interstitial ad was clicked.
         /// </summary>
         public Action InterstitialClickedEvent;
-        
+
         /// <summary>
         /// Informs that an interstitial ad has been successfully cached and is ready to be shown.
         /// </summary>
         public Action InterstitialReadyEvent;
-        
+
         /// <summary>
         /// Informs that an interstitial ad has not been successfully cached and is not ready to be shown.
         /// </summary>
         public Action InterstitialNotReadyEvent;
-        
+
         /// <summary>
         /// Informs that a rewarded ad has been successfully cached and is ready to be shown.
         /// </summary>
         public Action RewardedReadyEvent;
-        
+
         /// <summary>
         /// Informs that a rewarded ad has not been successfully cached and is not ready to be shown.
         /// </summary>
         public Action RewardedNotReadyEvent;
-        
+
         /// <summary>
         /// Informs the banner display was not successful.
         ///
         /// To see the reason for the failed display, check the reason field in the `ads:display-failed` analytics event.
         /// </summary>
         public Action BannerFailedDisplayedEvent;
-        
+
         /// <summary>
         /// Informs the banner display was successful.
         /// </summary>
         public Action BannerCompletedDisplayedEvent;
-        
+
         /// <summary>
         /// Tells the ScaleMonk SDK whether the user has granted consent as prescribed by the GDPR laws and that data can be collected
         ///
         /// </summary>
         /// <param name="consent"> True if the user has granted consent, false otherwise
         /// </param>
-
         public void SetHasGDPRConsent(bool consent)
         {
-            RunIfInitialized(() =>
-            {
-                _adsBinding.SetHasGDPRConsent(consent);
-            });
+            RunIfInitialized(() => { _adsBinding.SetHasGDPRConsent(consent); });
         }
-        
+
         /// <summary>
         /// Tells the ScaleMonk SDK whether the application is targeted to children and should only show age-appropriate ads
         ///
         /// </summary>
         /// <param name="isChildDirected"> True if the app is child directed, false otherwise
         /// </param>
-
         public void SetIsApplicationChildDirected(bool isChildDirected)
         {
-            RunIfInitialized(() =>
-            {
-                _adsBinding.SetIsApplicationChildDirected(isChildDirected);    
-            });
+            RunIfInitialized(() => { _adsBinding.SetIsApplicationChildDirected(isChildDirected); });
         }
-        
+
         /// <summary>
         /// Tells the ScaleMonk SDK that the user can't give consent for GDPR since they're underage
         ///
         /// </summary>
         /// <param name="consent"> True if the user is underage, false otherwise
         /// </param>
-
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
-            RunIfInitialized(() =>
-            {
-                _adsBinding.SetUserCantGiveGDPRConsent(cantGiveConsent);
-            });
+            RunIfInitialized(() => { _adsBinding.SetUserCantGiveGDPRConsent(cantGiveConsent); });
         }
 
-        public void AddAnalytics(IAnalytics analytics )
+        public void AddAnalytics(IAnalytics analytics)
         {
             RunIfInitialized(() =>
             {
@@ -153,10 +142,11 @@ namespace ScaleMonk.Ads
                     _adsBinding.CreateAnalyticsBinding();
                     _hasAnalyticsBinding = true;
                 }
+
                 _analyticsService.AddAnalytics(analytics);
             });
         }
-        
+
         /// <summary>
         /// Set a new id to track the user instead using the FIU
         ///
@@ -165,10 +155,7 @@ namespace ScaleMonk.Ads
         /// </param>
         public void SetCustomUserId(string customUserId)
         {
-            RunIfInitialized(() =>
-            {
-                _adsBinding.SetCustomUserId(customUserId);
-            });
+            _adsBinding.SetCustomUserId(customUserId);
         }
 
         /// <summary>
@@ -180,7 +167,7 @@ namespace ScaleMonk.Ads
         {
             ShowInterstitial(DefaultTag);
         }
-        
+
         /// <summary>
         /// Displays an interstitial ad.
         ///
@@ -193,7 +180,7 @@ namespace ScaleMonk.Ads
             RunIfInitialized(() =>
             {
                 AdsLogger.LogWithFormat("{0} | Show interstitial at tag {1}", Label, tag);
-                _adsBinding.ShowInterstitial(tag); 
+                _adsBinding.ShowInterstitial(tag);
             });
         }
 
@@ -207,7 +194,7 @@ namespace ScaleMonk.Ads
         {
             ShowRewarded(DefaultTag);
         }
-        
+
         /// <summary>
         /// Displays a rewarded ad.
         ///
@@ -220,7 +207,7 @@ namespace ScaleMonk.Ads
             RunIfInitialized(() =>
             {
                 AdsLogger.LogWithFormat("{0} | Show rewarded at tag {1}", Label, tag);
-                _adsBinding.ShowRewarded(tag);    
+                _adsBinding.ShowRewarded(tag);
             });
         }
 
@@ -238,10 +225,10 @@ namespace ScaleMonk.Ads
             RunIfInitialized(() =>
             {
                 AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", Label, tag);
-                _adsBinding.ShowBanner(tag, bannerSize, bannerPosition);    
+                _adsBinding.ShowBanner(tag, bannerSize, bannerPosition);
             });
         }
-        
+
         /// <summary>
         /// Displays a banner ad.
         ///
@@ -254,7 +241,7 @@ namespace ScaleMonk.Ads
         {
             ShowBanner(tag, _defaultBannerSize, bannerPosition);
         }
-        
+
         /// <summary>
         /// Displays a banner ad.
         ///
@@ -287,13 +274,13 @@ namespace ScaleMonk.Ads
         /// <param name="tag">The game tag from where the ad will be removed from (like menu or store).</param>
         public void StopBanner(string tag)
         {
-            RunIfInitialized(() => 
+            RunIfInitialized(() =>
             {
                 AdsLogger.LogWithFormat("{0} | Stop banner at tag {1}", Label, tag);
                 _adsBinding.StopBanner(tag);
             });
         }
-        
+
         /// <summary>
         /// Stops a banner ad.
         ///
@@ -303,11 +290,16 @@ namespace ScaleMonk.Ads
             StopBanner(DefaultTag);
         }
 
+        public void SetUserType(UserType userType)
+        {
+            _adsBinding.SetUserType(userType);
+        }
+
         public void InitializeBinding()
         {
             _adsBinding.Initialize(this);
         }
-        
+
         static void CallAction(Action action)
         {
             if (action != null)
@@ -317,6 +309,7 @@ namespace ScaleMonk.Ads
         }
 
         #region Ads Native Binding Callbacks
+
         public void CompletedRewardedDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Rewarded displayed at tag {1}", Label, tag);
@@ -358,52 +351,51 @@ namespace ScaleMonk.Ads
             AdsLogger.LogWithFormat("{0} | Interstitial not displayed at tag {1}", Label, tag);
             CallAction(InterstitialNotDisplayedEvent);
         }
-        
+
         public void InterstitialReady()
         {
             AdsLogger.LogWithFormat("{0} | Interstitial ready to be displayed", Label);
             CallAction(InterstitialReadyEvent);
         }
-        
+
         public void InterstitialNotReady()
         {
             AdsLogger.LogWithFormat("{0} | Interstitial not ready to be displayed", Label);
             CallAction(InterstitialNotReadyEvent);
         }
-        
-         public void RewardedReady()
+
+        public void RewardedReady()
         {
             AdsLogger.LogWithFormat("{0} | Rewarded ad ready to be displayed", Label);
             CallAction(RewardedReadyEvent);
         }
 
-         public void RewardedNotReady()
-         {
-             AdsLogger.LogWithFormat("{0} | Rewarded ad not ready to be displayed", Label);
-             CallAction(RewardedNotReadyEvent);  
-         }
+        public void RewardedNotReady()
+        {
+            AdsLogger.LogWithFormat("{0} | Rewarded ad not ready to be displayed", Label);
+            CallAction(RewardedNotReadyEvent);
+        }
 
-         public void FailedBannerDisplay(string tag)
-         {
-             AdsLogger.LogWithFormat("{0} | Banner not displayed at tag {1}", Label, tag);
-             CallAction(BannerFailedDisplayedEvent);
-         }
+        public void FailedBannerDisplay(string tag)
+        {
+            AdsLogger.LogWithFormat("{0} | Banner not displayed at tag {1}", Label, tag);
+            CallAction(BannerFailedDisplayedEvent);
+        }
 
-         public void CompletedBannerDisplay(string tag)
-         {
-             AdsLogger.LogWithFormat("{0} | Banner displayed at tag {1}", Label, tag);
-             CallAction(BannerCompletedDisplayedEvent); 
-         }
+        public void CompletedBannerDisplay(string tag)
+        {
+            AdsLogger.LogWithFormat("{0} | Banner displayed at tag {1}", Label, tag);
+            CallAction(BannerCompletedDisplayedEvent);
+        }
 
-         public void InitializationCompleted()
-         {
-             AdsLogger.LogWithFormat("{0} | SDK Initialization Completed", Label);
-             CallAction(_initializationCallback);
-         }
-         
-  
+        public void InitializationCompleted()
+        {
+            AdsLogger.LogWithFormat("{0} | SDK Initialization Completed", Label);
+            CallAction(_initializationCallback);
+        }
+
         #endregion
-        
+
         private void RunIfInitialized(Action action)
         {
             if (!_isInitialized)
@@ -411,7 +403,7 @@ namespace ScaleMonk.Ads
                 AdsLogger.LogError("ScaleMonk SDK must be initialized. Make sure to call ScaleMonkAds.Initialize()");
                 return;
             }
-            
+
             action();
         }
 
@@ -424,7 +416,7 @@ namespace ScaleMonk.Ads
             }
 
             AdsLogger.LogWithFormat("{0} | Initializing Ads SDK", Label);
-            
+
             _isInitialized = true;
             _initializationCallback = callback;
 

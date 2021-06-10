@@ -7,7 +7,6 @@
 
 #if UNITY_ANDROID
 
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScaleMonk.Ads.Android
@@ -31,18 +30,12 @@ namespace ScaleMonk.Ads.Android
         
         public void CallNativeMethodWithActivity(string methodName, params object[] args)
         {
-            var list = new List<object> {_activity};
-            foreach (var o in args)
-            {
-                list.Add(o);
-            }
-
-            _adsBinding.Call(methodName, list.ToArray());
+            _adsBinding.Call(methodName, _activity, args);
         }
 
         public bool CallBooleanNativeMethod(string methodName, params object[] args)
         {
-            return _adsBinding.Call<bool>(methodName, args);
+            return _adsBinding.Call<bool>(methodName, _activity, args);
         }
     }
 }

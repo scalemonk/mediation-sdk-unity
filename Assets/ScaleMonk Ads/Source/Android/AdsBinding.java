@@ -3,7 +3,6 @@ package com.scalemonk.ads.unity.binding;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
-import androidx.annotation.Keep;
 
 import com.scalemonk.ads.BannerContainer;
 import com.scalemonk.ads.InterstitialEventListener;
@@ -11,9 +10,12 @@ import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
+import com.scalemonk.libs.ads.core.domain.UserType;
+import com.scalemonk.libs.ads.core.domain.session.UserTypeProvider;
 import com.unity3d.player.UnityPlayer;
 
-@Keep
+import org.jetbrains.annotations.NotNull;
+
 public class AdsBinding {
     public static String TAG = "AdsBinding";
     private final Activity activity;
@@ -113,8 +115,37 @@ public class AdsBinding {
         analyticsListener = new AdsBindingAnalyticsListener();
         ScaleMonkAds.addAnalytics(analyticsListener);
     }
-    
+
     public void setCustomUserId(final String customUserId) {
         ScaleMonkAds.updateCustomUserId(customUserId);
+    }
+
+    public void setUserType(final String userType) {
+        ScaleMonkAds.updateUserTypeProvider(new UnityUserTypeProvider(getUserTypeFromString(userType)));
+    }
+    
+    private UserType getUserTypeFromString(String userTypeAsString) {
+        switch (userTypeAsString) {
+            case "paying_user":
+                return UserType.PAYING_USER_USER_TYPE;
+            case "non_paying_user":
+                return UserType.NON_PAYING_USER_USER_TYPE;
+            default:
+                return UserType.INVALID_USER_TYPE;
+        }
+    }
+}
+
+class UnityUserTypeProvider implements UserTypeProvider {
+    protected UserType userType = UserType.NON_PAYING_USER_USER_TYPE;
+
+    public UnityUserTypeProvider(UserType userType) {
+        this.userType = userType;
+    }
+
+    @NotNull
+    @Override
+    public UserType get() {
+        return userType;
     }
 }

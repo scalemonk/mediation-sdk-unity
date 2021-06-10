@@ -5,6 +5,8 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using System;
+
 namespace ScaleMonk.Ads.Android
 {
     public class AdsAndroidBinding : IAdsBinding
@@ -90,6 +92,11 @@ namespace ScaleMonk.Ads.Android
         public void SetCustomUserId(string customUserId)
         {
             _androidJavaBridge.CallNativeMethod("setCustomUserId", customUserId);
+        }
+        
+        public void SetUserType(UserType userType)
+        {
+            _androidJavaBridge.CallNativeMethod("setUserType", userType.ToStringUserType());
         }
     }
 }
