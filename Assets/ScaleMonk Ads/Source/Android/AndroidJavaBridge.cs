@@ -7,6 +7,7 @@
 
 #if UNITY_ANDROID
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScaleMonk.Ads.Android
