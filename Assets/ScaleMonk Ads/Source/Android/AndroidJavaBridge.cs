@@ -30,12 +30,18 @@ namespace ScaleMonk.Ads.Android
         
         public void CallNativeMethodWithActivity(string methodName, params object[] args)
         {
-            _adsBinding.Call(methodName, _activity, args);
+            var list = new List<object> {_activity};
+            foreach (var o in args)
+            {
+                list.Add(o);
+            }
+
+            _adsBinding.Call(methodName, list.ToArray());
         }
 
         public bool CallBooleanNativeMethod(string methodName, params object[] args)
         {
-            return _adsBinding.Call<bool>(methodName, _activity, args);
+            return _adsBinding.Call<bool>(methodName, args);
         }
     }
 }

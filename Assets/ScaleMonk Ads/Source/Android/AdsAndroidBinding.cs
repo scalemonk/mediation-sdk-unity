@@ -18,7 +18,7 @@ namespace ScaleMonk.Ads.Android
 
         public void Initialize(ScaleMonkAdsSDK adsInstance)
         {
-            
+            _androidJavaBridge.CallNativeMethod("initialize");
         }
         
         public void ShowInterstitial(string tag)

@@ -28,12 +28,14 @@ public class AdsBinding {
         this.videoListener = new AdsBindingRewardedListener();
         this.interstitialListener = new AdsBindingInterstitialListener();
         this.bannerListener = new AdsBindingBannerListener();
+    }
 
+    public void initialize() {
         this.activity.runOnUiThread(() -> {
             setupAds(interstitialListener, videoListener, bannerListener);
         });
     }
-
+    
     public boolean isInterstitialReadyToShow(String tag) {
         Log.d(TAG, "Checking availability of interstitials at: " + tag + ".");
         return ScaleMonkAds.isInterstitialReadyToShow(tag);
