@@ -16,7 +16,6 @@ namespace ScaleMonk.Ads
             _androidBinding = new AdsAndroidBinding(_mockAndroidJavaBridge);
         }
         
-        
         [Test]
         public void ShowBannerAndroidBridgeTest()
         {
@@ -81,6 +80,22 @@ namespace ScaleMonk.Ads
                 "showRewarded",
                 Arg.Is<object[]>(parameters =>
                     parameters[0].ToString() == "aTag" )
+            );
+        }
+        
+        [Test]
+        public void SetCustomUserIdAndroidBridgeTest()
+        {
+            GivenAnAdsAndroidBinding();
+
+            // When Show banner is called with tag "aTag"
+            _androidBinding.SetCustomUserId("anUserId");
+
+            // Then the java bridge is called with the right parameters
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod(
+                "setCustomUserId",
+                Arg.Is<object[]>(parameters =>
+                    parameters[0].ToString() == "anUserId")
             );
         }
     }

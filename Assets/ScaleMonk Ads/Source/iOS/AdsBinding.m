@@ -211,3 +211,9 @@ void SMAddAnalytics() {
     analyticsDelegateViewController = [[AdsBindingAnalyticsViewController alloc] init];    
     [smAds addAnalytics:(id<SMAnalyticsListener>) analyticsDelegateViewController];
 }
+
+bool SMSetCustomUserId(char* tagChr) {
+// FIXME: implement this method on SMAds
+//     NSString *tag = [NSString stringWithUTF8String: tagChr];
+//     return [smAds setCustomUserId:tag];
+}

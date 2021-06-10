@@ -13,9 +13,9 @@ namespace ScaleMonk.Ads.iOS
     public class AdsiOSBinding :IAdsBinding
     {
         const string _label = "AdsIOSBinding";
-        ScaleMonkAds _adsInstance;
+        ScaleMonkAdsSDK _adsInstance;
 
-        public void Initialize(ScaleMonkAds adsInstance)
+        public void Initialize(ScaleMonkAdsSDK adsInstance)
         {
             _adsInstance = adsInstance;
             SMAdsInitialize();
@@ -79,6 +79,11 @@ namespace ScaleMonk.Ads.iOS
         public void CreateAnalyticsBinding()
         {
             SMAddAnalytics();
+        }
+
+        public void SetCustomUserId(string customUserId)
+        {
+            SMSetCustomUserId(customUserId);
         }
 
         #region callbacks from native binding
@@ -186,6 +191,9 @@ namespace ScaleMonk.Ads.iOS
         [DllImport("__Internal")]
         private static extern void SMAddAnalytics();
 
+        [DllImport("__Internal")]
+        private static extern void SMSetCustomUserId(string customUserId);
+        
         #endregion
     
     }
