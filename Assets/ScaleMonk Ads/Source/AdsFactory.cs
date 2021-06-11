@@ -1,7 +1,8 @@
 using ScaleMonk.Ads;
-#if UNITY_ANDROID
+#if UNITY_IOS
+using ScaleMonk.Ads.iOS;
+#elif UNITY_ANDROID
 using ScaleMonk.Ads.Android;
-
 #endif
 
 public static class AdsFactory

@@ -15,11 +15,21 @@ static UIViewController *videoDelegateViewController;
 static UIViewController *interstitialDelegateViewController;
 static UIViewController *bannerDelegateViewController;
 static UIViewController *analyticsDelegateViewController;
+static NSString *_customUserId;
+static NSDictionary *_extraInfo;
 static SMAds *smAds;
 
 void SMAdsInitialize() {
-    smAds = [[SMAds alloc] init];
-
+    if (_customUserId != nil) {
+        smAds = [[SMAds alloc] initWithCustomUserId:_customUserId andAnalytics:nil];
+    } else {
+        smAds = [[SMAds alloc] init];
+    }
+    
+    if ([_extraInfo count] > 0) {
+        [smAds setExtraInfo: _extraInfo];
+    }
+    
     [smAds initialize: ^(BOOL success){
         NSLog(@"Initialization Completed");
         UnitySendMessage("AdsMonoBehaviour", "InitializationCompleted", [@"" cStringUsingEncoding:NSUTF8StringEncoding]);
@@ -212,8 +222,19 @@ void SMAddAnalytics() {
     [smAds addAnalytics:(id<SMAnalyticsListener>) analyticsDelegateViewController];
 }
 
-bool SMSetCustomUserId(char* tagChr) {
-// FIXME: implement this method on SMAds
-//     NSString *tag = [NSString stringWithUTF8String: tagChr];
-//     return [smAds setCustomUserId:tag];
+void SMSetCustomUserId(char* customUserId) {
+    _customUserId = [NSString stringWithUTF8String: customUserId];
+}
+
+static NSNumber* userTypeFromChar(char* userType) {
+    
+    if ([[NSString stringWithUTF8String:userType]  isEqual: @"paying_user"]) {
+        return [NSNumber numberWithInt:2];
+    }
+    
+    return [NSNumber numberWithInt:1];
+}
+
+void SMSetUserType(char* userType) {
+    _extraInfo = @{@"user_type": userTypeFromChar(userType) };
 }
