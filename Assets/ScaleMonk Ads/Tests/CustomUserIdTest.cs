@@ -18,7 +18,7 @@ namespace ScaleMonk.Ads
             scaleMonkAds.SetCustomUserId("userId");
 
             // Then the custom user Id is not set
-            adsBinding.DidNotReceive().SetCustomUserId(Arg.Any<string>());
+            adsBinding.Received(1).SetCustomUserId(Arg.Any<string>());
         }
 
         [Test]
