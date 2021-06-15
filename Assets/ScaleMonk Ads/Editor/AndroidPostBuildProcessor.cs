@@ -21,7 +21,6 @@ namespace ScaleMonk_Ads.Editor
             ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
             if (string.IsNullOrEmpty(scaleMonkXml.android))
                 return;
-            
             Debug.Log("OnPostGenerateGradleAndroidProject. Path: " + path);
             string gradlePropertiesFile = path + "/../gradle.properties";
             
@@ -34,6 +33,9 @@ namespace ScaleMonk_Ads.Editor
             writer.WriteLine("android.useAndroidX=true");
             writer.WriteLine("android.enableJetifier=true");
             writer.WriteLine("org.gradle.parallel=true");
+#if !UNITY_2019_3_OR_NEWER
+            writer.WriteLine("unityStreamingAssets=.unity3d**STREAMING_ASSETS**");
+#endif
             writer.Flush();
             writer.Close();
         }
