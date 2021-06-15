@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.7.0] - 2021-06-15
+
+### Changed
+- Updated Android ScaleMonk version to 3.0.0
 
 ## [1.6.0] - 2021-05-27
 
@@ -10,6 +14,9 @@ All notable changes to this project will be documented in this file.
 
 - Added minify support for Android
 - Added a new API to accept analytics other than the default one.
+
+### Changed
+- Updated Android ScaleMonk version to 2.0.0
 
 ## [1.5.0] - 2021-05-07
 
