@@ -70,12 +70,12 @@ public class ScaleMonkDebugMenu : MonoBehaviour
         scaleMonkAds.RewardedNotReadyEvent += Feedback("Rewarded Not Ready");
         scaleMonkAds.BannerCompletedDisplayedEvent += Feedback("Banner Displayed");
         scaleMonkAds.BannerFailedDisplayedEvent += Feedback("Banner Not Displayed");
+        scaleMonkAds.InitializationCompletedEvent += OnClickShowBanner;
         
         ScaleMonkAds.Initialize(() =>
             {
                 // Here the SDK is initialized and you can interact with it
                 AdsLogger.LogInfo("SDK is ready to show Ads");
-                OnClickShowBanner();
             }
         );
     }

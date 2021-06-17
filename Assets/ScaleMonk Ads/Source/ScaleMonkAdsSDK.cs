@@ -101,6 +101,11 @@ namespace ScaleMonk.Ads
         public Action BannerCompletedDisplayedEvent;
 
         /// <summary>
+        /// Informs the sdk was initialized.
+        /// </summary>
+        public Action InitializationCompletedEvent;
+        
+        /// <summary>
         /// Tells the ScaleMonk SDK whether the user has granted consent as prescribed by the GDPR laws and that data can be collected
         ///
         /// </summary>
@@ -392,6 +397,7 @@ namespace ScaleMonk.Ads
         {
             AdsLogger.LogWithFormat("{0} | SDK Initialization Completed", Label);
             CallAction(_initializationCallback);
+            CallAction(InitializationCompletedEvent);
         }
 
         #endregion

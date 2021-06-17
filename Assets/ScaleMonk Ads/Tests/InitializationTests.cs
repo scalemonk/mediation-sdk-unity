@@ -1,3 +1,4 @@
+using System;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -44,6 +45,31 @@ namespace ScaleMonk.Ads
 
             // Then it's initialized just once
             adsBinding.Received(1).Initialize(scaleMonkAds);
+        }
+
+        [Test]
+        public void InitializationCompletedEventIsCalledWhenSDKIsInitialized()
+        {
+            // Given an sdk instance
+            var adsBinding = Substitute.For<IAdsBinding>();
+            var monoBehaviourService = Substitute.For<INativeBridgeService>();
+            var onInitialized = Substitute.For<Action>();
+            
+            AnalyticsService analyticsService = new AnalyticsService();
+            var scaleMonkAds = new ScaleMonkAdsSDK(adsBinding, monoBehaviourService, analyticsService);
+            scaleMonkAds.InitializationCompletedEvent += onInitialized;
+            
+            adsBinding
+                .When(binding => binding.Initialize(scaleMonkAds))
+                .Do(binding => scaleMonkAds.InitializationCompleted());
+
+            // When we call the initialization of the SDK
+            scaleMonkAds.Initialize(() => { });
+
+            // Then InitializationCompletedEvent is received
+            onInitialized.Received(1);
+
+
         }
     }
 }
