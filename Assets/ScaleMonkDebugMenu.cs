@@ -28,6 +28,8 @@ public class ScaleMonkDebugMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scaleMonkAds.SetCustomUserId("My_CUSTOM_USER_ID");
+        scaleMonkAds.SetUserType(UserType.PAYING_USER);
         InitButton.onClick.AddListener(OnClickInit);
         ShowInterstitialButton.onClick.AddListener(OnClickShowInterstitial);
         ShowRewardedVideoButton.onClick.AddListener(OnClickShowRewarded);

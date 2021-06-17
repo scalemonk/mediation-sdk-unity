@@ -184,7 +184,8 @@ void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
 }
 
 void SMAdsStopBanner(char* tagChr) {
-    [smAds stopLoadingBanners];
+    NSString *tag = [NSString stringWithUTF8String: tagChr];
+    [smAds stopLoadingBannersWithTag:tag];
 }
 
 void SMSetApplicationChildDirected(bool isChildDirected){

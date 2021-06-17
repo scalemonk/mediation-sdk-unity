@@ -5,6 +5,7 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using JetBrains.Annotations;
 using UnityEngine;
 namespace ScaleMonk.Ads
 {
@@ -12,12 +13,13 @@ namespace ScaleMonk.Ads
     {
         private ScaleMonkAdsSDK _scaleMonkAds;
         private MockBannerAd _banner;
-        
+        private UserType? _userType;
+        [CanBeNull] private string _customUserId;
+
         public void Initialize(ScaleMonkAdsSDK adsInstance)
         {
             _scaleMonkAds = adsInstance;
             _scaleMonkAds.InitializationCompleted();
-            
             Debug.Log("ScaleMonkAds initialized successfully");
         }
         
@@ -142,12 +144,12 @@ namespace ScaleMonk.Ads
 
         public void SetCustomUserId(string customUserId)
         {
-            _scaleMonkAds.SetCustomUserId(customUserId);
+            _customUserId = customUserId;
         }
 
         public void SetUserType(UserType userType)
         {
-            _scaleMonkAds.SetUserType(userType);
+            _userType = userType;
         }
 
         private bool isPortrait()
