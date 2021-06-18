@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Assets.ScaleMonk_Ads;
 using UnityEngine;
 namespace ScaleMonk.Ads
 {
@@ -129,6 +130,9 @@ namespace ScaleMonk.Ads
             return true;
         }
         public void SetHasGDPRConsent(bool consent)
+        {
+        }
+        public void SetHasGDPRConsent(GDPRConsent consent)
         {
         }
         public void SetIsApplicationChildDirected(bool isChildDirected)

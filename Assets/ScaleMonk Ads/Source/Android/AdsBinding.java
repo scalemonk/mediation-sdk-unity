@@ -10,6 +10,7 @@ import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
+import com.scalemonk.ads.GDPRConsent;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 import com.unity3d.player.UnityPlayer;
 
@@ -97,6 +98,23 @@ public class AdsBinding {
     
     public void setHasGDPRConsent(final boolean consent) {
         ScaleMonkAds.setHasGDPRConsent(consent);
+    }
+    
+    public void setHasGDPRConsent(final int consent) {
+        switch (consent) {
+            case 1:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.GRANTED);
+                break;
+            case 2:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_GRANTED);
+                break;
+            case 3:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.UNKNOWN);
+                break;
+            case 4:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_APPLICABLE);
+                break;
+        }
     }
     
     public void setIsApplicationChildDirected(final boolean isChildDirected) {

@@ -66,6 +66,11 @@ namespace ScaleMonk.Ads.iOS
             SMSetHasGDPRConsent(consent);
         }
 
+        public void SetHasGDPRConsent(GDPRConsent consent)
+        {
+            // TODO Implement
+        }
+
         public void SetIsApplicationChildDirected(bool isChildDirected)
         {
             SMSetApplicationChildDirected(isChildDirected);
@@ -179,6 +184,9 @@ namespace ScaleMonk.Ads.iOS
         
         [DllImport("__Internal")]
         private static extern void SMSetHasGDPRConsent(bool consent);
+
+        [DllImport("__Internal")]
+        private static extern void SMSetHasGDPRConsent(GDPRConsent consent);
         
         [DllImport("__Internal")]
         private static extern void SMSetUserCantGiveGDPRConsent(bool isUnderage);

@@ -6,6 +6,7 @@
 //
 
 #if UNITY_ANDROID
+using Assets.ScaleMonk_Ads;
 using UnityEngine;
 
 namespace ScaleMonk.Ads.Android
@@ -72,6 +73,11 @@ namespace ScaleMonk.Ads.Android
         }
 
         public void SetHasGDPRConsent(bool consent)
+        {
+            _adsBinding.Call("setHasGDPRConsent", consent);
+        }
+
+        public void SetHasGDPRConsent(GDPRConsent consent)
         {
             _adsBinding.Call("setHasGDPRConsent", consent);
         }

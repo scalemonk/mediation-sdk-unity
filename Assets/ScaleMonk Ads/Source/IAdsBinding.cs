@@ -6,6 +6,7 @@
 //
 
 using System;
+using Assets.ScaleMonk_Ads;
 
 namespace ScaleMonk.Ads
 {
@@ -20,7 +21,9 @@ namespace ScaleMonk.Ads
         bool IsRewardedVideoReadyToShow(string tag);
         bool AreRewardedEnabled();
         bool AreInterstitialsEnabled();
+        [Obsolete]
         void SetHasGDPRConsent(bool consent);
+        void SetHasGDPRConsent(GDPRConsent consent);
         void SetIsApplicationChildDirected(bool isChildDirected);
         void SetUserCantGiveGDPRConsent(bool cantGiveConsent);
         void CreateAnalyticsBinding();
