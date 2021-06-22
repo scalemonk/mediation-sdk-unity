@@ -68,7 +68,11 @@ namespace ScaleMonk.Ads.iOS
 
         public void SetHasGDPRConsent(GDPRConsent consent)
         {
-            // TODO Implement
+            if (consent == GDPRConsent.GRANTED) {
+                SetHasGDPRConsent(true);
+            } else if (consent == GDPRConsent.NOT_GRANTED) {
+                SetHasGDPRConsent(false);
+            }
         }
 
         public void SetIsApplicationChildDirected(bool isChildDirected)
