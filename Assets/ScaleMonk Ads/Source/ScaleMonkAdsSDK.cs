@@ -104,7 +104,7 @@ namespace ScaleMonk.Ads
         /// Informs the sdk was initialized.
         /// </summary>
         public Action InitializationCompletedEvent;
-        
+
         /// <summary>
         /// Tells the ScaleMonk SDK whether the user has granted consent as prescribed by the GDPR laws and that data can be collected
         ///
@@ -295,12 +295,21 @@ namespace ScaleMonk.Ads
             StopBanner(DefaultTag);
         }
 
+        /// <summary>
+        /// Sets the UserType
+        /// </summary>
+        /// <param name="userType"></param>
         public void SetUserType(UserType userType)
         {
             _adsBinding.SetUserType(userType);
         }
 
-        public void InitializeBinding()
+        public bool IsInitialized()
+        {
+            return _isInitialized;
+        }
+
+        private void InitializeBinding()
         {
             _adsBinding.Initialize(this);
         }
@@ -396,6 +405,7 @@ namespace ScaleMonk.Ads
         public void InitializationCompleted()
         {
             AdsLogger.LogWithFormat("{0} | SDK Initialization Completed", Label);
+            _isInitialized = true;
             CallAction(_initializationCallback);
             CallAction(InitializationCompletedEvent);
         }
@@ -406,7 +416,7 @@ namespace ScaleMonk.Ads
         {
             if (!_isInitialized)
             {
-                AdsLogger.LogError("ScaleMonk SDK must be initialized. Make sure to call ScaleMonkAds.Initialize()");
+                AdsLogger.LogInfo("ScaleMonk SDK must be initialized. Make sure to call ScaleMonkAds.Initialize()");
                 return;
             }
 
@@ -423,7 +433,6 @@ namespace ScaleMonk.Ads
 
             AdsLogger.LogWithFormat("{0} | Initializing Ads SDK", Label);
 
-            _isInitialized = true;
             _initializationCallback = callback;
 
             _nativeBridgeService.Initialize(this);

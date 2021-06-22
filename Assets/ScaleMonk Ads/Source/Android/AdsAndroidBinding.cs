@@ -2,7 +2,7 @@
 //
 //  © 2020 ScaleMonk, Inc. All Rights Reserved.
 // Licensed under the ScaleMonk SDK License Agreement
-// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
+// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html
 //
 
 using System;
@@ -22,7 +22,7 @@ namespace ScaleMonk.Ads.Android
         {
             _androidJavaBridge.CallNativeMethod("initialize");
         }
-        
+
         public void ShowInterstitial(string tag)
         {
             _androidJavaBridge.CallNativeMethodWithActivity("showInterstitial", tag);
@@ -93,7 +93,7 @@ namespace ScaleMonk.Ads.Android
         {
             _androidJavaBridge.CallNativeMethod("setCustomUserId", customUserId);
         }
-        
+
         public void SetUserType(UserType userType)
         {
             _androidJavaBridge.CallNativeMethod("setUserType", userType.ToStringUserType());

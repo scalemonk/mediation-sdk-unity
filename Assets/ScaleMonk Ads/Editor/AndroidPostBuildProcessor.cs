@@ -23,7 +23,7 @@ namespace ScaleMonk_Ads.Editor
                 return;
             Debug.Log("OnPostGenerateGradleAndroidProject. Path: " + path);
             string gradlePropertiesFile = path + "/../gradle.properties";
-            
+
             if (File.Exists(gradlePropertiesFile))
             {
                 File.Delete(gradlePropertiesFile);

@@ -5,6 +5,11 @@ namespace ScaleMonk.Ads
     public interface IScaleMonkAdsSDK
     {
         /// <summary>
+        /// Returns true if th SDK is initialized, otherwise it returns false
+        /// </summary>
+        /// <returns>bool</returns>
+        bool IsInitialized();
+        /// <summary>
         /// Tells the ScaleMonk SDK whether the user has granted consent as prescribed by the GDPR laws and that data can be collected
         ///
         /// </summary>
@@ -124,7 +129,6 @@ namespace ScaleMonk.Ads
         /// </summary>
         void StopBanner();
 
-        void InitializeBinding();
         void CompletedRewardedDisplay(string tag);
         void StartedRewardedDisplay(string tag);
         void ClickedRewarded(string tag);

@@ -6,6 +6,45 @@ namespace ScaleMonk.Ads
 {
     public class InitializationTests
     {
+        
+        [Test]
+        public void IsInitializedIsTrueAfterInitialization()
+        {
+            // Given an sdk instance
+            var adsBinding = Substitute.For<IAdsBinding>();
+            var monoBehaviourService = Substitute.For<INativeBridgeService>();
+
+            AnalyticsService analyticsService = new AnalyticsService();
+            var scaleMonkAds = new ScaleMonkAdsSDK(adsBinding, monoBehaviourService, analyticsService);
+            adsBinding
+                .When(binding => binding.Initialize(scaleMonkAds))
+                .Do(binding => scaleMonkAds.InitializationCompleted());
+
+            // When we call the initialization of the SDK
+            scaleMonkAds.Initialize(() => { });
+            
+            // Then the SDK is initialized
+            Assert.IsTrue(scaleMonkAds.IsInitialized());
+        }
+        
+        [Test]
+        public void IsInitializedIsFalseIfSDKIsNotInitialized()
+        {
+            // Given an sdk instance
+            var adsBinding = Substitute.For<IAdsBinding>();
+            var monoBehaviourService = Substitute.For<INativeBridgeService>();
+
+            AnalyticsService analyticsService = new AnalyticsService();
+            var scaleMonkAds = new ScaleMonkAdsSDK(adsBinding, monoBehaviourService, analyticsService);
+            
+
+            // When we don't call the initialization of the SDK
+
+            // Then the SDK is initialized
+            Assert.IsFalse(scaleMonkAds.IsInitialized());
+        }
+        
+        
         [Test]
         public void SDKCanBeInitialized()
         {

@@ -51,52 +51,52 @@ public class BannerContainerFactory {
     }
 
     private static List<Integer> layoutParamsFrom(String position) {
-        List<Integer> rules = new ArrayList<>();
-
-        switch (position) {
-            case "bottom_center":
-                rules.add(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                rules.add(RelativeLayout.CENTER_HORIZONTAL);
-                break;
-            case "bottom_left":
-                rules.add(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                rules.add(RelativeLayout.ALIGN_LEFT);
-                break;
-            case "bottom_right":
-                rules.add(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                rules.add(RelativeLayout.ALIGN_RIGHT);
-                break;
-            case "centered":
-                rules.add(RelativeLayout.CENTER_IN_PARENT);
-                rules.add(RelativeLayout.CENTER_HORIZONTAL);
-                break;
-            case "center_left":
-                rules.add(RelativeLayout.CENTER_IN_PARENT);
-                rules.add(RelativeLayout.ALIGN_LEFT);
-                break;
-            case "center_right":
-                rules.add(RelativeLayout.CENTER_IN_PARENT);
-                rules.add(RelativeLayout.ALIGN_RIGHT);
-                break;
-            case "top_center":
-                rules.add(RelativeLayout.ALIGN_PARENT_TOP);
-                rules.add(RelativeLayout.CENTER_HORIZONTAL);
-                break;
-            case "top_left":
-                rules.add(RelativeLayout.ALIGN_PARENT_TOP);
-                rules.add(RelativeLayout.ALIGN_LEFT);
-                break;
-            case "top_right":
-                rules.add(RelativeLayout.ALIGN_PARENT_TOP);
-                rules.add(RelativeLayout.ALIGN_RIGHT);
-                break;
-            default:
-                System.out.println("Invalid position");
-                break;
+            List<Integer> rules = new ArrayList<>();
+    
+            switch (position) {
+                case "bottom_center":
+                    rules.add(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    rules.add(RelativeLayout.CENTER_HORIZONTAL);
+                    break;
+                case "bottom_left":
+                    rules.add(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    rules.add(RelativeLayout.ALIGN_PARENT_LEFT);
+                    break;
+                case "bottom_right":
+                    rules.add(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    rules.add(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    break;
+                case "centered":
+                    rules.add(RelativeLayout.CENTER_IN_PARENT);
+                    rules.add(RelativeLayout.CENTER_HORIZONTAL);
+                    break;
+                case "center_left":
+                    rules.add(RelativeLayout.CENTER_IN_PARENT);
+                    rules.add(RelativeLayout.ALIGN_PARENT_LEFT);
+                    break;
+                case "center_right":
+                    rules.add(RelativeLayout.CENTER_IN_PARENT);
+                    rules.add(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    break;
+                case "top_center":
+                    rules.add(RelativeLayout.ALIGN_PARENT_TOP);
+                    rules.add(RelativeLayout.CENTER_HORIZONTAL);
+                    break;
+                case "top_left":
+                    rules.add(RelativeLayout.ALIGN_PARENT_TOP);
+                    rules.add(RelativeLayout.ALIGN_PARENT_LEFT);
+                    break;
+                case "top_right":
+                    rules.add(RelativeLayout.ALIGN_PARENT_TOP);
+                    rules.add(RelativeLayout.ALIGN_PARENT_RIGHT);
+                    break;
+                default:
+                    System.out.println("Invalid position");
+                    break;
+            }
+    
+            return rules;
         }
-
-        return rules;
-    }
 
     private static int dpToPx(Activity activity, int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, activity.getResources().getDisplayMetrics());
