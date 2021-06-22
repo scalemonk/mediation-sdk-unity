@@ -102,16 +102,16 @@ public class AdsBinding {
     
     public void setHasGDPRConsent(final int consent) {
         switch (consent) {
-            case 1:
+            case 0:
                 ScaleMonkAds.setHasGDPRConsent(GDPRConsent.GRANTED);
                 break;
-            case 2:
+            case 1:
                 ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_GRANTED);
                 break;
-            case 3:
+            case 2:
                 ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_SET);
                 break;
-            case 4:
+            case 3:
                 ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_APPLICABLE);
                 break;
         }

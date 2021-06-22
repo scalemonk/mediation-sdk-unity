@@ -77,9 +77,9 @@ namespace ScaleMonk.Ads.Android
             _adsBinding.Call("setHasGDPRConsent", consent);
         }
 
-        public void SetHasGDPRConsent(GDPRConsent consent)
+        public void SetHasGDPRConsent(GdprConsent consent)
         {
-            _adsBinding.Call("setHasGDPRConsent", consent);
+            _adsBinding.Call("setHasGDPRConsent", (int)consent);
         }
 
         public void SetIsApplicationChildDirected(bool isChildDirected)

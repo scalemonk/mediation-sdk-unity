@@ -23,7 +23,7 @@ namespace ScaleMonk.Ads
         bool AreInterstitialsEnabled();
         [Obsolete]
         void SetHasGDPRConsent(bool consent);
-        void SetHasGDPRConsent(GDPRConsent consent);
+        void SetHasGDPRConsent(GdprConsent consent);
         void SetIsApplicationChildDirected(bool isChildDirected);
         void SetUserCantGiveGDPRConsent(bool cantGiveConsent);
         void CreateAnalyticsBinding();

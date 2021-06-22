@@ -132,7 +132,7 @@ namespace ScaleMonk.Ads
         public void SetHasGDPRConsent(bool consent)
         {
         }
-        public void SetHasGDPRConsent(GDPRConsent consent)
+        public void SetHasGDPRConsent(GdprConsent consent)
         {
         }
         public void SetIsApplicationChildDirected(bool isChildDirected)

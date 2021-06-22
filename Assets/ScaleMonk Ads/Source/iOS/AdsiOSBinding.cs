@@ -6,6 +6,7 @@
 //
 #if UNITY_IOS
 using System.Runtime.InteropServices;
+using Assets.ScaleMonk_Ads;
 using UnityEngine;
 
 namespace ScaleMonk.Ads.iOS
@@ -66,11 +67,11 @@ namespace ScaleMonk.Ads.iOS
             SMSetHasGDPRConsent(consent);
         }
 
-        public void SetHasGDPRConsent(GDPRConsent consent)
+        public void SetHasGDPRConsent(GdprConsent consent)
         {
-            if (consent == GDPRConsent.GRANTED) {
+            if (consent == GdprConsent.Granted) {
                 SetHasGDPRConsent(true);
-            } else if (consent == GDPRConsent.NOT_GRANTED) {
+            } else if (consent == GdprConsent.NotGranted) {
                 SetHasGDPRConsent(false);
             }
         }
@@ -190,7 +191,7 @@ namespace ScaleMonk.Ads.iOS
         private static extern void SMSetHasGDPRConsent(bool consent);
 
         [DllImport("__Internal")]
-        private static extern void SMSetHasGDPRConsent(GDPRConsent consent);
+        private static extern void SMSetHasGDPRConsent(int consent);
         
         [DllImport("__Internal")]
         private static extern void SMSetUserCantGiveGDPRConsent(bool isUnderage);

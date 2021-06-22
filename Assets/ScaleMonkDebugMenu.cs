@@ -8,6 +8,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.ScaleMonk_Ads;
 using ScaleMonk.Ads;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class ScaleMonkDebugMenu : MonoBehaviour
     public Button ShowRewardedVideoButton;
     public Button ShowBannerButton;
     public Button StopBannerButton;
+    public Button GrantGDPRConsentButton;
+    public Button RevokeGDPRConsentButton;
     public Text LogField;
 
     private BannerPosition bannerPosition = BannerPosition.BottomCenter;
@@ -32,6 +35,8 @@ public class ScaleMonkDebugMenu : MonoBehaviour
         ShowRewardedVideoButton.onClick.AddListener(OnClickShowRewarded);
         ShowBannerButton.onClick.AddListener(OnClickShowBanner);
         StopBannerButton.onClick.AddListener(OnClickStopBanner);
+        GrantGDPRConsentButton.onClick.AddListener(OnGrantGDPRConsent);
+        RevokeGDPRConsentButton.onClick.AddListener(OnRevokeGDPRConsent);
     }
 
     private void OnClickShowRewarded()
@@ -52,6 +57,16 @@ public class ScaleMonkDebugMenu : MonoBehaviour
     private void OnClickStopBanner()
     {
         ScaleMonkAds.SharedInstance.StopBanner(menuTag);
+    }
+
+    private void OnGrantGDPRConsent()
+    {
+        ScaleMonkAds.SharedInstance.SetHasGDPRConsent(GdprConsent.Granted);
+    }
+
+    private void OnRevokeGDPRConsent()
+    {
+        ScaleMonkAds.SharedInstance.SetHasGDPRConsent(GdprConsent.NotGranted);
     }
 
     private void OnClickInit()
