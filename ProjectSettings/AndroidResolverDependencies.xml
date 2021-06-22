@@ -1,20 +1,7 @@
 <dependencies>
   <packages>
-    <package>com.scalemonk.libs:ads:1.0.23</package>
-    <package>com.scalemonk.libs:ads-adcolony:4.4.1.1</package>
-    <package>com.scalemonk.libs:ads-admob:19.7.0.1</package>
-    <package>com.scalemonk.libs:ads-applovin:9.15.3.1</package>
-    <package>com.scalemonk.libs:ads-chartboost:8.1.0.1</package>
-    <package>com.scalemonk.libs:ads-facebook:6.2.1.1</package>
-    <package>com.scalemonk.libs:ads-fyber:7.6.0.1</package>
-    <package>com.scalemonk.libs:ads-inmobi:9.0.9.1</package>
-    <package>com.scalemonk.libs:ads-ironsource:7.1.0.2.1</package>
-    <package>com.scalemonk.libs:ads-mintegral:15.4.51.1</package>
-    <package>com.scalemonk.libs:ads-mopub:5.14.0.1</package>
-    <package>com.scalemonk.libs:ads-smaato:21.5.3.1</package>
-    <package>com.scalemonk.libs:ads-tiktok:3.1.0.1.1</package>
-    <package>com.scalemonk.libs:ads-unityads:3.6.0.1</package>
-    <package>com.scalemonk.libs:ads-vungle:6.8.0.1</package>
+    <package>com.scalemonk.libs:ads:4.0.0-alpha.1</package>
+    <package>com.scalemonk.libs:ads-adcolony:4.4.1.4.0-alpha.1</package>
   </packages>
   <files />
   <settings>

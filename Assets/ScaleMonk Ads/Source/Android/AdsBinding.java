@@ -109,7 +109,7 @@ public class AdsBinding {
                 ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_GRANTED);
                 break;
             case 3:
-                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.UNKNOWN);
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_SET);
                 break;
             case 4:
                 ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_APPLICABLE);
