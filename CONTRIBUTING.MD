@@ -19,7 +19,7 @@ You have to unselect:
 - Plugins folder
 - Scenes folder
 - ScaleMonkDebugMenu.cs
-- ScaleMonkAdsDependencies.xml (only available if you previously Saved the proyect) 
+- ScaleMonkAdsDependencies.xml (only available if you previously Saved the project) 
 
 Click on Export
 
