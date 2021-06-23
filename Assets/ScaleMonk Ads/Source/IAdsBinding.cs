@@ -21,7 +21,7 @@ namespace ScaleMonk.Ads
         bool IsRewardedVideoReadyToShow(string tag);
         bool AreRewardedEnabled();
         bool AreInterstitialsEnabled();
-        [Obsolete]
+        [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent consent)\" method instead.")]
         void SetHasGDPRConsent(bool consent);
         void SetHasGDPRConsent(GdprConsent consent);
         void SetIsApplicationChildDirected(bool isChildDirected);
