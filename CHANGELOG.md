@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- API to set custom user ID
+- API to set user type
+
+### Changed
+- Updated iOS ScaleMonk version to 2.1.0-rc.1
+
+### Fixed
+- Banner containers are removed correctly from parent views
 
 ## [1.8.0] - 2021-06-15
 
