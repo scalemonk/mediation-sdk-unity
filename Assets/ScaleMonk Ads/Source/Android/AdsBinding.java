@@ -5,9 +5,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.scalemonk.ads.BannerContainer;
+import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
-import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 import com.scalemonk.libs.ads.core.domain.UserType;
@@ -16,6 +16,8 @@ import com.unity3d.player.UnityPlayer;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 public class AdsBinding {
     public static String TAG = "AdsBinding";
     private final Activity activity;
@@ -23,7 +25,7 @@ public class AdsBinding {
     private final AdsBindingInterstitialListener interstitialListener;
     private final AdsBindingBannerListener bannerListener;
     private AdsBindingAnalyticsListener analyticsListener;
-    private BannerContainer currentBannerContainer;
+    private ConcurrentHashMap<String, BannerContainer> banners = new ConcurrentHashMap<>();
 
     public AdsBinding(final Activity activity) {
         this.activity = activity;
@@ -37,7 +39,7 @@ public class AdsBinding {
             setupAds(interstitialListener, videoListener, bannerListener);
         });
     }
-    
+
     public boolean isInterstitialReadyToShow(String tag) {
         Log.d(TAG, "Checking availability of interstitials at: " + tag + ".");
         return ScaleMonkAds.isInterstitialReadyToShow(tag);
@@ -63,24 +65,34 @@ public class AdsBinding {
     public void showRewarded(final Context context, final String tag) {
         this.activity.runOnUiThread(() -> ScaleMonkAds.showRewarded(context, tag));
     }
-    
-    public void showBanner(final Context context, 
-                            final String position, 
-                            final String tag, 
-                            final int width,
-                            final int height) {
-        
+
+    public void showBanner(final Context context,
+                           final String position,
+                           final String tag,
+                           final int width,
+                           final int height) {
+
         this.activity.runOnUiThread(() -> {
-                    currentBannerContainer = BannerContainerFactory.createBannerContainer(context, position, width, height);
+                    // Do not show two banners on the same tag.
+                    if (banners.containsKey(tag)) return;
+
+                    BannerContainer currentBannerContainer = BannerContainerFactory.createBannerContainer(context, position, width, height);
+                    banners.put(tag, currentBannerContainer);
+
                     ScaleMonkAds.showBanner(context, currentBannerContainer, tag);
                 }
         );
     }
-    
+
     public void stopBanner(final Context context, final String tag) {
-        if (currentBannerContainer != null) {
-            this.activity.runOnUiThread(() -> ScaleMonkAds.stopBanner(context, currentBannerContainer, tag));
-        }
+        this.activity.runOnUiThread(() -> {
+            if (banners.containsKey(tag)) {
+                BannerContainer currentBannerContainer = banners.get(tag);
+                ScaleMonkAds.stopBanner(context, currentBannerContainer, tag);
+                BannerContainerFactory.remove(context, currentBannerContainer);
+                banners.remove(tag);
+            }
+        });
     }
 
     private void setupAds(
@@ -89,28 +101,28 @@ public class AdsBinding {
             BannerEventListener bannerListener
     ) {
         ScaleMonkAds.initialize(activity, () -> {
-                    ScaleMonkAds.addInterstitialListener(interstitialListener);
-                    ScaleMonkAds.addRewardedListener(rewardedListener);
-                    ScaleMonkAds.addBannerListener(bannerListener);
-                    
-                    Log.i(TAG, "Ads SDK Initialized");
-                    
-                    UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "InitializationCompleted", "");
+            ScaleMonkAds.addInterstitialListener(interstitialListener);
+            ScaleMonkAds.addRewardedListener(rewardedListener);
+            ScaleMonkAds.addBannerListener(bannerListener);
+
+            Log.i(TAG, "Ads SDK Initialized");
+
+            UnityPlayer.UnitySendMessage("AdsMonoBehaviour", "InitializationCompleted", "");
         });
     }
-    
+
     public void setHasGDPRConsent(final boolean consent) {
         ScaleMonkAds.setHasGDPRConsent(consent);
     }
-    
+
     public void setIsApplicationChildDirected(final boolean isChildDirected) {
         ScaleMonkAds.setIsApplicationChildDirected(isChildDirected);
     }
-    
+
     public void setUserCantGiveGDPRConsent(final boolean cantGiveConsent) {
         ScaleMonkAds.setUserCantGiveGDPRConsent(cantGiveConsent);
     }
-    
+
     public void addAnalytics() {
         analyticsListener = new AdsBindingAnalyticsListener();
         ScaleMonkAds.addAnalytics(analyticsListener);
@@ -123,7 +135,7 @@ public class AdsBinding {
     public void setUserType(final String userType) {
         ScaleMonkAds.updateUserTypeProvider(new UnityUserTypeProvider(getUserTypeFromString(userType)));
     }
-    
+
     private UserType getUserTypeFromString(String userTypeAsString) {
         switch (userTypeAsString) {
             case "paying_user":

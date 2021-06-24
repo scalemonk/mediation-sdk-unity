@@ -18,6 +18,7 @@ static UIViewController *analyticsDelegateViewController;
 static NSString *_customUserId;
 static NSDictionary *_extraInfo;
 static SMAds *smAds;
+static NSMutableDictionary *_bannerViews;
 
 void SMAdsInitialize() {
     if (_customUserId != nil) {
@@ -163,6 +164,25 @@ static NSArray<NSLayoutConstraint*>* getConstraintsForPosition(NSString *strPosi
     return constraints[strPosition];
 }
 
+static void addBannerView(NSString* tag, SMBannerView* bannerView) {
+    if (!_bannerViews) {
+        _bannerViews = [NSMutableDictionary new];
+    }
+    [_bannerViews setObject:bannerView forKey:tag];
+}
+
+static void removeBannerView(NSString* tag) {
+    if (!_bannerViews) {
+        return;
+    }
+    SMBannerView* view = [_bannerViews objectForKey:tag];
+    if (view) {
+        [view removeFromSuperview];
+        [_bannerViews removeObjectForKey:tag];
+    }
+}
+
+
 void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
     UIViewController *viewController = UnityGetGLViewController();
@@ -170,6 +190,13 @@ void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
     
     SMBannerView *bannerView = [[SMBannerView alloc] init];
     bannerView.viewController = viewController;
+    
+    if ([_bannerViews objectForKey:tag]) {
+        NSLog(@"Cannot show two banners at the same time");
+        return;
+    }
+    
+    addBannerView(tag, bannerView);
     
     [viewController.view addSubview:bannerView];
     
@@ -186,6 +213,7 @@ void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
 void SMAdsStopBanner(char* tagChr) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
     [smAds stopLoadingBannersWithTag:tag];
+    removeBannerView(tag);
 }
 
 void SMSetApplicationChildDirected(bool isChildDirected){

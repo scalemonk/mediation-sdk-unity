@@ -18,14 +18,15 @@ import java.util.List;
 public class BannerContainerFactory {
     // we need this value to be sure that the container is big enough to place our Ad.
     private static final int OFFSET_IN_DP = 1;
+    private static RelativeLayout fullscreenLayout;
 
     public static BannerContainer createBannerContainer(Context context, String position, int width, int height) {
         Activity activity = (Activity) context;
-        FrameLayout rootLayout = activity.findViewById(android.R.id.content);
+        FrameLayout rootLayout = getRootLayout(activity);
 
         // This relative layout will be used as a parent canvas where the banner can be positioned
         // in different places of the screen.
-        RelativeLayout fullscreenLayout = new RelativeLayout(context);
+        fullscreenLayout = new RelativeLayout(context);
         RelativeLayout.LayoutParams fullscreenParams =
                 new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT);
@@ -48,6 +49,18 @@ public class BannerContainerFactory {
         rootLayout.addView(fullscreenLayout);
 
         return bannerContainer;
+    }
+
+    public static void remove(Context context, BannerContainer bannerContainer) {
+        Activity activity = (Activity) context;
+        FrameLayout rootLayout = getRootLayout(activity);
+
+        fullscreenLayout.removeView(bannerContainer);
+        rootLayout.removeView(fullscreenLayout);
+    }
+
+    private static FrameLayout getRootLayout(Activity activity) {
+        return activity.findViewById(android.R.id.content);
     }
 
     private static List<Integer> layoutParamsFrom(String position) {
