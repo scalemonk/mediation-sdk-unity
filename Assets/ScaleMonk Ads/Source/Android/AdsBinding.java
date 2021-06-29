@@ -15,9 +15,10 @@ import com.scalemonk.libs.ads.core.domain.session.UserTypeProvider;
 import com.unity3d.player.UnityPlayer;
 
 import org.jetbrains.annotations.NotNull;
-
+import androidx.annotation.Keep;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Keep
 public class AdsBinding {
     public static String TAG = "AdsBinding";
     private final Activity activity;
