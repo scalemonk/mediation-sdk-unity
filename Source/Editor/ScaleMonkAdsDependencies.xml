@@ -1,125 +1,124 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
 <dependencies>
-    <androidPackages>
-        <androidPackage spec="com.scalemonk.libs:ads:2.0.0" />
-        <androidPackage spec="com.scalemonk.libs:ads-adcolony:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-applovin:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-chartboost:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-facebook:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-fyber:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-inmobi:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-ironsource:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-mintegral:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-mopub:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-smaato:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-tiktok:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-unityads:+" />
-        <androidPackage spec="com.scalemonk.libs:ads-vungle:+" />
-        <repositories>
-            <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod</repository>
-            <repository>https://android-sdk.is.com/</repository>
-            <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
-            <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
-            <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
-        </repositories>
-    </androidPackages>
-    <iosPods>
-        <iosPod name="ScaleMonkAds" version="1.3.0">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-AdColony">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-AdMob">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Amazon">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-AppLovin">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Chartboost">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Facebook">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Fyber">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-InMobi">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-IronSource">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Mintegral">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Mopub">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-MyTarget">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-RTB">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Smaato">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Tapjoy">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Tiktok">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-UnityAds">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-        <iosPod name="ScaleMonkAds-Vungle">
-            <sources>
-                <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-            </sources>
-        </iosPod>
-    </iosPods>
+  <androidPackages>
+    <androidPackage spec="com.scalemonk.libs:ads:2.0.0" />
+    <androidPackage spec="com.scalemonk.libs:ads-adcolony:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-applovin:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-chartboost:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-facebook:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-fyber:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-inmobi:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-ironsource:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-mintegral:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-mopub:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-smaato:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-tiktok:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-unityads:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-vungle:+" />
+    <repositories>
+      <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod</repository>
+      <repository>https://android-sdk.is.com/</repository>
+      <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
+      <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
+      <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
+    </repositories>
+  </androidPackages>
+  <iosPods>
+    <iosPod name="ScaleMonkAds" version="1.3.0">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-AdColony">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-AdMob">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Amazon">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-AppLovin">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Chartboost">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Facebook">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Fyber">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-InMobi">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-IronSource">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Mintegral">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Mopub">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-MyTarget">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-RTB">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Smaato">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Tapjoy">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Tiktok">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-UnityAds">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Vungle">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+  </iosPods>
 </dependencies>
