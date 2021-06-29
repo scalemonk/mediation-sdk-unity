@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="19" result="Failed(Child)" total="19" passed="18" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2021-06-12 19:15:20Z" end-time="2021-06-12 19:15:21Z" duration="0.4670925">
+  <test-suite type="TestSuite" id="1032" name="2019-Container" fullname="2019-Container" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2021-06-12 19:15:20Z" end-time="2021-06-12 19:15:21Z" duration="0.467093" total="19" passed="18" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1057" name="Tests.dll" fullname="/Users/lucasmarino/Development/projects/scalemonk/mediation-sdk-unity/2019-Container/Library/ScriptAssemblies/Tests.dll" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2021-06-12 19:15:20Z" end-time="2021-06-12 19:15:21Z" duration="0.443960" total="19" passed="18" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="15566" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1058" name="ScaleMonk" fullname="ScaleMonk" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.438842" total="19" passed="18" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1059" name="Ads" fullname="ScaleMonk.Ads" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.434874" total="19" passed="18" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1033" name="AnalyticsTests" fullname="ScaleMonk.Ads.AnalyticsTests" classname="ScaleMonk.Ads.AnalyticsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.373894" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1037" name="AddingMoreThanOneExternalAnalyticsJustCreatesOneAnalyticsBinding" fullname="ScaleMonk.Ads.AnalyticsTests.AddingMoreThanOneExternalAnalyticsJustCreatesOneAnalyticsBinding" methodname="AddingMoreThanOneExternalAnalyticsJustCreatesOneAnalyticsBinding" classname="ScaleMonk.Ads.AnalyticsTests" runstate="Runnable" seed="1373036412" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.264007" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+🐞 SM-ADS | 🤝 ScaleMonkAds | SDK Initialization Completed
+]]></output>
+            </test-case>
+            <test-case id="1036" name="AnalyticsCanBeAddedToAInitializedSDK" fullname="ScaleMonk.Ads.AnalyticsTests.AnalyticsCanBeAddedToAInitializedSDK" methodname="AnalyticsCanBeAddedToAInitializedSDK" classname="ScaleMonk.Ads.AnalyticsTests" runstate="Runnable" seed="467811168" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.002469" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+🐞 SM-ADS | 🤝 ScaleMonkAds | SDK Initialization Completed
+]]></output>
+            </test-case>
+            <test-case id="1035" name="AnalyticsCannotBeAddedIfSDKIsNotInitialized" fullname="ScaleMonk.Ads.AnalyticsTests.AnalyticsCannotBeAddedIfSDKIsNotInitialized" methodname="AnalyticsCannotBeAddedIfSDKIsNotInitialized" classname="ScaleMonk.Ads.AnalyticsTests" runstate="Runnable" seed="822368562" result="Failed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.020566" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at ScaleMonk.Ads.AnalyticsTests.AnalyticsCannotBeAddedIfSDKIsNotInitialized () [0x00047] in /Users/lucasmarino/Development/projects/scalemonk/mediation-sdk-unity/2019-Container/Assets/Tests/SourceTests/AnalyticsTests.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[⚠️ SM-ADS | 🤝 ScaleMonk SDK must be initialized. Make sure to call ScaleMonkAds.Initialize()
+]]></output>
+            </test-case>
+            <test-case id="1034" name="AnalyticsEventIsSentWhenNativeBridgeSendsAnEvent" fullname="ScaleMonk.Ads.AnalyticsTests.AnalyticsEventIsSentWhenNativeBridgeSendsAnEvent" methodname="AnalyticsEventIsSentWhenNativeBridgeSendsAnEvent" classname="ScaleMonk.Ads.AnalyticsTests" runstate="Runnable" seed="1784442803" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.059193" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+🐞 SM-ADS | 🤝 ScaleMonkAds | SDK Initialization Completed
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1038" name="AndroidBindingTests" fullname="ScaleMonk.Ads.AndroidBindingTests" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.026664" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="SetCustomUserIdAndroidBridgeTest" fullname="ScaleMonk.Ads.AndroidBindingTests.SetCustomUserIdAndroidBridgeTest" methodname="SetCustomUserIdAndroidBridgeTest" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" seed="1009346923" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.007688" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1044" name="SetUserTypeAndroidBridgeTest" fullname="ScaleMonk.Ads.AndroidBindingTests.SetUserTypeAndroidBridgeTest" methodname="SetUserTypeAndroidBridgeTest" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" seed="260551124" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.001077" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1045" name="SetUserTypeNonPayingUserAndroidBridgeTest" fullname="ScaleMonk.Ads.AndroidBindingTests.SetUserTypeNonPayingUserAndroidBridgeTest" methodname="SetUserTypeNonPayingUserAndroidBridgeTest" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" seed="2089859339" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.000874" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1039" name="ShowBannerAndroidBridgeTest" fullname="ScaleMonk.Ads.AndroidBindingTests.ShowBannerAndroidBridgeTest" methodname="ShowBannerAndroidBridgeTest" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" seed="640087331" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.005537" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1041" name="ShowInterstitialAndroidBridgeTest" fullname="ScaleMonk.Ads.AndroidBindingTests.ShowInterstitialAndroidBridgeTest" methodname="ShowInterstitialAndroidBridgeTest" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" seed="1987094680" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.001250" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1042" name="ShowRewardedAdAndroidBridgeTest" fullname="ScaleMonk.Ads.AndroidBindingTests.ShowRewardedAdAndroidBridgeTest" methodname="ShowRewardedAdAndroidBridgeTest" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" seed="762442811" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.001105" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1040" name="StopBannerAndroidBridgeTest" fullname="ScaleMonk.Ads.AndroidBindingTests.StopBannerAndroidBridgeTest" methodname="StopBannerAndroidBridgeTest" classname="ScaleMonk.Ads.AndroidBindingTests" runstate="Runnable" seed="1182916983" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.001083" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1046" name="CustomUserIdTest" fullname="ScaleMonk.Ads.CustomUserIdTest" classname="ScaleMonk.Ads.CustomUserIdTest" runstate="Runnable" testcasecount="2" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.008606" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1048" name="SetCustomUserIdWhenAdsIsInitializedSetsTheRightUserId" fullname="ScaleMonk.Ads.CustomUserIdTest.SetCustomUserIdWhenAdsIsInitializedSetsTheRightUserId" methodname="SetCustomUserIdWhenAdsIsInitializedSetsTheRightUserId" classname="ScaleMonk.Ads.CustomUserIdTest" runstate="Runnable" seed="1676383246" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.002070" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+🐞 SM-ADS | 🤝 ScaleMonkAds | SDK Initialization Completed
+]]></output>
+            </test-case>
+            <test-case id="1047" name="SetCustomUserIdWhenAdsIsNotInitialized" fullname="ScaleMonk.Ads.CustomUserIdTest.SetCustomUserIdWhenAdsIsNotInitialized" methodname="SetCustomUserIdWhenAdsIsNotInitialized" classname="ScaleMonk.Ads.CustomUserIdTest" runstate="Runnable" seed="492260396" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.000616" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1049" name="InitializationTests" fullname="ScaleMonk.Ads.InitializationTests" classname="ScaleMonk.Ads.InitializationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.008131" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1050" name="SDKCanBeInitialized" fullname="ScaleMonk.Ads.InitializationTests.SDKCanBeInitialized" methodname="SDKCanBeInitialized" classname="ScaleMonk.Ads.InitializationTests" runstate="Runnable" seed="1612033472" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.001721" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+🐞 SM-ADS | 🤝 ScaleMonkAds | SDK Initialization Completed
+]]></output>
+            </test-case>
+            <test-case id="1051" name="SDKCanBeInitializedOnlyOnce" fullname="ScaleMonk.Ads.InitializationTests.SDKCanBeInitializedOnlyOnce" methodname="SDKCanBeInitializedOnlyOnce" classname="ScaleMonk.Ads.InitializationTests" runstate="Runnable" seed="1104597062" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.001229" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+🐞 SM-ADS | 🤝 ScaleMonkAds | SDK Initialization Completed
+⚠️ SM-ADS | 🤝 ScaleMonkAds | Ads SDK already initialized
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1052" name="UserTypeTests" fullname="ScaleMonk.Ads.UserTypeTests" classname="ScaleMonk.Ads.UserTypeTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.010779" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1056" name="SetUserTypeNonPayingWhenAdsIsInitializedCallsSetUserType" fullname="ScaleMonk.Ads.UserTypeTests.SetUserTypeNonPayingWhenAdsIsInitializedCallsSetUserType" methodname="SetUserTypeNonPayingWhenAdsIsInitializedCallsSetUserType" classname="ScaleMonk.Ads.UserTypeTests" runstate="Runnable" seed="1362447601" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.003000" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+]]></output>
+            </test-case>
+            <test-case id="1054" name="SetUserTypeNonPayingWhenAdsIsNotInitialized" fullname="ScaleMonk.Ads.UserTypeTests.SetUserTypeNonPayingWhenAdsIsNotInitialized" methodname="SetUserTypeNonPayingWhenAdsIsNotInitialized" classname="ScaleMonk.Ads.UserTypeTests" runstate="Runnable" seed="757845201" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.000887" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1055" name="SetUserTypeWhenAdsIsInitializedCallsSetUserType" fullname="ScaleMonk.Ads.UserTypeTests.SetUserTypeWhenAdsIsInitializedCallsSetUserType" methodname="SetUserTypeWhenAdsIsInitializedCallsSetUserType" classname="ScaleMonk.Ads.UserTypeTests" runstate="Runnable" seed="1002140086" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.000932" asserts="0">
+              <properties />
+              <output><![CDATA[🐞 SM-ADS | 🤝 ScaleMonkAds | Initializing Ads SDK
+]]></output>
+            </test-case>
+            <test-case id="1053" name="SetUserTypeWhenAdsIsNotInitialized" fullname="ScaleMonk.Ads.UserTypeTests.SetUserTypeWhenAdsIsNotInitialized" methodname="SetUserTypeWhenAdsIsNotInitialized" classname="ScaleMonk.Ads.UserTypeTests" runstate="Runnable" seed="779667932" result="Passed" start-time="2021-06-12 19:15:21Z" end-time="2021-06-12 19:15:21Z" duration="0.000647" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

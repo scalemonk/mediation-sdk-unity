@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<scalemonk ios="sm-test-app-scalemonk-6407705726" android="sm-test-app-scalemonk-6521838781">
+  <adnets>
+    <adnet id="AdColony" name="AdColony" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="AdMob" name="AdMob" ios="True" iosVersion="" androidVersion="" android="True">
+      <adnetConfig config="GADApplicationIdentifier" platform="ios" name="App Id (iOS)" value="ca-app-pub-5938249786176632~3229953056" />
+      <adnetConfig config="com.google.android.gms.ads.APPLICATION_ID" platform="android" name="App Id (Android)" value="ca-app-pub-3940256099942544~3347511713" />
+    </adnet>
+    <adnet id="Amazon" name="Amazon" ios="True" iosVersion="" androidVersion="" android="False" />
+    <adnet id="AppLovin" name="AppLovin" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Chartboost" name="Chartboost" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Facebook" name="Facebook" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Fyber" name="Fyber" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="InMobi" name="InMobi" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="IronSource" name="IronSource" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Mintegral" name="Mintegral" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Mopub" name="Mopub" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="MyTarget" name="MyTarget" ios="True" iosVersion="" androidVersion="" android="False" />
+    <adnet id="RTB" name="RTB" ios="True" iosVersion="" androidVersion="" android="False" />
+    <adnet id="Smaato" name="Smaato" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Tapjoy" name="Tapjoy" ios="True" iosVersion="" androidVersion="" android="False" />
+    <adnet id="Tiktok" name="TikTok" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="UnityAds" name="UnityAds" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Vungle" name="Vungle" ios="True" iosVersion="" androidVersion="" android="True" />
+  </adnets>
+</scalemonk>
