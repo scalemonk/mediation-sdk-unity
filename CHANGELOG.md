@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Fix export package. Exclude exporter on export package process
 
+## [1.9.0-rc.2] - 2021-06-30
+- Updated iOS ScaleMonk version to 2.1.0-rc.2
+
 ## [1.8.0] - 2021-06-15
 
 ### Changed
