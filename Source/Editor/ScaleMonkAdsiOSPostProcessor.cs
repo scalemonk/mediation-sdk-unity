@@ -116,6 +116,8 @@ namespace ScaleMonk.Ads
             var iphoneGuid = proj.GetUnityMainTargetGuid();
             proj.SetBuildProperty(iphoneGuid, "SWIFT_OBJC_BRIDGING_HEADER",
                 "Libraries/ScaleMonk Ads/Plugins/iOS/SMAds-Bridging-Header.h");
+
+            podFileContents = podFileContents.Replace("use_frameworks!", "");
 #else
             proj.SetBuildProperty(targetGuid, "SWIFT_OBJC_BRIDGING_HEADER", "Libraries/ScaleMonk Ads/Plugins/iOS/SMAds-Bridging-Header.h");
 
