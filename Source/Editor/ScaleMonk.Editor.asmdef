@@ -1,16 +1,18 @@
 {
-  "name": "ScaleMonk.Editor",
-  "references": [
-    "ScaleMonk.Ads"
-  ],
-  "optionalUnityReferences": [],
-  "includePlatforms": [
-    "Editor"
-  ],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": []
+    "name": "ScaleMonk.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Scalemonk.Ads.Core"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -3,47 +3,21 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 
-2020-Container/[Ll]ibrary/
-2020-Container/[Tt]emp/
-2020-Container/[Oo]bj/
-2020-Container/[Bb]uild/
-2020-Container/[Bb]uilds/
-2020-Container/[Ll]ogs/
-2020-Container/[Mm]emoryCaptures/
-2020-Container/CodeCoverage/
+*-Container/[Ll]ibrary/
+*-Container/[Tt]emp/
+*-Container/[Oo]bj/
+*-Container/[Bb]uild/
+*-Container/[Bb]uilds/
+*-Container/[Ll]ogs/
+*-Container/[Mm]emoryCaptures/
+*-Container/CodeCoverage/
+*-Container/Assets/Plugins/Android/*.jar
+*-Container/Assets/Plugins/Android/*.jar.meta
+*-Container/Assets/Plugins/Android/*.aar
+*-Container/Assets/Plugins/Android/*.aar.meta
 
-2019-Container/[Ll]ibrary/
-2019-Container/[Tt]emp/
-2019-Container/[Oo]bj/
-2019-Container/[Bb]uild/
-2019-Container/[Bb]uilds/
-2019-Container/[Ll]ogs/
-2019-Container/[Mm]emoryCaptures/
-2019-Container/CodeCoverage/
-
-2018-Container/[Ll]ibrary/
-2018-Container/[Tt]emp/
-2018-Container/[Oo]bj/
-2018-Container/[Bb]uild/
-2018-Container/[Bb]uilds/
-2018-Container/[Ll]ogs/
-2018-Container/[Mm]emoryCaptures/
-
-2017-Container/[Ll]ibrary/
-2017-Container/[Tt]emp/
-2017-Container/[Oo]bj/
-2017-Container/[Bb]uild/
-2017-Container/[Bb]uilds/
-2017-Container/[Ll]ogs/
-2017-Container/[Mm]emoryCaptures/
-
-/ios/
-/android/
 /.idea/
-Packages/adnets.xml
 .DS_Store
-Assets/ScaleMonk\ Ads/Editor/ScaleMonkAdsDependencies.xml
-Assets/ScaleMonk\ Ads/Editor/ScaleMonkAdsDependencies.xml.meta
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
