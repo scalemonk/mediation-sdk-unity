@@ -346,6 +346,7 @@ namespace ScaleMonk.Ads
             var jfrogRepo = doc.CreateElement("repository");
             jfrogRepo.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod";
             repositories.AppendChild(jfrogRepo);
+            
 
             var androidPackagesElement = doc.CreateElement("androidPackages");
             androidPackagesElement.AppendChild(getAndroidPackageForLib(doc, "ads", androidAdsVersion));

@@ -21,7 +21,6 @@ namespace ScaleMonk.Ads
         {
             GetWindow<AdsProvidersWindow>(typeof(SceneView));
         }
-
         void Awake()
         {
             titleContent = new GUIContent("Scalemonk Configuration");

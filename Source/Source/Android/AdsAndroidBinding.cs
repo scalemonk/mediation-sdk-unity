@@ -83,11 +83,6 @@ namespace ScaleMonk.Ads.Android
             _androidJavaBridge.CallNativeMethod("setUserCantGiveGDPRConsent", cantGiveConsent);
         }
 
-        public void CreateAnalyticsBinding()
-        {
-            _androidJavaBridge.CallNativeMethod("addAnalytics");
-        }
-
         public void SetCustomUserId(string customUserId)
         {
             _androidJavaBridge.CallNativeMethod("setCustomUserId", customUserId);
