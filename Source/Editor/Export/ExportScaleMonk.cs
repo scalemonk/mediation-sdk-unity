@@ -15,14 +15,22 @@ namespace ScaleMonk.Ads
                 new[] {"Assets/Scalemonk Ads", "Assets/ExternalDependencyManager"}))
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
-                Debug.Log("Including file: " + path);
-                exportedPackageAssetList.Add(path);
+                
+                if (!(path.Contains("ExportScaleMonk") || path.Contains("ExportPackage")))
+                {
+                    Debug.Log("Including file: " + path);
+                    exportedPackageAssetList.Add(path);
+                }
+                else
+                {
+                    Debug.Log("Ignoring file: " + path);
+                }
             }
 
             //Export Shaders and Prefabs with their dependencies into a .unitypackage
             AssetDatabase.ExportPackage(exportedPackageAssetList.ToArray(),
                 "ScaleMonk-" + Config.Version + ".unitypackage",
-                ExportPackageOptions.Recurse | ExportPackageOptions.IncludeDependencies);
+                ExportPackageOptions.Default);
         }
     }
 }
