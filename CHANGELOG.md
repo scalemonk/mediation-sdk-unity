@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 Allow configure IAnalytics before and after the initialization
 
+### Fixed
+Fix export package. Exclude exporter on export package process
+
 ## [1.8.0] - 2021-06-15
 
 ### Changed
