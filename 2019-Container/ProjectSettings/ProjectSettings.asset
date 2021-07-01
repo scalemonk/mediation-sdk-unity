@@ -168,7 +168,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.scalemonk.testapp
+    Android: com.scalemonk.ads.testapp
+    iPhone: com.scalemonk.ads.testapp
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19

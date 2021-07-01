@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
   <androidPackages>
-    <androidPackage spec="com.scalemonk.libs:ads:2.0.0" />
+    <androidPackage spec="com.scalemonk.libs:ads:3.1.0" />
     <androidPackage spec="com.scalemonk.libs:ads-adcolony:+" />
     <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
     <androidPackage spec="com.scalemonk.libs:ads-applovin:+" />
@@ -81,11 +81,6 @@
       </sources>
     </iosPod>
     <iosPod name="ScaleMonkAds-Mopub">
-      <sources>
-        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-      </sources>
-    </iosPod>
-    <iosPod name="ScaleMonkAds-MyTarget">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>

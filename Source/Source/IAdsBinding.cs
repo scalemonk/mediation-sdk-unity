@@ -23,7 +23,6 @@ namespace ScaleMonk.Ads
         void SetHasGDPRConsent(bool consent);
         void SetIsApplicationChildDirected(bool isChildDirected);
         void SetUserCantGiveGDPRConsent(bool cantGiveConsent);
-        void CreateAnalyticsBinding();
         void SetCustomUserId(string customUserId);
         void SetUserType(UserType userType);
     }

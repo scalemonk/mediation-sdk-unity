@@ -25,7 +25,6 @@ public class AdsBinding {
     private final AdsBindingRewardedListener videoListener;
     private final AdsBindingInterstitialListener interstitialListener;
     private final AdsBindingBannerListener bannerListener;
-    private AdsBindingAnalyticsListener analyticsListener;
     private ConcurrentHashMap<String, BannerContainer> banners = new ConcurrentHashMap<>();
 
     public AdsBinding(final Activity activity) {
@@ -33,6 +32,7 @@ public class AdsBinding {
         this.videoListener = new AdsBindingRewardedListener();
         this.interstitialListener = new AdsBindingInterstitialListener();
         this.bannerListener = new AdsBindingBannerListener();
+        ScaleMonkAds.addAnalytics(new AdsBindingAnalyticsListener());
     }
 
     public void initialize() {
@@ -122,11 +122,6 @@ public class AdsBinding {
 
     public void setUserCantGiveGDPRConsent(final boolean cantGiveConsent) {
         ScaleMonkAds.setUserCantGiveGDPRConsent(cantGiveConsent);
-    }
-
-    public void addAnalytics() {
-        analyticsListener = new AdsBindingAnalyticsListener();
-        ScaleMonkAds.addAnalytics(analyticsListener);
     }
 
     public void setCustomUserId(final String customUserId) {

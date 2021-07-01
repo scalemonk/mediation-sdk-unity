@@ -7,7 +7,36 @@ namespace ScaleMonk.Ads
     public class AnalyticsTests
     {
         [Test]
-        public void AnalyticsEventIsSentWhenNativeBridgeSendsAnEvent()
+        public void AnalyticsIsAddedBeforeInitializationAndEventIsSentWhenNativeBridgeSendsAnEvent()
+        {
+            // Given an initialized SDK with an extra analytics attached to it
+            var adsBinding = Substitute.For<IAdsBinding>();
+            var monoBehaviourService = Substitute.For<INativeBridgeService>();
+            var analyticsMock = Substitute.For<IAnalytics>();
+
+            AnalyticsService analyticsService = new AnalyticsService();
+            var scaleMonkAds = new ScaleMonkAdsSDK(adsBinding, monoBehaviourService, analyticsService);
+            adsBinding
+                .When(binding => binding.Initialize(scaleMonkAds))
+                .Do(binding => scaleMonkAds.InitializationCompleted());
+            
+            scaleMonkAds.AddAnalytics(analyticsMock);
+            
+            scaleMonkAds.Initialize(() =>
+            {
+                
+            });
+
+            // When an event is sent from the native bridge
+            var customEvent = "{\"eventName\" : \"anEvent\", \"eventKeys\" : [\"aKey\"], \"eventValues\" : [\"aValue\"]}";
+            analyticsService.SendEvent(customEvent);
+
+            // Then analytics receives the expected Event 
+            analyticsMock.Received(1).SendEvent("anEvent", ContainsEventParam("aKey", "aValue"));
+        }
+        
+        [Test]
+        public void AnalyticsIsAddedAfterInitializationAndEventIsSentWhenNativeBridgeSendsAnEvent()
         {
             // Given an initialized SDK with an extra analytics attached to it
             var adsBinding = Substitute.For<IAdsBinding>();
@@ -32,56 +61,15 @@ namespace ScaleMonk.Ads
             // Then analytics receives the expected Event 
             analyticsMock.Received(1).SendEvent("anEvent", ContainsEventParam("aKey", "aValue"));
         }
-
-        [Test]
-        public void AnalyticsCannotBeAddedIfSDKIsNotInitialized()
-        {
-            // Given a not initialized SDK
-            var adsBinding = Substitute.For<IAdsBinding>();
-            var monoBehaviourService = Substitute.For<INativeBridgeService>();
-            var analyticsMock = Substitute.For<IAnalytics>();
-
-            AnalyticsService analyticsService = new AnalyticsService();
-            var scaleMonkAds = new ScaleMonkAdsSDK(adsBinding, monoBehaviourService, analyticsService);
-            
-            // When we add an analytics to it
-            scaleMonkAds.AddAnalytics(analyticsMock);
-            
-            // Then the analytics binding is never created
-            adsBinding.DidNotReceive().CreateAnalyticsBinding();
-        }
-
-        [Test]
-        public void AnalyticsCanBeAddedToAInitializedSDK()
-        {
-            // Given an initialized SDK
-            var adsBinding = Substitute.For<IAdsBinding>();
-            var monoBehaviourService = Substitute.For<INativeBridgeService>();
-            var analyticsMock = Substitute.For<IAnalytics>();
-
-            AnalyticsService analyticsService = new AnalyticsService();
-            var scaleMonkAds = new ScaleMonkAdsSDK(adsBinding, monoBehaviourService, analyticsService);
-            adsBinding
-                .When(binding => binding.Initialize(scaleMonkAds))
-                .Do(binding => scaleMonkAds.InitializationCompleted());
-
-            scaleMonkAds.Initialize(() =>
-            {
-                // When an external analytics is added 
-                scaleMonkAds.AddAnalytics(analyticsMock);
-            });
-
-            // Then analytics binding is created
-            adsBinding.Received(1).CreateAnalyticsBinding();
-        }
         
         [Test]
-        public void AddingMoreThanOneExternalAnalyticsJustCreatesOneAnalyticsBinding()
+        public void AddTwoAnalyticsDispachEventsToBothOfThem()
         {
-            // Given an initialized SDK
+            // Given an initialized SDK with an extra analytics attached to it
             var adsBinding = Substitute.For<IAdsBinding>();
             var monoBehaviourService = Substitute.For<INativeBridgeService>();
             var analyticsMock = Substitute.For<IAnalytics>();
+            var analyticsMock2 = Substitute.For<IAnalytics>();
 
             AnalyticsService analyticsService = new AnalyticsService();
             var scaleMonkAds = new ScaleMonkAdsSDK(adsBinding, monoBehaviourService, analyticsService);
@@ -91,14 +79,19 @@ namespace ScaleMonk.Ads
 
             scaleMonkAds.Initialize(() =>
             {
-                // When adding more than one analytics
                 scaleMonkAds.AddAnalytics(analyticsMock);
-                scaleMonkAds.AddAnalytics(analyticsMock);
+                scaleMonkAds.AddAnalytics(analyticsMock2);
             });
 
-            // Then just one analytics binding is created
-            adsBinding.Received(1).CreateAnalyticsBinding();
+            // When an event is sent from the native bridge
+            var customEvent = "{\"eventName\" : \"anEvent\", \"eventKeys\" : [\"aKey\"], \"eventValues\" : [\"aValue\"]}";
+            analyticsService.SendEvent(customEvent);
+
+            // Then analytics receives the expected Event 
+            analyticsMock.Received(1).SendEvent("anEvent", ContainsEventParam("aKey", "aValue"));
+            analyticsMock2.Received(1).SendEvent("anEvent", ContainsEventParam("aKey", "aValue"));
         }
+        
 
         private static Dictionary<string, string> ContainsEventParam(string key, string value)
         {

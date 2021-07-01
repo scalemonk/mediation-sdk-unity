@@ -15,7 +15,7 @@
     <adnet id="IronSource" name="IronSource" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Mintegral" name="Mintegral" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Mopub" name="Mopub" ios="True" iosVersion="" androidVersion="" android="True" />
-    <adnet id="MyTarget" name="MyTarget" ios="True" iosVersion="" androidVersion="" android="False" />
+    <adnet id="MyTarget" name="MyTarget" ios="False" iosVersion="" androidVersion="" android="False" />
     <adnet id="RTB" name="RTB" ios="True" iosVersion="" androidVersion="" android="False" />
     <adnet id="Smaato" name="Smaato" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Tapjoy" name="Tapjoy" ios="True" iosVersion="" androidVersion="" android="False" />

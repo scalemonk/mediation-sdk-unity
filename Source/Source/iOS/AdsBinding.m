@@ -21,11 +21,8 @@ static SMAds *smAds;
 static NSMutableDictionary *_bannerViews;
 
 void SMAdsInitialize() {
-    if (_customUserId != nil) {
-        smAds = [[SMAds alloc] initWithCustomUserId:_customUserId andAnalytics:nil];
-    } else {
-        smAds = [[SMAds alloc] init];
-    }
+    
+    smAds = [[SMAds alloc] initWithCustomUserId:_customUserId andAnalytics:[[AdsBindingAnalyticsViewController alloc] init]];  
     
     if ([_extraInfo count] > 0) {
         [smAds setExtraInfo: _extraInfo];
@@ -244,11 +241,6 @@ bool SMAreInterstitialsEnabled() {
 
 bool SMAreRewardedEnabled() {
     return [smAds areRewardedEnabled];
-}
-
-void SMAddAnalytics() {
-    analyticsDelegateViewController = [[AdsBindingAnalyticsViewController alloc] init];    
-    [smAds addAnalytics:(id<SMAnalyticsListener>) analyticsDelegateViewController];
 }
 
 void SMSetCustomUserId(char* customUserId) {

@@ -18,8 +18,8 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)onEventReceived:(NSString *)eventName
-            eventParams:(NSDictionary<NSString *, NSObject *> *)eventParams {
+- (void)sendEvent:(NSString *)eventName
+            withParams:(NSDictionary<NSString *, NSObject *> *)eventParams {
     NSLog(@"Event %@ received on iOS binding", eventName);
     NSString * eventAsString = createEventAsString(eventName, eventParams);
     

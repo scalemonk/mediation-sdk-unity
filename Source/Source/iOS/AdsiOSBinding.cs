@@ -76,12 +76,7 @@ namespace ScaleMonk.Ads.iOS
         {
             SMSetUserCantGiveGDPRConsent(cantGiveConsent);
         }
-
-        public void CreateAnalyticsBinding()
-        {
-            SMAddAnalytics();
-        }
-
+        
         public void SetCustomUserId(string customUserId)
         {
             SMSetCustomUserId(customUserId);
@@ -194,9 +189,6 @@ namespace ScaleMonk.Ads.iOS
         [DllImport("__Internal")]
         private static extern void SMSetUserCantGiveGDPRConsent(bool isUnderage);
         
-        [DllImport("__Internal")]
-        private static extern void SMAddAnalytics();
-
         [DllImport("__Internal")]
         private static extern void SMSetCustomUserId(string customUserId);
         

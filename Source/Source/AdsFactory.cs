@@ -1,4 +1,5 @@
 using ScaleMonk.Ads;
+
 #if UNITY_IOS
 using ScaleMonk.Ads.iOS;
 #elif UNITY_ANDROID
@@ -8,27 +9,32 @@ using ScaleMonk.Ads.Android;
 
 public static class AdsFactory
 {
+    private static AnalyticsService _analyticsService;
+    private static DefaultNativeBridgeService _defaultNativeBridgeService;
+    private static IAdsBinding _binding;
+
     public static IAdsBinding AdsBinding()
     {
-        IAdsBinding binding = null;
-
+        if (_binding == null)
+        {
 #if UNITY_EDITOR
-        binding = new AdsEditorBinding();
+            _binding = new AdsEditorBinding();
 #elif UNITY_ANDROID
-        binding = new AdsAndroidBinding(new AndroidJavaBridge());
+            _binding = new AdsAndroidBinding(new AndroidJavaBridge());
 #elif UNITY_IOS
-            binding = new AdsiOSBinding();
+            _binding = new AdsiOSBinding();
 #endif
-        return binding;
+        }
+        return _binding;
     }
 
     public static INativeBridgeService NativeBridgeService()
     {
-        return new DefaultNativeBridgeService();
+        return _defaultNativeBridgeService ?? (_defaultNativeBridgeService = new DefaultNativeBridgeService());
     }
 
     public static AnalyticsService AnalyticsService()
     {
-        return new AnalyticsService();
+        return _analyticsService ?? (_analyticsService = new AnalyticsService());
     }
 }

@@ -140,16 +140,7 @@ namespace ScaleMonk.Ads
 
         public void AddAnalytics(IAnalytics analytics)
         {
-            RunIfInitialized(() =>
-            {
-                if (!_hasAnalyticsBinding)
-                {
-                    _adsBinding.CreateAnalyticsBinding();
-                    _hasAnalyticsBinding = true;
-                }
-
-                _analyticsService.AddAnalytics(analytics);
-            });
+            _analyticsService.AddAnalytics(analytics);
         }
 
         /// <summary>
