@@ -10,17 +10,18 @@ import android.widget.RelativeLayout;
 import androidx.annotation.Keep;
 
 import com.scalemonk.ads.BannerContainer;
+import com.scalemonk.ads.ScaleMonkBanner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Keep
-public class BannerContainerFactory {
+public class BannerFactory {
     // we need this value to be sure that the container is big enough to place our Ad.
     private static final int OFFSET_IN_DP = 1;
     private static RelativeLayout fullscreenLayout;
 
-    public static BannerContainer createBannerContainer(Context context, String position, int width, int height) {
+    public static ScaleMonkBanner createBanner(Context context, String position, int width, int height) {
         Activity activity = (Activity) context;
         FrameLayout rootLayout = getRootLayout(activity);
 
@@ -32,30 +33,30 @@ public class BannerContainerFactory {
                         ViewGroup.LayoutParams.MATCH_PARENT);
         fullscreenLayout.setLayoutParams(fullscreenParams);
 
-        BannerContainer bannerContainer = new BannerContainer(context);
-        bannerContainer.setPadding(0,0,0,0);
+        ScaleMonkBanner banner = new ScaleMonkBanner(context);
+        banner.setPadding(0,0,0,0);
 
-        RelativeLayout.LayoutParams bannerContainerParams =
+        RelativeLayout.LayoutParams bannerParams =
                 new RelativeLayout.LayoutParams(dpToPx(activity, width + OFFSET_IN_DP), dpToPx(activity, height + OFFSET_IN_DP));
 
-        bannerContainerParams.setMargins(0, 0, 0, 0);
+        bannerParams.setMargins(0, 0, 0, 0);
         for (int rule : layoutParamsFrom(position)) {
-            bannerContainerParams.addRule(rule);
+            bannerParams.addRule(rule);
         }
 
-        bannerContainer.setLayoutParams(bannerContainerParams);
+        banner.setLayoutParams(bannerParams);
 
-        fullscreenLayout.addView(bannerContainer);
+        fullscreenLayout.addView(banner);
         rootLayout.addView(fullscreenLayout);
 
-        return bannerContainer;
+        return banner;
     }
 
-    public static void remove(Context context, BannerContainer bannerContainer) {
+    public static void remove(Context context, ScaleMonkBanner banner) {
         Activity activity = (Activity) context;
         FrameLayout rootLayout = getRootLayout(activity);
 
-        fullscreenLayout.removeView(bannerContainer);
+        fullscreenLayout.removeView(banner);
         rootLayout.removeView(fullscreenLayout);
     }
 

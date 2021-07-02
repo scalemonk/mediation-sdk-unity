@@ -11,6 +11,7 @@
 2020-Container/[Ll]ogs/
 2020-Container/[Mm]emoryCaptures/
 2020-Container/CodeCoverage/
+2020-Container/.idea/
 
 2019-Container/[Ll]ibrary/
 2019-Container/[Tt]emp/
@@ -20,6 +21,7 @@
 2019-Container/[Ll]ogs/
 2019-Container/[Mm]emoryCaptures/
 2019-Container/CodeCoverage/
+2019-Container/.idea/
 
 2018-Container/[Ll]ibrary/
 2018-Container/[Tt]emp/
@@ -28,6 +30,7 @@
 2018-Container/[Bb]uilds/
 2018-Container/[Ll]ogs/
 2018-Container/[Mm]emoryCaptures/
+2018-Container/.idea/
 
 2017-Container/[Ll]ibrary/
 2017-Container/[Tt]emp/
@@ -36,6 +39,7 @@
 2017-Container/[Bb]uilds/
 2017-Container/[Ll]ogs/
 2017-Container/[Mm]emoryCaptures/
+2017-Container/.idea/
 
 /ios/
 /android/

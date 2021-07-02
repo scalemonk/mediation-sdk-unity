@@ -25,6 +25,8 @@ namespace Demo
         public string menuTag = "DEBUG MENU";
         private ScaleMonkAdsSDK scaleMonkAds => ScaleMonkAds.SharedInstance;
 
+        private Banner banner;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -48,12 +50,19 @@ namespace Demo
 
         private void OnClickShowBanner()
         {
-            scaleMonkAds.ShowBanner(menuTag, bannerPosition);
+            banner = scaleMonkAds.ShowBanner(menuTag, bannerPosition);
         }
 
         private void OnClickStopBanner()
         {
-            scaleMonkAds.StopBanner(menuTag);
+            if (banner != null)
+            {
+                scaleMonkAds.StopBanner(banner);
+            }
+            else
+            {
+                scaleMonkAds.StopBanner();
+            }
         }
 
         private void OnClickInit()
@@ -76,7 +85,6 @@ namespace Demo
                 {
                     // Here the SDK is initialized and you can interact with it
                     AdsLogger.LogInfo("SDK is ready to show Ads");
-                    OnClickShowBanner();
                 }
             );
         }

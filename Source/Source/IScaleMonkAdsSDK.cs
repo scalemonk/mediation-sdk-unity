@@ -86,7 +86,7 @@ namespace ScaleMonk.Ads
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerSize">The bannerSize of the Ad.</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition);
+        Banner ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition);
 
         /// <summary>
         /// Displays a banner ad.
@@ -96,7 +96,7 @@ namespace ScaleMonk.Ads
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        void ShowBanner(string tag, BannerPosition bannerPosition);
+        Banner ShowBanner(string tag, BannerPosition bannerPosition);
 
         /// <summary>
         /// Displays a banner ad.
@@ -105,7 +105,7 @@ namespace ScaleMonk.Ads
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        void ShowBanner(BannerPosition bannerPosition);
+        Banner ShowBanner(BannerPosition bannerPosition);
 
         /// <summary>
         /// Displays a banner ad.
@@ -115,14 +115,14 @@ namespace ScaleMonk.Ads
         /// </summary>
         /// <param name="bannerSize">The bannerSize of the Ad.</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        void ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition);
+        Banner ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition);
 
         /// <summary>
         /// Stops a banner ad.
         ///
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be removed from (like menu or store).</param>
-        void StopBanner(string tag);
+        void StopBanner(Banner banner);
 
         /// <summary>
         /// Stops a banner ad.
