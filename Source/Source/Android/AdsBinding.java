@@ -9,10 +9,13 @@ import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
-import com.scalemonk.ads.unity.banner.BannerContainerFactory;
+import com.scalemonk.ads.ScaleMonkBanner;
+import com.scalemonk.ads.unity.banner.BannerFactory;
 import com.scalemonk.libs.ads.core.domain.UserType;
 import com.scalemonk.libs.ads.core.domain.session.UserTypeProvider;
 import com.unity3d.player.UnityPlayer;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.jetbrains.annotations.NotNull;
@@ -73,16 +76,14 @@ public class AdsBinding {
                            final String tag,
                            final int width,
                            final int height) {
-
+        final String id = UUID.randomUUID().toString();
         this.activity.runOnUiThread(() -> {
                     ScaleMonkBanner banner = BannerFactory.createBanner(context, position, width, height);
-                    String id = UUID.randomUUID();
                     banners.put(id, banner);
-
                     ScaleMonkAds.showBanner(context, banner, tag);
-                    return id;
                 }
         );
+        return id;
     }
 
     public void stopBanner(final Context context, final String id) {
@@ -98,7 +99,7 @@ public class AdsBinding {
     
     public void stopBanner(final Context context) {
         for (String id : new ArrayList<String>(banners.keySet())) {
-            stopBanner(context, id)
+            stopBanner(context, id);
         }
     }
 

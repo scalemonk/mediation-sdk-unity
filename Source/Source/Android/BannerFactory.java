@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.Keep;
 
 import com.scalemonk.ads.BannerContainer;
+import com.scalemonk.ads.ScaleMonkBanner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class BannerFactory {
 
         banner.setLayoutParams(bannerParams);
 
-        fullscreenLayout.addView(bannerContainer);
+        fullscreenLayout.addView(banner);
         rootLayout.addView(fullscreenLayout);
 
         return banner;
