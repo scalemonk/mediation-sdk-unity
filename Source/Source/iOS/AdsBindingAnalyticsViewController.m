@@ -20,10 +20,16 @@
 
 - (void)sendEvent:(NSString *)eventName
             withParams:(NSDictionary<NSString *, NSObject *> *)eventParams {
-    NSLog(@"Event %@ received on iOS binding", eventName);
-    NSString * eventAsString = createEventAsString(eventName, eventParams);
-    
-    UnitySendMessage("AdsMonoBehaviour", "SendEvent", strdup([eventAsString UTF8String]));
+    @try {
+        NSLog(@"Event %@ received on iOS binding", eventName);
+
+        NSString * eventAsString = createEventAsString(eventName, eventParams);
+
+        UnitySendMessage("AdsMonoBehaviour", "SendEvent", strdup([eventAsString UTF8String]));
+    }
+    @catch(id exception){
+        NSLog(@"Cannot serialize event %@ with params %@ into json %@", eventName, eventParams, exception);
+    }
 }
 
 static NSString *createEventAsString(NSString *eventName, NSDictionary<NSString *,NSObject *> *eventParams) {
@@ -33,13 +39,12 @@ static NSString *createEventAsString(NSString *eventName, NSDictionary<NSString 
     
     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:eventName, @"eventName", eventKeys, @"eventKeys",
                           eventValues, @"eventValues", nil];
-        
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
     if (error != nil) {
         NSLog(@"Cannot serialize event into json %@", error);
         return @"";
     }
-    
+
     NSString* jsonDictionary = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return jsonDictionary;
 }
