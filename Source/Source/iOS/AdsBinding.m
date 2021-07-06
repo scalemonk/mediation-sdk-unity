@@ -217,6 +217,17 @@ void SMSetApplicationChildDirected(bool isChildDirected){
     [smAds setIsApplicationChildDirected: isChildDirected];
 }
 
+void SMSetApplicationChildDirected(int status){
+    switch(status) {
+        case 1:
+            [smAds setIsApplicationChildDirected: false];
+            break;
+        case 2:
+            [smAds setIsApplicationChildDirected: true];
+            break;
+    }
+}
+
 void SMSetUserCantGiveGDPRConsent(bool isUnderage){
     [smAds setUserCantGiveGDPRConsentWithStatus: isUnderage];
 }

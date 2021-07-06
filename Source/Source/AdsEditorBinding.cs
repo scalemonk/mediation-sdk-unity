@@ -141,6 +141,10 @@ namespace ScaleMonk.Ads
         {
         }
 
+        public void SetIsApplicationChildDirected(CoppaStatus status)
+        {
+        }
+
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
         }

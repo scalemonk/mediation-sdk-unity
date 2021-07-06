@@ -126,6 +126,17 @@ namespace ScaleMonk.Ads
         {
             RunIfInitialized(() => { _adsBinding.SetIsApplicationChildDirected(isChildDirected); });
         }
+        
+        /// <summary>
+        /// Tells the ScaleMonk SDK whether the application is targeted to children and should only show age-appropriate ads
+        ///
+        /// </summary>
+        /// <param name="status"> Child directed status
+        /// </param>
+        public void SetIsApplicationChildDirected(CoppaStatus status)
+        {
+            RunIfInitialized(() => { _adsBinding.SetIsApplicationChildDirected(status); });
+        }
 
         /// <summary>
         /// Tells the ScaleMonk SDK that the user can't give consent for GDPR since they're underage

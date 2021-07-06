@@ -19,6 +19,8 @@ namespace Demo
         public Button ShowRewardedVideoButton;
         public Button ShowBannerButton;
         public Button StopBannerButton;
+        public Button CoppaForChild;
+        public Button CoppaForNonChild;
         public Text LogField;
 
         private BannerPosition bannerPosition = BannerPosition.BottomCenter;
@@ -33,6 +35,9 @@ namespace Demo
             ShowRewardedVideoButton.onClick.AddListener(OnClickShowRewarded);
             ShowBannerButton.onClick.AddListener(OnClickShowBanner);
             StopBannerButton.onClick.AddListener(OnClickStopBanner);
+            CoppaForChild.onClick.AddListener(OnClickCoppaForChild);
+            CoppaForNonChild.onClick.AddListener(OnClickCoppaForNonChild);
+
             ScaleMonkAds.SharedInstance.AddAnalytics(new DefaultAnalytics());
         }
 
@@ -54,6 +59,18 @@ namespace Demo
         private void OnClickStopBanner()
         {
             scaleMonkAds.StopBanner(menuTag);
+        }
+        
+        private void OnClickCoppaForChild()
+        {
+            scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+            AdsLogger.LogInfo("Coppa status CHILD_TREATMENT_TRUE");
+        }
+
+        private void OnClickCoppaForNonChild()
+        {
+            scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_FALSE);
+            AdsLogger.LogInfo("Coppa status CHILD_TREATMENT_FALSE");
         }
 
         private void OnClickInit()

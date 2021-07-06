@@ -21,7 +21,9 @@ namespace ScaleMonk.Ads
         bool AreRewardedEnabled();
         bool AreInterstitialsEnabled();
         void SetHasGDPRConsent(bool consent);
+        [Obsolete("Use \"void SetIsApplicationChildDirected(CoppaStatus status)\" method instead.")]
         void SetIsApplicationChildDirected(bool isChildDirected);
+        void SetIsApplicationChildDirected(CoppaStatus status);
         void SetUserCantGiveGDPRConsent(bool cantGiveConsent);
         void SetCustomUserId(string customUserId);
         void SetUserType(UserType userType);
