@@ -181,6 +181,13 @@ namespace ScaleMonk.Ads
         }
 
         /// <summary>
+        /// Returns true if there is an instance of interstitial ad ready to be shown. Otherwise, it returns false.
+        ///
+        /// </summary>
+        /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
+        public bool IsInterstitialReadyToShow(string tag) => _adsBinding.IsInterstitialReadyToShow(tag);
+
+        /// <summary>
         /// Displays a rewarded ad.
         ///
         /// If the display was successful, the event `RewardedDisplayedEvent` will be called when the ad closes.
@@ -206,6 +213,13 @@ namespace ScaleMonk.Ads
                 _adsBinding.ShowRewarded(tag);
             });
         }
+
+        /// <summary>
+        /// Returns true if there is an instance of rewarded ad ready to be shown. Otherwise, it returns false.
+        ///
+        /// </summary>
+        /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
+        public bool IsRewardedReadyToShow(string tag) => _adsBinding.IsRewardedVideoReadyToShow(tag);
 
         /// <summary>
         /// Displays a banner ad.
