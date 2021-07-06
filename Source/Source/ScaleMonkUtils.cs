@@ -116,9 +116,15 @@ namespace ScaleMonk.Ads
             this.height = height;
         }
 
-        public int Width => width;
+        public int Width
+        {
+            get { return width; }
+        }
 
-        public int Height => height;
+        public int Height
+        {
+            get { return height; }
+        }
     }
 
     public class EditorPosition
@@ -134,11 +140,20 @@ namespace ScaleMonk.Ads
             this.pivot = pivot;
         }
 
-        public Vector2 AnchorMin => anchorMin;
+        public Vector2 AnchorMin
+        {
+            get { return anchorMin; }
+        }
 
-        public Vector2 AnchorMax => anchorMax;
+        public Vector2 AnchorMax
+        {
+            get { return anchorMax; }
+        }
 
-        public Vector2 Pivot => pivot;
+        public Vector2 Pivot
+        {
+            get { return pivot; }
+        }
     }
 
     [Serializable]
@@ -160,7 +175,10 @@ namespace ScaleMonk.Ads
             return eventDictionary;
         }
 
-        public bool HasEventParams() => eventKeys.Length != 0 && eventValues.Length != 0;
+        public bool HasEventParams()
+        {
+            return eventKeys.Length != 0 && eventValues.Length != 0;
+        }
     }
 
     public interface IAnalytics
