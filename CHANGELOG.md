@@ -3,10 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-Allow configure IAnalytics before and after the initialization
+- Allow configure IAnalytics before and after the initialization
+- Added `IsInterstitialReadyToShow` and `IsRewardedReadyToShow` methods
 
 ### Fixed
-Fix export package. Exclude exporter on export package process
+- Fix export package. Exclude exporter on export package process
 
 ## [1.8.0] - 2021-06-15
 
