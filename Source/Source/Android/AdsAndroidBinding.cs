@@ -53,7 +53,7 @@ namespace ScaleMonk.Ads.Android
 
         public bool IsRewardedVideoReadyToShow(string tag)
         {
-            return _androidJavaBridge.CallBooleanNativeMethod("isRewardedVideoReadyToShow", tag);
+            return _androidJavaBridge.CallBooleanNativeMethod("isRewardedReadyToShow", tag);
         }
 
         public bool AreRewardedEnabled()
