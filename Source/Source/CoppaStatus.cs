@@ -5,7 +5,7 @@ namespace ScaleMonk.Ads
   /// <summary>
   /// Represents the different COPPA status handled in the Scalemonk SDK.
   /// </summary>
-  public enum CoppaStatus: int {
+  public enum CoppaStatus {
     
     /// <summary>
     /// Unknown status.

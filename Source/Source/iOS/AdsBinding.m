@@ -218,6 +218,8 @@ void SMSetApplicationChildDirected(bool isChildDirected){
 }
 
 void SMSetApplicationChildDirected(int status){
+    // Enum is not implemented yet on iOS side.
+    // this should be mapped to the future CoppaStatus enum
     switch(status) {
         case 1:
             [smAds setIsApplicationChildDirected: false];

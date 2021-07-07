@@ -135,7 +135,7 @@ namespace ScaleMonk.Ads
         /// </param>
         public void SetIsApplicationChildDirected(CoppaStatus status)
         {
-            RunIfInitialized(() => { _adsBinding.SetIsApplicationChildDirected(status); });
+            _adsBinding.SetIsApplicationChildDirected(status);
         }
 
         /// <summary>
