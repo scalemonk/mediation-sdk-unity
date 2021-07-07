@@ -16,7 +16,12 @@ import com.unity3d.player.UnityPlayer;
 
 import org.jetbrains.annotations.NotNull;
 import androidx.annotation.Keep;
+
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.RunnableFuture;
+
+import static com.unity3d.services.core.misc.Utilities.runOnUiThread;
 
 @Keep
 public class AdsBinding {
@@ -43,12 +48,36 @@ public class AdsBinding {
 
     public boolean isInterstitialReadyToShow(String tag) {
         Log.d(TAG, "Checking availability of interstitials at: " + tag + ".");
-        return ScaleMonkAds.isInterstitialReadyToShow(tag);
+
+        boolean[] result = new boolean[1];
+
+        RunnableFuture<Void> task = new FutureTask<>(() -> result[0] = ScaleMonkAds.isInterstitialReadyToShow(tag), null);
+        runOnUiThread(task);
+
+        try {
+            task.get(); // this will block until Runnable completes
+        } catch (Exception e) {
+            result[0] = false;
+        }
+
+        return result[0];
     }
 
     public boolean isRewardedReadyToShow(String tag) {
         Log.d(TAG, "Checking availability of videos on: " + tag + ".");
-        return ScaleMonkAds.isRewardedReadyToShow(tag);
+
+        boolean[] result = new boolean[1];
+
+        RunnableFuture<Void> task = new FutureTask<>(() -> result[0] = ScaleMonkAds.isRewardedReadyToShow(tag), null);
+        runOnUiThread(task);
+
+        try {
+            task.get(); // this will block until Runnable completes
+        } catch (Exception e) {
+            result[0] = false;
+        }
+
+        return result[0];
     }
 
 //    public boolean areVideosEnabled() {
