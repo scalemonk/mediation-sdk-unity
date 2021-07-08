@@ -6,6 +6,7 @@
 //
 
 #import <ScaleMonkAds/SMAds.h>
+#import <ScaleMonkAds/SMRegulationsConstants.h>
 #import "AdsBindingRewardedDelegateViewController.h"
 #import "AdsBindingInterstitialViewController.h"
 #import "AdsBindingBannerViewController.h"
@@ -218,14 +219,18 @@ void SMSetApplicationChildDirected(bool isChildDirected){
 }
 
 void SMSetApplicationChildDirectedStatus(int status){
-    // Enum is not implemented yet on iOS side.
-    // this should be mapped to the future CoppaStatus enum
     switch(status) {
+        case 0:
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeUnknown];
+            break;
         case 1:
-            [smAds setIsApplicationChildDirected: false];
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeChildTreatmentFalse];
             break;
         case 2:
-            [smAds setIsApplicationChildDirected: true];
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeChildTreatmentTrue];
+            break;
+        case 3:
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeNotApplicable];
             break;
     }
 }
