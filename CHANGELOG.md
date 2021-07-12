@@ -1,13 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+
+## [1.9.0] - 2021-07-12
 ### Added
 - Allow configure IAnalytics before and after the initialization
 - Added `IsInterstitialReadyToShow` and `IsRewardedReadyToShow` methods
 
 ### Fixed
 - Fix export package. Exclude exporter on export package process
+
+### Changed
+- Updated iOS ScaleMonk version to 2.1.0
 
 ## [1.8.0] - 2021-06-15
 
