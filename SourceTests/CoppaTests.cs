@@ -16,10 +16,10 @@ namespace ScaleMonk.Ads
             
             // When sdk is not initialized and SetIsApplicationChildDirected is called
             Assert.False(scaleMonkAds.IsInitialized());
-            scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+            scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.ChildTreatmentTrue);
             
             // Then adBidding SetIsApplicationChildDirected is called
-            adsBinding.Received(1).SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+            adsBinding.Received(1).SetIsApplicationChildDirected(CoppaStatus.ChildTreatmentTrue);
         }
         
         [Test]
@@ -38,10 +38,10 @@ namespace ScaleMonk.Ads
             scaleMonkAds.Initialize(() => {
                 // When sdk is initialized and SetIsApplicationChildDirected is called
                 Assert.True(scaleMonkAds.IsInitialized());
-                scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+                scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.ChildTreatmentTrue);
             
                 // Then adBidding SetIsApplicationChildDirected is called
-                adsBinding.Received(1).SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+                adsBinding.Received(1).SetIsApplicationChildDirected(CoppaStatus.ChildTreatmentTrue);
             });
         }
     }

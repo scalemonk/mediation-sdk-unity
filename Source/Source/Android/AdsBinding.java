@@ -9,6 +9,7 @@ import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
+import com.scalemonk.ads.GDPRConsent;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 import com.scalemonk.libs.ads.core.domain.UserType;
 import com.scalemonk.libs.ads.core.domain.regulations.CoppaStatus;
@@ -142,8 +143,26 @@ public class AdsBinding {
         });
     }
 
+    [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
     public void setHasGDPRConsent(final boolean consent) {
         ScaleMonkAds.setHasGDPRConsent(consent);
+    }
+    
+    public void setHasGDPRConsent(final int consent) {
+        switch (consent) {
+            case 0:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.GRANTED);
+                break;
+            case 1:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_GRANTED);
+                break;
+            case 2:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_APPLICABLE);
+                break;
+            default:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_SET);
+                break;
+        }
     }
 
     public void setIsApplicationChildDirected(final boolean isChildDirected) {

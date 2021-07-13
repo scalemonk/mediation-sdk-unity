@@ -9,18 +9,17 @@ namespace ScaleMonk.Ads
     {
         private IBridge _mockAndroidJavaBridge;
         private AdsAndroidBinding _androidBinding;
-        
-        private void GivenAnAdsAndroidBinding()
+
+        [SetUp]
+        public void GivenAnAdsAndroidBinding()
         {
             _mockAndroidJavaBridge = Substitute.For<IBridge>();
             _androidBinding = new AdsAndroidBinding(_mockAndroidJavaBridge);
         }
-        
+
         [Test]
         public void ShowBannerAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-
             // When Show banner is called with tag "aTag"
             _androidBinding.ShowBanner("aTag", BannerSize.Full, BannerPosition.TopCenter);
 
@@ -38,8 +37,6 @@ namespace ScaleMonk.Ads
         [Test]
         public void StopBannerAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-
             // When StopBanner is call at "aTag"
             _androidBinding.StopBanner("aTag");
 
@@ -47,15 +44,13 @@ namespace ScaleMonk.Ads
             _mockAndroidJavaBridge.Received(1).CallNativeMethodWithActivity(
                 "stopBanner",
                 Arg.Is<object[]>(parameters =>
-                    parameters[0].ToString() == "aTag" )
+                    parameters[0].ToString() == "aTag")
             );
         }
-        
+
         [Test]
         public void ShowInterstitialAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-
             // When Show interstitial is called with tag "aTag"
             _androidBinding.ShowInterstitial("aTag");
 
@@ -63,15 +58,13 @@ namespace ScaleMonk.Ads
             _mockAndroidJavaBridge.Received(1).CallNativeMethodWithActivity(
                 "showInterstitial",
                 Arg.Is<object[]>(parameters =>
-                    parameters[0].ToString() == "aTag" )
+                    parameters[0].ToString() == "aTag")
             );
         }
-        
+
         [Test]
         public void ShowRewardedAdAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-
             // When Show rewarded is called with tag "aTag"
             _androidBinding.ShowRewarded("aTag");
 
@@ -79,15 +72,13 @@ namespace ScaleMonk.Ads
             _mockAndroidJavaBridge.Received(1).CallNativeMethodWithActivity(
                 "showRewarded",
                 Arg.Is<object[]>(parameters =>
-                    parameters[0].ToString() == "aTag" )
+                    parameters[0].ToString() == "aTag")
             );
         }
-        
+
         [Test]
         public void SetCustomUserIdAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-
             // When SetCustomUserId is called with tag "aTag"
             _androidBinding.SetCustomUserId("anUserId");
 
@@ -98,12 +89,10 @@ namespace ScaleMonk.Ads
                     parameters[0].ToString() == "anUserId")
             );
         }
-        
+
         [Test]
         public void SetUserTypeAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-            
             _androidBinding.SetUserType(UserType.PAYING_USER);
 
             // Then the java bridge is called with the right parameters
@@ -113,12 +102,10 @@ namespace ScaleMonk.Ads
                     parameters[0].ToString() == "paying_user")
             );
         }
-        
+
         [Test]
         public void SetUserTypeNonPayingUserAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-            
             _androidBinding.SetUserType(UserType.NON_PAYING_USER);
 
             // Then the java bridge is called with the right parameters
@@ -128,35 +115,66 @@ namespace ScaleMonk.Ads
                     parameters[0].ToString() == "non_paying_user")
             );
         }
-        
+
         [Test]
         public void SetChildCoppaAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-
             // When SetIsApplicationChildDirected to "CoppaStatus.CHILD_TREATMENT_TRUE"
-            _androidBinding.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+            _androidBinding.SetIsApplicationChildDirected(CoppaStatus.ChildTreatmentTrue);
             // Then the java bridge is called with the right parameters
             _mockAndroidJavaBridge.Received(1).CallNativeMethod(
                 "setIsApplicationChildDirected",
                 Arg.Is<object[]>(parameters =>
-                    (int)parameters[0] == 2)
+                    (int) parameters[0] == 2)
             );
         }
-        
+
         [Test]
         public void SetNonChildCoppaAndroidBridgeTest()
         {
-            GivenAnAdsAndroidBinding();
-
             // When SetIsApplicationChildDirected to "CoppaStatus.CHILD_TREATMENT_TRUE"
-            _androidBinding.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_FALSE);
+            _androidBinding.SetIsApplicationChildDirected(CoppaStatus.ChildTreatmentFalse);
             // Then the java bridge is called with the right parameters
             _mockAndroidJavaBridge.Received(1).CallNativeMethod(
                 "setIsApplicationChildDirected",
                 Arg.Is<object[]>(parameters =>
-                    (int)parameters[0] == 1)
+                    (int) parameters[0] == 1)
             );
+        }
+
+        [Test]
+        public void SetHasGdprConsent_GivenSomeValue_CallsCorrectNativeMethodWithGdprIntValue()
+        {
+            // Given
+            const GdprConsent gdprConsent = GdprConsent.Granted;
+
+            // When
+            _androidBinding.SetHasGDPRConsent(gdprConsent);
+
+            // Then
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setHasGDPRConsent", (int) gdprConsent);
+        }
+
+        // TODO Remove when IAdsBinding.SetHasGDPRConsent(boolean) method is removed
+        [Test]
+        public void SetHasGdprConsent_GivenTrue_CallsNativeMethodPassingGrantedAsValue()
+        {
+            // When
+            _androidBinding.SetHasGDPRConsent(true);
+
+            // Then
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setHasGDPRConsent", (int)GdprConsent.Granted);
+        }
+
+        // TODO Remove when IAdsBinding.SetHasGDPRConsent(boolean) method is removed
+        [Test]
+        public void SetHasGdprConsent_GivenFalse_CallsNativeMethodPassingNotGrantedAsValue()
+        {
+            // When
+            _androidBinding.SetHasGDPRConsent(false);
+
+            // Then
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setHasGDPRConsent", (int)GdprConsent.NotGranted);
         }
     }
 }
