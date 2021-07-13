@@ -11,6 +11,7 @@ import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 import com.scalemonk.libs.ads.core.domain.UserType;
+import com.scalemonk.libs.ads.core.domain.regulations.CoppaStatus;
 import com.scalemonk.libs.ads.core.domain.session.UserTypeProvider;
 import com.unity3d.player.UnityPlayer;
 
@@ -147,6 +148,23 @@ public class AdsBinding {
 
     public void setIsApplicationChildDirected(final boolean isChildDirected) {
         ScaleMonkAds.setIsApplicationChildDirected(isChildDirected);
+    }
+
+    public void setIsApplicationChildDirected(final int consent) {
+        switch (consent) {
+            case 0:
+                ScaleMonkAds.setIsApplicationChildDirected(CoppaStatus.UNKNOWN);
+                break;
+            case 1:
+                ScaleMonkAds.setIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_FALSE);
+                break;
+            case 2:
+                ScaleMonkAds.setIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+                break;
+            case 3:
+                ScaleMonkAds.setIsApplicationChildDirected(CoppaStatus.NOT_APPLICABLE);
+                break;
+        }
     }
 
     public void setUserCantGiveGDPRConsent(final boolean cantGiveConsent) {

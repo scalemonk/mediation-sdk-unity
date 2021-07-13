@@ -78,6 +78,11 @@ namespace ScaleMonk.Ads.Android
             _androidJavaBridge.CallNativeMethod("setIsApplicationChildDirected", isChildDirected);
         }
 
+        public void SetIsApplicationChildDirected(CoppaStatus status)
+        {
+            _androidJavaBridge.CallNativeMethod("setIsApplicationChildDirected", status.ToInt());
+        }
+
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
             _androidJavaBridge.CallNativeMethod("setUserCantGiveGDPRConsent", cantGiveConsent);

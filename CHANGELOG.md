@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Updated iOS ScaleMonk version to 2.1.0
 
+### Changed
+- Adds binding for `setIsApplicationChildDirected` with coppa enum on android
+
+### Changed
+- Adds binding for `setIsApplicationChildDirectedStatus` with coppa enum on ios
+
 ## [1.8.0] - 2021-06-15
 
 ### Changed

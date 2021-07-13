@@ -128,5 +128,35 @@ namespace ScaleMonk.Ads
                     parameters[0].ToString() == "non_paying_user")
             );
         }
+        
+        [Test]
+        public void SetChildCoppaAndroidBridgeTest()
+        {
+            GivenAnAdsAndroidBinding();
+
+            // When SetIsApplicationChildDirected to "CoppaStatus.CHILD_TREATMENT_TRUE"
+            _androidBinding.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
+            // Then the java bridge is called with the right parameters
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod(
+                "setIsApplicationChildDirected",
+                Arg.Is<object[]>(parameters =>
+                    (int)parameters[0] == 2)
+            );
+        }
+        
+        [Test]
+        public void SetNonChildCoppaAndroidBridgeTest()
+        {
+            GivenAnAdsAndroidBinding();
+
+            // When SetIsApplicationChildDirected to "CoppaStatus.CHILD_TREATMENT_TRUE"
+            _androidBinding.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_FALSE);
+            // Then the java bridge is called with the right parameters
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod(
+                "setIsApplicationChildDirected",
+                Arg.Is<object[]>(parameters =>
+                    (int)parameters[0] == 1)
+            );
+        }
     }
 }

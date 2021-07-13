@@ -6,6 +6,7 @@
 //
 
 #import <ScaleMonkAds/SMAds.h>
+#import <ScaleMonkAds/SMRegulationsConstants.h>
 #import "AdsBindingRewardedDelegateViewController.h"
 #import "AdsBindingInterstitialViewController.h"
 #import "AdsBindingBannerViewController.h"
@@ -215,6 +216,23 @@ void SMAdsStopBanner(char* tagChr) {
 
 void SMSetApplicationChildDirected(bool isChildDirected){
     [smAds setIsApplicationChildDirected: isChildDirected];
+}
+
+void SMSetApplicationChildDirectedStatus(int status){
+    switch(status) {
+        case 0:
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeUnknown];
+            break;
+        case 1:
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeChildTreatmentFalse];
+            break;
+        case 2:
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeChildTreatmentTrue];
+            break;
+        case 3:
+            [smAds setIsApplicationChildDirectedStatus: CoppaStatusTypeNotApplicable];
+            break;
+    }
 }
 
 void SMSetUserCantGiveGDPRConsent(bool isUnderage){
