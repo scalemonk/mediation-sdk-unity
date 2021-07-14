@@ -23,8 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.RunnableFuture;
 
-import static com.unity3d.services.core.misc.Utilities.runOnUiThread;
-
 @Keep
 public class AdsBinding {
     public static String TAG = "AdsBinding";
@@ -54,7 +52,7 @@ public class AdsBinding {
         boolean[] result = new boolean[1];
 
         RunnableFuture<Void> task = new FutureTask<>(() -> result[0] = ScaleMonkAds.isInterstitialReadyToShow(tag), null);
-        runOnUiThread(task);
+        this.activity.runOnUiThread(task);
 
         try {
             task.get(); // this will block until Runnable completes
@@ -71,7 +69,7 @@ public class AdsBinding {
         boolean[] result = new boolean[1];
 
         RunnableFuture<Void> task = new FutureTask<>(() -> result[0] = ScaleMonkAds.isRewardedReadyToShow(tag), null);
-        runOnUiThread(task);
+        this.activity.runOnUiThread(task);
 
         try {
             task.get(); // this will block until Runnable completes
@@ -143,7 +141,18 @@ public class AdsBinding {
         });
     }
 
-    [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
+    /**
+     * Changes the user's GDPR consent value.
+     *
+     * @deprecated Use ScaleMonkAds.setHasGDPRConsent(GdprConsent status) method instead
+     * @param consent GDPR consent value provided by the user. The values are mapped like explained
+     *                below:
+     *                0 -> GDPRConsent.GRANTED
+     *                1 -> GDPRConsent.NOT_GRANTED
+     *                2 -> GDPRConsent.NOT_APPLICABLE
+     *                3 -> GDPRConsent.NOT_SET
+     */
+    @Deprecated
     public void setHasGDPRConsent(final boolean consent) {
         ScaleMonkAds.setHasGDPRConsent(consent);
     }
