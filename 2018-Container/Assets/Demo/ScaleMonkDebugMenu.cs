@@ -19,11 +19,11 @@ namespace Demo
         public Button ShowRewardedVideoButton;
         public Button ShowBannerButton;
         public Button StopBannerButton;
-        public Button CoppaForChild;
-        public Button CoppaForNonChild;
-        public Button GrantGdprConsent;
-        public Button DenyGdprConsent;
-        public Button DisableGdprConsent;
+        public Button CoppaForChildButton;
+        public Button CoppaForNonChildButton;
+        public Button GrantGdprConsentButton;
+        public Button DenyGdprConsentButton;
+        public Button DisableGdprConsentButton;
         public Text LogField;
 
         private BannerPosition bannerPosition = BannerPosition.BottomCenter;
@@ -42,11 +42,11 @@ namespace Demo
             ShowRewardedVideoButton.onClick.AddListener(OnClickShowRewarded);
             ShowBannerButton.onClick.AddListener(OnClickShowBanner);
             StopBannerButton.onClick.AddListener(OnClickStopBanner);
-            CoppaForChild.onClick.AddListener(OnClickCoppaForChild);
-            CoppaForNonChild.onClick.AddListener(OnClickCoppaForNonChild);
-            GrantGdprConsent.onClick.AddListener(OnGrantGdprConsent);
-            DenyGdprConsent.onClick.AddListener(OnDenyGdprConsent);
-            DisableGdprConsent.onClick.AddListener(OnDisableGdprConsent);
+            CoppaForChildButton.onClick.AddListener(OnClickCoppaForChild);
+            CoppaForNonChildButton.onClick.AddListener(OnClickCoppaForNonChild);
+            GrantGdprConsentButton.onClick.AddListener(OnGrantGdprConsent);
+            DenyGdprConsentButton.onClick.AddListener(OnDenyGdprConsent);
+            DisableGdprConsentButton.onClick.AddListener(OnDisableGdprConsent);
 
             ScaleMonkAds.SharedInstance.AddAnalytics(new DefaultAnalytics());
         }
