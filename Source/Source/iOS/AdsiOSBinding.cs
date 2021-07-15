@@ -6,12 +6,14 @@
 //
 
 #if UNITY_IOS
+
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace ScaleMonk.Ads.iOS
 {
-    public class AdsiOSBinding :IAdsBinding
+    public class AdsiOSBinding : IAdsBinding
     {
         const string _label = "AdsIOSBinding";
         ScaleMonkAdsSDK _adsInstance;
@@ -62,11 +64,18 @@ namespace ScaleMonk.Ads.iOS
             return SMAreInterstitialsEnabled();
         }
 
+        [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
         public void SetHasGDPRConsent(bool consent)
         {
-            SMSetHasGDPRConsent(consent);
+            SetHasGDPRConsent(consent ? GdprConsent.Granted : GdprConsent.NotGranted);
         }
 
+        public void SetHasGDPRConsent(GdprConsent consent)
+        {
+            SMSetHasGDPRConsent((int)consent);
+        }
+
+        [Obsolete("Use \"void SetIsApplicationChildDirected(CoppaStatus status)\" method instead.")]
         public void SetIsApplicationChildDirected(bool isChildDirected)
         {
             SMSetApplicationChildDirected(isChildDirected);
@@ -185,14 +194,19 @@ namespace ScaleMonk.Ads.iOS
         [DllImport("__Internal")]
         private static extern bool SMAreRewardedEnabled();
         
+        [Obsolete("Use \"SMSetApplicationChildDirectedStatus(int status)\" method instead.")]
         [DllImport("__Internal")]
         private static extern void SMSetApplicationChildDirected(bool isChildDirected);
 
         [DllImport("__Internal")]
         private static extern void SMSetApplicationChildDirectedStatus(int status);
         
+        [Obsolete("Use \"SMSetHasGDPRConsent(int consent)\" method instead.")]
         [DllImport("__Internal")]
         private static extern void SMSetHasGDPRConsent(bool consent);
+        
+        [DllImport("__Internal")]
+        private static extern void SMSetHasGDPRConsent(int consent);
         
         [DllImport("__Internal")]
         private static extern void SMSetUserCantGiveGDPRConsent(bool isUnderage);

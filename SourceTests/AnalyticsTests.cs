@@ -63,7 +63,7 @@ namespace ScaleMonk.Ads
         }
         
         [Test]
-        public void AddTwoAnalyticsDispachEventsToBothOfThem()
+        public void AddTwoAnalyticsDispatchEventsToBothOfThem()
         {
             // Given an initialized SDK with an extra analytics attached to it
             var adsBinding = Substitute.For<IAdsBinding>();

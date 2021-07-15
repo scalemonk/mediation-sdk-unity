@@ -6,6 +6,8 @@
 //
 
 
+using System;
+
 namespace ScaleMonk.Ads.Android
 {
     public class AdsAndroidBinding : IAdsBinding
@@ -68,11 +70,19 @@ namespace ScaleMonk.Ads.Android
             return false;
         }
 
+        [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
         public void SetHasGDPRConsent(bool consent)
         {
-            _androidJavaBridge.CallNativeMethod("setHasGDPRConsent", consent);
+            var newConsent = consent ? GdprConsent.Granted : GdprConsent.NotGranted;
+            SetHasGDPRConsent(newConsent);
         }
 
+        public void SetHasGDPRConsent(GdprConsent consent)
+        {
+            _androidJavaBridge.CallNativeMethod("setHasGDPRConsent", (int) consent);
+        }
+
+        [Obsolete("Use \"void SetIsApplicationChildDirected(CoppaStatus status)\" method instead.")]
         public void SetIsApplicationChildDirected(bool isChildDirected)
         {
             _androidJavaBridge.CallNativeMethod("setIsApplicationChildDirected", isChildDirected);

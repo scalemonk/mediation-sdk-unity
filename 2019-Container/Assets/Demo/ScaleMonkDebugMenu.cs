@@ -19,13 +19,16 @@ namespace Demo
         public Button ShowRewardedVideoButton;
         public Button ShowBannerButton;
         public Button StopBannerButton;
-        public Button CoppaForChild;
-        public Button CoppaForNonChild;
+        public Button CoppaForChildButton;
+        public Button CoppaForNonChildButton;
+        public Button GrantGdprConsentButton;
+        public Button DenyGdprConsentButton;
+        public Button DisableGdprConsentButton;
         public Text LogField;
 
         private BannerPosition bannerPosition = BannerPosition.BottomCenter;
         public string menuTag = "DEBUG MENU";
-        private ScaleMonkAdsSDK scaleMonkAds => ScaleMonkAds.SharedInstance;
+        private ScaleMonkAdsSDK scaleMonkAds { get; } = ScaleMonkAds.SharedInstance;
 
         // Start is called before the first frame update
         void Start()
@@ -35,8 +38,11 @@ namespace Demo
             ShowRewardedVideoButton.onClick.AddListener(OnClickShowRewarded);
             ShowBannerButton.onClick.AddListener(OnClickShowBanner);
             StopBannerButton.onClick.AddListener(OnClickStopBanner);
-            CoppaForChild.onClick.AddListener(OnClickCoppaForChild);
-            CoppaForNonChild.onClick.AddListener(OnClickCoppaForNonChild);
+            CoppaForChildButton.onClick.AddListener(OnClickCoppaForChild);
+            CoppaForNonChildButton.onClick.AddListener(OnClickCoppaForNonChild);
+            GrantGdprConsentButton.onClick.AddListener(OnGrantGdprConsent);
+            DenyGdprConsentButton.onClick.AddListener(OnDenyGdprConsent);
+            DisableGdprConsentButton.onClick.AddListener(OnDisableGdprConsent);
 
             ScaleMonkAds.SharedInstance.AddAnalytics(new DefaultAnalytics());
         }
@@ -60,17 +66,42 @@ namespace Demo
         {
             scaleMonkAds.StopBanner(menuTag);
         }
-        
+
         private void OnClickCoppaForChild()
         {
-            scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_TRUE);
-            AdsLogger.LogInfo("Coppa status CHILD_TREATMENT_TRUE");
+            SetCoppaStatus(CoppaStatus.ChildTreatmentTrue);
         }
 
         private void OnClickCoppaForNonChild()
         {
-            scaleMonkAds.SetIsApplicationChildDirected(CoppaStatus.CHILD_TREATMENT_FALSE);
-            AdsLogger.LogInfo("Coppa status CHILD_TREATMENT_FALSE");
+            SetCoppaStatus(CoppaStatus.ChildTreatmentFalse);
+        }
+
+        private void OnDisableGdprConsent()
+        {
+            SetGdprConsent(GdprConsent.NotApplicable);
+        }
+
+        private void OnDenyGdprConsent()
+        {
+            SetGdprConsent(GdprConsent.NotGranted);
+        }
+
+        private void OnGrantGdprConsent()
+        {
+            SetGdprConsent(GdprConsent.Granted);
+        }
+
+        private void SetGdprConsent(GdprConsent consent)
+        {
+            AdsLogger.LogInfo($"Gdpr consent {consent}");
+            scaleMonkAds.SetHasGDPRConsent(consent);
+        }
+
+        private void SetCoppaStatus(CoppaStatus coppaStatus)
+        {
+            AdsLogger.LogInfo($"Coppa status {coppaStatus}");
+            scaleMonkAds.SetIsApplicationChildDirected(coppaStatus);
         }
 
         private void OnClickInit()
