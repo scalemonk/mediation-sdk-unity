@@ -1,19 +1,40 @@
 #if UNITY_ANDROID
 using System.IO;
 using ScaleMonk.Ads;
-using UnityEditor.Android;
+using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
+
+#if !UNITY_2017
+using UnityEditor.Android;
+#endif
 
 namespace ScaleMonk_Ads.Editor
 {
+#if !UNITY_2017
     public class AndroidPostBuildProcessor : IPostGenerateGradleAndroidProject
+#else
+    public class AndroidPostBuildProcessor : IPostprocessBuild
+#endif
     {
         public int callbackOrder
         {
             get { return 999; }
         }
 
+#if UNITY_2017
+        public void OnPostprocessBuild(BuildTarget target, string path)
+        {
+            GenerateGradleAndroidProject(path);
+        }
+#else
         void IPostGenerateGradleAndroidProject.OnPostGenerateGradleAndroidProject(string path)
+        {
+            GenerateGradleAndroidProject(path);
+        }
+#endif
+
+        private static void GenerateGradleAndroidProject(string path)
         {
             ScaleMonkXml scaleMonkXml = AdsProvidersHelper.ReadAdnetsConfigs();
             if (string.IsNullOrEmpty(scaleMonkXml.android))

@@ -3,16 +3,37 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using ScaleMonk.Ads;
-using UnityEditor.Android;
+using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
+
+#if !UNITY_2017
+using UnityEditor.Android;
+#endif
 
 namespace ScaleMonk_Ads.Editor
 {
+#if UNITY_2017
+    public class AndroidManifestPostGradleProcessor : IPostprocessBuild
+#else
     public class AndroidManifestPostGradleProcessor : IPostGenerateGradleAndroidProject
+#endif
     {
         public readonly string AppIdKey = "com.scalemonk.libs.ads.applicationId";
 
+#if UNITY_2017
+        public void OnPostprocessBuild(BuildTarget target, string path)
+        {
+            GenerateAndroidManifest(path);
+        }
+#else
         public void OnPostGenerateGradleAndroidProject(string basePath)
+        {
+            GenerateAndroidManifest(basePath);
+        }
+#endif
+
+        private void GenerateAndroidManifest(string basePath)
         {
             // If needed, add condition checks on whether you need to run the modification routine.
             // For example, specific configuration/app options enabled
