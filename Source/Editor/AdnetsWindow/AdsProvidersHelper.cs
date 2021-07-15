@@ -17,7 +17,7 @@ namespace ScaleMonk.Ads
     public class AdsProvidersHelper
     {
         const string iosAdsVersion = "2.2.0-banners.2";
-        const string androidAdsVersion = "0.0.10-SNAPSHOT";
+        const string androidAdsVersion = "0.0.11-SNAPSHOT";
 
         public static string GetAdnetsXmlPath()
         {
