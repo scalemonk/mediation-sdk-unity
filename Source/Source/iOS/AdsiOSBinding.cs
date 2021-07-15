@@ -67,12 +67,14 @@ namespace ScaleMonk.Ads.iOS
         [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
         public void SetHasGDPRConsent(bool consent)
         {
-            SetHasGDPRConsent(consent ? GdprConsent.Granted : GdprConsent.NotGranted);
+            // Using this implementation until iOS native one is in place
+            SetHasGDPRConsent(consent);
         }
 
         public void SetHasGDPRConsent(GdprConsent consent)
         {
-            SMSetHasGDPRConsent((int)consent);
+            // Using the above implementation until iOS native one is in place
+            SMSetHasGDPRConsent(consent ? GdprConsent.Granted : GdprConsent.NotGranted);
         }
 
         [Obsolete("Use \"void SetIsApplicationChildDirected(CoppaStatus status)\" method instead.")]
