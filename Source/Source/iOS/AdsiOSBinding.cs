@@ -68,13 +68,26 @@ namespace ScaleMonk.Ads.iOS
         public void SetHasGDPRConsent(bool consent)
         {
             // Using this implementation until iOS native one is in place
-            SetHasGDPRConsent(consent);
+            SMSetHasGDPRConsent(consent);
         }
 
         public void SetHasGDPRConsent(GdprConsent consent)
         {
             // Using the above implementation until iOS native one is in place
-            SMSetHasGDPRConsent(consent ? GdprConsent.Granted : GdprConsent.NotGranted);
+            switch (consent)
+            {
+                case GdprConsent.Granted:
+                    SetHasGDPRConsent(true);
+                    break;
+                case GdprConsent.NotGranted:
+                    SetHasGDPRConsent(false);
+                    break;
+                case GdprConsent.NotApplicable:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(consent), consent, null);
+            }
+            
         }
 
         [Obsolete("Use \"void SetIsApplicationChildDirected(CoppaStatus status)\" method instead.")]
@@ -203,12 +216,8 @@ namespace ScaleMonk.Ads.iOS
         [DllImport("__Internal")]
         private static extern void SMSetApplicationChildDirectedStatus(int status);
         
-        [Obsolete("Use \"SMSetHasGDPRConsent(int consent)\" method instead.")]
         [DllImport("__Internal")]
         private static extern void SMSetHasGDPRConsent(bool consent);
-        
-        [DllImport("__Internal")]
-        private static extern void SMSetHasGDPRConsent(int consent);
         
         [DllImport("__Internal")]
         private static extern void SMSetUserCantGiveGDPRConsent(bool isUnderage);
