@@ -111,9 +111,21 @@ namespace ScaleMonk.Ads
         /// </summary>
         /// <param name="consent"> True if the user has granted consent, false otherwise
         /// </param>
+        [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
         public void SetHasGDPRConsent(bool consent)
         {
-            RunIfInitialized(() => { _adsBinding.SetHasGDPRConsent(consent); });
+            SetHasGDPRConsent(consent ? GdprConsent.Granted : GdprConsent.NotGranted);
+        }
+
+        /// <summary>
+        /// Tells the ScaleMonk SDK whether the user has granted consent as prescribed by the GDPR laws and that data can be collected
+        ///
+        /// </summary>
+        /// <param name="consent"> True if the user has granted consent, false otherwise
+        /// </param>
+        public void SetHasGDPRConsent(GdprConsent consent)
+        {
+            _adsBinding.SetHasGDPRConsent(consent);
         }
 
         /// <summary>
@@ -126,7 +138,7 @@ namespace ScaleMonk.Ads
         {
             RunIfInitialized(() => { _adsBinding.SetIsApplicationChildDirected(isChildDirected); });
         }
-        
+
         /// <summary>
         /// Tells the ScaleMonk SDK whether the application is targeted to children and should only show age-appropriate ads
         ///
@@ -196,7 +208,10 @@ namespace ScaleMonk.Ads
         ///
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
-        public bool IsInterstitialReadyToShow(string tag) => _adsBinding.IsInterstitialReadyToShow(tag);
+        public bool IsInterstitialReadyToShow(string tag)
+        {
+            return _adsBinding.IsInterstitialReadyToShow(tag);
+        }
 
         /// <summary>
         /// Displays a rewarded ad.
@@ -230,7 +245,10 @@ namespace ScaleMonk.Ads
         ///
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
-        public bool IsRewardedReadyToShow(string tag) => _adsBinding.IsRewardedVideoReadyToShow(tag);
+        public bool IsRewardedReadyToShow(string tag)
+        {
+            return _adsBinding.IsRewardedVideoReadyToShow(tag);
+        }
 
         /// <summary>
         /// Displays a banner ad.

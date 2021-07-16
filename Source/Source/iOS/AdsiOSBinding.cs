@@ -6,12 +6,14 @@
 //
 
 #if UNITY_IOS
+
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace ScaleMonk.Ads.iOS
 {
-    public class AdsiOSBinding :IAdsBinding
+    public class AdsiOSBinding : IAdsBinding
     {
         const string _label = "AdsIOSBinding";
         ScaleMonkAdsSDK _adsInstance;
@@ -62,11 +64,33 @@ namespace ScaleMonk.Ads.iOS
             return SMAreInterstitialsEnabled();
         }
 
+        [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
         public void SetHasGDPRConsent(bool consent)
         {
+            // Using this implementation until iOS native one is in place
             SMSetHasGDPRConsent(consent);
         }
 
+        public void SetHasGDPRConsent(GdprConsent consent)
+        {
+            // Using the above implementation until iOS native one is in place
+            switch (consent)
+            {
+                case GdprConsent.Granted:
+                    SetHasGDPRConsent(true);
+                    break;
+                case GdprConsent.NotGranted:
+                    SetHasGDPRConsent(false);
+                    break;
+                case GdprConsent.NotApplicable:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(consent), consent, null);
+            }
+            
+        }
+
+        [Obsolete("Use \"void SetIsApplicationChildDirected(CoppaStatus status)\" method instead.")]
         public void SetIsApplicationChildDirected(bool isChildDirected)
         {
             SMSetApplicationChildDirected(isChildDirected);
@@ -185,6 +209,7 @@ namespace ScaleMonk.Ads.iOS
         [DllImport("__Internal")]
         private static extern bool SMAreRewardedEnabled();
         
+        [Obsolete("Use \"SMSetApplicationChildDirectedStatus(int status)\" method instead.")]
         [DllImport("__Internal")]
         private static extern void SMSetApplicationChildDirected(bool isChildDirected);
 

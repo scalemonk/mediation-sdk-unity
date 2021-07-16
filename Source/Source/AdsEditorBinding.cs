@@ -5,6 +5,7 @@
 // https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
 //
 
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -133,8 +134,14 @@ namespace ScaleMonk.Ads
             return true;
         }
 
+        [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
         public void SetHasGDPRConsent(bool consent)
         {
+        }
+
+        public void SetHasGDPRConsent(GdprConsent consent)
+        {
+            Debug.Log("GDPR consent change to: " + consent);
         }
 
         public void SetIsApplicationChildDirected(bool isChildDirected)
@@ -143,6 +150,7 @@ namespace ScaleMonk.Ads
 
         public void SetIsApplicationChildDirected(CoppaStatus status)
         {
+            Debug.Log("COPPA status change to: " + status);
         }
 
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)

@@ -9,6 +9,7 @@ import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
+import com.scalemonk.ads.GDPRConsent;
 import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 import com.scalemonk.libs.ads.core.domain.UserType;
 import com.scalemonk.libs.ads.core.domain.regulations.CoppaStatus;
@@ -21,8 +22,6 @@ import androidx.annotation.Keep;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.RunnableFuture;
-
-import static com.unity3d.services.core.misc.Utilities.runOnUiThread;
 
 @Keep
 public class AdsBinding {
@@ -53,7 +52,7 @@ public class AdsBinding {
         boolean[] result = new boolean[1];
 
         RunnableFuture<Void> task = new FutureTask<>(() -> result[0] = ScaleMonkAds.isInterstitialReadyToShow(tag), null);
-        runOnUiThread(task);
+        this.activity.runOnUiThread(task);
 
         try {
             task.get(); // this will block until Runnable completes
@@ -70,7 +69,7 @@ public class AdsBinding {
         boolean[] result = new boolean[1];
 
         RunnableFuture<Void> task = new FutureTask<>(() -> result[0] = ScaleMonkAds.isRewardedReadyToShow(tag), null);
-        runOnUiThread(task);
+        this.activity.runOnUiThread(task);
 
         try {
             task.get(); // this will block until Runnable completes
@@ -142,8 +141,37 @@ public class AdsBinding {
         });
     }
 
+    /**
+     * Changes the user's GDPR consent value.
+     *
+     * @deprecated Use ScaleMonkAds.setHasGDPRConsent(GdprConsent status) method instead
+     * @param consent GDPR consent value provided by the user. The values are mapped like explained
+     *                below:
+     *                0 -> GDPRConsent.GRANTED
+     *                1 -> GDPRConsent.NOT_GRANTED
+     *                2 -> GDPRConsent.NOT_APPLICABLE
+     *                3 -> GDPRConsent.NOT_SET
+     */
+    @Deprecated
     public void setHasGDPRConsent(final boolean consent) {
         ScaleMonkAds.setHasGDPRConsent(consent);
+    }
+    
+    public void setHasGDPRConsent(final int consent) {
+        switch (consent) {
+            case 0:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.GRANTED);
+                break;
+            case 1:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_GRANTED);
+                break;
+            case 2:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_APPLICABLE);
+                break;
+            default:
+                ScaleMonkAds.setHasGDPRConsent(GDPRConsent.NOT_SET);
+                break;
+        }
     }
 
     public void setIsApplicationChildDirected(final boolean isChildDirected) {

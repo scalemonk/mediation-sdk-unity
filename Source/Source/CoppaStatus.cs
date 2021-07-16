@@ -10,22 +10,22 @@ namespace ScaleMonk.Ads
     /// <summary>
     /// Unknown status.
     /// </summary>
-    UNKNOWN,
+    Unknown,
 
     /// <summary>
     /// treat as child status.
     /// </summary>
-    CHILD_TREATMENT_FALSE,
+    ChildTreatmentFalse,
 
     /// <summary>
     /// Dont treat as child status.
     /// </summary>
-    CHILD_TREATMENT_TRUE,
+    ChildTreatmentTrue,
 
     /// <summary>
     /// Does not apply status.
     /// </summary>
-    NOT_APPLICABLE
+    NotApplicable
   }
 
   public static class CoppaStatusExtensions
@@ -34,13 +34,13 @@ namespace ScaleMonk.Ads
     {
       switch (status)
       {
-        case CoppaStatus.UNKNOWN:
+        case CoppaStatus.Unknown:
           return 0;
-        case CoppaStatus.CHILD_TREATMENT_FALSE:
+        case CoppaStatus.ChildTreatmentFalse:
           return 1;
-        case CoppaStatus.CHILD_TREATMENT_TRUE:
+        case CoppaStatus.ChildTreatmentTrue:
           return 2;
-        case CoppaStatus.NOT_APPLICABLE:
+        case CoppaStatus.NotApplicable:
           return 3;
         default:
           return -1;

@@ -16,15 +16,29 @@ namespace ScaleMonk.Ads
         /// </summary>
         /// <param name="consent"> True if the user has granted consent, false otherwise
         /// </param>
+        [Obsolete("Use \"void SetHasGDPRConsent(GdprConsent status)\" method instead.")]
         void SetHasGDPRConsent(bool consent);
+
+        /// <summary>
+        /// Tells the ScaleMonk SDK whether the user has granted consent as prescribed by the GDPR laws and that data can be collected
+        ///
+        /// </summary>
+        /// <param name="consent"> Gdpr consent value provided by the user.</param>
+        void SetHasGDPRConsent(GdprConsent consent);
 
         /// <summary>
         /// Tells the ScaleMonk SDK whether the application is targeted to children and should only show age-appropriate ads
         ///
         /// </summary>
-        /// <param name="isChildDirected"> True if the app is child directed, false otherwise
-        /// </param>
+        /// <param name="isChildDirected"> True if the app is child directed, false otherwise.</param>
         void SetIsApplicationChildDirected(bool isChildDirected);
+        
+        /// <summary>
+        /// Tells the ScaleMonk SDK whether the application is targeted to children and should only show age-appropriate ads
+        ///
+        /// </summary>
+        /// <param name="coppaStatus"> Status of Coppa regulation to set.</param>
+        void SetIsApplicationChildDirected(CoppaStatus coppaStatus);
 
         /// <summary>
         /// Tells the ScaleMonk SDK that the user can't give consent for GDPR since they're underage
