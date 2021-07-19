@@ -85,11 +85,6 @@
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
     </iosPod>
-    <iosPod name="ScaleMonkAds-RTB">
-      <sources>
-        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
-      </sources>
-    </iosPod>
     <iosPod name="ScaleMonkAds-Smaato">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>

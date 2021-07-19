@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Removed
+- RTB option was removed from the ScaleMonk adapter selection for iOS. Included by default in iOS lib >= 2.3.0
+
 ## [1.11.0] - 2021-07-27
 ### Changed
 - Updated Android ScaleMonk version to 5.0.0
