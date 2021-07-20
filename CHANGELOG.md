@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.10.0] - 2021-07-20
+- Missing part!
+
 
 ## [1.9.0] - 2021-07-12
 ### Added
