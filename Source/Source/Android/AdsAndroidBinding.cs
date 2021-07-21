@@ -34,18 +34,23 @@ namespace ScaleMonk.Ads.Android
             _androidJavaBridge.CallNativeMethodWithActivity("showRewarded", tag);
         }
 
-        public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
+        public string ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            _androidJavaBridge.CallNativeMethodWithActivity("showBanner",
+            return _androidJavaBridge.CallStringNativeMethodWithActivity("showBanner",
                 bannerPosition.ToSnakeCaseString(),
                 tag,
                 bannerSize.Width,
                 bannerSize.Height);
         }
 
-        public void StopBanner(string tag)
+        public void StopBanner(string id)
         {
-            _androidJavaBridge.CallNativeMethodWithActivity("stopBanner", tag);
+            _androidJavaBridge.CallNativeMethodWithActivity("stopBanner", id);
+        }
+        
+        public void StopBanner()
+        {
+            _androidJavaBridge.CallNativeMethodWithActivity("stopBanner");
         }
 
         public bool IsInterstitialReadyToShow(string tag)

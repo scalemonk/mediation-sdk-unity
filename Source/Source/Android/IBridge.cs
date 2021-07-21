@@ -1,3 +1,5 @@
+using System;
+
 namespace ScaleMonk.Ads.Android
 {
     public interface IBridge
@@ -5,5 +7,7 @@ namespace ScaleMonk.Ads.Android
         void CallNativeMethodWithActivity(string methodName, params object[] args);
         void CallNativeMethod(string methodName, params object[] args);
         bool CallBooleanNativeMethod(string methodName, params object[] args);
+        string CallStringNativeMethodWithActivity(string methodName, params object[] args);
+
     }
 }

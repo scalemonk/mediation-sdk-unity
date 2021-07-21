@@ -180,39 +180,67 @@ static void removeBannerView(NSString* tag) {
     }
 }
 
+static void removeAllBannerViews() {
+    if (!_bannerViews) {
+        return;
+    }
+    
+    for (id key in _bannerViews) {
+        [_bannerViews[key] removeFromSuperview];
+    }
+    [_bannerViews removeAllObjects];
+}
 
-void SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
+char* SMAdsShowBanner(char* tagChr, int width, int height, char* position) {
     NSString *tag = [NSString stringWithUTF8String: tagChr];
     UIViewController *viewController = UnityGetGLViewController();
     NSString *positionAsString = [NSString stringWithUTF8String:position];
     
     SMBannerView *bannerView = [[SMBannerView alloc] init];
     bannerView.viewController = viewController;
+    NSString *bannerId = [[NSUUID UUID] UUIDString];
     
-    if ([_bannerViews objectForKey:tag]) {
-        NSLog(@"Cannot show two banners at the same time");
-        return;
-    }
-    
-    addBannerView(tag, bannerView);
+    addBannerView(bannerId, bannerView);
     
     [viewController.view addSubview:bannerView];
     
     [bannerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
+
     [viewController.view addConstraints:getConstraintsForPosition(positionAsString, bannerView, viewController.view)];
     [bannerView addConstraints:getConstraintsForSizing(width, height, bannerView)];
     
     [smAds showBannerAdWithViewController: viewController
                                        bannerView:bannerView
                                            andTag:tag];
+    const char* nsStringUtf8 = [bannerId UTF8String];
+    //create a null terminated C string on the heap so that our string's memory isn't wiped out right after method's return
+    char* cString = (char*)malloc(strlen(nsStringUtf8) + 1);
+    strcpy(cString, nsStringUtf8);
+
+    return cString;
 }
 
-void SMAdsStopBanner(char* tagChr) {
-    NSString *tag = [NSString stringWithUTF8String: tagChr];
-    [smAds stopLoadingBannersWithTag:tag];
-    removeBannerView(tag);
+void SMAdsStopBannerWithBannerId(char* bannerIdChr){
+    NSString *bannerId = [NSString stringWithUTF8String: bannerIdChr];
+    
+    SMBannerView* banner = _bannerViews[bannerId];
+    
+    //TODO: Reenable this when super banners is released on iOS
+    
+    //    if(banner){
+    //        [smAds stopLoadingBannersForBannerView:banner];
+    //    }
+    //    else{
+            [smAds stopLoadingBanners];
+    //    }
+    removeBannerView(bannerId);
 }
+
+void SMAdsStopBanner(){
+    [smAds stopLoadingBanners];
+    removeAllBannerViews();
+}
+
 
 void SMSetApplicationChildDirected(bool isChildDirected){
     [smAds setIsApplicationChildDirected: isChildDirected];
