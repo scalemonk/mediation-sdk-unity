@@ -9,12 +9,16 @@ import com.scalemonk.ads.BannerEventListener;
 import com.scalemonk.ads.InterstitialEventListener;
 import com.scalemonk.ads.RewardedEventListener;
 import com.scalemonk.ads.ScaleMonkAds;
+import com.scalemonk.ads.ScaleMonkBanner;
+import com.scalemonk.ads.unity.banner.BannerFactory;
 import com.scalemonk.ads.GDPRConsent;
-import com.scalemonk.ads.unity.banner.BannerContainerFactory;
 import com.scalemonk.libs.ads.core.domain.UserType;
 import com.scalemonk.libs.ads.core.domain.regulations.CoppaStatus;
 import com.scalemonk.libs.ads.core.domain.session.UserTypeProvider;
 import com.unity3d.player.UnityPlayer;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 import org.jetbrains.annotations.NotNull;
 import androidx.annotation.Keep;
@@ -30,7 +34,7 @@ public class AdsBinding {
     private final AdsBindingRewardedListener videoListener;
     private final AdsBindingInterstitialListener interstitialListener;
     private final AdsBindingBannerListener bannerListener;
-    private ConcurrentHashMap<String, BannerContainer> banners = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, ScaleMonkBanner> banners = new ConcurrentHashMap<>();
 
     public AdsBinding(final Activity activity) {
         this.activity = activity;
@@ -96,33 +100,36 @@ public class AdsBinding {
         this.activity.runOnUiThread(() -> ScaleMonkAds.showRewarded(context, tag));
     }
 
-    public void showBanner(final Context context,
+    public String showBanner(final Context context,
                            final String position,
                            final String tag,
                            final int width,
                            final int height) {
-
+        final String id = UUID.randomUUID().toString();
         this.activity.runOnUiThread(() -> {
-                    // Do not show two banners on the same tag.
-                    if (banners.containsKey(tag)) return;
-
-                    BannerContainer currentBannerContainer = BannerContainerFactory.createBannerContainer(context, position, width, height);
-                    banners.put(tag, currentBannerContainer);
-
-                    ScaleMonkAds.showBanner(context, currentBannerContainer, tag);
+                    ScaleMonkBanner banner = BannerFactory.createBanner(context, position, width, height);
+                    banners.put(id, banner);
+                    ScaleMonkAds.showBanner(context, banner, tag);
                 }
         );
+        return id;
     }
 
-    public void stopBanner(final Context context, final String tag) {
+    public void stopBanner(final Context context, final String id) {
         this.activity.runOnUiThread(() -> {
-            if (banners.containsKey(tag)) {
-                BannerContainer currentBannerContainer = banners.get(tag);
-                ScaleMonkAds.stopBanner(context, currentBannerContainer, tag);
-                BannerContainerFactory.remove(context, currentBannerContainer);
-                banners.remove(tag);
+            if (banners.containsKey(id)) {
+                ScaleMonkBanner banner = banners.get(id);
+                ScaleMonkAds.stopBanner(context, banner);
+                BannerFactory.remove(context, banner);
+                banners.remove(id);
             }
         });
+    }
+    
+    public void stopBanner(final Context context) {
+        for (String id : new ArrayList<String>(banners.keySet())) {
+            stopBanner(context, id);
+        }
     }
 
     private void setupAds(

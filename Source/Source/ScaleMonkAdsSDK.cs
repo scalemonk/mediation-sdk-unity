@@ -259,13 +259,16 @@ namespace ScaleMonk.Ads
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerSize">The bannerSize of the Ad.</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        public void ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
+        public Banner ShowBanner(string tag, BannerSize bannerSize, BannerPosition bannerPosition)
         {
+            Banner banner = null;
             RunIfInitialized(() =>
             {
                 AdsLogger.LogWithFormat("{0} | Show banner at tag {1}", Label, tag);
-                _adsBinding.ShowBanner(tag, bannerSize, bannerPosition);
+                string id = _adsBinding.ShowBanner(tag, bannerSize, bannerPosition);
+                banner = new Banner(id);
             });
+            return banner;
         }
 
         /// <summary>
@@ -276,9 +279,9 @@ namespace ScaleMonk.Ads
         /// </summary>
         /// <param name="tag">The game tag from where the ad will be displayed (like menu or store).</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        public void ShowBanner(string tag, BannerPosition bannerPosition)
+        public Banner ShowBanner(string tag, BannerPosition bannerPosition)
         {
-            ShowBanner(tag, _defaultBannerSize, bannerPosition);
+            return ShowBanner(tag, _defaultBannerSize, bannerPosition);
         }
 
         /// <summary>
@@ -288,9 +291,9 @@ namespace ScaleMonk.Ads
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
         /// </summary>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        public void ShowBanner(BannerPosition bannerPosition)
+        public Banner ShowBanner(BannerPosition bannerPosition)
         {
-            ShowBanner(DefaultTag, _defaultBannerSize, bannerPosition);
+            return ShowBanner(DefaultTag, _defaultBannerSize, bannerPosition);
         }
 
         /// <summary>
@@ -301,22 +304,30 @@ namespace ScaleMonk.Ads
         /// </summary>
         /// <param name="bannerSize">The bannerSize of the Ad.</param>
         /// <param name="bannerPosition">The bannerPosition where the ad will be displayed.</param>
-        public void ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition)
+        public Banner ShowBanner(BannerSize bannerSize, BannerPosition bannerPosition)
         {
-            ShowBanner(DefaultTag, bannerSize, bannerPosition);
+            return ShowBanner(DefaultTag, bannerSize, bannerPosition);
         }
 
         /// <summary>
         /// Stops a banner ad.
         ///
         /// </summary>
-        /// <param name="tag">The game tag from where the ad will be removed from (like menu or store).</param>
-        public void StopBanner(string tag)
+        /// <param name="banner">The id .</param>
+        public void StopBanner(Banner banner)
         {
             RunIfInitialized(() =>
             {
-                AdsLogger.LogWithFormat("{0} | Stop banner at tag {1}", Label, tag);
-                _adsBinding.StopBanner(tag);
+                if (banner != null)
+                {
+                    AdsLogger.LogWithFormat("{0} | Stop banner with id {1}", Label, banner.ID);
+                    _adsBinding.StopBanner(banner.ID);
+                }
+                else
+                {
+                    AdsLogger.LogWithFormat("{0} | Stopping all banners", Label);
+                    _adsBinding.StopBanner();
+                }
             });
         }
 
@@ -326,7 +337,7 @@ namespace ScaleMonk.Ads
         /// </summary>
         public void StopBanner()
         {
-            StopBanner(DefaultTag);
+            StopBanner(null);
         }
 
         /// <summary>
@@ -477,5 +488,14 @@ namespace ScaleMonk.Ads
         {
             _analyticsService.SendEvent(analyticsEvent);
         }
+    }
+
+    public class Banner
+    {
+        internal Banner(string id)
+        {
+            ID = id;
+        }
+        public string ID { get; private set; }
     }
 }

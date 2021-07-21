@@ -7,6 +7,7 @@
 
 #if UNITY_ANDROID
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,6 +58,19 @@ namespace ScaleMonk.Ads.Android
             }
 
             _adsBinding.Call(methodName, list.ToArray());
+        }
+
+        public string CallStringNativeMethodWithActivity(string methodName, params object[] args)
+        {
+            Debug.Log("calling native method with activity " + methodName);
+            InitializeIfNeeded();
+            var list = new List<object> {_activity};
+            foreach (var o in args)
+            {
+                list.Add(o);
+            }
+
+            return _adsBinding.Call<string>(methodName, list.ToArray());
         }
 
         public bool CallBooleanNativeMethod(string methodName, params object[] args)

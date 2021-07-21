@@ -2,7 +2,7 @@
 //
 //  © 2020 ScaleMonk, Inc. All Rights Reserved.
 // Licensed under the ScaleMonk SDK License Agreement
-// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html 
+// https://www.scalemonk.com/legal/en-US/mediation-license-agreement/index.html
 //
 
 using System;
@@ -17,7 +17,7 @@ namespace ScaleMonk.Ads
     public class AdsProvidersHelper
     {
         const string iosAdsVersion = "2.2.0";
-        const string androidAdsVersion = "4.1.0";
+        const string androidAdsVersion = "5.0.0-rc.1";
 
         public static string GetAdnetsXmlPath()
         {
@@ -345,8 +345,12 @@ namespace ScaleMonk.Ads
             var repositories = doc.CreateElement("repositories");
             var jfrogRepo = doc.CreateElement("repository");
             jfrogRepo.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod";
+
+            var jfrogRepoDev = doc.CreateElement("repository");
+            jfrogRepoDev.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-dev";
             repositories.AppendChild(jfrogRepo);
-            
+            repositories.AppendChild(jfrogRepoDev);
+
 
             var androidPackagesElement = doc.CreateElement("androidPackages");
             androidPackagesElement.AppendChild(getAndroidPackageForLib(doc, "ads", androidAdsVersion));

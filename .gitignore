@@ -17,6 +17,9 @@
 *-Container/Assets/Plugins/Android/*.aar.meta
 
 .idea/
+
+/ios/
+/android/
 .DS_Store
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored

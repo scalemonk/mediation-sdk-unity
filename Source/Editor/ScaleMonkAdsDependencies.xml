@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
   <androidPackages>
-    <androidPackage spec="com.scalemonk.libs:ads:4.0.0" />
+    <androidPackage spec="com.scalemonk.libs:ads:5.0.0-rc.1" />
     <androidPackage spec="com.scalemonk.libs:ads-adcolony:+" />
     <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
     <androidPackage spec="com.scalemonk.libs:ads-applovin:+" />
@@ -18,6 +18,7 @@
     <androidPackage spec="com.scalemonk.libs:ads-vungle:+" />
     <repositories>
       <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod</repository>
+      <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-dev</repository>
       <repository>https://android-sdk.is.com/</repository>
       <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
       <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
@@ -25,7 +26,7 @@
     </repositories>
   </androidPackages>
   <iosPods>
-    <iosPod name="ScaleMonkAds" version="1.3.0">
+    <iosPod name="ScaleMonkAds" version="2.2.0">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
