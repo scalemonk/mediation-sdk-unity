@@ -24,7 +24,7 @@ namespace ScaleMonk.Ads
             _androidBinding.ShowBanner("aTag", BannerSize.Full, BannerPosition.TopCenter);
 
             // Then the java bridge is called with the right parameters
-            _mockAndroidJavaBridge.Received(1).CallNativeMethodWithActivity(
+            _mockAndroidJavaBridge.Received(1).CallStringNativeMethodWithActivity(
                 "showBanner",
                 Arg.Is<object[]>(parameters =>
                     parameters[0].ToString() == "top_center" &&
@@ -37,14 +37,14 @@ namespace ScaleMonk.Ads
         [Test]
         public void StopBannerAndroidBridgeTest()
         {
-            // When StopBanner is call at "aTag"
-            _androidBinding.StopBanner("aTag");
+            // When StopBanner is call at "aBannerId"
+            _androidBinding.StopBanner("aBannerId");
 
             // Then the java bridge is called with the right parameters
             _mockAndroidJavaBridge.Received(1).CallNativeMethodWithActivity(
                 "stopBanner",
                 Arg.Is<object[]>(parameters =>
-                    parameters[0].ToString() == "aTag")
+                    parameters[0].ToString() == "aBannerId")
             );
         }
 
