@@ -1,6 +1,12 @@
 ## Project version
 This project has been built with Unity 2018.4. If you open it with a different Unity version, be careful about the `.meta` files. You should not push them unless you are in the same version.
 
+## Run Tests
+Go to `Window > General > Test Runner` and hit `Run All`
+
+## Run Tests with code coverage
+Enable code coverage from `Window > Windows > Code Coverage`. Go to `Window > General > Test Runner` and hit `Run All`
+
 ## Release
 
 ### Update the native libraries
