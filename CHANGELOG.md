@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.11.0-rc.1] - 2021-07-23
+### Changed
+- Updated Android ScaleMonk version to 5.0.0-rc.2
+- Add Super Banners.
+
 ## [1.10.0] - 2021-07-20
 ### Changed
 - Updated iOS ScaleMonk version to 2.2.0
