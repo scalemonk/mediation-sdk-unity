@@ -6,19 +6,16 @@
             url "https://maven.google.com"
         }
         maven {
-            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
         }
         maven {
-            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-dev" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://android-sdk.is.com/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
         }
         maven {
-            url "https://android-sdk.is.com/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
         }
         maven {
-            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
-        }
-        maven {
-            url "https://s3.amazonaws.com/smaato-sdk-releases/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://s3.amazonaws.com/smaato-sdk-releases/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
         }
         mavenLocal()
         jcenter()
@@ -39,7 +36,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 		
 // Android Resolver Dependencies Start
-    implementation 'com.scalemonk.libs:ads:5.0.0-rc.2' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
+    implementation 'com.scalemonk.libs:ads:5.0.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
     implementation 'com.scalemonk.libs:ads-adcolony:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:5
     implementation 'com.scalemonk.libs:ads-admob:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:6
     implementation 'com.scalemonk.libs:ads-applovin:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:7
