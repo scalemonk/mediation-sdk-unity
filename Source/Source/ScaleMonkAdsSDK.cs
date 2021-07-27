@@ -251,7 +251,7 @@ namespace ScaleMonk.Ads
         }
 
         /// <summary>
-        /// Displays a banner ad.
+        /// Displays a banner ad. Returns a <c>Banner</c> that you will use to stop the rotation later. <br/>
         ///
         /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
@@ -272,7 +272,7 @@ namespace ScaleMonk.Ads
         }
 
         /// <summary>
-        /// Displays a banner ad.
+        /// Displays a banner ad. Returns a <c>Banner</c> that you will use to stop the rotation later. <br/>
         ///
         /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
@@ -285,7 +285,7 @@ namespace ScaleMonk.Ads
         }
 
         /// <summary>
-        /// Displays a banner ad.
+        /// Displays a banner ad. Returns a <c>Banner</c> that you will use to stop the rotation later. <br/>
         ///
         /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
@@ -297,7 +297,7 @@ namespace ScaleMonk.Ads
         }
 
         /// <summary>
-        /// Displays a banner ad.
+        /// Displays a banner ad. Returns a <c>Banner</c> that you will use to stop the rotation later. <br/>
         ///
         /// If the display was successful, the event `BannerCompletedDisplayedEvent` will be called.
         /// Otherwise, the event `BannerFailedDisplayedEvent` will be called.
@@ -313,7 +313,7 @@ namespace ScaleMonk.Ads
         /// Stops a banner ad.
         ///
         /// </summary>
-        /// <param name="banner">The id .</param>
+        /// <param name="banner">The <c>Banner</c> that was returned when calling <c>ShowBanner</c></param>
         public void StopBanner(Banner banner)
         {
             RunIfInitialized(() =>
