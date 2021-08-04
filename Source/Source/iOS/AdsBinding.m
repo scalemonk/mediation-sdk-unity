@@ -225,14 +225,12 @@ void SMAdsStopBannerWithBannerId(char* bannerIdChr){
     
     SMBannerView* banner = _bannerViews[bannerId];
     
-    //TODO: Reenable this when super banners is released on iOS
-    
-    //    if(banner){
-    //        [smAds stopLoadingBannersForBannerView:banner];
-    //    }
-    //    else{
-            [smAds stopLoadingBanners];
-    //    }
+    if(banner){
+        [smAds stopLoadingBannersForBannerView:banner];
+    }
+    else{
+        [smAds stopLoadingBanners];
+    }
     removeBannerView(bannerId);
 }
 
