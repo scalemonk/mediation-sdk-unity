@@ -25,7 +25,7 @@
     </repositories>
   </androidPackages>
   <iosPods>
-    <iosPod name="ScaleMonkAds" version="2.2.0">
+    <iosPod name="ScaleMonkAds" version="3.0.0-rc.2">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
