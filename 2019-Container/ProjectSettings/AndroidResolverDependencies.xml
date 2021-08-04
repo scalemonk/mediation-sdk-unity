@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.scalemonk.libs:ads:6.0.0-rc.1</package>
+    <package>com.scalemonk.libs:ads:6.0.0-rc.2</package>
     <package>com.scalemonk.libs:ads-adcolony:+</package>
     <package>com.scalemonk.libs:ads-admob:+</package>
     <package>com.scalemonk.libs:ads-applovin:+</package>

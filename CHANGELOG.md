@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.13]
 ### Changed
-- Updated Android ScaleMonk version to 6.0.0-rc.1
+- Updated Android ScaleMonk version to 6.0.0-rc.2
 
 ### Removed
 - RTB option was removed from the ScaleMonk adapter selection for iOS. Included by default in iOS lib >= 2.3.0
