@@ -115,20 +115,20 @@ namespace Demo
 
         private void OnClickInit()
         {
-            scaleMonkAds.InterstitialClickedEvent += Feedback("Interstitial Clicked");
-            scaleMonkAds.RewardedClickedEvent += Feedback("Video Clicked");
-            scaleMonkAds.InterstitialDisplayedEvent += Feedback("Interstitial Displayed");
-            scaleMonkAds.RewardedDisplayedEvent += Feedback("Video Displayed");
-            scaleMonkAds.RewardedStartedEvent += Feedback("Video Started");
-            scaleMonkAds.RewardedNotDisplayedEvent += Feedback("Video Not Displayed");
-            scaleMonkAds.InterstitialNotDisplayedEvent += Feedback("Interstitial Not Displayed");
-            scaleMonkAds.InterstitialReadyEvent += Feedback("Interstitial Ready");
-            scaleMonkAds.InterstitialNotReadyEvent += Feedback("Interstitial Not Ready");
-            scaleMonkAds.RewardedReadyEvent += Feedback("Rewarded Ready");
-            scaleMonkAds.RewardedNotReadyEvent += Feedback("Rewarded Not Ready");
-            scaleMonkAds.BannerCompletedDisplayedEvent += Feedback("Banner Displayed");
-            scaleMonkAds.BannerFailedDisplayedEvent += Feedback("Banner Not Displayed");
-
+            scaleMonkAds.InterstitialClickedEvent += () => { Feedback("SInterstitial Clicked"); };
+            scaleMonkAds.RewardedClickedEvent += () => { Feedback("Video Clicked"); };
+            scaleMonkAds.InterstitialDisplayedEvent += () => { Feedback("Interstitial Displayed"); };
+            scaleMonkAds.RewardedDisplayedEvent += () => { Feedback("Video Displayed"); };
+            scaleMonkAds.RewardedStartedEvent += () => { Feedback("Video Started"); };
+            scaleMonkAds.RewardedNotDisplayedEvent += () => { Feedback("Video Not Displayed"); };
+            scaleMonkAds.InterstitialNotDisplayedEvent += () => { Feedback("Interstitial Not Displayed"); };
+            scaleMonkAds.InterstitialReadyEvent += () => { Feedback("Interstitial Ready"); };
+            scaleMonkAds.InterstitialNotReadyEvent += () => { Feedback("Interstitial Not Ready"); };
+            scaleMonkAds.RewardedReadyEvent += () => { Feedback("Rewarded Ready"); };
+            scaleMonkAds.RewardedNotReadyEvent += () => { Feedback("Rewarded Not Ready"); };
+            scaleMonkAds.BannerCompletedDisplayedEvent += () => { Feedback("Banner Displayed"); };
+            scaleMonkAds.BannerFailedDisplayedEvent += () => { Feedback("Banner Not Displayed"); };
+            
             ScaleMonkAds.Initialize(() =>
                 {
                     // Here the SDK is initialized and you can interact with it
@@ -139,6 +139,7 @@ namespace Demo
 
         private Action Feedback(string start)
         {
+            Debug.Log("SCALEMONK EVENT: " + start);
             return () => LogField.text = start + " at " + menuTag;
         }
 
