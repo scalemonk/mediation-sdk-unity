@@ -20,6 +20,7 @@ static NSString *_customUserId;
 static NSDictionary *_extraInfo;
 static SMAds *smAds;
 static NSMutableDictionary *_bannerViews;
+static bool initialized = false;
 
 void SMAdsInitialize() {
     
@@ -40,6 +41,7 @@ void SMAdsInitialize() {
     [smAds addInterstitialListener:(id<SMInterstitialAdEventListener>) interstitialDelegateViewController];
     [smAds addRewardedListener:(id<SMRewardedAdEventListener>) videoDelegateViewController];
     [smAds addBannerListener:(id<SMBannerAdEventListener>) bannerDelegateViewController];
+    initialized = true;
 }
 
 void SMAdsShowInterstitial(char* tagChr) {
@@ -301,5 +303,9 @@ static NSNumber* userTypeFromChar(char* userType) {
 }
 
 void SMSetUserType(char* userType) {
-    _extraInfo = @{@"user_type": userTypeFromChar(userType) };
+    if(initialized){
+        [smAds setExtraInfo: @{@"user_type": userTypeFromChar(userType) } ];
+    } else {
+        _extraInfo = @{@"user_type": userTypeFromChar(userType) };
+    }
 }
