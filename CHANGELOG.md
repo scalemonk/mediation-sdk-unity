@@ -1,6 +1,10 @@
     # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.12.1] - 2021-08-19
+### Changed
+- Updated iOS ScaleMonk version to 3.0.1
+
 ## [1.12.0] - 2021-08-10
 ### Changed
 - Updated iOS ScaleMonk version to 3.0.0
