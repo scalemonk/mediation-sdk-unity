@@ -61,7 +61,7 @@ namespace Demo
 
         private void OnClickShowBanner()
         {
-            banner = scaleMonkAds.ShowBanner(menuTag, bannerPosition);            
+            banner = scaleMonkAds.ShowBanner(menuTag, bannerPosition);
         }
 
         private void OnClickStopBanner()
