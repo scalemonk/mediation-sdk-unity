@@ -9,6 +9,9 @@
             url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
         }
         maven {
+            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-dev" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
+        }
+        maven {
             url "https://android-sdk.is.com/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
         }
         maven {

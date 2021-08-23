@@ -18,6 +18,7 @@
     <androidPackage spec="com.scalemonk.libs:ads-vungle:+" />
     <repositories>
       <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod</repository>
+      <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-dev</repository>
       <repository>https://android-sdk.is.com/</repository>
       <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
       <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
