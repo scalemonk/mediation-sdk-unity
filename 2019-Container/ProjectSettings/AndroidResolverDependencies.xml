@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.scalemonk.libs:ads:6.1.0-rc.2</package>
+    <package>com.scalemonk.libs:ads:6.1.0</package>
     <package>com.scalemonk.libs:ads-adcolony:+</package>
     <package>com.scalemonk.libs:ads-admob:+</package>
     <package>com.scalemonk.libs:ads-applovin:+</package>
@@ -29,7 +29,7 @@
     <setting name="packageDir" value="Assets/Plugins/Android" />
     <setting name="patchAndroidManifest" value="True" />
     <setting name="patchMainTemplateGradle" value="True" />
-    <setting name="projectExportEnabled" value="False" />
+    <setting name="projectExportEnabled" value="True" />
     <setting name="useJetifier" value="True" />
   </settings>
 </dependencies>
