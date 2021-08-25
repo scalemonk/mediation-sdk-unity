@@ -1,6 +1,10 @@
     # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.14.0] - 2021-08-25
+### Changed
+- Updated Android ScaleMonk version to 6.1.0
+
 ## [1.13.0] - 2021-08-11
 ### Changed
 - Updated iOS ScaleMonk version to 3.1.0

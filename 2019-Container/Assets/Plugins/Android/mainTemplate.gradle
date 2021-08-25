@@ -36,7 +36,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 		
 // Android Resolver Dependencies Start
-    implementation 'com.scalemonk.libs:ads:6.0.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
+    implementation 'com.scalemonk.libs:ads:6.1.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
     implementation 'com.scalemonk.libs:ads-adcolony:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:5
     implementation 'com.scalemonk.libs:ads-admob:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:6
     implementation 'com.scalemonk.libs:ads-applovin:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:7
