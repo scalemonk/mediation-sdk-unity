@@ -10,6 +10,7 @@
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace ScaleMonk.Ads.iOS
 {
@@ -116,9 +117,15 @@ namespace ScaleMonk.Ads.iOS
             SMSetCustomUserId(customUserId);
         }
 
+        [Obsolete("Use \"void SetCustomSegmentationTags(HashSet<String tags)\" method instead.")]
         public void SetUserType(UserType userType)
         {
             SMSetUserType(userType.ToStringUserType());
+        }
+
+        public void SetCustomSegmentationTags(HashSet<String> tags)
+        {
+            SMSetCustomSegmentationTags(string.Join(",", tags));
         }
 
         #region callbacks from native binding
@@ -235,9 +242,12 @@ namespace ScaleMonk.Ads.iOS
         
         [DllImport("__Internal")]
         private static extern void SMSetUserType(string userType);
-        
+
+        [DllImport("__Internal")]
+        private static extern void SMSetCustomSegmentationTags(string tags);
+
         #endregion
-    
+
     }
 }
 #endif

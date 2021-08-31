@@ -18,6 +18,8 @@ import com.scalemonk.libs.ads.core.domain.session.UserTypeProvider;
 import com.unity3d.player.UnityPlayer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.UUID;
 
 import org.jetbrains.annotations.NotNull;
@@ -209,7 +211,14 @@ public class AdsBinding {
     public void setCustomUserId(final String customUserId) {
         ScaleMonkAds.updateCustomUserId(customUserId);
     }
+    
+    public void setCustomSegmentationTags(final String tags) {
+        // Tags is a comma separated string
+        HashSet<String> setOfSegmentationTags = new HashSet<>(Arrays.asList(tags.split(",")));
+        ScaleMonkAds.updateCustomSegmentationTags(setOfSegmentationTags);
+    }
 
+    @Deprecated
     public void setUserType(final String userType) {
         ScaleMonkAds.updateUserTypeProvider(new UnityUserTypeProvider(getUserTypeFromString(userType)));
     }

@@ -309,3 +309,12 @@ void SMSetUserType(char* userType) {
         _extraInfo = @{@"user_type": userTypeFromChar(userType) };
     }
 }
+
+void SMSetCustomSegmentationTags(char* tags) {
+    NSString* tagsString = [NSString stringWithUTF8String: tags];
+    if (![tagsString isEqual: @""]) {
+        NSSet<NSString*> *setOfSegmentationTags = [NSSet setWithArray:[tagsString componentsSeparatedByString:@","]];
+        
+        [smAds setCustomSegmentationTags: setOfSegmentationTags];
+    }
+}
