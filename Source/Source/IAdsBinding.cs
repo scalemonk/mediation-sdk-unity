@@ -48,7 +48,7 @@ namespace ScaleMonk.Ads
 
         void SetCustomSegmentationTags(HashSet<String> tags);
         
-        [Obsolete("Use \"void SetCustomSegmentationTags(HashSet<String tags)\" method instead.")]
+        [Obsolete("Use \"void SetCustomSegmentationTags(HashSet<String> tags)\" method instead.")]
         void SetUserType(UserType userType);
     }
 }
