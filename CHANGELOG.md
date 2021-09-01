@@ -1,6 +1,10 @@
     # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- The binding for setCustomSegmentationTags
+
 ## [1.14.0] - 2021-08-25
 ### Changed
 - Updated Android ScaleMonk version to 6.1.0

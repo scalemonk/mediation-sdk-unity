@@ -6,6 +6,8 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -173,9 +175,16 @@ namespace ScaleMonk.Ads
             _customUserId = customUserId;
         }
 
+        [Obsolete("Use \"void SetCustomSegmentationTags(HashSet<String tags)\" method instead.")]
         public void SetUserType(UserType userType)
         {
             _userType = userType;
+        }
+
+        public void SetCustomSegmentationTags(HashSet<String> tags)
+        {
+            // We need to transform it to array because Unity 2017 doesn't support Join with HashSet
+            Debug.Log("Segmentation tags change to: " + String.Join(", ", tags.ToArray()));
         }
 
         private bool isPortrait()

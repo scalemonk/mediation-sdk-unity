@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ScaleMonk.Ads
 {
@@ -159,6 +160,11 @@ namespace ScaleMonk.Ads
         public void SetUserCantGiveGDPRConsent(bool cantGiveConsent)
         {
             RunIfInitialized(() => { _adsBinding.SetUserCantGiveGDPRConsent(cantGiveConsent); });
+        }
+
+        public void SetCustomSegmentationTags(HashSet<string> tags)
+        {
+            _adsBinding.SetCustomSegmentationTags(tags);
         }
 
         public void AddAnalytics(IAnalytics analytics)
@@ -344,6 +350,7 @@ namespace ScaleMonk.Ads
         /// Sets the UserType
         /// </summary>
         /// <param name="userType"></param>
+        [Obsolete("Use \"void SetCustomSegmentationTags(HashSet<String> tags)\" method instead.")]
         public void SetUserType(UserType userType)
         {
             _adsBinding.SetUserType(userType);

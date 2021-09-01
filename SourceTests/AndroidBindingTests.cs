@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
@@ -175,6 +177,30 @@ namespace ScaleMonk.Ads
 
             // Then
             _mockAndroidJavaBridge.Received(1).CallNativeMethod("setHasGDPRConsent", (int)GdprConsent.NotGranted);
+        }
+
+        [Test]
+        public void SetCustomSegmentationTags_GivenEmptyTags_CallsNativeMethodPassingEmptySet()
+        {
+            HashSet<String> emptySegmentationTags = new HashSet<string>();
+            
+            // When
+            _androidBinding.SetCustomSegmentationTags(emptySegmentationTags);
+            
+            // Then
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setCustomSegmentationTags", emptySegmentationTags);
+        }
+
+        [Test]
+        public void SetCustomSegmentationTags_GivenSomeTags_CallsNativeMethodPassingASetWithTags()
+        {
+            HashSet<String> segmentationTags = new HashSet<string> {"paying_user", "non_paying_user"};
+            
+            // When
+            _androidBinding.SetCustomSegmentationTags(segmentationTags);
+            
+            // Then
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setCustomSegmentationTags", segmentationTags);
         }
     }
 }
