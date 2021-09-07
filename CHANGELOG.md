@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 - The binding for setCustomSegmentationTags
 
+## [1.14.1] - 2021-09-07
+### Fixed
+- Fixed how we compare adnet id with strings.
+
 ## [1.14.0] - 2021-08-25
 ### Changed
 - Updated Android ScaleMonk version to 6.1.0
