@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 ## [1.14.1] - 2021-09-07
 ### Fixed
 - Fixed how we compare adnet id with strings.
+- Set GoogleUtilitiesAppDelegateProxyEnabled to false when AdMob is included and enabled for iOS.
 
 ## [1.14.0] - 2021-08-25
 ### Changed
