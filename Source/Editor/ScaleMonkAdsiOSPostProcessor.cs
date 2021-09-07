@@ -61,8 +61,8 @@ namespace ScaleMonk.Ads
                             infoPlist.root.SetString(config.config, config.value.Trim());
                         }
                     }
-                    
-                    if (adnet.id == "Admob")
+
+                    if (adnet.id.ToLower() == "admob" && adnet.ios)
                     {
                         disableAdmobSwizzling(infoPlist);
                     }
