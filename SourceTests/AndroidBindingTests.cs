@@ -188,7 +188,7 @@ namespace ScaleMonk.Ads
             _androidBinding.SetCustomSegmentationTags(emptySegmentationTags);
             
             // Then
-            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setCustomSegmentationTags", emptySegmentationTags);
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setCustomSegmentationTags", "");
         }
 
         [Test]
@@ -200,7 +200,7 @@ namespace ScaleMonk.Ads
             _androidBinding.SetCustomSegmentationTags(segmentationTags);
             
             // Then
-            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setCustomSegmentationTags", segmentationTags);
+            _mockAndroidJavaBridge.Received(1).CallNativeMethod("setCustomSegmentationTags", "paying_user,non_paying_user");
         }
     }
 }
