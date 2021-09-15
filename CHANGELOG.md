@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Changed
+- Updated Android ScaleMonk version to 7.0.0
+
+## [Unreleased]
 ### Added
 - The binding for setCustomSegmentationTags
 
