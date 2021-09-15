@@ -1,7 +1,7 @@
     # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.16.0-rc.1] - 2021-08-31
+## [1.16.0] - 2021-09-15
 ### Changed
 - Updated Android ScaleMonk version to 6.2.0
 
