@@ -6,6 +6,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using ScaleMonk.Ads;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,8 +25,11 @@ namespace Demo
         public Button GrantGdprConsentButton;
         public Button DenyGdprConsentButton;
         public Button DisableGdprConsentButton;
+        public Button SetCustomTagsButton;
         public Text LogField;
 
+        private Banner banner;
+        
         private BannerPosition bannerPosition = BannerPosition.BottomCenter;
         public string menuTag = "DEBUG MENU";
 
@@ -47,7 +51,7 @@ namespace Demo
             GrantGdprConsentButton.onClick.AddListener(OnGrantGdprConsent);
             DenyGdprConsentButton.onClick.AddListener(OnDenyGdprConsent);
             DisableGdprConsentButton.onClick.AddListener(OnDisableGdprConsent);
-
+            SetCustomTagsButton.onClick.AddListener(OnSetCustomTags);
             ScaleMonkAds.SharedInstance.AddAnalytics(new DefaultAnalytics());
         }
 
@@ -63,12 +67,19 @@ namespace Demo
 
         private void OnClickShowBanner()
         {
-            scaleMonkAds.ShowBanner(menuTag, bannerPosition);
+            banner = scaleMonkAds.ShowBanner(menuTag, bannerPosition);
         }
 
         private void OnClickStopBanner()
         {
-            scaleMonkAds.StopBanner(menuTag);
+            if (banner != null)
+            {
+                scaleMonkAds.StopBanner(banner);
+            }
+            else
+            {
+                scaleMonkAds.StopBanner();
+            }
         }
 
         private void OnClickCoppaForChild()
@@ -102,6 +113,13 @@ namespace Demo
         {
             AdsLogger.LogInfo("Gdpr consent " + consent);
             scaleMonkAds.SetHasGDPRConsent(consent);
+        }
+        
+        private void OnSetCustomTags()
+        {
+            var segmentationTags = Utils.ReadSegmentationTagsFromFile();
+            var setOfSegmentationTags = new HashSet<string>(segmentationTags.Split(','));
+            scaleMonkAds.SetCustomSegmentationTags(setOfSegmentationTags);
         }
 
         private void OnClickInit()

@@ -7,6 +7,8 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ScaleMonk.Ads.Android
 {
@@ -108,6 +110,13 @@ namespace ScaleMonk.Ads.Android
             _androidJavaBridge.CallNativeMethod("setCustomUserId", customUserId);
         }
 
+        public void SetCustomSegmentationTags(HashSet<String> tags)
+        {
+            // We need to transform it to array because Unity 2017 doesn't support Join with HashSet
+            _androidJavaBridge.CallNativeMethod("setCustomSegmentationTags", string.Join(",", tags.ToArray()));
+        }
+        
+        [Obsolete("Use \"void SetCustomSegmentationTags(HashSet<String tags)\" method instead.")]
         public void SetUserType(UserType userType)
         {
             _androidJavaBridge.CallNativeMethod("setUserType", userType.ToStringUserType());

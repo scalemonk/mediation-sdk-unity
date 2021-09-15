@@ -1,9 +1,22 @@
-    # Changelog
+# Changelog
 All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+### Added
+- The binding for setCustomSegmentationTags
 
 ## [1.16.0] - 2021-09-15
 ### Changed
 - Updated Android ScaleMonk version to 6.2.0
+
+## [1.15.0] - 2021-09-08
+### Changed
+- Updated iOS ScaleMonk version to 3.2.0
+
+## [1.14.1] - 2021-09-07
+### Fixed
+- Fixed how we compare adnet id with strings.
+- Set GoogleUtilitiesAppDelegateProxyEnabled to false when AdMob is included and enabled for iOS.
 
 ## [1.14.0] - 2021-08-25
 ### Changed

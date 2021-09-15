@@ -6,6 +6,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using ScaleMonk.Ads;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,7 @@ namespace Demo
         public Button GrantGdprConsentButton;
         public Button DenyGdprConsentButton;
         public Button DisableGdprConsentButton;
+        public Button SetCustomTagsButton;
         public Text LogField;
 
         private BannerPosition bannerPosition = BannerPosition.BottomCenter;
@@ -45,7 +47,7 @@ namespace Demo
             GrantGdprConsentButton.onClick.AddListener(OnGrantGdprConsent);
             DenyGdprConsentButton.onClick.AddListener(OnDenyGdprConsent);
             DisableGdprConsentButton.onClick.AddListener(OnDisableGdprConsent);
-
+            SetCustomTagsButton.onClick.AddListener(OnSetCustomTags);
             ScaleMonkAds.SharedInstance.AddAnalytics(new DefaultAnalytics());
         }
 
@@ -111,6 +113,13 @@ namespace Demo
         {
             AdsLogger.LogInfo($"Coppa status {coppaStatus}");
             scaleMonkAds.SetIsApplicationChildDirected(coppaStatus);
+        }
+
+        private void OnSetCustomTags()
+        {
+            var segmentationTags = Utils.ReadSegmentationTagsFromFile();
+            var setOfSegmentationTags = new HashSet<string>(segmentationTags.Split(','));
+            scaleMonkAds.SetCustomSegmentationTags(setOfSegmentationTags);
         }
 
         private void OnClickInit()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ScaleMonk.Ads
 {
@@ -47,6 +48,14 @@ namespace ScaleMonk.Ads
         /// <param name="consent"> True if the user is underage, false otherwise
         /// </param>
         void SetUserCantGiveGDPRConsent(bool cantGiveConsent);
+
+        /// <summary>
+        /// Tells the ScaleMonk SDK the different segmentation tags
+        ///
+        /// </summary>
+        /// <param name="tags"> A set with all the tags
+        /// </param>
+        void SetCustomSegmentationTags(HashSet<String> tags);
 
         void AddAnalytics(IAnalytics analytics);
 

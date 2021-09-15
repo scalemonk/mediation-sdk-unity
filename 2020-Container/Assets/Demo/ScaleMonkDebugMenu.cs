@@ -6,6 +6,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using ScaleMonk.Ads;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,11 +25,14 @@ namespace Demo
         public Button GrantGdprConsentButton;
         public Button DenyGdprConsentButton;
         public Button DisableGdprConsentButton;
+        public Button SetCustomTagsButton;
         public Text LogField;
 
         private BannerPosition bannerPosition = BannerPosition.BottomCenter;
         public string menuTag = "DEBUG MENU";
         private ScaleMonkAdsSDK scaleMonkAds => ScaleMonkAds.SharedInstance;
+        
+        private Banner banner;
 
         // Start is called before the first frame update
         void Start()
@@ -43,7 +47,7 @@ namespace Demo
             GrantGdprConsentButton.onClick.AddListener(OnGrantGdprConsent);
             DenyGdprConsentButton.onClick.AddListener(OnDenyGdprConsent);
             DisableGdprConsentButton.onClick.AddListener(OnDisableGdprConsent);
-            
+            SetCustomTagsButton.onClick.AddListener(OnSetCustomTags);
             ScaleMonkAds.SharedInstance.AddAnalytics(new DefaultAnalytics());
         }
 
@@ -59,12 +63,19 @@ namespace Demo
 
         private void OnClickShowBanner()
         {
-            scaleMonkAds.ShowBanner(menuTag, bannerPosition);
+            banner = scaleMonkAds.ShowBanner(menuTag, bannerPosition);
         }
 
         private void OnClickStopBanner()
         {
-            scaleMonkAds.StopBanner(menuTag);
+            if (banner != null)
+            {
+                scaleMonkAds.StopBanner(banner);
+            }
+            else
+            {
+                scaleMonkAds.StopBanner();
+            }
         }
         
         private void OnClickCoppaForChild()
@@ -102,6 +113,13 @@ namespace Demo
         {
             AdsLogger.LogInfo($"Coppa status {coppaStatus}");
             scaleMonkAds.SetIsApplicationChildDirected(coppaStatus);
+        }
+        
+        private void OnSetCustomTags()
+        {
+            var segmentationTags = Utils.ReadSegmentationTagsFromFile();
+            var setOfSegmentationTags = new HashSet<string>(segmentationTags.Split(','));
+            scaleMonkAds.SetCustomSegmentationTags(setOfSegmentationTags);
         }
 
         private void OnClickInit()
