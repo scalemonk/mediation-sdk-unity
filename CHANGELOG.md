@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.17.0-rc.1] - 2021-09-08
+## [1.17.0-rc.2] - 2021-09-08
 ### Changed
 - Updated iOS ScaleMonk version to 3.3.0
 
