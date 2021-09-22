@@ -16,7 +16,7 @@
         <adnet id="IronSource" name="IronSource" ios="true" android="true" />
         <adnet id="Mintegral" name="Mintegral" ios="true" android="true" />
         <adnet id="Mopub" name="Mopub" ios="true" android="true" />
-        <adnet id="MyTarget" name="MyTarget" ios="true" />
+        <adnet id="MyTarget" name="MyTarget" ios="true" android="true" />
         <adnet id="Smaato" name="Smaato" ios="true" android="true" />
         <adnet id="Tapjoy" name="Tapjoy" ios="true" />
         <adnet id="Tiktok" name="TikTok" ios="true" android="true" />
