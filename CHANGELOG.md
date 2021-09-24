@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.17.0] - 2021-09-24
+### Changed
+- Updated iOS ScaleMonk version to 3.3.0
+
 ### Added
 - The binding for setCustomSegmentationTags
 
