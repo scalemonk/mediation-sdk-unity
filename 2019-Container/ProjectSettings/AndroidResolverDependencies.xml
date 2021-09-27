@@ -1,21 +1,20 @@
 <dependencies>
   <packages>
     <package>com.scalemonk.libs:ads:7.0.0</package>
-    <package>com.scalemonk.libs:ads-adcolony:4.6.3.7.0</package>
-    <package>com.scalemonk.libs:ads-admob:19.4.0.7.0</package>
-    <package>com.scalemonk.libs:ads-applovin:10.3.2.7.0</package>
-    <package>com.scalemonk.libs:ads-chartboost:8.1.0.7.</package>
-    <package>com.scalemonk.libs:ads-facebook:6.6.0.7.0</package>
-    <package>com.scalemonk.libs:ads-fyber:7.8.3.7.0</package>
-    <package>com.scalemonk.libs:ads-inmobi:9.2.0.7.0</package>
-    <package>com.scalemonk.libs:ads-ironsource:7.1.5.1.7.0</package>
-    <package>com.scalemonk.libs:ads-mintegral:15.5.51.7.0</package>
-    <package>com.scalemonk.libs:ads-mopub:5.14.0.7.0</package>
-    <package>com.scalemonk.libs:ads-smaato:21.5.3.7.0</package>
-    <package>com.scalemonk.libs:ads-tiktok:3.1.0.1.7.0</package>
-    <package>com.scalemonk.libs:ads-unityads:3.7.2.7.0</package>
-    <package>com.scalemonk.libs:ads-vungle:6.9.1.7.0</package>
-  </packages>
+    <package>com.scalemonk.libs:ads-adcolony:+</package>
+    <package>com.scalemonk.libs:ads-admob:+</package>
+    <package>com.scalemonk.libs:ads-applovin:+</package>
+    <package>com.scalemonk.libs:ads-chartboost:+</package>
+    <package>com.scalemonk.libs:ads-facebook:+</package>
+    <package>com.scalemonk.libs:ads-fyber:+</package>
+    <package>com.scalemonk.libs:ads-inmobi:+</package>
+    <package>com.scalemonk.libs:ads-ironsource:+</package>
+    <package>com.scalemonk.libs:ads-mintegral:+</package>
+    <package>com.scalemonk.libs:ads-mopub:+</package>
+    <package>com.scalemonk.libs:ads-smaato:+</package>
+    <package>com.scalemonk.libs:ads-tiktok:+</package>
+    <package>com.scalemonk.libs:ads-unityads:+</package>
+    <package>com.scalemonk.libs:ads-vungle:+</package>
   <files />
   <settings>
     <setting name="androidAbis" value="armeabi-v7a" />
@@ -29,7 +28,7 @@
     <setting name="packageDir" value="Assets/Plugins/Android" />
     <setting name="patchAndroidManifest" value="True" />
     <setting name="patchMainTemplateGradle" value="True" />
-    <setting name="projectExportEnabled" value="False" />
+    <setting name="projectExportEnabled" value="True" />
     <setting name="useJetifier" value="True" />
   </settings>
 </dependencies>

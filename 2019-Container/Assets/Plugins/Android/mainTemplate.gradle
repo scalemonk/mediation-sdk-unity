@@ -37,20 +37,20 @@ dependencies {
 		
 // Android Resolver Dependencies Start
     implementation 'com.scalemonk.libs:ads:7.0.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
-    implementation 'com.scalemonk.libs:ads-adcolony:4.6.3.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:5
-    implementation 'com.scalemonk.libs:ads-admob:19.4.0.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:6
-    implementation 'com.scalemonk.libs:ads-applovin:10.3.2.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:7
-    implementation 'com.scalemonk.libs:ads-chartboost:8.1.0.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:8
-    implementation 'com.scalemonk.libs:ads-facebook:6.6.0.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:9
-    implementation 'com.scalemonk.libs:ads-fyber:7.8.3.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:10
-    implementation 'com.scalemonk.libs:ads-inmobi:9.2.0.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:11
-    implementation 'com.scalemonk.libs:ads-ironsource:7.1.5.1.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:12
-    implementation 'com.scalemonk.libs:ads-mintegral:15.5.51.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:13
-    implementation 'com.scalemonk.libs:ads-mopub:5.14.0.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:14
-    implementation 'com.scalemonk.libs:ads-smaato:21.5.3.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:15
-    implementation 'com.scalemonk.libs:ads-tiktok:3.1.0.1.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:16
-    implementation 'com.scalemonk.libs:ads-unityads:3.7.2.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:17
-    implementation 'com.scalemonk.libs:ads-vungle:6.9.1.7.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:18
+    implementation 'com.scalemonk.libs:ads-adcolony:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:5
+    implementation 'com.scalemonk.libs:ads-admob:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:6
+    implementation 'com.scalemonk.libs:ads-applovin:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:7
+    implementation 'com.scalemonk.libs:ads-chartboost:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:8
+    implementation 'com.scalemonk.libs:ads-facebook:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:9
+    implementation 'com.scalemonk.libs:ads-fyber:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:10
+    implementation 'com.scalemonk.libs:ads-inmobi:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:11
+    implementation 'com.scalemonk.libs:ads-ironsource:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:12
+    implementation 'com.scalemonk.libs:ads-mintegral:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:13
+    implementation 'com.scalemonk.libs:ads-mopub:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:14
+    implementation 'com.scalemonk.libs:ads-smaato:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:15
+    implementation 'com.scalemonk.libs:ads-tiktok:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:16
+    implementation 'com.scalemonk.libs:ads-unityads:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:17
+    implementation 'com.scalemonk.libs:ads-vungle:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:18
 // Android Resolver Dependencies End
 **DEPS**}
 
