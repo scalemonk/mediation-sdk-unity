@@ -6,16 +6,16 @@
             url "https://maven.google.com"
         }
         maven {
-            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
+            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
         }
         maven {
-            url "https://android-sdk.is.com/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
+            url "https://android-sdk.is.com/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
         }
         maven {
-            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
         }
         maven {
-            url "https://s3.amazonaws.com/smaato-sdk-releases/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:25
+            url "https://s3.amazonaws.com/smaato-sdk-releases/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
         }
         mavenLocal()
         jcenter()
@@ -36,7 +36,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 		
 // Android Resolver Dependencies Start
-    implementation 'com.scalemonk.libs:ads:7.0.0' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
+    implementation 'com.scalemonk.libs:ads:8.0.0-rc.1' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:4
     implementation 'com.scalemonk.libs:ads-adcolony:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:5
     implementation 'com.scalemonk.libs:ads-admob:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:6
     implementation 'com.scalemonk.libs:ads-applovin:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:7
@@ -47,10 +47,11 @@ dependencies {
     implementation 'com.scalemonk.libs:ads-ironsource:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:12
     implementation 'com.scalemonk.libs:ads-mintegral:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:13
     implementation 'com.scalemonk.libs:ads-mopub:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:14
-    implementation 'com.scalemonk.libs:ads-smaato:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:15
-    implementation 'com.scalemonk.libs:ads-tiktok:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:16
-    implementation 'com.scalemonk.libs:ads-unityads:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:17
-    implementation 'com.scalemonk.libs:ads-vungle:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:18
+    implementation 'com.scalemonk.libs:ads-mytarget:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:15
+    implementation 'com.scalemonk.libs:ads-smaato:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:16
+    implementation 'com.scalemonk.libs:ads-tiktok:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:17
+    implementation 'com.scalemonk.libs:ads-unityads:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:18
+    implementation 'com.scalemonk.libs:ads-vungle:+' // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:19
 // Android Resolver Dependencies End
 **DEPS**}
 

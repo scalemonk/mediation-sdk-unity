@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.19.0-rc.1] - 2021-09-27
+### Added
+- Added support for MyTarget in Android
+
+### Changed
+- Updated Android ScaleMonk version to 8.0.0-rc.1
+
 ## [1.18.0] - 2021-09-27
 ### Changed
 - Updated Android ScaleMonk version to 7.0.0
