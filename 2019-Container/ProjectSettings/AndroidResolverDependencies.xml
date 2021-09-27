@@ -1,6 +1,6 @@
 <dependencies>
   <packages>
-    <package>com.scalemonk.libs:ads:6.1.0</package>
+    <package>com.scalemonk.libs:ads:7.0.0</package>
     <package>com.scalemonk.libs:ads-adcolony:+</package>
     <package>com.scalemonk.libs:ads-admob:+</package>
     <package>com.scalemonk.libs:ads-applovin:+</package>
@@ -15,7 +15,6 @@
     <package>com.scalemonk.libs:ads-tiktok:+</package>
     <package>com.scalemonk.libs:ads-unityads:+</package>
     <package>com.scalemonk.libs:ads-vungle:+</package>
-  </packages>
   <files />
   <settings>
     <setting name="androidAbis" value="armeabi-v7a" />

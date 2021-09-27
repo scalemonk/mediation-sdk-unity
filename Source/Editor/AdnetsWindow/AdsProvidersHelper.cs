@@ -17,7 +17,7 @@ namespace ScaleMonk.Ads
     public class AdsProvidersHelper
     {
         const string iosAdsVersion = "3.3.0";
-        const string androidAdsVersion = "6.2.0";
+        const string androidAdsVersion = "7.0.0";
       
         public static string GetAdnetsXmlPath()
         {
@@ -348,7 +348,6 @@ namespace ScaleMonk.Ads
             jfrogRepo.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod";
             
             repositories.AppendChild(jfrogRepo);
-            
 
             var androidPackagesElement = doc.CreateElement("androidPackages");
             androidPackagesElement.AppendChild(getAndroidPackageForLib(doc, "ads", androidAdsVersion));
