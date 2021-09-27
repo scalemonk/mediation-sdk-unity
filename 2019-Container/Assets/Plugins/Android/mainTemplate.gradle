@@ -6,16 +6,19 @@
             url "https://maven.google.com"
         }
         maven {
-            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-dev" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:27
         }
         maven {
-            url "https://android-sdk.is.com/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:27
         }
         maven {
-            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://android-sdk.is.com/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:27
         }
         maven {
-            url "https://s3.amazonaws.com/smaato-sdk-releases/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:26
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:27
+        }
+        maven {
+            url "https://s3.amazonaws.com/smaato-sdk-releases/" // Assets/Scalemonk Ads/Editor/ScaleMonkAdsDependencies.xml:27
         }
         mavenLocal()
         jcenter()
