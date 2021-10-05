@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Added support for Maio in iOS
 
 ## [1.18.0] - 2021-09-27
 ### Changed
