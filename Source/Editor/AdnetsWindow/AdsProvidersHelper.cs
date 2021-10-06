@@ -343,7 +343,7 @@ namespace ScaleMonk.Ads
             };
 
             var repositories = doc.CreateElement("repositories");
-            
+
             var jfrogRepo = doc.CreateElement("repository");
             jfrogRepo.InnerText = "https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod";
             
