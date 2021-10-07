@@ -1,21 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
   <androidPackages>
-   <androidPackage spec="com.scalemonk.libs:ads:7.0.0" />
-   <androidPackage spec="com.scalemonk.libs:ads-adcolony:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-applovin:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-chartboost:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-facebook:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-fyber:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-inmobi:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-ironsource:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-mintegral:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-mopub:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-smaato:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-tiktok:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-unityads:+" />
-   <androidPackage spec="com.scalemonk.libs:ads-vungle:+" />
+    <androidPackage spec="com.scalemonk.libs:ads:8.0.0" />
+    <androidPackage spec="com.scalemonk.libs:ads-adcolony:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-applovin:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-chartboost:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-facebook:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-fyber:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-inmobi:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-ironsource:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-mintegral:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-mopub:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-mytarget:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-smaato:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-tiktok:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-unityads:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-vungle:+" />
     <repositories>
       <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod</repository>
       <repository>https://android-sdk.is.com/</repository>
@@ -81,6 +82,11 @@
       </sources>
     </iosPod>
     <iosPod name="ScaleMonkAds-Mopub">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-MyTarget">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
