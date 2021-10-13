@@ -13,7 +13,7 @@
     <adnet id="Fyber" name="Fyber" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="InMobi" name="InMobi" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="IronSource" name="IronSource" ios="True" iosVersion="" androidVersion="" android="True" />
-    <adnet id="Maio" name="Maio" ios="True" iosVersion="" androidVersion="" android="False" />
+    <adnet id="Maio" name="Maio" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Mintegral" name="Mintegral" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Mopub" name="Mopub" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="MyTarget" name="MyTarget" ios="True" iosVersion="" androidVersion="" android="True" />
@@ -22,5 +22,6 @@
     <adnet id="Tiktok" name="TikTok" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="UnityAds" name="UnityAds" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Vungle" name="Vungle" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Yandex" name="Yandex" ios="False" iosVersion="" androidVersion="" android="True" />
   </adnets>
 </scalemonk>
