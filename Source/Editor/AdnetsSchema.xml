@@ -23,6 +23,6 @@
         <adnet id="Tiktok" name="TikTok" ios="true" android="true" />
         <adnet id="UnityAds" name="UnityAds" ios="true" android="true" />
         <adnet id="Vungle" name="Vungle" ios="true" android="true" />
-        <adnet id="Yandex" name="Yandex" ios="false" android="true" />
+        <adnet id="Yandex" name="Yandex" ios="true" android="true" />
     </adnets>
 </scalemonk>
