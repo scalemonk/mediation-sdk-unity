@@ -2,8 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.20.0] - 2021-10-06
 ### Added
 - Added support for Maio in iOS
+- Update iOS ScaleMonk version to 4.0.0
 
 ## [1.19.0] - 2021-10-06
 ### Added
