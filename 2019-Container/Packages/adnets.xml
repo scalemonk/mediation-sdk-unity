@@ -22,6 +22,6 @@
     <adnet id="Tiktok" name="TikTok" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="UnityAds" name="UnityAds" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Vungle" name="Vungle" ios="True" iosVersion="" androidVersion="" android="True" />
-    <adnet id="Yandex" name="Yandex" ios="False" iosVersion="" androidVersion="" android="True" />
+    <adnet id="Yandex" name="Yandex" ios="True" iosVersion="" androidVersion="" android="True" />
   </adnets>
 </scalemonk>
