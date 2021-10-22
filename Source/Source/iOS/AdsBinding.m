@@ -21,6 +21,7 @@ static NSDictionary *_extraInfo;
 static SMAds *smAds;
 static NSMutableDictionary *_bannerViews;
 static bool initialized = false;
+static NSSet *_setOfSegmentationTags;
 
 void SMAdsInitialize() {
     
@@ -28,6 +29,10 @@ void SMAdsInitialize() {
     
     if ([_extraInfo count] > 0) {
         [smAds setExtraInfo: _extraInfo];
+    }
+    
+    if ([_setOfSegmentationTags count] > 0) {
+        [smAds setCustomSegmentationTags: _setOfSegmentationTags];
     }
     
     [smAds initialize: ^(BOOL success){
@@ -313,8 +318,15 @@ void SMSetUserType(char* userType) {
 void SMSetCustomSegmentationTags(char* tags) {
     NSString* tagsString = [NSString stringWithUTF8String: tags];
     if (![tagsString isEqual: @""]) {
-        NSSet<NSString*> *setOfSegmentationTags = [NSSet setWithArray:[tagsString componentsSeparatedByString:@","]];
+        NSSet *segmentationTagsToAdd = [NSSet setWithArray:[tagsString componentsSeparatedByString:@","]];
         
-        [smAds setCustomSegmentationTags: setOfSegmentationTags];
+        if (initialized) {
+            [smAds setCustomSegmentationTags: segmentationTagsToAdd];
+        } else {
+            if (!_setOfSegmentationTags) {
+                _setOfSegmentationTags = [NSSet set];
+            }
+            _setOfSegmentationTags = [_setOfSegmentationTags setByAddingObjectsFromSet:segmentationTagsToAdd];
+        }
     }
 }
