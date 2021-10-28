@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.21.0] - 2021-10-28
+### Added
+- Added supoprt for Yandex in iOS
+- Update iOS ScaleMonk version to 5.0.0
+
 ## [1.20.0] - 2021-10-06
 ### Added
 - Added support for Maio in iOS
