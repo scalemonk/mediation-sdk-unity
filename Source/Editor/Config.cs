@@ -2,6 +2,6 @@ namespace ScaleMonk.Ads
 {
     public static class Config
     {
-        public static readonly string Version = "1.20.0";
+        public static readonly string Version = "1.21.0";
     }
 }
