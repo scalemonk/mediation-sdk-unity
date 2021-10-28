@@ -11,6 +11,7 @@
     <adnet id="Chartboost" name="Chartboost" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Facebook" name="Facebook" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Fyber" name="Fyber" ios="True" iosVersion="" androidVersion="" android="True" />
+    <adnet id="HyprMX" name="HyprMX" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="InMobi" name="InMobi" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="IronSource" name="IronSource" ios="True" iosVersion="" androidVersion="" android="True" />
     <adnet id="Maio" name="Maio" ios="True" iosVersion="" androidVersion="" android="True" />
