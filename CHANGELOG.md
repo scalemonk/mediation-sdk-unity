@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Changed
+- Moved mock ads to editor folder
 
 ## [1.21.0] - 2021-10-28
 ### Added
