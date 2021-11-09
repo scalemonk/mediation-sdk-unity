@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
   <androidPackages>
-    <androidPackage spec="com.scalemonk.libs:ads:8.0.0" />
+    <androidPackage spec="com.scalemonk.libs:ads:9.0.0" />
     <androidPackage spec="com.scalemonk.libs:ads-adcolony:+" />
     <androidPackage spec="com.scalemonk.libs:ads-admob:+" />
     <androidPackage spec="com.scalemonk.libs:ads-applovin:+" />
     <androidPackage spec="com.scalemonk.libs:ads-chartboost:+" />
     <androidPackage spec="com.scalemonk.libs:ads-facebook:+" />
     <androidPackage spec="com.scalemonk.libs:ads-fyber:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-hyprmx:+" />
     <androidPackage spec="com.scalemonk.libs:ads-inmobi:+" />
     <androidPackage spec="com.scalemonk.libs:ads-ironsource:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-maio:+" />
     <androidPackage spec="com.scalemonk.libs:ads-mintegral:+" />
     <androidPackage spec="com.scalemonk.libs:ads-mopub:+" />
     <androidPackage spec="com.scalemonk.libs:ads-mytarget:+" />
@@ -17,16 +19,18 @@
     <androidPackage spec="com.scalemonk.libs:ads-tiktok:+" />
     <androidPackage spec="com.scalemonk.libs:ads-unityads:+" />
     <androidPackage spec="com.scalemonk.libs:ads-vungle:+" />
+    <androidPackage spec="com.scalemonk.libs:ads-yandex:+" />
     <repositories>
       <repository>https://scalemonk.jfrog.io/artifactory/scalemonk-gradle-prod</repository>
-      <repository>https://android-sdk.is.com/</repository>
+      <repository>https://hyprmx.jfrog.io/artifactory/hyprmx</repository>
+      <repository>https://android-sdk.is.com</repository>
+      <repository>https://imobile-maio.github.io/maven</repository>
       <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
-      <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
-      <repository>https://s3.amazonaws.com/smaato-sdk-releases/</repository>
+      <repository>https://s3.amazonaws.com/smaato-sdk-releases</repository>
     </repositories>
   </androidPackages>
   <iosPods>
-    <iosPod name="ScaleMonkAds" version="3.1.0">
+    <iosPod name="ScaleMonkAds" version="5.0.0">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
@@ -66,12 +70,22 @@
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
     </iosPod>
+    <iosPod name="ScaleMonkAds-HyprMX">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
     <iosPod name="ScaleMonkAds-InMobi">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
     </iosPod>
     <iosPod name="ScaleMonkAds-IronSource">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Maio">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>
@@ -112,6 +126,11 @@
       </sources>
     </iosPod>
     <iosPod name="ScaleMonkAds-Vungle">
+      <sources>
+        <source>https://github.com/scalemonk/ios-podspecs-framework</source>
+      </sources>
+    </iosPod>
+    <iosPod name="ScaleMonkAds-Yandex">
       <sources>
         <source>https://github.com/scalemonk/ios-podspecs-framework</source>
       </sources>

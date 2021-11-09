@@ -17,7 +17,7 @@ namespace ScaleMonk.Ads
     public class AdsProvidersHelper
     {
         const string iosAdsVersion = "5.0.0";
-        const string androidAdsVersion = "8.0.0";
+        const string androidAdsVersion = "9.0.0";
       
         public static string GetAdnetsXmlPath()
         {
@@ -334,12 +334,13 @@ namespace ScaleMonk.Ads
                 {
                     "mintegral", new List<string>
                     {
-                        "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
                         "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
                     }
                 },
-                {"ironsource", new List<string> {"https://android-sdk.is.com/"}},
-                {"smaato", new List<string> {"https://s3.amazonaws.com/smaato-sdk-releases/"}},
+                {"ironsource", new List<string> {"https://android-sdk.is.com"}},
+                {"smaato", new List<string> {"https://s3.amazonaws.com/smaato-sdk-releases"}},
+                {"maio", new List<string> {"https://imobile-maio.github.io/maven"}},
+                {"hyprmx", new List<string> {"https://hyprmx.jfrog.io/artifactory/hyprmx"}}
             };
 
             var repositories = doc.CreateElement("repositories");
