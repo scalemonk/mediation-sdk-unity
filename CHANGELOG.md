@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Changed
+- Analytics use native implementation now
 
 ## [1.22.0] - 2021-11-09
 ### Changed
