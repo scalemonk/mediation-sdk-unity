@@ -2,8 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.22.0] - 2021-11-09
 ### Changed
 - Moved mock ads to editor folder
+- Update Android Scalemonk version to 9.0.0
 
 ## [1.21.0] - 2021-10-28
 ### Added
