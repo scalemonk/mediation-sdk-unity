@@ -6,6 +6,7 @@
 //
 
 #import "AdsBindingAnalyticsViewController.h"
+#import "TFGAnalytics.h"
 
 @interface AdsBindingAnalyticsViewController ()
 
@@ -23,30 +24,17 @@
     @try {
         NSLog(@"Event %@ received on iOS binding", eventName);
 
-        NSString * eventAsString = createEventAsString(eventName, eventParams);
+        NSArray *eventKeys = eventParams.allKeys;
+        NSMutableArray* eventValues = [[NSMutableArray alloc] init];
 
-        UnitySendMessage("AdsMonoBehaviour", "SendEvent", strdup([eventAsString UTF8String]));
+        for(id key in eventParams)
+            [eventValues addObject: [NSString stringWithFormat: @"%@", [eventParams objectForKey: key]]];
+            
+        [[TFGAnalytics sharedInstance] sendEvent:eventName params:  [[NSMutableDictionary alloc] initWithObjects:eventValues forKeys:eventKeys]];
     }
     @catch(id exception){
-        NSLog(@"Cannot serialize event %@ with params %@ into json %@", eventName, eventParams, exception);
+        NSLog(@"Cannot serialize event %@ with params %@ error is %@", eventName, eventParams, exception);
     }
-}
-
-static NSString *createEventAsString(NSString *eventName, NSDictionary<NSString *,NSObject *> *eventParams) {
-    NSError *error;
-    NSArray *eventKeys = eventParams.allKeys;
-    NSArray *eventValues = eventParams.allValues;
-    
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:eventName, @"eventName", eventKeys, @"eventKeys",
-                          eventValues, @"eventValues", nil];
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
-    if (error != nil) {
-        NSLog(@"Cannot serialize event into json %@", error);
-        return @"";
-    }
-
-    NSString* jsonDictionary = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    return jsonDictionary;
 }
 
 @end
