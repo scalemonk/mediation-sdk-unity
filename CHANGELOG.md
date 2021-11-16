@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Analytics use native implementation now
 
+## [1.23.0] - 2021-11-16
+### Added
+- Update iOS ScaleMonk version to 6.0.0
+
 ## [1.22.0] - 2021-11-09
 ### Changed
 - Moved mock ads to editor folder
