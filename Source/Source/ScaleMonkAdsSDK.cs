@@ -12,6 +12,7 @@ namespace ScaleMonk.Ads
         private static Action _initializationCallback;
         private bool _isInitialized;
         private bool _hasAnalyticsBinding;
+        private bool _isBannerPresent;
         private readonly BannerSize _defaultBannerSize = BannerSize.Small;
         private readonly INativeBridgeService _nativeBridgeService;
         private readonly AnalyticsService _analyticsService;
@@ -365,6 +366,11 @@ namespace ScaleMonk.Ads
         {
             _adsBinding.Initialize(this);
         }
+        
+        public bool IsBannerPresent()
+        {
+            return _isBannerPresent;
+        }
 
         static void CallAction(Action action)
         {
@@ -445,12 +451,14 @@ namespace ScaleMonk.Ads
         public void FailedBannerDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Banner not displayed at tag {1}", Label, tag);
+            _isBannerPresent = false;
             CallAction(BannerFailedDisplayedEvent);
         }
 
         public void CompletedBannerDisplay(string tag)
         {
             AdsLogger.LogWithFormat("{0} | Banner displayed at tag {1}", Label, tag);
+            _isBannerPresent = true;
             CallAction(BannerCompletedDisplayedEvent);
         }
 
