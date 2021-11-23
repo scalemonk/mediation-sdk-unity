@@ -47,9 +47,7 @@ public class AdsBinding {
     }
 
     public void initialize() {
-        this.activity.runOnUiThread(() -> {
-            setupAds(interstitialListener, videoListener, bannerListener);
-        });
+        Executors.newSingleThreadExecutor().execute(() -> setupAds(interstitialListener, videoListener, bannerListener));
     }
 
     public boolean isInterstitialReadyToShow(String tag) {
