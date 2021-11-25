@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+
+## [1.25.0]
+### Added
+- Update Android ScaleMonk version to 9.1.0
+
 ## [1.24.0]
 ### Added
 - Update iOS ScaleMonk version to 6.1.0
