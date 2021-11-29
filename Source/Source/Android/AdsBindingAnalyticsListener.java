@@ -19,7 +19,7 @@ public class AdsBindingAnalyticsListener implements Analytics {
     @Override
     public void sendEvent(@NotNull String eventName, @NotNull Map<String, ?> eventParams) {
         Map<String, String> map = new HashMap<>();
-        for (Map.Entry<String, ?> entry : params.entrySet()) {
+        for (Map.Entry<String, ?> entry : eventParams.entrySet()) {
             map.put(entry.getKey(), entry.getValue().toString());
         }
 
