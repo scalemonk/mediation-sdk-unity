@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.25.1]
+### Added
+- Fixed typo in Analytics binding param
 
 ## [1.25.0]
 ### Added
