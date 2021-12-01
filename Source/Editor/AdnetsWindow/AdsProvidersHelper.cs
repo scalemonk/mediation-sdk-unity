@@ -338,7 +338,7 @@ namespace ScaleMonk.Ads
                     }
                 },
                 {"ironsource", new List<string> {"https://android-sdk.is.com"}},
-                {"ogury", new List<string> "https://maven.ogury.co"}},
+                {"ogury", new List<string> {"https://maven.ogury.co"}},
                 {"smaato", new List<string> {"https://s3.amazonaws.com/smaato-sdk-releases"}},
                 {"maio", new List<string> {"https://imobile-maio.github.io/maven"}},
                 {"hyprmx", new List<string> {"https://hyprmx.jfrog.io/artifactory/hyprmx"}}
