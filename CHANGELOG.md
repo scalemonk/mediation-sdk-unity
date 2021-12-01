@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## [1.26.0-rc.1]
+### Added
+- Support for Ogury in Android
+
+### Changed
+- Moved Android initialization to background thread 
 
 ## [1.25.1]
 ### Added
