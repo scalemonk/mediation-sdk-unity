@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.26.0-rc.3]
+### Changed
+- Update Android ScaleMonk version to 9.2.0
+
 ## [1.26.0-rc.1]
 ### Added
 - Support for Ogury in Android
