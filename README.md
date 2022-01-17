@@ -1,3 +1,5 @@
+THIS REPOSITORY IS DEPRECATED. NOW WE ARE HOSTED IN [GITLAB](https://git.topfreegames.com/packages/mediation/mediation-core). 
+
 # ScaleMonk Unity Mediation SDK
 
 This repository contains the ScaleMonk Unity Mediation SDK 
